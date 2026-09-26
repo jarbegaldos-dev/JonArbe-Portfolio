@@ -332,7 +332,13 @@ h1, h2, h3, h4 {
   overflow: hidden;
   opacity: 0.96;
   filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6));
-  pointer-events: none;
+  /* Was pointer-events:none (purely decorative, nothing interactive sits
+     underneath it). On a real mobile browser where autoplay gets blocked,
+     that also silently swallowed the tap on the native "resume playback"
+     affordance the browser shows on an unplayed <video> -- the tap looked
+     like it "did nothing" because it never reached the <video> element at
+     all. Nothing else occupies this corner of the hero, so leaving pointer
+     events enabled here is safe. */
 }
 .hero-raven {
   display: block;

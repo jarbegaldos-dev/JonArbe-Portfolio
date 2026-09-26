@@ -412,23 +412,57 @@
   }
 
   /* ---------------------------------------------------------
-     Decorative video autoplay — belt-and-suspenders retry.
+     Decorative video autoplay — robust silent retry.
      Both ambient videos (hero raven, Case Study skeleton) already carry
-     the correct attributes for mobile autoplay (muted, playsinline), which
-     is normally enough. As a safety net for real-device quirks (a video
-     the browser decided to defer, e.g. because it wasn't yet in the
-     layout/viewport when autoplay was attempted), retry .play() once each
-     one actually enters the viewport.
+     autoplay/muted/playsinline/webkit-playsinline, which is normally
+     enough. On some real mobile browsers a single autoplay attempt at
+     parse time can still be silently blocked or deferred (e.g. the
+     element's entrance animation has it at opacity:0 at that exact
+     instant, or the browser defers until the tab/page is actually
+     foregrounded) and, critically, nothing then automatically retries it
+     — the browser just leaves it paused with its own native tap-to-resume
+     affordance, which is exactly what read as "a Play button that doesn't
+     do anything" (see .hero-raven-frame's pointer-events fix elsewhere in
+     this codebase for the other half of that bug).
+     attemptPlay() is called from every signal that could plausibly make a
+     previously-blocked autoplay succeed — never from a click/tap on the
+     video itself, so no visible control or video-specific interaction is
+     ever introduced. Every call re-sets `muted` as a JS property (not just
+     relying on the HTML attribute) because some engines only honor the
+     property for autoplay eligibility, and silently swallows a rejected
+     Promise so a still-blocked attempt never surfaces as an error.
      --------------------------------------------------------- */
   var ambientVideos = document.querySelectorAll('.hero-raven, .cs-heading-mark');
-  if (ambientVideos.length && 'IntersectionObserver' in window) {
-    var videoIo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting && entry.target.paused) {
-          entry.target.play().catch(function () { /* still blocked, ignore */ });
-        }
-      });
-    }, { threshold: 0.1 });
-    ambientVideos.forEach(function (video) { videoIo.observe(video); });
+  if (ambientVideos.length) {
+    var attemptPlay = function (video) {
+      if (!video || !video.paused) return;
+      video.muted = true;
+      var playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(function () { /* still blocked this time; another signal below will retry */ });
+      }
+    };
+    var attemptPlayAll = function () {
+      ambientVideos.forEach(attemptPlay);
+    };
+
+    attemptPlayAll();
+    ambientVideos.forEach(function (video) {
+      video.addEventListener('loadeddata', function () { attemptPlay(video); });
+      video.addEventListener('canplay', function () { attemptPlay(video); });
+    });
+    window.addEventListener('load', attemptPlayAll);
+    window.addEventListener('pageshow', attemptPlayAll);
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') attemptPlayAll();
+    });
+    if ('IntersectionObserver' in window) {
+      var videoIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) attemptPlay(entry.target);
+        });
+      }, { threshold: 0.1 });
+      ambientVideos.forEach(function (video) { videoIo.observe(video); });
+    }
   }
 })();
