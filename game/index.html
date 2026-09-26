@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>Ossuary Reels</title>
+<link rel="stylesheet" href="style.css?v=20260704e" />
+</head>
+<body>
+
+<main id="gameRoot" aria-label="Ossuary Reels">
+  <section id="slotStage" aria-label="Interfaz principal de Ossuary Reels">
+    <div id="sceneLayers" class="scene-layers" aria-hidden="true">
+      <!-- Generado en tiempo de ejecución por scene-manager.js a partir de
+           assets/scene-config.js. No añadir <img> a mano aquí: edita el
+           config para que las rutas tengan una única fuente de verdad. -->
+    </div>
+
+    <div id="reelLayer" aria-hidden="true"></div>
+
+    <!-- Capas de escena que deben dibujarse SIEMPRE por delante de los
+         rodillos (p.ej. la caja toracica frontal). Vive fuera de
+         #sceneLayers a proposito: #sceneLayers puede recibir transform
+         (reaccion de "whole machine weight") y eso le crea su propio
+         stacking context, lo que rompe cualquier z-index interno relativo
+         a #reelLayer. Generado en tiempo de ejecucion por scene-manager.js
+         para las capas con `root: "structureOverlay"` en scene.config.js. -->
+    <div id="structureOverlay" class="structure-overlay" aria-hidden="true"></div>
+
+    <div id="uiLayer">
+      <img class="ossuary-corner-logo" src="assets/ui/ossuary-reels-logo.png" alt="Ossuary Reels">
+      <div class="hud-cluster">
+        <button class="hud-petal hud-petal--volume" id="volumeBtn" type="button" aria-label="Volumen">
+          <svg class="hud-petal__shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M9 50 L91 50 L50 96 Z" />
+          </svg>
+          <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 10 H8 L13 6 V18 L8 14 H4 Z" fill="currentColor"/>
+            <path d="M16 9 C18 11 18 13 16 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="hud-petal hud-petal--coins" id="coinBtn" type="button" aria-label="Monedas">
+          <svg class="hud-petal__shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M9 50 L91 50 L50 96 Z" />
+          </svg>
+          <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true">
+            <ellipse cx="12" cy="7" rx="6" ry="3" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M6 7 V15 C6 16.7 8.7 18 12 18 C15.3 18 18 16.7 18 15 V7" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M6 11 C6 12.7 8.7 14 12 14 C15.3 14 18 12.7 18 11" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        <div class="bet-choice-panel" id="betChoicePanel" hidden>
+          <div class="bet-choice-panel__title">BET</div>
+          <div class="bet-choice-panel__presets" id="betChoicePresets"></div>
+          <div class="bet-choice-panel__custom">
+            <input class="bet-choice-panel__input" id="betCustomInput" type="text" inputmode="decimal" placeholder="CUSTOM" />
+            <button class="bet-choice-panel__apply" id="betCustomApplyBtn" type="button">OK</button>
+          </div>
+          <div class="bet-choice-panel__hint" id="betChoiceHint">0.10 steps only</div>
+        </div>
+        <button class="hud-petal hud-petal--turbo" id="turboBtn" type="button" aria-label="Turbo">
+          <svg class="hud-petal__shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M50 4 L91 50 L9 50 Z" />
+          </svg>
+          <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M13 2 L4 14 H11 L9 22 L20 9 H13 Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="hud-petal hud-petal--auto" id="autoBtn" type="button" aria-label="Auto spin">
+          <svg class="hud-petal__shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M50 4 L91 50 L9 50 Z" />
+          </svg>
+          <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 16 A7 7 0 1 1 18 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M18 4 V8 H14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="12" y="16.2" text-anchor="middle" font-size="8.8" font-weight="900" fill="currentColor">A</text>
+          </svg>
+        </button>
+        <div class="auto-panel" id="autoPanel" hidden>
+          <div class="auto-panel__title">AUTO</div>
+          <div class="auto-panel__presets">
+            <button class="auto-panel__preset" type="button" data-auto-count="10">10</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="20">20</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="50">50</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="100">100</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="200">200</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="500">500</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="1000">1000</button>
+          </div>
+          <div class="auto-panel__custom">
+            <input class="auto-panel__input" id="autoCustomInput" type="number" min="1" step="1" placeholder="CUSTOM" />
+            <button class="auto-panel__apply" id="autoCustomApplyBtn" type="button">OK</button>
+          </div>
+          <div class="auto-panel__footer">
+            <div class="auto-panel__status" id="autoStatusLabel">50 ROUNDS</div>
+            <button class="auto-panel__stop" id="autoStopBtn" type="button">STOP</button>
+          </div>
+        </div>
+        <button class="hud-center" id="menuBtn" type="button" aria-label="Menu">
+          <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="4" y="5.2" width="16" height="2.6" rx="1.3" fill="currentColor" stroke="none"/>
+            <rect x="4" y="10.7" width="16" height="2.6" rx="1.3" fill="currentColor" stroke="none"/>
+            <rect x="4" y="16.2" width="16" height="2.6" rx="1.3" fill="currentColor" stroke="none"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="hud-right-col">
+        <div class="hud-auto-counter" id="autoCounterBadge" hidden>
+          <span class="hud-auto-counter__value" id="autoCounterValue">50</span>
+          <button class="hud-auto-counter__stop" id="autoCounterStopBtn" type="button" aria-label="Cancelar autoplay">&times;</button>
+        </div>
+        <div class="hud-selected-buy-bonus" id="selectedBuyBonusBadge" hidden>
+          <img class="hud-selected-buy-bonus__image" id="selectedBuyBonusImage" src="assets/ui/execution-bonus-buy.png" alt="">
+          <button class="hud-selected-buy-bonus__cancel" id="selectedBuyBonusCancelBtn" type="button" aria-label="Cancelar compra de bonus">&times;</button>
+        </div>
+        <button class="hud-spin" id="spinBtn" type="button" aria-label="Spin">
+          <svg class="hud-glyph hud-glyph--spin" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="3.6" stroke-dasharray="41.5 51.6" stroke-linecap="round" transform="rotate(-20 12 12)"/>
+            <polygon points="0 -4.2 7 0 0 4.2" fill="currentColor" transform="translate(12.2 3.9) rotate(-22)"/>
+          </svg>
+        </button>
+        <div class="hud-buy-bonus-wrap">
+          <div class="hud-buy-bonus-panel" id="buyBonusPanel" hidden>
+            <button class="hud-buy-bonus-option" type="button" data-buy-bonus-option="bonus-game">
+              <img class="hud-buy-bonus-option__image" src="assets/ui/execution-bonus-buy.png" alt="Execution Bonus">
+              <small class="hud-buy-bonus-option__price" data-buy-bonus-price="bonus-game">100</small>
+            </button>
+            <button class="hud-buy-bonus-option" type="button" data-buy-bonus-option="blade-spin">
+              <img class="hud-buy-bonus-option__image" src="assets/ui/raven-bonus-buy.png" alt="Raven Bonus">
+              <small class="hud-buy-bonus-option__price" data-buy-bonus-price="blade-spin">25</small>
+            </button>
+            <button class="hud-buy-bonus-option" type="button" data-buy-bonus-option="chest-game">
+              <img class="hud-buy-bonus-option__image" src="assets/ruleta/tablero_ruleta_bordes_oscurecidos.png" alt="Chest Gamble">
+              <small class="hud-buy-bonus-option__price" data-buy-bonus-price="chest-game">21</small>
+            </button>
+          </div>
+          <button class="hud-buy-bonus" id="buyBonusBtn" type="button" aria-label="Buy bonus" aria-expanded="false" aria-controls="buyBonusPanel">
+            <img class="hud-buy-bonus__image" src="assets/ui/buy-bonus-button.png" alt="" aria-hidden="true">
+          </button>
+        </div>
+      </div>
+
+      <div class="hud-panel hud-bet-panel" aria-label="Apuesta">
+        <svg class="hud-panel__bg" viewBox="0 0 345 116" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M24 2 H321 L343 24 V92 L321 114 H24 L2 92 V24 Z" />
+        </svg>
+        <div class="hud-panel__inner">
+          <div class="hud-panel__label">BET</div>
+          <div class="hud-bet-row">
+            <button class="hud-step" id="betDownBtn" type="button" aria-label="Bajar apuesta">&minus;</button>
+            <output class="readout bet-readout" id="betReadout" aria-label="Apuesta">&euro; 1.00</output>
+            <button class="hud-step" id="betUpBtn" type="button" aria-label="Subir apuesta">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-panel hud-balance-panel" aria-label="Saldo">
+        <svg class="hud-panel__bg" viewBox="0 0 345 116" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M24 2 H321 L343 24 V92 L321 114 H24 L2 92 V24 Z" />
+        </svg>
+        <div class="hud-panel__inner">
+          <div class="hud-panel__label">BALANCE</div>
+          <output class="readout balance-readout" id="balanceReadout" aria-label="Saldo">&euro; 10,000.00</output>
+        </div>
+      </div>
+
+      <output class="readout win-readout" id="winReadout" aria-label="Premio">&euro;0.00</output>
+      <button class="hit-area max-bet-hit" id="maxBetBtn" type="button" aria-label="Apuesta maxima">MAX<br>BET</button>
+
+      <div class="menu-panel" id="menuPanel" hidden>
+        <button class="menu-panel__close" id="closeMenuBtn" type="button" aria-label="Cerrar menu">&times;</button>
+        <div class="menu-panel__title">OSSUARY REELS</div>
+        <button class="menu-panel__item" id="autoToggleBtn" type="button">AUTO: 50</button>
+        <button class="menu-panel__item" id="resetBtn" type="button">RESET</button>
+      </div>
+
+      <div class="bonus-intro-modal" id="bonusIntroModal" hidden>
+        <div class="bonus-intro-modal__panel">
+          <div class="bonus-intro-modal__title" id="bonusIntroTitle">FREE SPIN · 3 CHANCES</div>
+          <button class="bonus-intro-modal__continue" id="bonusIntroContinueBtn" type="button">CONTINUAR</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/symbols/symbol-assets.js"></script>
+<script src="src/config/layout.config.js"></script>
+<script src="src/config/combo.config.js"></script>
+<script src="src/config/spin.config.js"></script>
+<script src="src/config/bonus-landing-weight.config.js"></script>
+<script src="src/config/symbols.config.js"></script>
+<script src="src/config/bonus-modes.config.js"></script>
+<script src="src/config/paytable.dev.config.js"></script>
+<script src="src/config/symbol-win-animations.config.js"></script>
+<script src="src/config/reel-strips.config.js"></script>
+<script src="src/config/strips/strip-data.generated.js"></script>
+<script src="src/config/reel-strips.js"></script>
+<script src="src/debug/strip-spin-simulator.js"></script>
+<script src="src/debug/bonus-chain-simulator.js"></script>
+<script src="src/config/scene.config.js"></script>
+<script src="src/core/game-state.js"></script>
+<script src="src/core/rng-engine.js"></script>
+<script src="src/math/combination-path-registry.js"></script>
+<script src="src/math/combination-symbol-evaluator.js"></script>
+<script src="src/math/combination-conflict-resolver.js"></script>
+<script src="src/math/symbol-catalog.js"></script>
+<script src="src/math/paytable-engine.js"></script>
+<script src="src/math/dry-payout-engine.js"></script>
+<script src="src/math/win-resolver.js"></script>
+<script src="src/math/mechanics-registry.js"></script>
+<script src="src/math/simulation-engine.js"></script>
+<script src="src/math/rtp-framework.js"></script>
+<script src="src/math/math-engine.js"></script>
+<script src="src/math/math-debug-tools.js"></script>
+<script src="src/core/combo-engine.js"></script>
+<script src="src/core/combo-evaluator.js"></script>
+<script src="src/core/payment-engine.js"></script>
+<script src="src/core/payout-engine.js"></script>
+<script src="src/core/reel-model.js"></script>
+<script src="src/core/outcome-engine.js"></script>
+<script src="src/core/bonus-triggers.js"></script>
+<script src="src/bonus/bonus-lock-manager.js"></script>
+<script src="src/bonus/bonus-feature.js"></script>
+<script src="src/bonus/bonus-mode-runtime.js"></script>
+<script src="src/bonus/bonus-mode-lock-handoff.js"></script>
+<script src="src/core/spin-engine.js"></script>
+<script src="src/render/symbol-renderer.js"></script>
+<script src="src/render/reel-renderer.js"></script>
+<script src="src/render/giant-symbol-renderer.js"></script>
+<script src="src/render/bonus-landing-weight-player.js"></script>
+<script src="src/render/bonus-arrival-physics.js"></script>
+<script src="src/render/symbol-win-animation-player.js"></script>
+<script src="src/ui/number-font.js"></script>
+<script src="src/ui/readouts.js"></script>
+<script src="src/ui/big-win-counter.js"></script>
+<script src="src/ui/controls.js"></script>
+<script src="src/debug/debug-panel.js"></script>
+<script src="src/debug/payment-debug.js"></script>
+<script src="src/debug/bonus-runtime-debug.js"></script>
+<script src="src/debug/win-symbol-debug.js"></script>
+<script src="src/scene/scene-manager.js"></script>
+<script src="src/scene/scene-fx.js"></script>
+<!-- Mecanica cuchilla pequena (small blade cut): capa visual autocontenida,
+     instanciada por game.js, independiente de la gran cuchilla del bonus. -->
+<script src="src/fx/small-blade-cut.js"></script>
+<!-- Video puerta/esqueleto (webm alfa) que aparece detras de la cuchilla
+     pequena tras el corte: primer frame fijo, play al caer, ultimo frame
+     como imagen. Capa visual autocontenida, instanciada por game.js. -->
+<script src="src/fx/small-blade-door-video.js"></script>
+<!-- Pajaro (cuervo) que cae y se queda posado en el rodillo 1 cuando la
+     cuchilla pequena corta un simbolo de pajaro (webm alfa idle en loop).
+     Capa visual autocontenida, instanciada por game.js. -->
+<script src="src/fx/small-blade-bird-perch.js"></script>
+<!-- Ruleta Game: contador del cofre (simbolos caidos por la cuchilla pequena),
+     transicion de apertura del cofre y pantalla del juego de ruleta. -->
+<script src="src/ruleta/ruleta-game.js"></script>
+<script src="game.js"></script>
+<script src="src/render/reel-texture-renderer.js"></script>
+
+<!-- Sistema de FX (Fase FX-1: infraestructura base, sin efectos finales). -->
+<script src="src/fx/fx-event-bus.js"></script>
+<script src="src/fx/fx-registry.js"></script>
+<script src="src/config/fx-rules.config.js"></script>
+<script src="src/fx/fx-director.js"></script>
+<script src="src/fx/effects/glow/eyes-glow-test.fx.js"></script>
+
+<!-- FX-5 Paso 1: capa de configuracion declarativa (anchors, capas, posicion). -->
+<script src="src/config/fx-anchors.config.js"></script>
+<script src="src/config/fx-effects.config.js"></script>
+<script src="src/fx/fx-position-resolver.js"></script>
+<script src="src/fx/players/css-fx-player.js"></script>
+<script src="src/fx/players/trajectory-fx-player.js"></script>
+<script src="src/fx/players/webgl-player.js"></script>
+<script src="src/fx/players/webm-alpha-player.js"></script>
+<script src="src/fx/effect-factory.js"></script>
+<script src="src/fx/debug/fx-debug-panel.js"></script>
+
+<!-- Audio Framework (independiente del juego, ver AUDIO_ARCHITECTURE.md). -->
+<script src="src/config/audio-buses.config.js"></script>
+<script src="src/config/audio-sounds.config.js"></script>
+<script src="src/config/audio-rules.config.js"></script>
+<script src="src/audio/audio-event-bus.js"></script>
+<script src="src/audio/audio-engine.js"></script>
+<script src="src/audio/audio-bus-manager.js"></script>
+<script src="src/audio/audio-director.js"></script>
+<script src="src/audio/perf/audio-performance-monitor.js"></script>
+<script src="src/audio/debug/audio-debug-panel.js"></script>
+<script src="src/audio/adaptive/adaptive-music-controller.js"></script>
+</body>
+</html>
