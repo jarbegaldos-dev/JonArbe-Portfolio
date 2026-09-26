@@ -469,10 +469,22 @@
     document.body.appendChild(panel);
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", buildDebugPanel);
-  } else {
-    buildDebugPanel();
+  // The debug toggle/panel is a development tool only: it must never mount
+  // on the published site. Gate it on the environment rather than deleting
+  // it, so it keeps working for local development (file:// or localhost)
+  // with no manual flag needed, and is off by default everywhere else
+  // (GitHub Pages, any other host).
+  var isDebugPanelEnvironment = (function () {
+    var host = window.location.hostname;
+    return window.location.protocol === "file:" || host === "localhost" || host === "127.0.0.1" || host === "";
+  })();
+
+  if (isDebugPanelEnvironment) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", buildDebugPanel);
+    } else {
+      buildDebugPanel();
+    }
   }
 
   window.OssuarySceneManager = {

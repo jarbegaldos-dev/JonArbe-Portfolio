@@ -311,27 +311,43 @@ h1, h2, h3, h4 {
   paint-order: stroke fill;
 }
 
-/* A small, quiet detail from Guillotine Reels living next to the name.
-   The source clip has no alpha channel, so mix-blend-mode + a radial
-   mask are used to melt its dark background into the hero and fade
-   its edges instead of showing a hard video rectangle. */
-.hero-raven {
+/* A small, quiet detail from Guillotine Reels living next to the name,
+   perched on top of the "E" of "Arbe". Positioned dynamically by JS
+   (see positionHeroRaven() in js/main.js) against the ACTUAL rendered
+   position of that letter, because "Jon Arbe" wraps to two lines on
+   narrow screens and no fixed top/right pair survives that change (or
+   real-device font-metric differences). The values below are only a
+   same-frame fallback in case JS hasn't run yet.
+   A rounded, overflow:hidden frame is used instead of mask-image on the
+   <video> itself: masking a <video> element is unreliable across real
+   mobile browsers (notably iOS Safari can render it as fully invisible),
+   while border-radius + overflow:hidden is broadly and reliably supported. */
+.hero-raven-frame {
   position: absolute;
   top: -58%;
   right: -4%;
-  transform: translateY(4px);
   width: clamp(95px, 11.9vw, 175px);
   height: clamp(95px, 11.9vw, 175px);
-  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
   opacity: 0.96;
   filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6));
-  mask-image: radial-gradient(closest-side, black 62%, transparent 100%);
-  -webkit-mask-image: radial-gradient(closest-side, black 62%, transparent 100%);
   pointer-events: none;
+}
+.hero-raven {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 900px) {
-  .hero-raven { display: none; }
+  .hero-raven-frame {
+    top: 4%;
+    right: 32%;
+    width: clamp(56px, 15vw, 78px);
+    height: clamp(56px, 15vw, 78px);
+  }
 }
 .hero-role {
   font-family: var(--font-body);

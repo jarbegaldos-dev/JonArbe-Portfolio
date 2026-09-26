@@ -4618,26 +4618,58 @@ button {
 
 /* ---- Layout vertical derecho + escenario apoyado abajo -----------------
    El escenario conserva su geometria interna y crece desde el borde inferior.
-   Los controles forman un carril fijo en el borde derecho del viewport. */
-#gameRoot {
-  align-items: end;
-  justify-items: center;
+   Los controles forman un carril fijo en el borde derecho del viewport.
+   Solo aplica en pantallas mas anchas que altas (landscape/desktop): ahi
+   sobra ancho de sobra para el carril de controles a la derecha. */
+@media (min-aspect-ratio: 1/1) {
+  #gameRoot {
+    align-items: end;
+    justify-items: center;
+  }
+
+  #slotStage {
+    width: auto;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    flex: 0 0 auto;
+  }
+
+  #sceneLayers,
+  #reelLayer,
+  #structureOverlay {
+    scale: 1.13;
+    translate: 0 5.2dvh;
+    transform-origin: center;
+  }
 }
 
-#slotStage {
-  width: auto;
-  height: 100dvh;
-  max-width: none;
-  max-height: none;
-  flex: 0 0 auto;
-}
+/* ---- Portrait / mobile: el ancho manda, no la altura -------------------
+   En vertical no hay carril de controles a la derecha, asi que el tablero
+   debe caber en el ancho del viewport (igual que la definicion base de
+   #slotStage mas arriba) en vez de crecer desde la altura como en landscape,
+   que es lo que provocaba que el tablero se renderizase varias veces mas
+   ancho que la pantalla. El aspect-ratio (1525/779) no se toca en ningun
+   caso, asi que el tablero nunca se deforma. */
+@media (max-aspect-ratio: 1/1) {
+  #gameRoot {
+    align-items: center;
+    justify-items: center;
+  }
 
-#sceneLayers,
-#reelLayer,
-#structureOverlay {
-  scale: 1.13;
-  translate: 0 5.2dvh;
-  transform-origin: center;
+  #slotStage {
+    width: min(100vw, 195.76vh);
+    height: auto;
+    max-width: 100vw;
+    max-height: 100dvh;
+  }
+
+  #sceneLayers,
+  #reelLayer,
+  #structureOverlay {
+    scale: 1;
+    translate: 0 0;
+  }
 }
 
 .readout,
@@ -5561,15 +5593,29 @@ button {
 
 /* --------------------------------- Movil ---------------------------------- */
 @media (max-width: 720px) {
+  .ossuary-corner-logo {
+    left: 14px;
+    top: 12px;
+    width: clamp(90px, 24vw, 130px);
+  }
+
+  /* Portrait #slotStage is width-dominant and vertically centered (see the
+     @media (max-aspect-ratio: 1/1) rules above), so its rendered bottom
+     edge moves with viewport width AND height, not with a flat vh guess.
+     stage height = 100vw * (779/1525); stage top = (100vh - stage height)/2;
+     stage bottom = 50vh + (779/1525/2)vw = 50vh + 25.541vw. Anchoring the
+     HUD to that formula (plus a fixed gap) keeps it below the board at any
+     mobile width/height instead of overlapping it, which a fixed vh value
+     cannot do once the board's own height stopped being a fixed vh too. */
   .hud-cluster {
     left: 8px;
-    top: 48vh;
+    top: calc(50vh + 25.541vw + 14px);
     width: min(46vw, 230px);
   }
 
   .hud-right-col {
     right: 10px;
-    top: 51.6vh;
+    top: calc(50vh + 25.541vw + 14px);
     gap: 10px;
   }
 

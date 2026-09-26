@@ -274,6 +274,12 @@
     }
 
     function playButtonClick() {
+      // Desbloquea el AudioContext aqui tambien (ademas del listener generico
+      // en document de audio-engine.js): dentro de un iframe en movil, el
+      // primer toque de verdad a menudo no llega a disparar ese listener
+      // generico, pero SI llega aqui porque es un control real del juego.
+      // unlock() es idempotente (solo actua si el contexto sigue suspendido).
+      if (window.OssuaryAudioEngine) window.OssuaryAudioEngine.unlock();
       if (window.OssuaryAudio) window.OssuaryAudio.trigger("button_click");
     }
 
