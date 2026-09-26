@@ -199,10 +199,18 @@ button {
 }
 
 .scene-layer--chest-normal {
+  /* bottom was a fixed 125px, tuned against the stage's old ~100dvh-tall
+     rendered size. Every other coordinate here is a % of the 1525x779
+     design canvas (matching the rest of the codebase's convention) so it
+     scales with #slotStage's actual size; this was the one absolute-px
+     outlier, which is why the chest floated out of place once the stage
+     was resized for mobile (125px eats most/all of a ~190px-tall mobile
+     stage). 125/779 = 16.047%, the same anchor expressed as a fraction of
+     the design height. */
   inset: auto;
   left: 50%;
   top: auto;
-  bottom: 125px;
+  bottom: 16.047%;
   width: 10.098%;
   height: auto;
   object-fit: contain;
@@ -5599,23 +5607,97 @@ button {
     width: clamp(90px, 24vw, 130px);
   }
 
-  /* Portrait #slotStage is width-dominant and vertically centered (see the
-     @media (max-aspect-ratio: 1/1) rules above), so its rendered bottom
-     edge moves with viewport width AND height, not with a flat vh guess.
-     stage height = 100vw * (779/1525); stage top = (100vh - stage height)/2;
-     stage bottom = 50vh + (779/1525/2)vw = 50vh + 25.541vw. Anchoring the
-     HUD to that formula (plus a fixed gap) keeps it below the board at any
-     mobile width/height instead of overlapping it, which a fixed vh value
-     cannot do once the board's own height stopped being a fixed vh too. */
+  /* Mobile phones (portrait, <=720px): the general portrait rule above
+     makes the board WIDTH-dominant (capped to 100vw), which is correct for
+     tablets/wider portrait screens but on a phone squeezes the whole
+     1525x779 stage (including its own tiny reel grid) into a strip only
+     ~50% of the viewport width tall — the reel art was technically
+     rendering (confirmed via computed style: loaded, opaque, correctly
+     positioned) but at ~26x27 CSS px, too small to read, which is what
+     read as "a black grid with no visible artwork". The fix is to flip
+     dominance for phones specifically: let the stage grow from the
+     available HEIGHT (viewport height minus a reserved strip for the HUD
+     below it) instead of the viewport width, even though that makes the
+     stage WIDER than the viewport — #gameRoot clips the excess left/right
+     via overflow:hidden below, and #gameRoot centers the stage horizontally,
+     so the reel grid (which sits centered in the design canvas) stays
+     fully visible while the decorative far left/right edges of the
+     panoramic background are simply cropped off-screen. The aspect-ratio
+     itself is never touched, so nothing is stretched or deformed. */
+  #gameRoot {
+    overflow: hidden;
+    /* The general portrait rule above vertically centers the stage in the
+       FULL viewport height. That's wrong here: the stage's height is now
+       (100dvh - HUD reserve), so centering it in 100dvh would still push
+       its bottom half into the reserved HUD strip. Aligning to the start
+       keeps the freed-up space entirely below the board, where the HUD
+       actually lives. */
+    align-items: start;
+  }
+
+  /* Growing the stage purely from the available height (see #gameRoot
+     above) makes it wider than the viewport, which is fine since the
+     excess is cropped off-screen -- EXCEPT the reel-lane cluster is only
+     ~33.7% of the stage's own width, centered, so past a certain stage
+     width that 33.7%-wide cluster itself becomes wider than the viewport
+     and its outer columns get cropped too (confirmed by measuring
+     .reel-lane rects: at an uncapped height-driven width, rib2-5's outer
+     columns landed a few px past each screen edge). 290vw is the largest
+     stage width for which that centered cluster still fits inside 100vw
+     (with a small safety margin), so the stage's width is the SMALLER of
+     "as wide as the available height allows" and "as wide as the reel
+     cluster can go without being cropped" -- whichever is tighter for a
+     given viewport shape. Height stays auto/derived from width via the
+     declared aspect-ratio, so it is never stretched. */
+  #slotStage {
+    /* Grid centering (justify-items:center from the general portrait rule)
+       falls back to a "safe" start-aligned position once #gameRoot clips
+       overflow (confirmed: Chromium refuses to center-and-hide content
+       behind a clipped edge). margin:auto centering was also tried and
+       doesn't help either, because a grid's single implicit column track
+       shrinks to fit an overflowing item's own content size, leaving no
+       free space in the track for the margin to distribute (confirmed via
+       computed gridTemplateColumns matching the item's own width exactly).
+       Taking the stage out of grid flow with position:absolute and
+       centering it via left:50% + a negative margin-left of half its own
+       width sidesteps both problems -- and, unlike a translateX(-50%)
+       transform, doesn't turn #slotStage into a CSS containing block for
+       its own position:fixed descendants (.hud-cluster/.hud-right-col live
+       inside it via #uiLayer): a `transform` on an ancestor re-anchors
+       "fixed" children to that ancestor's box instead of the viewport,
+       which was confirmed to send the HUD flying off to a coordinate
+       relative to the stage instead of staying viewport-anchored. */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(290vw, calc((100dvh - var(--mobile-hud-reserve, 210px)) * 1.9576));
+    margin-left: calc(-0.5 * min(290vw, (100dvh - var(--mobile-hud-reserve, 210px)) * 1.9576));
+    height: auto;
+    max-width: none;
+    max-height: none;
+  }
+
+  /* The HUD is anchored from the viewport BOTTOM (it's position:fixed
+     already) instead of computed from the stage's own height/position.
+     That decouples it completely from #slotStage's geometry: whatever
+     size the board ends up being (see #slotStage below, which now grows
+     from the available height instead of the viewport width), the HUD
+     always sits in its own reserved strip at the bottom, never overlapping
+     it and never needing to be re-derived when the board's sizing formula
+     changes. --mobile-hud-reserve (used by #slotStage's max-height below)
+     must stay >= this row's own height + its bottom offset + the gap
+     above it, verified empirically at 375/390/412px. */
   .hud-cluster {
     left: 8px;
-    top: calc(50vh + 25.541vw + 14px);
+    top: auto;
+    bottom: 20px;
     width: min(46vw, 230px);
   }
 
   .hud-right-col {
     right: 10px;
-    top: calc(50vh + 25.541vw + 14px);
+    top: auto;
+    bottom: 20px;
     gap: 10px;
   }
 
