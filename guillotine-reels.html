@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guillotine Reels — Case Study | Jon Arbe</title>
+<meta name="description" content="Case study: Guillotine Reels, a dark fantasy slot game prototype designed and directed by Jon Arbe.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* ============================================================
+     Case-study-specific additions (scoped to this page only)
+     ============================================================ */
+
+  .cs-hero { min-height: 62vh; padding-top: calc(var(--nav-height) + 50px); padding-bottom: 2.5rem; }
+  .cs-hero-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .cs-hero-title {
+    font-size: clamp(2.6rem, 8vw, 5.2rem);
+    text-transform: uppercase;
+    margin-top: 2.4rem;
+  }
+  .cs-hero-sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    color: var(--color-accent-bright);
+    margin-top: 0.4rem;
+  }
+  .cs-hero-coins {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+    margin-bottom: 0.6rem;
+  }
+  .cs-hero-coins img {
+    width: clamp(91px, 10.5vw, 154px);
+    height: auto;
+    object-fit: contain;
+    opacity: 0.9;
+  }
+  @media (max-width: 640px) {
+    .cs-hero-title-row { flex-direction: column; align-items: flex-start; }
+    .cs-hero-coins { margin-bottom: 0; margin-top: 0.6rem; }
+  }
+  .cs-hero-descriptor {
+    max-width: 620px;
+    color: var(--color-text-muted);
+    font-size: 1.02rem;
+    line-height: 1.75;
+    margin-top: 1.6rem;
+  }
+  .cs-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.4rem;
+    margin-top: 2.2rem;
+  }
+  .cs-status-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .cs-github-link {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+    border-bottom: 1px solid var(--color-border-strong);
+    padding-bottom: 2px;
+    transition: color var(--dur-fast) var(--ease-premium), border-color var(--dur-fast) var(--ease-premium);
+  }
+  .cs-github-link:hover { color: var(--color-accent-bright); border-color: var(--color-accent-bright); }
+  .cs-github-link.is-disabled { cursor: default; opacity: 0.55; }
+  .cs-github-link.is-disabled:hover { color: var(--color-text-faint); border-color: var(--color-border-strong); }
+
+  .cs-authorship {
+    font-size: 0.85rem;
+    color: var(--color-text-faint);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .cs-hero-visual {
+    position: relative;
+    margin-top: 0.5rem;
+  }
+  .cs-hero-visual-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(220px, 32vw, 360px);
+    border: 1px solid var(--color-border-strong);
+    background:
+      radial-gradient(ellipse 70% 80% at 50% 45%, rgba(138,43,43,0.16), transparent 65%),
+      linear-gradient(160deg, var(--color-bg-elevated), var(--color-bg));
+  }
+  .cs-hero-visual img {
+    max-width: min(620px, 88%);
+    max-height: 78%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 8s var(--ease-premium);
+  }
+  .cs-hero-visual-inner:hover img { transform: scale(1.035); }
+
+  /* Sticky sub-navigation */
+  .cs-subnav {
+    position: sticky; top: var(--nav-height); z-index: 50;
+    background: rgba(10,9,8,0.92); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-border);
+    overflow-x: auto; white-space: nowrap;
+    scrollbar-width: none;
+    margin-top: 3.5rem;
+  }
+  .cs-subnav::-webkit-scrollbar { display: none; }
+  .cs-subnav ul { display: inline-flex; gap: 2rem; padding: 0 var(--gutter); }
+  .cs-subnav li { display: flex; align-items: center; }
+  .cs-subnav a {
+    display: inline-block;
+    padding: 1rem 0;
+    font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--color-text-faint); transition: color var(--dur-fast) var(--ease-premium);
+  }
+  .cs-subnav a:hover, .cs-subnav a.is-active { color: var(--color-accent-bright); }
+
+  /* Section rhythm */
+  .cs-section {
+    padding: clamp(2.5rem, 5.5vw, 4.5rem) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .cs-section h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+    max-width: 780px;
+    margin-bottom: 1.6rem;
+  }
+  .cs-lede {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    color: var(--color-text);
+    max-width: 680px;
+    line-height: 1.5;
+    margin-bottom: 1.8rem;
+  }
+  .cs-section p.cs-body {
+    color: var(--color-text-muted);
+    max-width: 680px;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .cs-section p.cs-body:last-of-type { margin-bottom: 0; }
+
+  .cs-pullquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    line-height: 1.4;
+    color: var(--color-accent-bright);
+    max-width: 640px;
+    margin: 1.4rem 0;
+    padding-left: 1.4rem;
+    border-left: 2px solid var(--color-accent);
+  }
+
+  /* Two-column text + image layout */
+  .cs-split {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .cs-split.cs-split-reverse .cs-split-text { order: 2; }
+  .cs-split.cs-split-reverse .cs-split-media { order: 1; }
+  .cs-split-media img {
+    width: 100%;
+    display: block;
+    transition: transform 0.7s var(--ease-premium);
+  }
+  .cs-split-media:hover img { transform: scale(1.02); }
+  .cs-split-media.cs-media-tight img {
+    height: clamp(280px, 32vw, 400px);
+    object-fit: contain;
+    background: radial-gradient(circle at 50% 45%, rgba(138,43,43,0.10), transparent 65%);
+    padding: 1.5rem;
+  }
+
+  .cs-full-media {
+    margin-top: 2.4rem;
+  }
+  .cs-full-media img {
+    width: 100%;
+    height: clamp(320px, 38vw, 460px);
+    object-fit: contain;
+    background: radial-gradient(ellipse at 50% 40%, rgba(138,43,43,0.09), transparent 65%);
+    border: 1px solid var(--color-border);
+    padding: 2rem;
+  }
+  .cs-caption {
+    font-size: 0.78rem;
+    color: var(--color-text-faint);
+    margin-top: 0.9rem;
+    max-width: 640px;
+  }
+
+  /* Honest / short callout (Math & Balance) */
+  .cs-callout {
+    max-width: 680px;
+    border: 1px solid var(--color-border-strong);
+    padding: clamp(1.5rem, 3vw, 2.2rem);
+    background: var(--color-bg-elevated);
+  }
+  .cs-callout p { color: var(--color-text-muted); line-height: 1.8; margin-bottom: 1rem; }
+  .cs-callout p:last-child { margin-bottom: 0; }
+
+  /* Role & AI-assisted development — distinct plaque style */
+  .cs-role {
+    max-width: 760px;
+    border-top: 1px solid var(--color-border-strong);
+    border-bottom: 1px solid var(--color-border-strong);
+    padding: clamp(2rem, 4vw, 3rem) 0;
+  }
+  .cs-role p.cs-body { max-width: 100%; }
+  .cs-role-statement {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: var(--color-text);
+    margin-top: 1.8rem;
+    line-height: 1.5;
+  }
+
+  .cs-heading-clip {
+    position: relative;
+    flex-shrink: 0;
+    height: clamp(74px, 9.5vw, 128px);
+    width: clamp(74px, 9.5vw, 128px);
+  }
+  .cs-skeleton-clip {
+    height: clamp(200px, 26vw, 300px);
+    width: clamp(200px, 26vw, 300px);
+  }
+  .cs-heading-mark {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.92;
+    mask-image: radial-gradient(closest-side, black 60%, transparent 100%);
+    -webkit-mask-image: radial-gradient(closest-side, black 60%, transparent 100%);
+  }
+  /* The stone image mimics the game's actual timing: the skeleton video is
+     ~4s long and throws at ~1.9s, so the stone stays hidden, appears right
+     at the throw and animates outward, then hides again before the loop. */
+  .cs-heading-stone {
+    position: absolute;
+    left: 46%;
+    top: 40%;
+    width: 30%;
+    height: auto;
+    opacity: 0;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+    animation: cs-stone-throw 4.02s linear infinite;
+  }
+  @keyframes cs-stone-throw {
+    0%, 47% { opacity: 0; transform: translate(0, 0) scale(1); }
+    49% { opacity: 1; transform: translate(0, 0) scale(1); }
+    68% { opacity: 1; transform: translate(-120%, -55%) scale(0.7); }
+    72%, 100% { opacity: 0; transform: translate(-120%, -55%) scale(0.7); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cs-heading-stone { animation: none; opacity: 0; }
+  }
+
+  /* Small visual moments woven into a section's text — floated so the
+     surrounding paragraphs wrap tight around them with no leftover gap,
+     regardless of whether the text or the media is taller. */
+  .cs-section { overflow: hidden; }
+  .cs-section::after { content: ""; display: table; clear: both; }
+  .cs-detail-media {
+    float: right;
+    width: clamp(200px, 26vw, 300px);
+    margin: 0.2rem 0 1rem 2rem;
+  }
+  .cs-detail-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0.92;
+    transition: transform var(--dur-mid) var(--ease-premium), opacity var(--dur-fast) var(--ease-premium);
+  }
+  .cs-detail-media:hover img { opacity: 1; transform: scale(1.03); }
+  .cs-heading-clip {
+    float: right;
+    margin: 0.2rem 0 1rem 2rem;
+  }
+
+  @media (max-width: 720px) {
+    .cs-detail-media, .cs-heading-clip { float: none; width: 100%; max-width: 280px; margin: 0 auto 1.2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cs-detail-media img { transition: none; }
+  }
+
+  /* Final Play section */
+  .cs-final {
+    text-align: center;
+    padding: clamp(4.5rem, 11vw, 8rem) 0;
+  }
+  .cs-final h2 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 1rem; }
+  .cs-final p { color: var(--color-text-muted); max-width: 480px; margin: 0 auto 2.2rem; }
+  .cs-final .btn { margin: 0 0.5rem; }
+  .cs-final-status {
+    margin-top: 1.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+  }
+
+  @media (max-width: 860px) {
+    .cs-split { grid-template-columns: 1fr; }
+    .cs-split.cs-split-reverse .cs-split-text,
+    .cs-split.cs-split-reverse .cs-split-media { order: initial; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-hero-visual img, .cs-split-media img { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">JON<span>·</span>ARBE</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="guillotine-reels.html">Case Study</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="game/index.html" class="btn btn-accent" id="playDemoLink">Play Demo</a>
+    </div>
+  </div>
+</nav>
+
+<button type="button" class="audio-toggle" id="audioToggle" aria-label="Play background music" aria-pressed="false">
+  <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <path d="M3 10v4h4l5 5V5L7 10H3z"/>
+    <line x1="16" y1="9" x2="21" y2="14"/>
+    <line x1="21" y1="9" x2="16" y2="14"/>
+  </svg>
+  <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <path d="M3 10v4h4l5 5V5L7 10H3z"/>
+    <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+    <path d="M18.5 6a8.5 8.5 0 0 1 0 12"/>
+  </svg>
+</button>
+
+<main>
+
+  <header class="cs-hero container">
+    <span class="eyebrow">Selected Work — Case Study</span>
+
+    <div class="cs-hero-visual" data-reveal>
+      <div class="cs-hero-visual-inner">
+        <img src="assets/guillotine-reels/logo.png" alt="Ossuary Reels logo — the original visual identity behind Guillotine Reels.">
+      </div>
+    </div>
+
+    <div class="cs-hero-title-row">
+      <div>
+        <h1 class="cs-hero-title">Guillotine Reels</h1>
+        <p class="cs-hero-sub">Dark Fantasy Slot Game</p>
+      </div>
+      <div class="cs-hero-coins" aria-hidden="true">
+        <img src="assets/guillotine-reels/gold-coin.png" alt="">
+        <img src="assets/guillotine-reels/silver-coin.png" alt="">
+      </div>
+    </div>
+
+    <p class="cs-hero-descriptor">
+      A dark fantasy slot prototype built around a non-standard board,
+      interacting reel systems and player-driven anticipation.
+    </p>
+
+    <div class="cs-hero-tags">
+      <span class="cs-status-pill">Beta — Personal Game Design Project</span>
+      <span class="cs-authorship">Design, systems and direction by Jon Arbe — prototyped and built with AI-assisted development.</span>
+      <!-- Placeholder until the repo is public — set GITHUB_URL in js/main.js -->
+      <a href="#" class="cs-github-link" id="githubRepoLink" target="_blank" rel="noopener">View Project on GitHub</a>
+    </div>
+  </header>
+
+  <nav class="cs-subnav">
+    <ul id="csSubnavList">
+      <li><a href="#the-idea">The Idea</a></li>
+      <li><a href="#design-goals">Design Goals</a></li>
+      <li><a href="#player-experience">Player Experience</a></li>
+      <li><a href="#game-systems">Game Systems</a></li>
+      <li><a href="#math-balance">Math &amp; Balance</a></li>
+      <li><a href="#game-feel">Game Feel &amp; Feedback</a></li>
+      <li><a href="#audio-visual">Audio &amp; Visual Design</a></li>
+      <li><a href="#iteration">Iteration &amp; Problem Solving</a></li>
+      <li><a href="#role-ai">My Role &amp; AI</a></li>
+      <li><a href="#learned">What I Learned</a></li>
+      <li><a href="#play">Play the Game</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- 01 — The Idea -->
+    <section id="the-idea" class="cs-section" data-reveal>
+      <h2>The Idea</h2>
+      <p class="cs-body">
+        Guillotine Reels started in a rather unconventional way. One day, while
+        playing an online slot with some friends, we won a significant amount
+        of money. The casino eventually closed our account without paying us.
+        Out of frustration, I had a simple thought:
+      </p>
+      <p class="cs-pullquote">&ldquo;Fine. I&rsquo;ll make my own slot.&rdquo;</p>
+      <p class="cs-body">
+        But the idea quickly became something more. I didn&rsquo;t want to make
+        another generic slot. I wanted to create something different and
+        niche, for people who genuinely enjoy dark fantasy: strange creatures,
+        skeletons, mysterious environments and worlds with personality.
+      </p>
+      <div class="cs-heading-clip cs-skeleton-clip">
+        <video class="cs-heading-mark" autoplay muted loop playsinline aria-hidden="true">
+          <source src="assets/guillotine-reels/skeleton-stone-throw.webm" type="video/webm">
+        </video>
+        <img class="cs-heading-stone" src="assets/guillotine-reels/stone.png" alt="" aria-hidden="true">
+      </div>
+      <p class="cs-body">
+        I wanted the player&rsquo;s first reaction to be &ldquo;What is
+        this?&rdquo; &mdash; something they didn&rsquo;t immediately
+        recognize, but that made them think: &ldquo;I like this
+        atmosphere.&rdquo; &ldquo;I like these visuals.&rdquo; &ldquo;I like
+        these sounds.&rdquo;
+      </p>
+      <p class="cs-body">
+        And from there, I wanted them to keep playing because they wanted to
+        discover what else could happen, what secrets the game might hide,
+        what they could win, and how they could get there. The guillotine,
+        skeletons and ravens came later, as the project evolved.
+      </p>
+    </section>
+
+    <!-- 02 — Design Goals -->
+    <section id="design-goals" class="cs-section" data-reveal>
+      <h2>Design Goals</h2>
+      <p class="cs-body">
+        One of my main goals was to make everything feel polished and clean.
+        I didn&rsquo;t want to fill the screen with things just because I
+        could.
+      </p>
+      <p class="cs-pullquote">Every visual element, sound, animation and effect needed to earn its place.</p>
+      <p class="cs-body">
+        I also wanted to build a world that felt connected, rather than
+        simply a collection of elements sharing the same art style. The
+        skeletons, ravens, guillotine, chest and different events should all
+        feel like they belong to the same universe.
+      </p>
+      <figure class="cs-detail-media">
+        <img src="assets/guillotine-reels/chest.png" alt="The reward chest — one of the recurring elements meant to feel part of the same world.">
+      </figure>
+      <p class="cs-body">
+        There is still a lot I want to develop here: more characters,
+        relationships and small details that could gradually build a kind
+        of story within the game. The project still has plenty of room to
+        grow, but I&rsquo;m proud of the foundation I&rsquo;ve built.
+      </p>
+    </section>
+
+    <!-- 03 — Player Experience -->
+    <section id="player-experience" class="cs-section" data-reveal>
+      <h2>Player Experience</h2>
+      <div class="cs-split">
+        <div class="cs-split-text">
+          <p class="cs-body">
+            The experience starts with a simple question: &ldquo;What is
+            this?&rdquo; I want the player to enter, see something they
+            don&rsquo;t immediately recognize, and think: &ldquo;Is this a
+            slot?&rdquo; &ldquo;How does this work?&rdquo; &ldquo;I&rsquo;ve
+            never seen anything like this.&rdquo; But at the same time:
+            &ldquo;This atmosphere is great.&rdquo;
+          </p>
+          <p class="cs-body">
+            From there, the game gradually reveals its possibilities. A raven
+            appears. A blade drops. A skeleton might show up. Something
+            happens that the player wasn&rsquo;t expecting. Little by little,
+            they start understanding how the game works and what is possible.
+            That&rsquo;s when intrigue and anticipation begin.
+          </p>
+          <p class="cs-body">
+            A raven might appear without connecting a single payline, or
+            several might create a completely different situation. Blades can
+            accumulate and, suddenly, the chest opens. The player knows these
+            things can happen, but doesn&rsquo;t know exactly when.
+          </p>
+        </div>
+        <figure class="cs-split-media cs-media-tight">
+          <img src="assets/guillotine-reels/raven.png" alt="A raven symbol from Guillotine Reels.">
+        </figure>
+      </div>
+      <p class="cs-pullquote">Eventually, I want to leave the player with a little frustration: &ldquo;Shit, I almost had it.&rdquo;</p>
+      <p class="cs-body">
+        Not the kind of frustration that makes them leave, but the feeling
+        you get from a game you haven&rsquo;t quite completed yet. I want to
+        come back.
+      </p>
+    </section>
+
+    <!-- 04 — Game Systems -->
+    <section id="game-systems" class="cs-section" data-reveal>
+      <h2>Game Systems</h2>
+      <div class="cs-split">
+        <div class="cs-split-text">
+          <p class="cs-body">
+            The starting point was to create a slot that didn&rsquo;t work like a
+            conventional slot. I designed a different board and reel structure,
+            allowing the reels to interact with each other.
+          </p>
+          <p class="cs-body">
+            A blade can drop across the board. A skeleton can appear and throw a
+            stone. The stone can hit or miss. Ravens can appear and completely
+            change the situation. The chest gradually fills with blades, but the
+            player never knows exactly when it will open.
+          </p>
+          <p class="cs-pullquote">&ldquo;Is it going to happen?&rdquo; &ldquo;When?&rdquo; &ldquo;What happens if it does?&rdquo;</p>
+          <p class="cs-body">
+            I didn&rsquo;t want the systems to feel like isolated mechanics. I
+            wanted the board to feel like a space where things are actually
+            happening.
+          </p>
+        </div>
+        <figure class="cs-split-media cs-media-tight">
+          <img src="assets/guillotine-reels/reel-overlay-frame.png" alt="The gothic frame that overlays the reels in Guillotine Reels — chains, pulleys and a hooded figure watching over the board.">
+          <figcaption class="cs-caption">The frame that sits over the reels themselves — part of the non-standard board the whole game is built around.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 05 — Math & Balance -->
+    <section id="math-balance" class="cs-section" data-reveal>
+      <h2>Math &amp; Balance</h2>
+      <div class="cs-callout">
+        <p>
+          This is still an area I consider part of the project&rsquo;s future
+          iteration. The mathematical systems exist and were used throughout
+          development, but I don&rsquo;t consider the game&rsquo;s final
+          balance sufficiently closed to present it as a finished result.
+        </p>
+        <p>
+          I&rsquo;d rather continue developing this part before treating it
+          as a conclusion of the project.
+        </p>
+      </div>
+    </section>
+
+    <!-- 06 — Game Feel & Feedback -->
+    <section id="game-feel" class="cs-section" data-reveal>
+      <h2>Game Feel &amp; Feedback</h2>
+      <div class="cs-split cs-split-reverse">
+        <div class="cs-split-text">
+          <p class="cs-body">
+            One of the biggest things I&rsquo;ve learned during development
+            is that every situation needs room to breathe. I think about this
+            in a similar way to film: not everything needs to happen at the
+            same time, and not every moment needs the same level of
+            intensity.
+          </p>
+          <p class="cs-body">
+            Music plays a huge role in this. It is part of the experience
+            both while the reels are spinning and when they are still.
+            Rhythm, pauses, sound and animation all work together to
+            determine how much weight a moment has.
+          </p>
+          <p class="cs-body">
+            And getting that balance right isn&rsquo;t always easy. A lot of
+            things worked technically, but simply didn&rsquo;t feel right.
+            That meant going back and adjusting them again.
+          </p>
+        </div>
+        <figure class="cs-split-media cs-media-tight">
+          <img src="assets/guillotine-reels/blades.jpg" alt="The guillotine blades — the moment their drop lands is one of the game's key timing beats.">
+        </figure>
+      </div>
+    </section>
+
+    <!-- 07 — Audio & Visual Design -->
+    <section id="audio-visual" class="cs-section" data-reveal>
+      <h2>Audio &amp; Visual Design</h2>
+      <div class="cs-split">
+        <div class="cs-split-text">
+          <p class="cs-body">
+            The audiovisual direction starts with a simple idea: create a
+            dark, strange and attractive world that the player wants to stay
+            in. Skeletons, ravens, blood, guillotines, chests and other
+            creatures all belong to the same visual identity.
+          </p>
+          <p class="cs-body">
+            Sound plays an equally important role. Individual events need to
+            have their own weight, while the music helps maintain the feeling
+            of being inside this world. I also removed elements that worked
+            individually but added too much noise to the overall experience.
+          </p>
+          <p class="cs-pullquote">Everything should feel like it belongs to the same place.</p>
+        </div>
+        <figure class="cs-split-media cs-media-tight">
+          <img src="assets/guillotine-reels/skeleton-rico.png" alt="One of the skeleton character tiers from Guillotine Reels.">
+        </figure>
+      </div>
+    </section>
+
+    <!-- 08 — Iteration & Problem Solving -->
+    <section id="iteration" class="cs-section" data-reveal>
+      <h2>Iteration &amp; Problem Solving</h2>
+      <div class="cs-split">
+        <div class="cs-split-text">
+          <p class="cs-body">
+            Most of the development was iteration. At one point, I had to throw
+            away almost the entire original reel structure because, although it
+            worked, it didn&rsquo;t feel right as an experience. It was a
+            significant step backwards, but it ended up being one of the best
+            decisions I made during the project.
+          </p>
+          <p class="cs-body">
+            Something similar happened throughout development: I would improve
+            one part, and suddenly another part would feel weaker. I started
+            thinking of these as little &ldquo;mountains.&rdquo;
+          </p>
+        </div>
+        <figure class="cs-split-media cs-media-tight">
+          <img src="assets/guillotine-reels/raven-dead.png" alt="A dead raven from Guillotine Reels — the version of an idea that didn't survive an iteration.">
+        </figure>
+      </div>
+      <p class="cs-pullquote">I&rsquo;d improve one, discover another that was weaker, go back, change things, remove elements that weren&rsquo;t helping, and keep testing.</p>
+      <p class="cs-body">
+        I learned to distinguish between something that could still be
+        improved and something that fundamentally wasn&rsquo;t working. If
+        it&rsquo;s the second one, I&rsquo;d rather rebuild it, even if
+        that means throwing away work I&rsquo;ve already done.
+      </p>
+    </section>
+
+    <!-- 09 — My Role & AI-Assisted Development -->
+    <section id="role-ai" class="cs-section" data-reveal>
+      <h2>My Role &amp; AI-Assisted Development</h2>
+      <div class="cs-role">
+        <p class="cs-body">
+          Guillotine Reels is a project designed and directed by me. The
+          concept, creativity, systems, visual style, audio direction and
+          design decisions all came from my own ideas. I used AI as a support
+          tool to organize, prototype and implement those ideas more quickly.
+        </p>
+        <p class="cs-body">
+          But the creative direction went down to the smallest details. If I
+          wanted a raven, it wasn&rsquo;t simply &ldquo;make a raven.&rdquo; I
+          decided its style, size, proportions, position, behaviour and how
+          it should fit into the rest of the world. The same applied to the
+          board, blades, skeletons, animations, UI and practically every
+          other element of the game.
+        </p>
+        <p class="cs-body">
+          AI allowed me to turn those ideas into something playable much
+          faster, but the decisions about what should exist and how it
+          should feel were mine.
+        </p>
+        <figure class="cs-detail-media">
+          <img src="assets/guillotine-reels/ancestral-skull.png" alt="One of the game's symbols — the level of detail I directed for every element, down to this one.">
+        </figure>
+        <p class="cs-role-statement">
+          AI was the implementation and prototyping tool. The creative
+          direction and design decisions were mine.
+        </p>
+      </div>
+    </section>
+
+    <!-- 10 — What I Learned -->
+    <section id="learned" class="cs-section" data-reveal>
+      <h2>What I Learned</h2>
+      <p class="cs-body">
+        Making this project taught me that designing an experience where a
+        player can enjoy even when they lose is much harder than it sounds.
+        It&rsquo;s not simply about making the player win more. The way you
+        present a loss, a near-miss or a reward that was almost there can
+        completely change how the player feels.
+      </p>
+      <p class="cs-body">
+        I also learned that a mechanic can work perfectly and still not feel
+        right. And when something fundamental doesn&rsquo;t convince me,
+        it&rsquo;s worth going back and changing it, even if that means
+        throwing away work I&rsquo;ve already done.
+      </p>
+      <p class="cs-body">
+        There is still a lot I want to improve in Guillotine Reels, but
+        I&rsquo;m proud of what I&rsquo;ve built.
+      </p>
+    </section>
+
+    <!-- 11 — Play the Game -->
+    <section id="play" class="cs-final" data-reveal>
+      <span class="eyebrow" style="justify-content:center;">Play the Game</span>
+      <h2>The best way to understand the project is to play it.</h2>
+      <div>
+        <a href="game/index.html" class="btn btn-primary" id="playDemoLinkFooter">Play Guillotine Reels</a>
+        <a href="index.html#work" class="btn btn-outline">Back to Work</a>
+      </div>
+      <p class="cs-final-status">Playable beta — personal game design project</p>
+    </section>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <span>© 2026 Jon Arbe</span>
+  <span>Guillotine Reels — Case Study</span>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

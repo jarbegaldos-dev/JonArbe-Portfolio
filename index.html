@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jon Arbe — Player Experience Designer</title>
+<meta name="description" content="Jon Arbe — Player Experience Designer focused on emotion design, gameplay systems and game feel. Featured project: Guillotine Reels.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">JON<span>·</span>ARBE</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="guillotine-reels.html">Case Study</a>
+      <a href="#contact">Contact</a>
+      <a href="game/index.html" class="btn btn-accent" id="playDemoLink">Play Demo</a>
+    </div>
+  </div>
+</nav>
+
+<button type="button" class="audio-toggle" id="audioToggle" aria-label="Play background music" aria-pressed="false">
+  <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <path d="M3 10v4h4l5 5V5L7 10H3z"/>
+    <line x1="16" y1="9" x2="21" y2="14"/>
+    <line x1="21" y1="9" x2="16" y2="14"/>
+  </svg>
+  <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <path d="M3 10v4h4l5 5V5L7 10H3z"/>
+    <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+    <path d="M18.5 6a8.5 8.5 0 0 1 0 12"/>
+  </svg>
+</button>
+
+<main>
+
+  <!-- ============ A. WHO I AM ============ -->
+  <header class="hero container">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="assets/guillotine-reels/blades.jpg" alt="">
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">Player Experience &amp; Emotion Design</span>
+      <div class="hero-name">
+        <h1>Jon Arbe</h1>
+        <video class="hero-raven" autoplay muted loop playsinline aria-hidden="true">
+          <source src="assets/guillotine-reels/raven-perch.webm" type="video/webm">
+        </video>
+      </div>
+      <p class="hero-role">Player Experience Designer</p>
+      <p class="hero-quote">&ldquo;I design emotions.&rdquo;</p>
+      <p class="hero-location">Tokyo, Japan &middot; Vitoria, Spain</p>
+      <a href="#work" class="btn btn-primary">View My Work</a>
+    </div>
+    <div class="scroll-cue">
+      <span class="scroll-cue-line"></span>
+      Scroll
+    </div>
+  </header>
+
+  <!-- ============ WHO I AM (intro) ============ -->
+  <section class="statement container" data-reveal>
+    <p class="who-i-am-text">
+      I&rsquo;m a creative person with a lot of imagination, and I&rsquo;ve
+      always been very interested in emotions. I pay attention to what people
+      feel in everyday life &mdash; watching a film, listening to music,
+      watching a video, receiving a message, or simply living through a small
+      moment that changes how something feels. I want to bring that way of
+      looking at emotions into game design.
+    </p>
+    <blockquote>I like designing <em>emotions</em>.</blockquote>
+  </section>
+
+  <!-- ============ B. PLAYABLE DEMO ============ -->
+  <section id="play-demo" class="section-pad container demo-section">
+    <div class="demo-panel" data-reveal>
+      <span class="eyebrow" style="justify-content:center;">Guillotine Reels</span>
+      <h2 class="section-heading">Playable Demo</h2>
+      <p class="section-lede" style="margin: 0 auto;">
+        The best way to understand what I design is to play it.
+      </p>
+      <a href="game/index.html" class="btn btn-primary demo-play-btn" id="playDemoLinkSection">
+        <span class="demo-play-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        Play Demo
+      </a>
+    </div>
+  </section>
+
+  <!--
+    "What I Design" section removed for now (2026 restructure pass).
+    Content is preserved below for reuse in the future About page
+    (Who I Am / What I Design / Skills / Design Philosophy / Experience) —
+    do not delete, just currently unused on Home.
+
+  <section class="statement container" data-reveal>
+    <span class="eyebrow">What I Design</span>
+    <blockquote style="margin-top: 1.4rem;">
+      I design gameplay systems with a focus on <em>how they make players feel</em> —
+      thinking beyond whether a mechanic works, to the feedback, pacing and
+      rewards that shape the experience around it.
+    </blockquote>
+    <ul class="design-focus-grid">
+      <li>Gameplay Design</li>
+      <li>Game Systems Design</li>
+      <li>Player Experience</li>
+      <li>Game Feel</li>
+      <li>Reward Systems</li>
+      <li>Pacing</li>
+      <li>Player Psychology</li>
+      <li>Rapid Prototyping</li>
+      <li>Iteration</li>
+    </ul>
+  </section>
+  -->
+
+  <!-- ============ D. FEATURED PROJECT ============ -->
+  <section id="work" class="section-pad container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Selected Work</span>
+    </div>
+
+    <article class="project-card" data-reveal>
+      <div class="media-placeholder">
+        <div class="media-placeholder-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Gameplay footage / trailer — coming soon
+        </div>
+      </div>
+
+      <div class="project-card-header">
+        <div>
+          <h2 class="project-title">Guillotine Reels</h2>
+          <p class="project-subtitle">Dark Fantasy Slot Game</p>
+        </div>
+        <span class="project-status">Beta — Personal Game Design Project</span>
+      </div>
+
+      <p class="project-desc">
+        Guillotine Reels is a dark fantasy slot game built around a
+        non-standard board and a payline system designed specifically for it.
+        The design is built around anticipation — probability, pacing,
+        animation and audio are tuned together so every spin raises the
+        question of what happens next, and every reward lands with weight.
+        The current build is a playable beta, shaped by continuous iteration
+        on how each system feels to play.
+      </p>
+      <p class="project-authorship">
+        Design, systems and direction by Jon Arbe — prototyped and built with AI-assisted development.
+      </p>
+
+      <div class="project-actions">
+        <a href="guillotine-reels.html" class="btn btn-outline">View Case Study</a>
+        <a href="game/index.html" class="btn btn-primary" id="playDemoLinkCard">Play Demo</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="section-pad container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">About</span>
+      <h2 class="section-heading">Jon Arbe</h2>
+    </div>
+
+    <div class="about-grid">
+      <div data-reveal>
+        <div class="about-block">
+          <h3>Who I Am</h3>
+          <p>
+            I&rsquo;ve always been interested in the way things make us feel.
+            A film can make you uncomfortable without telling you why. A song
+            can change your mood in a few seconds. A video can make you
+            laugh, surprise you, or remind you of something. I naturally pay
+            attention to those details.
+          </p>
+          <p>
+            That&rsquo;s what I want to bring into game design: thinking not
+            only about what the player does, but about what the player feels
+            while doing it. I want to design experiences around emotions.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>What I Design</h3>
+          <p class="about-focus-intro">
+            Areas I&rsquo;m interested in and actively developing as a
+            designer &mdash; not a claim of years of professional experience
+            in each one. Click any of them for a short note on what they mean
+            to me.
+          </p>
+          <ul class="design-focus-grid about-focus-grid" id="focusList">
+            <li class="focus-item">
+              <button type="button" class="focus-item-trigger" aria-expanded="false">
+                <span>Gameplay Design</span>
+                <span class="focus-item-icon" aria-hidden="true"></span>
+              </button>
+              <div class="focus-item-panel">
+                <p>How the moment-to-moment actions of a game work &mdash; what the player actually does, and why doing it should feel good on its own, before any reward shows up.</p>
+              </div>
+            </li>
+            <li class="focus-item">
+              <button type="button" class="focus-item-trigger" aria-expanded="false">
+                <span>Game Systems Design</span>
+                <span class="focus-item-icon" aria-hidden="true"></span>
+              </button>
+              <div class="focus-item-panel">
+                <p>How individual mechanics connect into something bigger, so the board feels like one connected space where things happen &mdash; not a set of isolated pieces sitting next to each other.</p>
+              </div>
+            </li>
+            <li class="focus-item">
+              <button type="button" class="focus-item-trigger" aria-expanded="false">
+                <span>Player Experience</span>
+                <span class="focus-item-icon" aria-hidden="true"></span>
+              </button>
+              <div class="focus-item-panel">
+                <p>Designing around what the player feels, notices and anticipates in the moment &mdash; not just what they click, but what they understand and expect right after.</p>
+              </div>
+            </li>
+            <li class="focus-item">
+              <button type="button" class="focus-item-trigger" aria-expanded="false">
+                <span>Game Feel</span>
+                <span class="focus-item-icon" aria-hidden="true"></span>
+              </button>
+              <div class="focus-item-panel">
+                <p>The texture of an interaction &mdash; timing, weight, feedback. The difference between a mechanic that technically works and one that feels right in the hand.</p>
+              </div>
+            </li>
+            <li class="focus-item">
+              <button type="button" class="focus-item-trigger" aria-expanded="false">
+                <span>Pacing</span>
+                <span class="focus-item-icon" aria-hidden="true"></span>
+              </button>
+              <div class="focus-item-panel">
+                <p>Deciding when things happen and, just as important, when they don&rsquo;t &mdash; giving moments room to breathe instead of making everything equally intense.</p>
+              </div>
+            </li>
+            <li class="focus-item">
+              <button type="button" class="focus-item-trigger" aria-expanded="false">
+                <span>Reward Systems</span>
+                <span class="focus-item-icon" aria-hidden="true"></span>
+              </button>
+              <div class="focus-item-panel">
+                <p>How wins, near-misses and surprises are presented &mdash; shaping anticipation and satisfaction, not only the numbers sitting behind them.</p>
+              </div>
+            </li>
+            <li class="focus-item">
+              <button type="button" class="focus-item-trigger" aria-expanded="false">
+                <span>Player Psychology</span>
+                <span class="focus-item-icon" aria-hidden="true"></span>
+              </button>
+              <div class="focus-item-panel">
+                <p>Thinking about uncertainty, anticipation and small frustrations &mdash; and how they can keep someone curious instead of pushing them away.</p>
+              </div>
+            </li>
+            <li class="focus-item">
+              <button type="button" class="focus-item-trigger" aria-expanded="false">
+                <span>Rapid Prototyping</span>
+                <span class="focus-item-icon" aria-hidden="true"></span>
+              </button>
+              <div class="focus-item-panel">
+                <p>Turning an idea into something playable as fast as possible, so I can feel whether it works instead of just imagining that it does.</p>
+              </div>
+            </li>
+            <li class="focus-item">
+              <button type="button" class="focus-item-trigger" aria-expanded="false">
+                <span>Iteration</span>
+                <span class="focus-item-icon" aria-hidden="true"></span>
+              </button>
+              <div class="focus-item-panel">
+                <p>Being willing to rebuild something that doesn&rsquo;t feel right, even after it&rsquo;s already built &mdash; and knowing the difference between &ldquo;needs polish&rdquo; and &ldquo;needs to change.&rdquo;</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div data-reveal data-reveal-delay="1">
+        <div class="about-block">
+          <h3>Design Philosophy</h3>
+          <p class="about-lede-quote">
+            &ldquo;Know what you want to communicate, and be as clean as
+            possible with it.&rdquo;
+          </p>
+          <p>
+            First, I need to understand what I want the player to feel. Then
+            I try to remove everything that doesn&rsquo;t help communicate
+            that feeling.
+          </p>
+          <p>
+            I believe my life experiences have given me a strong perception
+            of emotions, and I try to use that when designing experiences for
+            other people.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>Tools &amp; Skills</h3>
+          <p class="placeholder-note">[Placeholder — tools and skills list to be added.]</p>
+        </div>
+        <div class="about-block">
+          <h3>Experience</h3>
+          <p>
+            My professional experience comes from different fields rather
+            than the traditional game industry. I&rsquo;ve created videos for
+            friends, worked on personal YouTube projects, built interactive
+            projects, and spent a lot of time experimenting with creative
+            ideas on my own.
+          </p>
+          <p>
+            These experiences taught me how to communicate ideas, experiment
+            quickly, and turn something that exists only in my head into
+            something other people can actually experience.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ E. CONTACT ============ -->
+  <section id="contact" class="section-pad container contact-section">
+    <div class="contact-grid">
+      <div data-reveal>
+        <span class="eyebrow">Contact</span>
+        <h2 class="contact-heading">Let&rsquo;s&nbsp;talk.</h2>
+        <p class="contact-meta">Jon Arbe — Tokyo, Japan</p>
+      </div>
+      <div class="contact-links" data-reveal data-reveal-delay="1">
+        <a href="mailto:j.arbegaldos@gmail.com">Email</a>
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" id="youtubeLink" target="_blank" rel="noopener">YouTube</a>
+        <a href="#" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" target="_blank" rel="noopener">CV / Résumé</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span>© 2026 Jon Arbe</span>
+  <span>Player Experience Designer — Tokyo, Japan</span>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

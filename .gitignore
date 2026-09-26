@@ -1,0 +1,19 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor/IDE
+.vscode/
+*.swp
+
+# Logs (e.g. from running dev-server.js / local-server.js manually)
+*.log
+npm-debug.log*
+
+# Node (not currently used by the portfolio or the game runtime, but
+# harmless to ignore in case any tooling is added later)
+node_modules/
+
+# OS/temp scratch files some tools generate
+tmp_*.png
