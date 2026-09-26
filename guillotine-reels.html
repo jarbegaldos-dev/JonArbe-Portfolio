@@ -249,6 +249,8 @@
     flex-shrink: 0;
     height: clamp(74px, 9.5vw, 128px);
     width: clamp(74px, 9.5vw, 128px);
+    border-radius: 50%;
+    overflow: hidden;
   }
   .cs-skeleton-clip {
     height: clamp(200px, 26vw, 300px);
@@ -259,30 +261,11 @@
     width: 100%;
     object-fit: cover;
     opacity: 0.92;
-    mask-image: radial-gradient(closest-side, black 60%, transparent 100%);
-    -webkit-mask-image: radial-gradient(closest-side, black 60%, transparent 100%);
-  }
-  /* The stone image mimics the game's actual timing: the skeleton video is
-     ~4s long and throws at ~1.9s, so the stone stays hidden, appears right
-     at the throw and animates outward, then hides again before the loop. */
-  .cs-heading-stone {
-    position: absolute;
-    left: 46%;
-    top: 40%;
-    width: 30%;
-    height: auto;
-    opacity: 0;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
-    animation: cs-stone-throw 4.02s linear infinite;
-  }
-  @keyframes cs-stone-throw {
-    0%, 47% { opacity: 0; transform: translate(0, 0) scale(1); }
-    49% { opacity: 1; transform: translate(0, 0) scale(1); }
-    68% { opacity: 1; transform: translate(-120%, -55%) scale(0.7); }
-    72%, 100% { opacity: 0; transform: translate(-120%, -55%) scale(0.7); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .cs-heading-stone { animation: none; opacity: 0; }
+    /* A rounded overflow:hidden frame (above) does the soft-edge crop
+       instead of mask-image on the <video> itself: masking a <video>
+       element is unreliable on real mobile browsers (notably iOS Safari
+       can render it as fully invisible), while border-radius +
+       overflow:hidden on a wrapper is broadly and reliably supported. */
   }
 
   /* Small visual moments woven into a section's text — floated so the
@@ -447,7 +430,6 @@
         <video class="cs-heading-mark" autoplay muted loop playsinline aria-hidden="true">
           <source src="assets/guillotine-reels/skeleton-stone-throw.webm" type="video/webm">
         </video>
-        <img class="cs-heading-stone" src="assets/guillotine-reels/stone.png" alt="" aria-hidden="true">
       </div>
       <p class="cs-body">
         I wanted the player&rsquo;s first reaction to be &ldquo;What is

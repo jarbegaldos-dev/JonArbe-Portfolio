@@ -345,4 +345,90 @@
       targets.forEach(function (t) { sectionIo.observe(t); });
     }
   }
+
+  /* ---------------------------------------------------------
+     Hero raven — position it against a REAL rendered letter of
+     "Jon Arbe", not a guessed top/right percentage. Desktop targets
+     the final "E"; mobile (<=900px, matching the CSS breakpoint
+     that shrinks the frame) targets the "A" of "Arbe" instead, per
+     spec. The text wraps to one or two lines depending on viewport
+     width/font metrics (this boundary shifts slightly on real
+     devices vs. an emulator), so any fixed CSS breakpoint for the
+     raven's position is fragile. Measuring the actual character
+     position on every load/resize/font-load is the only approach
+     that stays correct regardless of how the text wraps.
+     --------------------------------------------------------- */
+  var heroRavenFrame = document.querySelector('.hero-raven-frame');
+  var heroNameEl = document.querySelector('.hero-name');
+  var heroH1 = document.querySelector('.hero h1');
+  var heroRavenMobileQuery = window.matchMedia ? window.matchMedia('(max-width: 900px)') : null;
+
+  if (heroRavenFrame && heroNameEl && heroH1 && heroH1.firstChild) {
+    var positionHeroRaven = function () {
+      var textNode = heroH1.firstChild;
+      var text = textNode.textContent || '';
+      if (!text.length) return;
+
+      var isMobile = heroRavenMobileQuery ? heroRavenMobileQuery.matches : false;
+      var startIndex = text.length - 1; // desktop: final "E"
+      if (isMobile) {
+        var arbeIndex = text.indexOf('Arbe');
+        startIndex = arbeIndex >= 0 ? arbeIndex : startIndex; // mobile: "A" of Arbe
+      }
+
+      var range = document.createRange();
+      range.setStart(textNode, startIndex);
+      range.setEnd(textNode, startIndex + 1);
+      var letterRect = range.getBoundingClientRect();
+      if (!letterRect.width && !letterRect.height) return; // hero not laid out yet
+
+      var heroNameRect = heroNameEl.getBoundingClientRect();
+      var frameSize = heroRavenFrame.offsetWidth;
+      if (!frameSize) return;
+
+      // Center the frame horizontally on the letter; vertically, perch it
+      // mostly above the letter with a small overlap onto its top, like a
+      // bird landing on it (matches the look tuned earlier for desktop).
+      var letterCenterX = letterRect.left + letterRect.width / 2;
+      var letterCapTop = letterRect.top + letterRect.height * 0.12;
+
+      var left = (letterCenterX - heroNameRect.left) - frameSize / 2;
+      var top = (letterCapTop - heroNameRect.top) - frameSize * 0.62;
+
+      heroRavenFrame.style.left = left + 'px';
+      heroRavenFrame.style.top = top + 'px';
+      heroRavenFrame.style.right = 'auto';
+    };
+
+    positionHeroRaven();
+    window.addEventListener('resize', positionHeroRaven);
+    window.addEventListener('orientationchange', positionHeroRaven);
+    // Fraunces (the display font used by the name) loads async; once it
+    // swaps in, the text metrics/wrap can shift, so re-measure after it's
+    // actually ready instead of relying on the pre-webfont fallback layout.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(positionHeroRaven).catch(function () {});
+    }
+  }
+
+  /* ---------------------------------------------------------
+     Decorative video autoplay — belt-and-suspenders retry.
+     Both ambient videos (hero raven, Case Study skeleton) already carry
+     the correct attributes for mobile autoplay (muted, playsinline), which
+     is normally enough. As a safety net for real-device quirks (a video
+     the browser decided to defer, e.g. because it wasn't yet in the
+     layout/viewport when autoplay was attempted), retry .play() once each
+     one actually enters the viewport.
+     --------------------------------------------------------- */
+  var ambientVideos = document.querySelectorAll('.hero-raven, .cs-heading-mark');
+  if (ambientVideos.length && 'IntersectionObserver' in window) {
+    var videoIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && entry.target.paused) {
+          entry.target.play().catch(function () { /* still blocked, ignore */ });
+        }
+      });
+    }, { threshold: 0.1 });
+    ambientVideos.forEach(function (video) { videoIo.observe(video); });
+  }
 })();
