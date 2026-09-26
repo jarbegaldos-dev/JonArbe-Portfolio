@@ -11,7 +11,7 @@
   // GitHub repo link (Case Study). Not created yet — leave null until the
   // repository is public, then set it here. Relative-safe: this is a full
   // URL, not a path, so it isn't affected by the GitHub Pages subdirectory.
-  var GITHUB_URL = null;     // e.g. "https://github.com/your-username/your-repo"
+  var GITHUB_URL = "https://github.com/jarbegaldos-dev/JonArbe-Portfolio";
 
   function wireConfigurableLinks(selector, url, message) {
     document.querySelectorAll(selector).forEach(function (link) {
