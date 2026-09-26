@@ -75,6 +75,17 @@
   var backdropLayer = LAYERS.filter(function (l) { return l.id === "background_base"; })[0];
   if (backdropLayer && backdropLayer.type !== "video") {
     document.getElementById("gameRoot").style.backgroundImage = "url('" + backdropLayer.src + "')";
+  } else if (backdropLayer) {
+    // background_base es un <video>, que no puede usarse como CSS
+    // background-image directamente. En vez de dejar la franja en negro
+    // solido, usamos un frame estatico pre-extraido del propio video (ver
+    // assets/backgrounds/background_base_poster.jpg) como aproximacion
+    // visual coherente con la escena. #gameRoot ya tiene
+    // background-size:cover / background-position:center en CSS, igual que
+    // el object-fit:cover del layer de video real, para que el encuadre
+    // sea equivalente.
+    document.getElementById("gameRoot").style.backgroundImage =
+      "url('assets/backgrounds/background_base_poster.jpg')";
   } else {
     document.getElementById("gameRoot").style.backgroundColor = "#000";
   }

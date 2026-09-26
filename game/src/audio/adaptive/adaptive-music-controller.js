@@ -102,12 +102,17 @@
   function startMusicOnFirstGesture() {
     document.removeEventListener("click", startMusicOnFirstGesture);
     document.removeEventListener("touchstart", startMusicOnFirstGesture);
+    document.removeEventListener("touchend", startMusicOnFirstGesture);
     document.removeEventListener("keydown", startMusicOnFirstGesture);
     ensureNormal();
   }
 
   document.addEventListener("click", startMusicOnFirstGesture);
   document.addEventListener("touchstart", startMusicOnFirstGesture);
+  // touchend too: on iOS Safari, a gesture-gated call like this can fail to
+  // unlock audio when tied to touchstart alone (the touch could still turn
+  // into a scroll/drag), while touchend confirms the tap actually completed.
+  document.addEventListener("touchend", startMusicOnFirstGesture);
   document.addEventListener("keydown", startMusicOnFirstGesture);
 
   window.OssuaryAdaptiveAudio = {

@@ -402,6 +402,11 @@
 
   document.addEventListener("click", unlock, { once: true });
   document.addEventListener("touchstart", unlock, { once: true });
+  // touchend too: on iOS Safari, resume() called from touchstart doesn't
+  // always count as a valid user gesture (the touch could still turn into
+  // a scroll/drag), while touchend confirms the tap actually completed.
+  // Keeping touchstart as well since it's enough on other engines.
+  document.addEventListener("touchend", unlock, { once: true });
   document.addEventListener("keydown", unlock, { once: true });
 
   window.OssuaryAudioEngine = {
