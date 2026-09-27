@@ -865,7 +865,8 @@
     if (panel || !document.body) return;
     panel = document.createElement("div");
     panel.id = "ossAudioDiag";
-    panel.style.cssText = "position:fixed;left:4px;top:4px;z-index:2147483647;max-width:calc(100vw - 8px);" +
+    // Debajo del indicador rosa del cargador (game/index.html).
+    panel.style.cssText = "position:fixed;left:4px;top:calc(env(safe-area-inset-top, 0px) + 34px);z-index:2147483647;max-width:calc(100vw - 8px);" +
       "background:rgba(0,0,0,.88);color:#9f9;font:10px/1.3 ui-monospace,Menlo,monospace;border:1px solid #3a3;" +
       "border-radius:6px;padding:3px 5px;";
     ["pointerdown", "pointerup", "touchstart", "touchend", "mousedown", "mouseup", "click", "keydown"].forEach(function (t) {
@@ -916,6 +917,7 @@
     panel.appendChild(body);
     document.body.appendChild(panel);
     updateStatus();
+    if (W.__ossDiagStatus) W.__ossDiagStatus("script OK · panel DIAG listo (pulsa DIAG ▾)");
   }
   function updateStatus() {
     if (!statusEl) return;
@@ -953,6 +955,7 @@
   defineTrap("OssuaryAudio", wrapFacade);
 
   envSnapshot();
+  if (W.__ossDiagStatus) W.__ossDiagStatus("script OK · esperando al juego…");
   document.addEventListener("DOMContentLoaded", buildPanel);
   W.addEventListener("load", function () {
     log("LOAD", { hasFocus: focus(), visibility: document.visibilityState, buffersNotReady: buffersNotReady() });
