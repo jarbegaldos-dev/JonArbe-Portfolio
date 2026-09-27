@@ -8,11 +8,60 @@
 <link rel="stylesheet" href="css/style.css">
 <script>
   // DIAGNOSTICO DE AUDIO TEMPORAL (se eliminara tras la prueba fisica).
-  // Solo con ?audiodiag=1: carga js/audiodiag-portfolio.js con un parametro
-  // unico para que nunca salga de cache. Sin el parametro no hace nada.
-  if (/[?&]audiodiag=1(&|$)/.test(location.search)) {
-    document.write('<script src="js/audiodiag-portfolio.js?t=' + Date.now() + '"><\/script>');
-  }
+  // Todo en linea, sin archivos externos. Solo actua si la URL contiene
+  // "audiodiag"; sin el parametro no hace absolutamente nada.
+  (function () {
+    if (!/audiodiag/i.test(location.search + location.hash)) return;
+    var VERSION = "v3";
+    var FULL = "DIAG ON — PORTFOLIO DIAGNOSTIC ACTIVE · " + VERSION;
+    var SHORT = "DIAG ON · " + VERSION;
+    var TOP_STYLE = "position:fixed;left:0;right:0;top:0;z-index:2147483647;pointer-events:none;" +
+      "background:#ff00a8;color:#fff;font:800 18px/1.25 system-ui,-apple-system,sans-serif;" +
+      "text-align:center;padding:12px 8px;letter-spacing:.04em;box-shadow:0 2px 10px rgba(0,0,0,.6);";
+    var BOTTOM_STYLE = "position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom, 0px) + 10px);" +
+      "transform:translateX(-50%);z-index:2147483647;pointer-events:none;background:#ff00a8;color:#fff;" +
+      "font:800 13px/1 system-ui,-apple-system,sans-serif;padding:6px 10px;border-radius:5px;";
+
+    // 1) Indicador inmediato: se inserta en <html> antes de que exista
+    //    <body>, sin depender de main.js, del modal ni de Play Demo.
+    var bar = document.createElement("div");
+    bar.id = "audioDiagBanner";
+    bar.textContent = FULL;
+    bar.style.cssText = TOP_STYLE;
+    document.documentElement.appendChild(bar);
+
+    // 2) Play Demo: en este modo el iframe recibe
+    //    game/index.html?audiodiag=1&diag=<ts>, una URL nueva en cada
+    //    apertura, asi el HTML del juego nunca sale de una cache antigua.
+    var GAME_PATH = /(^|\/)game\/(index\.html)?(\?|#|$)/;
+    var desc = Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype, "src");
+    if (desc && desc.set) {
+      Object.defineProperty(HTMLIFrameElement.prototype, "src", {
+        configurable: true,
+        enumerable: desc.enumerable,
+        get: desc.get,
+        set: function (value) {
+          var url = String(value);
+          if (GAME_PATH.test(url) && !/audiodiag/i.test(url)) {
+            url += (url.indexOf("?") === -1 ? "?" : "&") + "audiodiag=1&diag=" + Date.now();
+          }
+          desc.set.call(this, url);
+        }
+      });
+    }
+
+    // 3) Con el modal abierto el indicador pasa a una etiqueta compacta
+    //    abajo, para no tapar el indicador del propio juego.
+    function sync() {
+      var open = document.body.classList.contains("game-modal-open");
+      bar.style.cssText = open ? BOTTOM_STYLE : TOP_STYLE;
+      bar.textContent = open ? SHORT : FULL;
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+      sync();
+    });
+  })();
 </script>
 </head>
 <body>
