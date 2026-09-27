@@ -83,10 +83,25 @@
     } catch (e) {}
     var topUrl = null;
     try { topUrl = W.top.location.href; } catch (e) { topUrl = "no-access"; }
+    var v = document.createElement("video");
+    var conn = navigator.connection || null;
+    var ua = navigator.userAgent;
     log("ENV", {
-      userAgent: navigator.userAgent,
+      userAgent: ua,
       platform: navigator.platform,
+      vendor: navigator.vendor,
       maxTouchPoints: navigator.maxTouchPoints,
+      // En iOS todos los navegadores (Safari, Chrome, Firefox) usan WebKit.
+      isIOS: /iP(hone|ad|od)/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1),
+      isWebKitEngine: navigator.vendor === "Apple Computer, Inc.",
+      screen: W.screen ? W.screen.width + "x" + W.screen.height : "n/a",
+      connection: conn ? { effectiveType: conn.effectiveType, downlink: conn.downlink, rtt: conn.rtt, saveData: conn.saveData } : "n/a",
+      canPlayVideo: {
+        webm: v.canPlayType("video/webm"),
+        webmVp9: v.canPlayType('video/webm; codecs="vp9"'),
+        mp4H264High51: v.canPlayType('video/mp4; codecs="avc1.640033"'),
+        mp4Hevc: v.canPlayType('video/mp4; codecs="hvc1"')
+      },
       frame: FRAME,
       url: location.href,
       topUrl: topUrl,
@@ -154,10 +169,17 @@
     info.how = how;
     info.hasFocus = focus();
     info.topActivation = topActivation();
+    info.destinationChannels = c.destination ? c.destination.maxChannelCount : "n/a";
     log("CTX-CREATED", info);
+    var prevState = c.state;
     try {
+      // Cualquier transicion: running / suspended / interrupted (WebKit) /
+      // closed, con el estado anterior para ver la secuencia completa.
       c.addEventListener("statechange", function () {
+        var from = prevState;
+        prevState = c.state;
         log("CTX-STATECHANGE", {
+          from: from,
           newState: c.state,
           currentTime: r3(c.currentTime),
           baseLatency: typeof c.baseLatency === "number" ? r3(c.baseLatency) : "n/a",
@@ -334,38 +356,99 @@
     hooked.decode = true;
   }
 
-  // <audio>/<video> CON sonido (los mudos decorativos se ignoran para no
-  // inundar el log).
+  // <video>/<audio>: todos los que entran en el DOM (MutationObserver, p.ej.
+  // los fondos de escena con autoplay que nunca llaman a play()) y todos los
+  // que llaman a play() (incluidos new Audio() fuera del DOM). Cada evento se
+  // registra como maximo MEDIA_EVENT_LIMIT veces por elemento para que los
+  // bucles no inunden el log.
+  var MEDIA_EVENT_LIMIT = 3;
+  var MEDIA_EVENTS = ["canplay", "loadeddata", "playing", "pause", "ended", "error"];
+  var mediaSeq = 0;
+
+  function mediaState(el) {
+    var err = el.error;
+    return {
+      media: el.__ossMediaId,
+      tag: el.tagName,
+      cls: typeof el.className === "string" ? el.className.split(" ")[0] : "",
+      src: el.getAttribute("src") || "",
+      currentSrc: short(el.currentSrc),
+      readyState: el.readyState,
+      networkState: el.networkState,
+      paused: el.paused,
+      muted: el.muted,
+      volume: el.volume,
+      autoplay: el.autoplay,
+      loop: el.loop,
+      preload: el.preload,
+      videoSize: el.tagName === "VIDEO" ? el.videoWidth + "x" + el.videoHeight : undefined,
+      error: err ? { code: err.code, message: err.message || "" } : null,
+      test: el.__ossTest || null
+    };
+  }
+  function countOnce(el, key) {
+    el.__ossEvtCount = el.__ossEvtCount || {};
+    el.__ossEvtCount[key] = (el.__ossEvtCount[key] || 0) + 1;
+    return el.__ossEvtCount[key] <= MEDIA_EVENT_LIMIT;
+  }
+  function trackMedia(el, how) {
+    if (!el || el.__ossMediaId) return;
+    el.__ossMediaId = "m" + (++mediaSeq);
+    var s = mediaState(el);
+    s.foundBy = how;
+    log("MEDIA-FOUND", s);
+    MEDIA_EVENTS.forEach(function (evt) {
+      el.addEventListener(evt, function () {
+        if (countOnce(el, evt)) log("MEDIA-" + evt.toUpperCase(), mediaState(el));
+      });
+    });
+  }
+  function scanMedia(node) {
+    if (!node || node.nodeType !== 1) return;
+    if (node.tagName === "VIDEO" || node.tagName === "AUDIO") trackMedia(node, "dom");
+    if (node.querySelectorAll) {
+      Array.prototype.forEach.call(node.querySelectorAll("video, audio"), function (el) { trackMedia(el, "dom"); });
+    }
+  }
   function hookMedia() {
     var P = W.HTMLMediaElement && W.HTMLMediaElement.prototype;
     if (!P || !P.play) return;
     var playOrig = P.play;
     P.play = function () {
       var el = this;
-      var withSound = !el.muted && el.volume > 0;
-      var info = { tag: el.tagName, src: short(el.currentSrc || el.src), muted: el.muted, volume: el.volume, test: el.__ossTest || null };
+      trackMedia(el, "play()");
+      var logIt = countOnce(el, "play-call");
+      if (logIt) log("MEDIA-PLAY-CALLED", mediaState(el));
       var p = playOrig.apply(this, arguments);
-      if (withSound) {
-        log("MEDIA-PLAY-CALLED", info);
-        if (!el.__ossMediaHooked) {
-          el.__ossMediaHooked = true;
-          ["playing", "pause", "ended"].forEach(function (evt) {
-            el.addEventListener(evt, function () {
-              log("MEDIA-" + evt.toUpperCase(), { tag: el.tagName, src: short(el.currentSrc || el.src), muted: el.muted, time: r3(el.currentTime), test: el.__ossTest || null });
-            });
-          });
-        }
-        if (p && typeof p.then === "function") {
-          p.then(function () {
-            log("MEDIA-PLAY-RESOLVED", { tag: info.tag, src: info.src, mutedNow: el.muted, test: info.test });
-          }, function (err) {
-            log("MEDIA-PLAY-REJECTED", { tag: info.tag, src: info.src, err: err ? err.name + ": " + err.message : "?", test: info.test });
-          });
-        }
+      if (p && typeof p.then === "function") {
+        p.then(function () {
+          if (logIt) log("MEDIA-PLAY-RESOLVED", mediaState(el));
+        }, function (err) {
+          // Los rechazos se registran siempre, sin limite.
+          var s = mediaState(el);
+          s.rejection = err ? err.name + ": " + err.message : "?";
+          log("MEDIA-PLAY-REJECTED", s);
+        });
       }
       return p;
     };
+    if (W.MutationObserver) {
+      new MutationObserver(function (records) {
+        records.forEach(function (r) { Array.prototype.forEach.call(r.addedNodes, scanMedia); });
+      }).observe(document.documentElement, { childList: true, subtree: true });
+    }
     hooked.media = true;
+  }
+  function mediaSnapshot(label) {
+    var list = Array.prototype.map.call(document.querySelectorAll("video, audio"), function (el) {
+      trackMedia(el, "snapshot");
+      var s = mediaState(el);
+      var b = el.getBoundingClientRect();
+      s.box = Math.round(b.width) + "x" + Math.round(b.height);
+      s.hidden = !!el.closest("[hidden]") || getComputedStyle(el).display === "none";
+      return s;
+    });
+    log("MEDIA-SNAPSHOT", { label: label, count: list.length, elements: list });
   }
 
   // ------------------------------------------------------ engine hooks
@@ -409,19 +492,25 @@
         else if (ready === false) reason = "BUFFER-NOT-READY";
         else reason = "cooldown/voice-limit/ctx";
       }
+      var def2 = soundDef(soundId);
       var info = { id: soundId, bufferReady: ready, returned: voice ? "voice" : "null", reason: reason, fadeInMs: overrides && overrides.fadeInMs };
       if (voice) {
         info.bus = voice.bus;
+        info.sourceGainTarget = overrides && typeof overrides.volume === "number" ? overrides.volume : (def2 && typeof def2.volume === "number" ? def2.volume : 1);
         try {
           info.busGain = r3(v.getBusGain(voice.bus).gain.value);
           info.masterGain = r3(v.getMasterVolume());
         } catch (e) {}
       }
       log("ENGINE-PLAY", info);
-      if (voice && soundDef(soundId) && soundDef(soundId).category === "music") {
+      // Ganancia REAL del source (voiceGain) ya aplicada: a los 400ms para
+      // SFX (3 primeras veces por sonido) y a los 1.5s para musica (tras el
+      // fade-in). Con el contexto suspendido se queda en 0.
+      var isMusic = def2 && def2.category === "music";
+      if (voice && (isMusic || countOnce(v, "gaincheck-" + soundId))) {
         setTimeout(function () {
-          log("MUSIC-VOICE-GAIN-1.5s", { id: soundId, voiceGain: r3(voice.gainNode.gain.value), ctxState: cstate(), gains: gains() });
-        }, 1500);
+          log("SOURCE-GAIN-CHECK", { id: soundId, after: isMusic ? "1.5s" : "400ms", sourceGain: r3(voice.gainNode.gain.value), ctxState: cstate(), gains: gains() });
+        }, isMusic ? 1500 : 400);
       }
       return voice;
     };
@@ -655,6 +744,14 @@
     if (W.OssuaryAudio) W.OssuaryAudio.stopGroup("music", 150);
     log("TEST-STOP-MUSIC", {});
   }
+  // resume() manual SOLO al pulsar el boton (test, no mecanismo automatico):
+  // el resultado sale en RESUME-CALLED / RESOLVED / REJECTED.
+  function testT4() {
+    lastTest = "T4";
+    if (!ctx) { log("TEST-START", { test: "T4", result: "NO-AUDIOCONTEXT" }); return; }
+    log("TEST-START", { test: "T4", what: "AudioContext.resume() manual", stateBefore: ctx.state, topActivation: topActivation() });
+    ctx.resume();
+  }
   function testT5() {
     lastTest = "T5";
     if (!navigator.audioSession) { log("TEST-START", { test: "T5", result: "navigator.audioSession NO DISPONIBLE" }); return; }
@@ -793,9 +890,11 @@
       btn("T1 WebAudio", testT1, "#1b3a6b"),
       btn("T2 <audio>", testT2, "#1b3a6b"),
       btn("T3 música", testT3, "#1b3a6b"),
-      btn("T6 WA+<audio>", testT6, "#1b3a6b"),
+      btn("T4 resume()", testT4, "#1b3a6b"),
       btn("T5 audioSession", testT5, "#5a3a00"),
-      btn("■ stop música", testStopMusic)
+      btn("T6 WA+<audio>", testT6, "#1b3a6b"),
+      btn("■ stop música", testStopMusic),
+      btn("Media", function () { mediaSnapshot("manual"); }, "#333")
     ]));
     body.appendChild(row([label("¿Oyes el último test?"),
       btn("✔ lo oigo", function () { mark("test", "heard"); }, "#063"),
@@ -834,7 +933,8 @@
       (d.test || d.id || d.buffer || d.url || d.src || d.what || d.newState || "") +
       (d.returned ? " →" + d.returned + "/" + d.reason : "") +
       (d.testSignalPeakDb !== undefined ? " test:" + d.testSignalPeakDb + "dB dest:" + d.signalAtDestinationPeakDb + "dB" : "") +
-      (d.value ? " " + d.value : "") + (d.err ? " ERR " + d.err : "");
+      (d.value ? " " + d.value : "") + (d.err ? " ERR " + d.err : "") +
+      (d.rejection ? " RECHAZO " + d.rejection : "") + (d.count !== undefined ? " (" + d.count + " elementos)" : "");
     listEl.insertBefore(line, listEl.firstChild);
     while (listEl.childNodes.length > 40) listEl.removeChild(listEl.lastChild);
   }
@@ -856,6 +956,10 @@
   document.addEventListener("DOMContentLoaded", buildPanel);
   W.addEventListener("load", function () {
     log("LOAD", { hasFocus: focus(), visibility: document.visibilityState, buffersNotReady: buffersNotReady() });
-    setTimeout(function () { log("BUFFERS-5s-AFTER-LOAD", { notReady: buffersNotReady(), gains: gains() }); }, 5000);
+    setTimeout(function () {
+      log("BUFFERS-5s-AFTER-LOAD", { notReady: buffersNotReady(), gains: gains() });
+      mediaSnapshot("5s-after-load");
+    }, 5000);
+    setTimeout(function () { mediaSnapshot("15s-after-load"); }, 15000);
   });
 })();

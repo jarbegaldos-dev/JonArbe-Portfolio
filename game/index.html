@@ -7,7 +7,8 @@
 <script>
   // DIAGNOSTICO DE AUDIO TEMPORAL (se eliminara tras la prueba fisica).
   // Solo carga src/debug/audio-diagnostics.js si esta URL, o la del
-  // portfolio que embebe el juego, lleva ?audiodiag=1. Sin el parametro no
+  // portfolio que embebe el juego, lleva ?audiodiag=1 (con un parametro
+  // unico para que el script nunca salga de cache). Sin el parametro no
   // hace nada.
   (function () {
     var flag = /[?&]audiodiag=1(&|$)/;
@@ -15,7 +16,7 @@
     if (!on) {
       try { on = window.top !== window && flag.test(window.top.location.search); } catch (e) {}
     }
-    if (on) document.write('<script src="src/debug/audio-diagnostics.js"><\/script>');
+    if (on) document.write('<script src="src/debug/audio-diagnostics.js?t=' + Date.now() + '"><\/script>');
   })();
 </script>
 <link rel="stylesheet" href="style.css?v=20260704e" />

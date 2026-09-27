@@ -6,6 +6,14 @@
 <title>Jon Arbe — Player Experience Designer</title>
 <meta name="description" content="Jon Arbe — Player Experience Designer focused on emotion design, gameplay systems and game feel. Featured project: Guillotine Reels.">
 <link rel="stylesheet" href="css/style.css">
+<script>
+  // DIAGNOSTICO DE AUDIO TEMPORAL (se eliminara tras la prueba fisica).
+  // Solo con ?audiodiag=1: carga js/audiodiag-portfolio.js con un parametro
+  // unico para que nunca salga de cache. Sin el parametro no hace nada.
+  if (/[?&]audiodiag=1(&|$)/.test(location.search)) {
+    document.write('<script src="js/audiodiag-portfolio.js?t=' + Date.now() + '"><\/script>');
+  }
+</script>
 </head>
 <body>
 
