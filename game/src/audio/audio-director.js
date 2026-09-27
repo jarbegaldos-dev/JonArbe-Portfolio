@@ -50,6 +50,7 @@
     resumeAll: engine.resumeAll,
     duck: engine.duck,
     crossFade: engine.crossFade,
+    isReady: engine.isReady,
     preload: engine.preload,
     preloadAll: engine.preloadAll,
     unload: engine.unload,

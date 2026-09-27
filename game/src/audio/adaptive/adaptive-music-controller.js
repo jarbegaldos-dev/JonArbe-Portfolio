@@ -29,11 +29,22 @@
     currentMode = mode;
     pendingPlayToken += 1;
     var token = pendingPlayToken;
-    api.stopGroup("music", typeof fadeMs === "number" ? fadeMs : FADE_MS);
-    api.preload(soundId).then(function () {
-      if (token !== pendingPlayToken || desiredMode !== mode) return;
-      api.play(soundId, { fadeInMs: typeof fadeMs === "number" ? fadeMs : FADE_MS });
-    });
+    var useFadeMs = typeof fadeMs === "number" ? fadeMs : FADE_MS;
+    api.stopGroup("music", useFadeMs);
+    if (api.isReady && api.isReady(soundId)) {
+      // Buffer ya decodificado (preloadAll() lo deja listo mucho antes del
+      // primer gesto real): reproducir directamente, en el mismo call stack
+      // sincrono que trigger()/bus.emit(), sin la microtarea de
+      // preload().then(...) de por medio.
+      api.play(soundId, { fadeInMs: useFadeMs });
+    } else {
+      // Todavia no decodificado (caso raro): mismo camino asincrono de
+      // siempre, sin tocar.
+      api.preload(soundId).then(function () {
+        if (token !== pendingPlayToken || desiredMode !== mode) return;
+        api.play(soundId, { fadeInMs: useFadeMs });
+      });
+    }
     return mode;
   }
 

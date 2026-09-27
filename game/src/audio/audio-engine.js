@@ -68,6 +68,15 @@
     return null;
   }
 
+  // Sincrono, a proposito: deja que una llamante (p.ej. switchTo() en
+  // adaptive-music-controller.js) decida reproducir directamente sin pasar
+  // por preload().then(...) cuando el buffer ya esta decodificado, en vez
+  // de introducir una microtarea de por medio sin necesidad.
+  function isReady(soundId) {
+    var cached = buffers[soundId];
+    return !!(cached && cached !== "failed");
+  }
+
   function preload(soundId) {
     var context = ensureContext();
     if (!context) return Promise.resolve(null);
@@ -412,6 +421,7 @@
   window.OssuaryAudioEngine = {
     ensureContext: ensureContext,
     unlock: unlock,
+    isReady: isReady,
     preload: preload,
     preloadAll: preloadAll,
     unload: unload,
