@@ -917,7 +917,13 @@
     panel.appendChild(body);
     document.body.appendChild(panel);
     updateStatus();
-    if (W.__ossDiagStatus) W.__ossDiagStatus("script OK · panel DIAG listo (pulsa DIAG ▾)");
+    // Siempre justo debajo del indicador rosa, ocupe una o varias lineas.
+    W.__ossDiagReposition = function () {
+      var banner = document.getElementById("ossDiagGameBanner");
+      if (banner) panel.style.top = Math.round(banner.getBoundingClientRect().bottom + 4) + "px";
+    };
+    if (W.__ossDiagStatus) W.__ossDiagStatus("panel listo ↓");
+    else W.__ossDiagReposition();
   }
   function updateStatus() {
     if (!statusEl) return;
@@ -955,7 +961,7 @@
   defineTrap("OssuaryAudio", wrapFacade);
 
   envSnapshot();
-  if (W.__ossDiagStatus) W.__ossDiagStatus("script OK · esperando al juego…");
+  if (W.__ossDiagStatus) W.__ossDiagStatus("script OK");
   document.addEventListener("DOMContentLoaded", buildPanel);
   W.addEventListener("load", function () {
     log("LOAD", { hasFocus: focus(), visibility: document.visibilityState, buffersNotReady: buffersNotReady() });

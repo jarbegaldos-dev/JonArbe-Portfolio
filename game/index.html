@@ -18,20 +18,24 @@
       try { on = window.top !== window && flag.test(window.top.location.search + window.top.location.hash); } catch (e) {}
     }
     if (!on) return;
-    var VERSION = "v3";
+    var VERSION = "v4";
     var bar = document.createElement("div");
     bar.id = "ossDiagGameBanner";
     bar.style.cssText = "position:fixed;left:0;right:0;top:0;z-index:2147483646;pointer-events:none;" +
       "background:#ff00a8;color:#fff;font:800 13px/1.3 system-ui,-apple-system,sans-serif;text-align:center;" +
       "padding:calc(env(safe-area-inset-top, 0px) + 5px) 6px 5px;";
-    function status(text) { bar.textContent = "DIAG ON — GAME DIAGNOSTIC · " + VERSION + " · " + text; }
+    function status(text) {
+      bar.textContent = "DIAG ON · JUEGO · " + VERSION + " · " + text;
+      // El panel (si ya existe) se recoloca justo debajo del indicador.
+      if (window.__ossDiagReposition) window.__ossDiagReposition();
+    }
     status("cargando script…");
     document.documentElement.appendChild(bar);
     window.__ossDiagStatus = status;
     window.__ossDiagLoadFailed = function () { status("SCRIPT NO CARGADO (red o bloqueo)"); };
     window.addEventListener("error", function (e) {
       if (e && e.filename && e.filename.indexOf("audio-diagnostics") !== -1) {
-        status("ERROR EN SCRIPT: " + e.message + " (linea " + e.lineno + ")");
+        status("ERROR: " + e.message + " (linea " + e.lineno + ")");
       }
     });
     document.write('<script src="src/debug/audio-diagnostics.js?t=' + Date.now() + '" onerror="__ossDiagLoadFailed()"><\/script>');
