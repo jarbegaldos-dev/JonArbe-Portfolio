@@ -68,7 +68,8 @@ button {
   overflow: hidden;
   background:
     radial-gradient(circle at 50% 47%, rgba(58, 35, 25, 0.22), transparent 42%),
-    linear-gradient(180deg, #050505 0%, #090706 52%, #020202 100%);
+    url("assets/backgrounds/background_base_poster.jpg") center / cover no-repeat,
+    #050505;
 }
 
 .scene-layers::after {
