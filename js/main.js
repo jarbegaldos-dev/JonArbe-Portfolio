@@ -227,6 +227,22 @@
   }
 
   /* ---------------------------------------------------------
+     Copy email: for visitors without a mail app, where mailto
+     links do nothing. Only shown when the clipboard API exists.
+     --------------------------------------------------------- */
+  document.querySelectorAll('[data-copy-email]').forEach(function (btn) {
+    if (!navigator.clipboard || !window.isSecureContext) return;
+    btn.hidden = false;
+    var label = btn.textContent;
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(btn.getAttribute('data-copy-email')).then(function () {
+        btn.textContent = 'Copied ✓';
+        setTimeout(function () { btn.textContent = label; }, 2000);
+      }).catch(function () { /* clipboard blocked: the mailto link is still there */ });
+    });
+  });
+
+  /* ---------------------------------------------------------
      Nav: solid background on scroll
      --------------------------------------------------------- */
   var nav = document.getElementById('siteNav');
@@ -249,6 +265,7 @@
     toggle.addEventListener('click', function () {
       var isOpen = links.classList.toggle('is-open');
       toggle.classList.toggle('is-active', isOpen);
+      nav.classList.toggle('is-menu-open', isOpen);
       toggle.setAttribute('aria-expanded', String(isOpen));
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
@@ -257,10 +274,32 @@
       a.addEventListener('click', function () {
         links.classList.remove('is-open');
         toggle.classList.remove('is-active');
+        nav.classList.remove('is-menu-open');
         toggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
     });
+  }
+
+  /* ---------------------------------------------------------
+     Nav: mark the section in view (home page anchors only)
+     --------------------------------------------------------- */
+  if (links && 'IntersectionObserver' in window) {
+    var sectionLinks = Array.prototype.slice.call(links.querySelectorAll('a[href^="#"]'));
+    var watched = sectionLinks
+      .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+      .filter(Boolean);
+    if (watched.length) {
+      var navIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          sectionLinks.forEach(function (a) {
+            a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id);
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      watched.forEach(function (section) { navIo.observe(section); });
+    }
   }
 
   /* ---------------------------------------------------------

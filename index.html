@@ -110,14 +110,28 @@
         </div>
 
         <div class="meet" data-meet data-reveal data-reveal-delay="1">
-          <div class="meet-head"><p class="label">Spin to meet me · three true facts</p><span class="meet-count" data-meet-count>No spins yet</span></div>
-          <div class="meet-machine">
-            <div class="meet-reel"><span class="meet-cap">I speak</span><div class="meet-window"><ul class="meet-strip"><li>English</li></ul></div></div>
-            <div class="meet-reel"><span class="meet-cap">Obsessed with</span><div class="meet-window"><ul class="meet-strip"><li>Details</li></ul></div></div>
-            <div class="meet-reel"><span class="meet-cap">Ask me about</span><div class="meet-window"><ul class="meet-strip"><li>Welding car prototypes</li></ul></div></div>
+          <div class="meet-head">
+            <div>
+              <p class="label">Spin to meet me</p>
+              <p class="meet-sub">Every spin lands on three true facts about me.</p>
+            </div>
+            <span class="meet-count" data-meet-count>No spins yet</span>
           </div>
-          <p class="meet-result" aria-live="polite" data-meet-result>I speak <b>English</b>. I’m obsessed with <b>details</b>. Ask me about <b>welding car prototypes</b>.</p>
-          <button type="button" class="btn btn-gold meet-spin" data-meet-spin>Spin</button>
+          <div class="meet-cabinet" data-meet-cabinet>
+            <div class="meet-caps" aria-hidden="true"><span class="meet-cap">I speak</span><span class="meet-cap">Obsessed with</span><span class="meet-cap">Ask me about</span></div>
+            <div class="meet-machine" aria-hidden="true">
+              <div class="meet-window"><ul class="meet-strip"><li>Japanese</li><li>English</li><li>Spanish</li></ul></div>
+              <div class="meet-window"><ul class="meet-strip"><li>Ravens</li><li>Details</li><li>Timing</li></ul></div>
+              <div class="meet-window"><ul class="meet-strip"><li>Throwing work away</li><li>Welding prototypes</li><li>Life in Tokyo</li></ul></div>
+              <span class="meet-payline"></span>
+            </div>
+          </div>
+          <ul class="meet-lines" aria-live="polite" data-meet-result>
+            <li>I speak <b>English</b>.</li>
+            <li>I’m obsessed with <b>details</b>.</li>
+            <li>Ask me about <b>welding car prototypes</b>.</li>
+          </ul>
+          <button type="button" class="btn btn-gold meet-spin" data-meet-spin><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v4.5h-4.5"/></svg>Spin</button>
           <p class="meet-bonus" data-meet-bonus hidden>Five spins. You clearly like this as much as I do. <a href="#contact">Let’s talk →</a></p>
         </div>
       </div>
@@ -297,14 +311,17 @@
         <div class="principle" data-reveal>
           <h3>Decide the feeling</h3>
           <p>Before a mechanic exists, I decide what the player should feel. Everything that doesn’t help that feeling goes, even if it works.</p>
+          <a class="proof" href="ossuary-reels.html#raven-chain">See it in the Raven chain →</a>
         </div>
         <div class="principle" data-reveal data-reveal-delay="1">
           <h3>Let moments breathe</h3>
           <p>Not every moment at the same intensity. Pauses, rhythm and sound decide how hard a win lands, and how much a near-miss stings.</p>
+          <a class="proof" href="ossuary-reels.html#big-win">See it in the big-win counter →</a>
         </div>
         <div class="principle" data-reveal data-reveal-delay="2">
           <h3>Rebuild when it’s wrong</h3>
           <p>I threw away the whole first reel structure because it worked but didn’t feel right. It was the best decision of the project.</p>
+          <a class="proof" href="ossuary-reels.html#iteration">See it in the dev log →</a>
         </div>
       </div>
     </div>
@@ -324,6 +341,7 @@
       </dl>
       <div class="row-ctas">
         <a class="btn btn-gold btn-mail" href="mailto:j.arbegaldos@gmail.com">j.arbegaldos@gmail.com</a>
+        <button type="button" class="btn btn-ghost" data-copy-email="j.arbegaldos@gmail.com" hidden>Copy email</button>
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/jon-arbe/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn btn-ghost" href="assets/cv/Jon-Arbe-CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
       </div>

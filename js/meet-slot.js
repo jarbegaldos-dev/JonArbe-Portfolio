@@ -1,10 +1,11 @@
 /* ---------------------------------------------------------------------
-   "Spin to meet me" — a tiny three-reel slot in the About section.
-   Each reel is its own sentence (I speak / I am obsessed with / Ask me
+   "Spin to meet me" — a small three-reel slot in the About section.
+   Each reel is its own sentence (I speak / I'm obsessed with / Ask me
    about), so a spin reads as three separate true facts and no reel ever
-   implies something about another one.
-   Reels stop left to right with a small overshoot; the last one takes
-   longer (anticipation) and every reel flashes gold when it lands.
+   implies something about another one. The reels show three rows; the
+   middle one sits on the win line. Reels stop left to right with a small
+   overshoot, the last one lingers (anticipation), each sentence updates as
+   its reel lands, and the win line lights up when the spin is over.
    --------------------------------------------------------------------- */
 (function () {
   'use strict';
@@ -12,13 +13,29 @@
   var root = document.querySelector('[data-meet]');
   if (!root) return;
 
-  // Each item: [what the reel shows, how it reads inside the sentence]
+  // Each item: [short label on the reel, how it reads in the sentence]
   var REELS = [
-    { lead: 'I speak ', items: [['English', 'English'], ['Spanish', 'Spanish'], ['Japanese (N4)', 'Japanese (N4)']] },
-    { lead: 'I’m obsessed with ', items: [['Details', 'details'], ['Timing', 'timing'], ['Near-misses', 'near-misses'], ['How things feel', 'how things feel'], ['Ravens, lately', 'ravens, lately']] },
-    { lead: 'Ask me about ', items: [['Welding car prototypes', 'welding car prototypes'], ['Life in Tokyo', 'life in Tokyo'], ['Pastry in a Tokyo hotel', 'pastry in a Tokyo hotel'], ['My 173 paylines', 'my 173 paylines'], ['Throwing work away', 'throwing work away']] }
+    { lead: 'I speak ', items: [
+      ['English', 'English'],
+      ['Spanish', 'Spanish (native)'],
+      ['Japanese', 'Japanese (N4, still learning)']
+    ] },
+    { lead: 'I’m obsessed with ', items: [
+      ['Details', 'details'],
+      ['Timing', 'timing'],
+      ['Near-misses', 'near-misses'],
+      ['How it feels', 'how things feel'],
+      ['Ravens', 'ravens, lately']
+    ] },
+    { lead: 'Ask me about ', items: [
+      ['Welding prototypes', 'welding car prototypes'],
+      ['Life in Tokyo', 'life in Tokyo'],
+      ['Hotel pastry', 'pastry in a Tokyo hotel'],
+      ['173 paylines', 'my 173 paylines'],
+      ['Throwing work away', 'throwing work away']
+    ] }
   ];
-  var CYCLES = 14;                     // copies of each reel's items in its strip
+  var CYCLES = 14;                      // copies of each reel's items in its strip
   var STOP_MS = [900, 1350, 2200];      // left to right; the last reel lingers
   var EASE = 'cubic-bezier(0.22, 0.9, 0.32, 1.08)';
   var BONUS_AT = 5;
@@ -30,27 +47,30 @@
     STOP_MS = [260, 360, 480];
     EASE = 'ease-out';
   }
+
+  var cabinet = root.querySelector('[data-meet-cabinet]');
   var windows = root.querySelectorAll('.meet-window');
   var strips = root.querySelectorAll('.meet-strip');
-  var resultEl = root.querySelector('[data-meet-result]');
+  var lines = root.querySelectorAll('[data-meet-result] li');
   var countEl = root.querySelector('[data-meet-count]');
   var button = root.querySelector('[data-meet-spin]');
   var bonusEl = root.querySelector('[data-meet-bonus]');
-  if (strips.length !== REELS.length || !button) return;
+  if (strips.length !== REELS.length || lines.length !== REELS.length || !button) return;
 
-  var pos = [];        // absolute index of the visible item in each strip
+  var pos = [];        // absolute index of the item on the win line, per strip
   var spins = 0;
   var spinning = false;
 
-  function itemHeight(i) {
+  function rowHeight(i) {
     var li = strips[i].firstElementChild;
     return li ? li.getBoundingClientRect().height : 0;
   }
 
+  // The item at `index` sits in the middle row, one row below the top.
   function place(i, index, ms) {
     var strip = strips[i];
     strip.style.transition = ms ? 'transform ' + ms + 'ms ' + EASE : 'none';
-    strip.style.transform = 'translateY(' + (-index * itemHeight(i)) + 'px)';
+    strip.style.transform = 'translateY(' + (-(index - 1) * rowHeight(i)) + 'px)';
   }
 
   function current(i) {
@@ -58,13 +78,24 @@
     return items[pos[i] % items.length];
   }
 
-  function describe() {
-    return REELS.map(function (reel, i) {
-      return reel.lead + '<b>' + current(i)[1] + '</b>.';
-    }).join(' ');
+  function writeLine(i, animate) {
+    var line = lines[i];
+    line.innerHTML = REELS[i].lead + '<b>' + current(i)[1] + '</b>.';
+    if (animate && !reduceMotion) {
+      line.classList.remove('is-new');
+      void line.offsetWidth; // restart the fade-in
+      line.classList.add('is-new');
+    }
   }
 
-  // Build the strips and start on "English / Details / Welding car prototypes"
+  function flash(el, cls) {
+    if (reduceMotion || !el) return;
+    el.classList.remove(cls);
+    void el.offsetWidth; // restart the animation
+    el.classList.add(cls);
+  }
+
+  // Build the strips and start on "English / Details / Welding prototypes"
   REELS.forEach(function (reel, i) {
     var html = '';
     for (var c = 0; c < CYCLES; c++) {
@@ -73,22 +104,21 @@
     strips[i].innerHTML = html;
     pos[i] = reel.items.length * 2;
     place(i, pos[i], 0);
+    writeLine(i, false);
   });
 
-  function land(i, done) {
+  function land(i, last) {
     windows[i].classList.remove('is-spinning');
-    if (!reduceMotion) {
-      windows[i].classList.remove('is-hit');
-      void windows[i].offsetWidth; // restart the flash animation
-      windows[i].classList.add('is-hit');
-    }
-    if (done) finish();
+    flash(windows[i], 'is-hit');
+    writeLine(i, true);
+    if (last) finish();
   }
 
   function finish() {
     spinning = false;
     button.disabled = false;
-    resultEl.innerHTML = describe();
+    button.classList.remove('is-spinning');
+    flash(cabinet, 'is-win');
     countEl.textContent = spins === 1 ? '1 spin' : spins + ' spins';
     if (spins === BONUS_AT && bonusEl) bonusEl.hidden = false;
   }
@@ -98,6 +128,7 @@
     spinning = true;
     spins += 1;
     button.disabled = true;
+    button.classList.add('is-spinning');
 
     REELS.forEach(function (reel, i) {
       var len = reel.items.length;
@@ -114,18 +145,18 @@
       var target = pos[i] + len * (3 + i) + ((to - from + len) % len);
       pos[i] = target;
 
-      var last = i === REELS.length - 1;
       if (!reduceMotion) windows[i].classList.add('is-spinning');
       place(i, target, STOP_MS[i]);
       // A timer instead of transitionend: it always fires, even when the
       // tab is in the background or the transition gets skipped.
+      var last = i === REELS.length - 1;
       setTimeout(function () { land(i, last); }, STOP_MS[i] + 40);
     });
   }
 
   button.addEventListener('click', spin);
 
-  // Keep the strips aligned when the item height changes (resize, rotation)
+  // Keep the strips aligned when the row height changes (resize, rotation)
   var resizeTimer = null;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
