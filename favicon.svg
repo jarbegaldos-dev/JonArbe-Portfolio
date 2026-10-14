@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0a0908"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="12" fill="none" stroke="#d4ae55" stroke-opacity=".55" stroke-width="2"/>
+  <text x="32" y="44" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="700" fill="#d4ae55" letter-spacing="-1">JA</text>
+  <circle cx="32" cy="51.5" r="2.2" fill="#b5433a"/>
+</svg>

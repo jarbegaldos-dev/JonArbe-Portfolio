@@ -2,59 +2,46 @@
   'use strict';
 
   /* ---------------------------------------------------------
-     CONFIG — centralized links that aren't live yet.
-     Set the URL, everything wired to it activates automatically.
-     Until then, the link stays visible, clearly disabled, and inert.
+     MEDIA — the one place to switch on video when the beta's
+     footage exists. Leave a value as null and the site keeps the
+     still images it uses today.
+       heroVideo:      muted loop behind the hero, e.g.
+                       { mp4: 'assets/ossuary-reels/video/hero-loop.mp4',
+                         webm: 'assets/ossuary-reels/video/hero-loop.webm' }
+       trailerYouTube: the trailer's YouTube id; shows every
+                       "Watch the trailer" button ([data-trailer]).
+       photo:          portrait for the About section, e.g.
+                       'assets/photo/jon.webp' (4:5, at least 480x600).
+     Any <img data-video="clip.mp4" data-video-webm="clip.webm"> also
+     turns into a muted looping clip once it scrolls into view.
      --------------------------------------------------------- */
-  var YOUTUBE_URL = null;    // e.g. "https://www.youtube.com/@your-channel"
+  var MEDIA = {
+    heroVideo: null,
+    trailerYouTube: null,
+    photo: null
+  };
 
-  // GitHub repo link (Case Study). Not created yet — leave null until the
-  // repository is public, then set it here. Relative-safe: this is a full
-  // URL, not a path, so it isn't affected by the GitHub Pages subdirectory.
-  var GITHUB_URL = "https://github.com/jarbegaldos-dev/JonArbe-Portfolio";
-
-  function wireConfigurableLinks(selector, url, message) {
-    document.querySelectorAll(selector).forEach(function (link) {
-      if (url) {
-        link.href = url;
-        link.classList.remove('is-disabled');
-        link.removeAttribute('aria-disabled');
-      } else {
-        link.classList.add('is-disabled');
-        link.setAttribute('aria-disabled', 'true');
-        link.addEventListener('click', function (e) {
-          e.preventDefault();
-          console.info(message);
-        });
-      }
-    });
+  if (MEDIA.photo) {
+    var photoFigure = document.querySelector('[data-photo]');
+    if (photoFigure) {
+      photoFigure.querySelector('img').src = MEDIA.photo;
+      photoFigure.hidden = false;
+    }
   }
-
-  wireConfigurableLinks(
-    '#youtubeLink',
-    YOUTUBE_URL,
-    '[Portfolio] YouTube link not configured yet — set YOUTUBE_URL in js/main.js'
-  );
-
-  wireConfigurableLinks(
-    '#githubRepoLink',
-    GITHUB_URL,
-    '[Portfolio] GitHub repo link not configured yet — set GITHUB_URL in js/main.js'
-  );
 
   /* ---------------------------------------------------------
      Play Demo / Play Game — single shared modal + iframe.
      One public URL for the game, reused by every "Play" entry point
      across the whole site (Home and Case Study alike). Relative path:
-     works from both index.html and guillotine-reels.html since both
+     works from both index.html and ossuary-reels.html since both
      live at the repo root, and stays subdirectory-safe on GitHub Pages.
      --------------------------------------------------------- */
   var GAME_URL = 'game/index.html';
-  var PLAY_TRIGGER_SELECTOR =
-    '#playDemoLink, #playDemoLinkCard, #playDemoLinkHero, #playDemoLinkSection, #playDemoLinkFooter';
+  var PLAY_TRIGGER_SELECTOR = '[data-play]';
 
   var playTriggers = document.querySelectorAll(PLAY_TRIGGER_SELECTOR);
-  if (playTriggers.length) {
+  var trailerTriggers = MEDIA.trailerYouTube ? document.querySelectorAll('[data-trailer]') : [];
+  if (playTriggers.length || trailerTriggers.length) {
     var modal = null;
     var iframeEl = null;
     var panelEl = null;
@@ -68,7 +55,7 @@
       el.hidden = true;
       el.innerHTML =
         '<div class="game-modal-backdrop" data-game-modal-close></div>' +
-        '<div class="game-modal-panel" role="dialog" aria-modal="true" aria-label="Guillotine Reels — playable demo">' +
+        '<div class="game-modal-panel" role="dialog" aria-modal="true" aria-label="Ossuary Reels — playable demo">' +
           '<div class="game-modal-controls">' +
             '<button type="button" class="game-modal-btn" data-game-modal-fullscreen aria-label="Toggle fullscreen">' +
               '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>' +
@@ -78,9 +65,9 @@
             '</button>' +
           '</div>' +
           '<div class="game-modal-frame">' +
-            '<iframe id="gameModalIframe" title="Guillotine Reels — playable demo" ' +
-              'loading="lazy" allow="autoplay; fullscreen" referrerpolicy="no-referrer" ' +
-              'sandbox="allow-scripts allow-same-origin"></iframe>' +
+            '<iframe id="gameModalIframe" title="Ossuary Reels — playable demo" ' +
+              'loading="lazy" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" ' +
+              'sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>' +
           '</div>' +
         '</div>';
       document.body.appendChild(el);
@@ -101,6 +88,16 @@
 
     function openGameModal(e) {
       if (e) e.preventDefault();
+      openModal(GAME_URL, 'Ossuary Reels — playable demo');
+    }
+
+    function openTrailerModal(e) {
+      if (e) e.preventDefault();
+      openModal('https://www.youtube-nocookie.com/embed/' + encodeURIComponent(MEDIA.trailerYouTube) +
+        '?autoplay=1&rel=0&modestbranding=1', 'Ossuary Reels — trailer');
+    }
+
+    function openModal(src, label) {
       if (!modal) {
         modal = buildModal();
         iframeEl = modal.querySelector('#gameModalIframe');
@@ -114,7 +111,9 @@
 
       lastFocusedEl = document.activeElement;
       lockScroll();
-      iframeEl.src = GAME_URL;
+      panelEl.setAttribute('aria-label', label);
+      iframeEl.title = label;
+      iframeEl.src = src;
       modal.hidden = false;
       // Next frame, so the transition (opacity/scale) actually animates in.
       window.requestAnimationFrame(function () {
@@ -161,64 +160,70 @@
       trigger.removeAttribute('rel');
       trigger.addEventListener('click', openGameModal);
     });
+
+    trailerTriggers.forEach(function (trigger) {
+      trigger.hidden = false;
+      trigger.href = 'https://www.youtube.com/watch?v=' + encodeURIComponent(MEDIA.trailerYouTube);
+      trigger.addEventListener('click', openTrailerModal);
+    });
   }
 
   /* ---------------------------------------------------------
-     Background music — prepared, no track loaded yet.
-     Set AUDIO_SRC to a real audio file (e.g. "assets/audio/ambient.mp3")
-     to enable playback. Until then, the control stays visible but inert,
-     exactly like the Play Demo buttons above.
+     Video upgrades (see MEDIA above). Without a source nothing
+     changes; with one, the still stays as the poster until the
+     video can actually play, so there is never a black frame.
      --------------------------------------------------------- */
-  var AUDIO_SRC = null;
-  var audioToggle = document.getElementById('audioToggle');
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (audioToggle) {
-    if (!AUDIO_SRC) {
-      audioToggle.classList.add('is-disabled');
-      audioToggle.setAttribute('aria-disabled', 'true');
-      audioToggle.addEventListener('click', function () {
-        console.info('[Portfolio] Background music not configured yet — set AUDIO_SRC in js/main.js');
-      });
-    } else {
-      var audioEl = new Audio(AUDIO_SRC);
-      audioEl.loop = true;
-      audioEl.volume = 0.22;
-      audioEl.preload = 'none';
-
-      var AUDIO_STORAGE_KEY = 'jonarbe-audio-enabled';
-
-      var setAudioState = function (playing) {
-        audioToggle.classList.toggle('is-playing', playing);
-        audioToggle.setAttribute('aria-pressed', String(playing));
-        audioToggle.setAttribute('aria-label', playing ? 'Mute background music' : 'Play background music');
-      };
-      setAudioState(false);
-
-      audioToggle.addEventListener('click', function () {
-        if (audioToggle.classList.contains('is-playing')) {
-          audioEl.pause();
-          setAudioState(false);
-          try { localStorage.setItem(AUDIO_STORAGE_KEY, '0'); } catch (err) { /* storage unavailable, ignore */ }
-        } else {
-          audioEl.play().then(function () {
-            setAudioState(true);
-            try { localStorage.setItem(AUDIO_STORAGE_KEY, '1'); } catch (err) { /* storage unavailable, ignore */ }
-          }).catch(function () {
-            // Playback blocked by the browser's autoplay policy — stay paused silently.
-            setAudioState(false);
-          });
-        }
-      });
-
-      // Respect the visitor's previous choice when arriving on a new page.
-      // Browsers may still require a fresh gesture on this page load; if so,
-      // this attempt is silently ignored and the control simply stays off.
-      var storedAudioPref = null;
-      try { storedAudioPref = localStorage.getItem(AUDIO_STORAGE_KEY); } catch (err) { /* storage unavailable, ignore */ }
-      if (storedAudioPref === '1') {
-        audioEl.play().then(function () { setAudioState(true); }).catch(function () { setAudioState(false); });
-      }
+  function makeLoopVideo(poster, mp4, webm) {
+    var video = document.createElement('video');
+    video.muted = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('aria-hidden', 'true');
+    if (poster) video.poster = poster;
+    if (webm) {
+      var s1 = document.createElement('source');
+      s1.src = webm; s1.type = 'video/webm';
+      video.appendChild(s1);
     }
+    if (mp4) {
+      var s2 = document.createElement('source');
+      s2.src = mp4; s2.type = 'video/mp4';
+      video.appendChild(s2);
+    }
+    return video;
+  }
+
+  if (MEDIA.heroVideo && !prefersReducedMotion) {
+    var heroImg = document.querySelector('.hero-media img');
+    if (heroImg) {
+      var heroVideo = makeLoopVideo(heroImg.currentSrc || heroImg.src, MEDIA.heroVideo.mp4, MEDIA.heroVideo.webm);
+      heroVideo.className = 'hero-video';
+      heroVideo.addEventListener('playing', function () { heroImg.style.visibility = 'hidden'; }, { once: true });
+      heroImg.parentNode.insertBefore(heroVideo, heroImg.nextSibling);
+    }
+  }
+
+  var videoImgs = document.querySelectorAll('img[data-video]');
+  if (videoImgs.length && !prefersReducedMotion && 'IntersectionObserver' in window) {
+    var clipIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var img = entry.target;
+        clipIo.unobserve(img);
+        var clip = makeLoopVideo(img.currentSrc || img.src, img.getAttribute('data-video'), img.getAttribute('data-video-webm'));
+        clip.className = img.className;
+        clip.setAttribute('aria-label', img.alt || '');
+        clip.addEventListener('playing', function () { img.replaceWith(clip); }, { once: true });
+        var started = clip.play();
+        if (started && typeof started.catch === 'function') started.catch(function () { /* keep the still */ });
+      });
+    }, { rootMargin: '200px 0px' });
+    videoImgs.forEach(function (img) { clipIo.observe(img); });
   }
 
   /* ---------------------------------------------------------
@@ -278,49 +283,6 @@
   }
 
   /* ---------------------------------------------------------
-     "What I Design" — click-to-expand definitions.
-     Each area is a real <button>, so it already gets native
-     keyboard support (Tab, Enter, Space) for free. Escape closes
-     the open one and returns focus to its trigger.
-     --------------------------------------------------------- */
-  var focusList = document.getElementById('focusList');
-  if (focusList) {
-    var focusItems = Array.prototype.slice.call(focusList.querySelectorAll('.focus-item'));
-
-    function closeFocusItem(item) {
-      var trigger = item.querySelector('.focus-item-trigger');
-      item.classList.remove('is-open');
-      trigger.setAttribute('aria-expanded', 'false');
-    }
-
-    function openFocusItem(item) {
-      var trigger = item.querySelector('.focus-item-trigger');
-      item.classList.add('is-open');
-      trigger.setAttribute('aria-expanded', 'true');
-    }
-
-    focusItems.forEach(function (item) {
-      var trigger = item.querySelector('.focus-item-trigger');
-      trigger.addEventListener('click', function () {
-        var isOpen = item.classList.contains('is-open');
-        if (isOpen) {
-          closeFocusItem(item);
-        } else {
-          openFocusItem(item);
-        }
-      });
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key !== 'Escape') return;
-      var openItem = focusItems.filter(function (item) { return item.classList.contains('is-open'); })[0];
-      if (!openItem) return;
-      closeFocusItem(openItem);
-      openItem.querySelector('.focus-item-trigger').focus();
-    });
-  }
-
-  /* ---------------------------------------------------------
      Case study subnav: active link on scroll + offset anchor scroll
      --------------------------------------------------------- */
   var subnavList = document.getElementById('csSubnavList');
@@ -348,10 +310,8 @@
 
   /* ---------------------------------------------------------
      Hero raven — position it against a REAL rendered letter of
-     "Jon Arbe", not a guessed top/right percentage. Desktop targets
-     the final "E"; mobile (<=900px, matching the CSS breakpoint
-     that shrinks the frame) targets the "A" of "Arbe" instead, per
-     spec. The text wraps to one or two lines depending on viewport
+     "Jon Arbe", not a guessed top/right percentage. It perches on the
+     final "E" at every size. The text wraps to one or two lines depending on viewport
      width/font metrics (this boundary shifts slightly on real
      devices vs. an emulator), so any fixed CSS breakpoint for the
      raven's position is fragile. Measuring the actual character
@@ -361,7 +321,6 @@
   var heroRavenFrame = document.querySelector('.hero-raven-frame');
   var heroNameEl = document.querySelector('.hero-name');
   var heroH1 = document.querySelector('.hero h1');
-  var heroRavenMobileQuery = window.matchMedia ? window.matchMedia('(max-width: 900px)') : null;
 
   if (heroRavenFrame && heroNameEl && heroH1 && heroH1.firstChild) {
     var positionHeroRaven = function () {
@@ -369,12 +328,10 @@
       var text = textNode.textContent || '';
       if (!text.length) return;
 
-      var isMobile = heroRavenMobileQuery ? heroRavenMobileQuery.matches : false;
-      var startIndex = text.length - 1; // desktop: final "E"
-      if (isMobile) {
-        var arbeIndex = text.indexOf('Arbe');
-        startIndex = arbeIndex >= 0 ? arbeIndex : startIndex; // mobile: "A" of Arbe
-      }
+      // Final "E" of "Arbe" on every screen size: on phones the name wraps to
+      // two lines and the end of the second line is the only spot where the
+      // raven does not cover another letter.
+      var startIndex = text.length - 1;
 
       var range = document.createRange();
       range.setStart(textNode, startIndex);
@@ -431,8 +388,14 @@
      relying on the HTML attribute) because some engines only honor the
      property for autoplay eligibility, and silently swallows a rejected
      Promise so a still-blocked attempt never surfaces as an error.
+
+     These are the *-source <video> elements: the actual decode targets.
+     They're never the visible element (see js/alpha-video-layer.js) — the
+     IntersectionObserver below watches their visible <canvas> proxies
+     instead, since the source itself sits permanently off-screen and would
+     never report as intersecting on its own.
      --------------------------------------------------------- */
-  var ambientVideos = document.querySelectorAll('.hero-raven, .cs-heading-mark');
+  var ambientVideos = document.querySelectorAll('.hero-raven-source, .cs-heading-mark-source');
   if (ambientVideos.length) {
     var attemptPlay = function (video) {
       if (!video || !video.paused) return;
@@ -459,10 +422,32 @@
     if ('IntersectionObserver' in window) {
       var videoIo = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) attemptPlay(entry.target);
+          if (entry.isIntersecting) attemptPlay(entry.target._alphaVideoSource || entry.target);
         });
       }, { threshold: 0.1 });
-      ambientVideos.forEach(function (video) { videoIo.observe(video); });
+      ambientVideos.forEach(function (video) {
+        // Observe the visible canvas proxy, not the off-screen source —
+        // the source's own geometry never intersects the viewport.
+        var canvas = video.parentElement && video.parentElement.querySelector('canvas');
+        if (canvas) {
+          canvas._alphaVideoSource = video;
+          videoIo.observe(canvas);
+        } else {
+          videoIo.observe(video);
+        }
+      });
     }
+  }
+
+  /* ---------------------------------------------------------
+     Wire the *-source videos to their <canvas> proxy so the canvas
+     actually mirrors the decoded frames (see js/alpha-video-layer.js for
+     why a canvas is used instead of showing the <video> directly).
+     --------------------------------------------------------- */
+  if (window.OssuaryAlphaVideo) {
+    ambientVideos.forEach(function (video) {
+      var canvas = video.parentElement && video.parentElement.querySelector('canvas');
+      if (canvas) window.OssuaryAlphaVideo.setup(video, canvas);
+    });
   }
 })();
