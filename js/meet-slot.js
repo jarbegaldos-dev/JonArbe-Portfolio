@@ -1,6 +1,8 @@
 /* ---------------------------------------------------------------------
    "Spin to meet me" — a tiny three-reel slot in the About section.
-   Every symbol is a true fact, so any combination it lands on is true.
+   Each reel is its own sentence (I speak / I am obsessed with / Ask me
+   about), so a spin reads as three separate true facts and no reel ever
+   implies something about another one.
    Reels stop left to right with a small overshoot; the last one takes
    longer (anticipation) and every reel flashes gold when it lands.
    --------------------------------------------------------------------- */
@@ -10,10 +12,11 @@
   var root = document.querySelector('[data-meet]');
   if (!root) return;
 
+  // Each item: [what the reel shows, how it reads inside the sentence]
   var REELS = [
-    { label: 'Built', items: ['A slot machine', 'Car prototypes', 'Machined steel', 'Desserts in Tokyo', 'Factory lines'] },
-    { label: 'Worked in', items: ['Tokyo', 'Vitoria-Gasteiz', 'Gran Canaria'] },
-    { label: 'Obsessed with', items: ['Details', 'Timing', 'Near-misses', 'How things feel', 'Ravens, lately'] }
+    { lead: 'I speak ', items: [['English', 'English'], ['Spanish', 'Spanish'], ['Japanese (N4)', 'Japanese (N4)']] },
+    { lead: 'I’m obsessed with ', items: [['Details', 'details'], ['Timing', 'timing'], ['Near-misses', 'near-misses'], ['How things feel', 'how things feel'], ['Ravens, lately', 'ravens, lately']] },
+    { lead: 'Ask me about ', items: [['Welding car prototypes', 'welding car prototypes'], ['Life in Tokyo', 'life in Tokyo'], ['Pastry in a Tokyo hotel', 'pastry in a Tokyo hotel'], ['My 173 paylines', 'my 173 paylines'], ['Throwing work away', 'throwing work away']] }
   ];
   var CYCLES = 14;                     // copies of each reel's items in its strip
   var STOP_MS = [900, 1350, 2200];      // left to right; the last reel lingers
@@ -57,15 +60,15 @@
 
   function describe() {
     return REELS.map(function (reel, i) {
-      return reel.label + ': <b>' + current(i) + '</b>';
-    }).join(' · ');
+      return reel.lead + '<b>' + current(i)[1] + '</b>.';
+    }).join(' ');
   }
 
-  // Build the strips and start on "A slot machine / Tokyo / Details"
+  // Build the strips and start on "English / Details / Welding car prototypes"
   REELS.forEach(function (reel, i) {
     var html = '';
     for (var c = 0; c < CYCLES; c++) {
-      reel.items.forEach(function (item) { html += '<li>' + item + '</li>'; });
+      reel.items.forEach(function (item) { html += '<li>' + item[0] + '</li>'; });
     }
     strips[i].innerHTML = html;
     pos[i] = reel.items.length * 2;

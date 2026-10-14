@@ -9,8 +9,8 @@
 :root {
   /* Palette */
   --color-bg: #0a0908;
-  --color-bg-elevated: #131110;
-  --color-bg-elevated-2: #1b1816;
+  --color-bg-elevated: rgba(245, 243, 240, 0.025);
+  --color-bg-elevated-2: rgba(245, 243, 240, 0.04);
   --color-border: rgba(245, 243, 240, 0.10);
   --color-border-strong: rgba(245, 243, 240, 0.22);
   --color-border-gold: rgba(212, 174, 85, 0.35);
@@ -398,7 +398,7 @@ h1, h2, h3, h4 {
   margin-top: -70px;
   border: 1px solid var(--color-border-gold);
   border-radius: 6px;
-  background: rgba(19, 17, 16, 0.94);
+  background: rgba(10, 9, 8, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -516,7 +516,6 @@ main > section, .section { position: relative; }
 
 /* Design breakdowns */
 .breakdowns {
-  background: var(--color-bg-elevated);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -537,7 +536,7 @@ main > section, .section { position: relative; }
   justify-content: center;
   min-height: 210px;
   padding: 1rem;
-  background: radial-gradient(circle at 50% 45%, #2a2420 0%, #0d0c0b 75%);
+  background: radial-gradient(circle at 50% 45%, rgba(245, 243, 240, 0.07) 0%, rgba(245, 243, 240, 0) 70%);
 }
 .card-media img { max-height: 170px; width: auto; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6)); }
 .card-media.is-photo { padding: 0; }
@@ -601,7 +600,7 @@ main > section, .section { position: relative; }
   text-align: center;
   padding: clamp(5rem, 9vw, 7.5rem) 0;
   border-top: 1px solid var(--color-border);
-  background: radial-gradient(ellipse 60% 70% at 50% 100%, rgba(181, 67, 58, 0.16), transparent 70%);
+  background: radial-gradient(ellipse 60% 55% at 50% 100%, rgba(181, 67, 58, 0.08), transparent 70%);
 }
 .contact h2 { font-size: clamp(3.4rem, 8vw, 6.4rem); line-height: 1; margin: 1rem 0 1.1rem; }
 .contact p { color: var(--color-text-muted); margin: 0 auto 2.2rem; max-width: 520px; }
@@ -729,7 +728,7 @@ main > section, .section { position: relative; }
   text-align: left;
   border: 1px solid var(--color-border-gold);
   border-radius: 8px;
-  background: rgba(19, 17, 16, 0.85);
+  background: transparent;
 }
 .hire div { padding: 1.1rem 1.25rem; border-left: 1px solid var(--color-border); }
 .hire div:first-child { border-left: 0; }
@@ -793,13 +792,12 @@ main > section, .section { position: relative; }
   border: 1px solid var(--color-border-gold);
   border-radius: 12px;
   background:
-    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(212, 174, 85, 0.10), transparent 70%),
-    var(--color-bg-elevated);
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(212, 174, 85, 0.06), transparent 70%);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
 }
-.meet-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; }
+.meet-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1rem; }
 .meet-head .label { margin-bottom: 0; }
-.meet-count { font-size: 0.78rem; color: var(--color-text-faint); font-variant-numeric: tabular-nums; }
+.meet-count { font-size: 0.78rem; color: var(--color-text-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .meet-machine { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
 .meet-reel { display: grid; gap: 0.45rem; min-width: 0; }
 .meet-cap {
@@ -820,7 +818,7 @@ main > section, .section { position: relative; }
   overflow: hidden;
   border-radius: 6px;
   border: 1px solid var(--color-border-strong);
-  background: linear-gradient(180deg, #0b0a09 0%, #1d1915 50%, #0b0a09 100%);
+  background: linear-gradient(180deg, #080808 0%, #171717 50%, #080808 100%);
 }
 .meet-window::after {
   content: '';
@@ -1264,6 +1262,7 @@ body.game-modal-open { position: fixed; left: 0; right: 0; overflow: hidden; }
   .cs-clip { float: none; margin: 0 auto 1.4rem; }
   .timing-row { grid-template-columns: 82px 1fr; }
   .site-footer { flex-direction: column; }
+  .contact { background: none; }
   .sheet-cell b { font-size: 1.5rem; }
   .sheet-head { flex-direction: column; gap: 0.2rem; }
   .now { font-size: 0.8rem; }
