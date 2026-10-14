@@ -3,400 +3,329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jon Arbe — Player Experience Designer</title>
-<meta name="description" content="Jon Arbe — Player Experience Designer focused on emotion design, gameplay systems and game feel. Featured project: Guillotine Reels.">
+<title>Jon Arbe — Game Designer · Slots &amp; Game Feel</title>
+<meta name="description" content="Jon Arbe, game designer focused on slots and game feel. Play Ossuary Reels, a dark-fantasy slot with a 173-line ribcage board, in your browser.">
+<meta name="theme-color" content="#0a0908">
+<link rel="canonical" href="https://jarbegaldos-dev.github.io/JonArbe-Portfolio/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jon Arbe — Game Designer · Slots & Game Feel">
+<meta property="og:description" content="Designer of Ossuary Reels, a dark-fantasy slot with a 173-line ribcage board. Playable in your browser.">
+<meta property="og:url" content="https://jarbegaldos-dev.github.io/JonArbe-Portfolio/">
+<meta property="og:image" content="https://jarbegaldos-dev.github.io/JonArbe-Portfolio/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/ossuary-reels/img/hero-bonus.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="css/style.css">
-<script>
-  // DIAGNOSTICO DE AUDIO TEMPORAL (se eliminara tras la prueba fisica).
-  // Todo en linea, sin archivos externos. Solo actua si la URL contiene
-  // "audiodiag"; sin el parametro no hace absolutamente nada.
-  (function () {
-    if (!/audiodiag/i.test(location.search + location.hash)) return;
-    var VERSION = "v4";
-    var FULL = "DIAG ON — PORTFOLIO DIAGNOSTIC ACTIVE · " + VERSION;
-    var SHORT = "DIAG ON · " + VERSION;
-    var TOP_STYLE = "position:fixed;left:0;right:0;top:0;z-index:2147483647;pointer-events:none;" +
-      "background:#ff00a8;color:#fff;font:800 18px/1.25 system-ui,-apple-system,sans-serif;" +
-      "text-align:center;padding:12px 8px;letter-spacing:.04em;box-shadow:0 2px 10px rgba(0,0,0,.6);";
-    var BOTTOM_STYLE = "position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom, 0px) + 10px);" +
-      "transform:translateX(-50%);z-index:2147483647;pointer-events:none;background:#ff00a8;color:#fff;" +
-      "font:800 13px/1 system-ui,-apple-system,sans-serif;padding:6px 10px;border-radius:5px;";
-
-    // 1) Indicador inmediato: se inserta en <html> antes de que exista
-    //    <body>, sin depender de main.js, del modal ni de Play Demo.
-    var bar = document.createElement("div");
-    bar.id = "audioDiagBanner";
-    bar.textContent = FULL;
-    bar.style.cssText = TOP_STYLE;
-    document.documentElement.appendChild(bar);
-
-    // 2) Play Demo: en este modo el iframe recibe
-    //    game/index.html?audiodiag=1&diag=<ts>, una URL nueva en cada
-    //    apertura, asi el HTML del juego nunca sale de una cache antigua.
-    var GAME_PATH = /(^|\/)game\/(index\.html)?(\?|#|$)/;
-    var desc = Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype, "src");
-    if (desc && desc.set) {
-      Object.defineProperty(HTMLIFrameElement.prototype, "src", {
-        configurable: true,
-        enumerable: desc.enumerable,
-        get: desc.get,
-        set: function (value) {
-          var url = String(value);
-          if (GAME_PATH.test(url) && !/audiodiag/i.test(url)) {
-            url += (url.indexOf("?") === -1 ? "?" : "&") + "audiodiag=1&diag=" + Date.now();
-          }
-          desc.set.call(this, url);
-        }
-      });
-    }
-
-    // 3) Con el modal abierto el indicador pasa a una etiqueta compacta
-    //    abajo, para no tapar el indicador del propio juego.
-    function sync() {
-      var open = document.body.classList.contains("game-modal-open");
-      bar.style.cssText = open ? BOTTOM_STYLE : TOP_STYLE;
-      bar.textContent = open ? SHORT : FULL;
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-      new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ["class"] });
-      sync();
-    });
-  })();
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Jon Arbe","jobTitle":"Game Designer","url":"https://jarbegaldos-dev.github.io/JonArbe-Portfolio/","email":"mailto:j.arbegaldos@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Tokyo","addressCountry":"JP"},"knowsLanguage":["es","en","ja"],"sameAs":["https://www.linkedin.com/in/jon-arbe/"]}
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav class="site-nav" id="siteNav">
   <div class="container">
     <a href="index.html" class="nav-logo">JON<span>·</span>ARBE</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#breakdowns">Breakdowns</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-icons">
+      <a class="nav-icon" href="assets/cv/Jon-Arbe-CV.pdf" target="_blank" rel="noopener" aria-label="Download CV (PDF)">CV</a>
+      <a class="nav-icon" href="https://www.linkedin.com/in/jon-arbe/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.55 4.77 5.87v5.58h-4v-4.95c0-1.18-.02-2.7-1.7-2.7-1.7 0-1.96 1.27-1.96 2.6v5.05h-4v-11z"/></svg>
+      </a>
+      <a class="nav-icon" href="mailto:j.arbegaldos@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+      </a>
+    </div>
+    <a href="game/index.html" class="btn btn-gold btn-sm nav-play" data-play><span class="play-tri"></span>Play demo</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="guillotine-reels.html">Case Study</a>
-      <a href="#contact">Contact</a>
-      <a href="game/index.html" class="btn btn-accent" id="playDemoLink">Play Demo</a>
-    </div>
   </div>
 </nav>
 
-<button type="button" class="audio-toggle" id="audioToggle" aria-label="Play background music" aria-pressed="false">
-  <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-    <path d="M3 10v4h4l5 5V5L7 10H3z"/>
-    <line x1="16" y1="9" x2="21" y2="14"/>
-    <line x1="21" y1="9" x2="16" y2="14"/>
-  </svg>
-  <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-    <path d="M3 10v4h4l5 5V5L7 10H3z"/>
-    <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
-    <path d="M18.5 6a8.5 8.5 0 0 1 0 12"/>
-  </svg>
-</button>
+<main id="main">
 
-<main>
-
-  <!-- ============ A. WHO I AM ============ -->
-  <header class="hero container">
-    <div class="hero-bg" aria-hidden="true">
-      <img src="assets/guillotine-reels/blades.jpg" alt="">
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <img src="assets/ossuary-reels/img/hero-bonus.webp" alt="" width="2400" height="1500" fetchpriority="high">
     </div>
-    <div class="hero-inner">
-      <span class="eyebrow">Player Experience &amp; Emotion Design</span>
-      <div class="hero-name">
-        <h1>Jon Arbe</h1>
-        <div class="hero-raven-frame" aria-hidden="true">
-          <video class="hero-raven" autoplay muted loop playsinline webkit-playsinline>
-            <source src="assets/guillotine-reels/raven-perch.webm" type="video/webm">
-            <source src="assets/guillotine-reels/raven-perch.mp4" type="video/mp4">
-          </video>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">Game Designer · Slots &amp; Game Feel</span>
+        <div class="hero-name">
+          <h1>Jon Arbe</h1>
+          <div class="hero-raven-frame" aria-hidden="true">
+            <video class="hero-raven-source" autoplay muted loop playsinline webkit-playsinline>
+              <source src="assets/ossuary-reels/raven-perch.webm" type="video/webm">
+              <source src="assets/ossuary-reels/raven-perch.mp4" type="video/mp4">
+            </video>
+            <canvas class="hero-raven"></canvas>
+          </div>
         </div>
+        <p class="hero-lead">I design slots that <em>build tension</em> before they pay.</p>
+        <p class="hero-sub">I’m a game designer from Spain, living in Tokyo. For ten years I built things with my hands, from car prototypes to desserts. Now I build games: my first, Ossuary Reels, is a dark-fantasy slot you can play right here.</p>
+        <div class="hero-ctas">
+          <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play Ossuary Reels</a>
+          <a href="#about" class="btn btn-ghost">About me</a>
+          <a href="#" class="btn btn-ghost" data-trailer hidden><span class="play-tri"></span>Watch the trailer</a>
+        </div>
+        <p class="hero-meta"><b>Based in Tokyo</b> · Open to remote roles · Spanish · English · Japanese (N4)</p>
+        <p class="now"><span class="now-dot" aria-hidden="true"></span><span><b>Now:</b> designing a fourth bonus feature for Ossuary Reels</span></p>
       </div>
-      <p class="hero-role">Player Experience Designer</p>
-      <p class="hero-quote">&ldquo;I design emotions.&rdquo;</p>
-      <p class="hero-location">Tokyo, Japan &middot; Vitoria, Spain</p>
-      <a href="#work" class="btn btn-primary">View My Work</a>
     </div>
-    <div class="scroll-cue">
-      <span class="scroll-cue-line"></span>
-      Scroll
-    </div>
+    <span class="hero-chip"><i></i>In-game · Execution Bonus</span>
   </header>
 
-  <!-- ============ WHO I AM (intro) ============ -->
-  <section class="statement container" data-reveal>
-    <p class="who-i-am-text">
-      I&rsquo;m a creative person with a lot of imagination, and I&rsquo;ve
-      always been very interested in emotions. I pay attention to what people
-      feel in everyday life &mdash; watching a film, listening to music,
-      watching a video, receiving a message, or simply living through a small
-      moment that changes how something feels. I want to bring that way of
-      looking at emotions into game design.
-    </p>
-    <blockquote>I like designing <em>emotions</em>.</blockquote>
-  </section>
-
-  <!-- ============ B. PLAYABLE DEMO ============ -->
-  <section id="play-demo" class="section-pad container demo-section">
-    <div class="demo-panel" data-reveal>
-      <span class="eyebrow" style="justify-content:center;">Guillotine Reels</span>
-      <h2 class="section-heading">Playable Demo</h2>
-      <p class="section-lede" style="margin: 0 auto;">
-        The best way to understand what I design is to play it.
-      </p>
-      <a href="game/index.html" class="btn btn-primary demo-play-btn" id="playDemoLinkSection">
-        <span class="demo-play-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-        </span>
-        Play Demo
-      </a>
+  <!-- ============ NAME MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="is-solid">Jon Arbe</span><i>✦</i><span class="ja">ジョン・アルベ</span><i>✦</i><span>Game Designer</span><i>✦</i><span class="is-solid">Tokyo</span><i>✦</i><span>Slots &amp; Game Feel</span><i>✦</i>
+      <span class="is-solid">Jon Arbe</span><i>✦</i><span class="ja">ジョン・アルベ</span><i>✦</i><span>Game Designer</span><i>✦</i><span class="is-solid">Tokyo</span><i>✦</i><span>Slots &amp; Game Feel</span><i>✦</i>
     </div>
-  </section>
-
-  <!--
-    "What I Design" section removed for now (2026 restructure pass).
-    Content is preserved below for reuse in the future About page
-    (Who I Am / What I Design / Skills / Design Philosophy / Experience) —
-    do not delete, just currently unused on Home.
-
-  <section class="statement container" data-reveal>
-    <span class="eyebrow">What I Design</span>
-    <blockquote style="margin-top: 1.4rem;">
-      I design gameplay systems with a focus on <em>how they make players feel</em> —
-      thinking beyond whether a mechanic works, to the feedback, pacing and
-      rewards that shape the experience around it.
-    </blockquote>
-    <ul class="design-focus-grid">
-      <li>Gameplay Design</li>
-      <li>Game Systems Design</li>
-      <li>Player Experience</li>
-      <li>Game Feel</li>
-      <li>Reward Systems</li>
-      <li>Pacing</li>
-      <li>Player Psychology</li>
-      <li>Rapid Prototyping</li>
-      <li>Iteration</li>
-    </ul>
-  </section>
-  -->
-
-  <!-- ============ D. FEATURED PROJECT ============ -->
-  <section id="work" class="section-pad container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow">Selected Work</span>
-    </div>
-
-    <article class="project-card" data-reveal>
-      <div class="media-placeholder">
-        <div class="media-placeholder-label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          Gameplay footage / trailer — coming soon
-        </div>
-      </div>
-
-      <div class="project-card-header">
-        <div>
-          <h2 class="project-title">Guillotine Reels</h2>
-          <p class="project-subtitle">Dark Fantasy Slot Game</p>
-        </div>
-        <span class="project-status">Beta — Personal Game Design Project</span>
-      </div>
-
-      <p class="project-desc">
-        Guillotine Reels is a dark fantasy slot game built around a
-        non-standard board and a payline system designed specifically for it.
-        The design is built around anticipation — probability, pacing,
-        animation and audio are tuned together so every spin raises the
-        question of what happens next, and every reward lands with weight.
-        The current build is a playable beta, shaped by continuous iteration
-        on how each system feels to play.
-      </p>
-      <p class="project-authorship">
-        Design, systems and direction by Jon Arbe — prototyped and built with AI-assisted development.
-      </p>
-
-      <div class="project-actions">
-        <a href="guillotine-reels.html" class="btn btn-outline">View Case Study</a>
-        <a href="game/index.html" class="btn btn-primary" id="playDemoLinkCard">Play Demo</a>
-      </div>
-    </article>
-  </section>
+  </div>
 
   <!-- ============ ABOUT ============ -->
-  <section id="about" class="section-pad container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow">About</span>
-      <h2 class="section-heading">Jon Arbe</h2>
-    </div>
-
-    <div class="about-grid">
-      <div data-reveal>
-        <div class="about-block">
-          <h3>Who I Am</h3>
-          <p>
-            I&rsquo;ve always been interested in the way things make us feel.
-            A film can make you uncomfortable without telling you why. A song
-            can change your mood in a few seconds. A video can make you
-            laugh, surprise you, or remind you of something. I naturally pay
-            attention to those details.
-          </p>
-          <p>
-            That&rsquo;s what I want to bring into game design: thinking not
-            only about what the player does, but about what the player feels
-            while doing it. I want to design experiences around emotions.
-          </p>
+  <section id="about" class="section-pad about-me">
+    <div class="container">
+      <div class="about-top">
+        <div class="about-story" data-reveal>
+          <figure class="about-photo" data-photo hidden><img src="" alt="Jon Arbe" width="480" height="600" loading="lazy"></figure>
+          <span class="eyebrow">About</span>
+          <h2>Hi, I’m Jon.</h2>
+          <p>I’m from Spain, and for the past year I’ve lived in Tokyo, where I study Japanese. For ten years I made physical things: welding prototypes at Mercedes-Benz, machining and maintaining industrial equipment, and today desserts, as a pastry chef at EDITION Tokyo. All of it taught me the same thing: details decide how something feels.</p>
+          <p>I haven’t worked at a game studio yet. <strong>Ossuary Reels is how I show what I can do:</strong> I had the idea, designed every system, directed the art and the sound, and built it with AI tools, testing and rebuilding until it felt right.</p>
+          <p>I’m creative and a bit obsessive. When something doesn’t feel right I can’t leave it alone, and I’m not afraid to throw work away to get it there.</p>
         </div>
-        <div class="about-block">
-          <h3>What I Design</h3>
-          <p class="about-focus-intro">
-            Areas I&rsquo;m interested in and actively developing as a
-            designer &mdash; not a claim of years of professional experience
-            in each one. Click any of them for a short note on what they mean
-            to me.
-          </p>
-          <ul class="design-focus-grid about-focus-grid" id="focusList">
-            <li class="focus-item">
-              <button type="button" class="focus-item-trigger" aria-expanded="false">
-                <span>Gameplay Design</span>
-                <span class="focus-item-icon" aria-hidden="true"></span>
-              </button>
-              <div class="focus-item-panel">
-                <p>How the moment-to-moment actions of a game work &mdash; what the player actually does, and why doing it should feel good on its own, before any reward shows up.</p>
-              </div>
-            </li>
-            <li class="focus-item">
-              <button type="button" class="focus-item-trigger" aria-expanded="false">
-                <span>Game Systems Design</span>
-                <span class="focus-item-icon" aria-hidden="true"></span>
-              </button>
-              <div class="focus-item-panel">
-                <p>How individual mechanics connect into something bigger, so the board feels like one connected space where things happen &mdash; not a set of isolated pieces sitting next to each other.</p>
-              </div>
-            </li>
-            <li class="focus-item">
-              <button type="button" class="focus-item-trigger" aria-expanded="false">
-                <span>Player Experience</span>
-                <span class="focus-item-icon" aria-hidden="true"></span>
-              </button>
-              <div class="focus-item-panel">
-                <p>Designing around what the player feels, notices and anticipates in the moment &mdash; not just what they click, but what they understand and expect right after.</p>
-              </div>
-            </li>
-            <li class="focus-item">
-              <button type="button" class="focus-item-trigger" aria-expanded="false">
-                <span>Game Feel</span>
-                <span class="focus-item-icon" aria-hidden="true"></span>
-              </button>
-              <div class="focus-item-panel">
-                <p>The texture of an interaction &mdash; timing, weight, feedback. The difference between a mechanic that technically works and one that feels right in the hand.</p>
-              </div>
-            </li>
-            <li class="focus-item">
-              <button type="button" class="focus-item-trigger" aria-expanded="false">
-                <span>Pacing</span>
-                <span class="focus-item-icon" aria-hidden="true"></span>
-              </button>
-              <div class="focus-item-panel">
-                <p>Deciding when things happen and, just as important, when they don&rsquo;t &mdash; giving moments room to breathe instead of making everything equally intense.</p>
-              </div>
-            </li>
-            <li class="focus-item">
-              <button type="button" class="focus-item-trigger" aria-expanded="false">
-                <span>Reward Systems</span>
-                <span class="focus-item-icon" aria-hidden="true"></span>
-              </button>
-              <div class="focus-item-panel">
-                <p>How wins, near-misses and surprises are presented &mdash; shaping anticipation and satisfaction, not only the numbers sitting behind them.</p>
-              </div>
-            </li>
-            <li class="focus-item">
-              <button type="button" class="focus-item-trigger" aria-expanded="false">
-                <span>Player Psychology</span>
-                <span class="focus-item-icon" aria-hidden="true"></span>
-              </button>
-              <div class="focus-item-panel">
-                <p>Thinking about uncertainty, anticipation and small frustrations &mdash; and how they can keep someone curious instead of pushing them away.</p>
-              </div>
-            </li>
-            <li class="focus-item">
-              <button type="button" class="focus-item-trigger" aria-expanded="false">
-                <span>Rapid Prototyping</span>
-                <span class="focus-item-icon" aria-hidden="true"></span>
-              </button>
-              <div class="focus-item-panel">
-                <p>Turning an idea into something playable as fast as possible, so I can feel whether it works instead of just imagining that it does.</p>
-              </div>
-            </li>
-            <li class="focus-item">
-              <button type="button" class="focus-item-trigger" aria-expanded="false">
-                <span>Iteration</span>
-                <span class="focus-item-icon" aria-hidden="true"></span>
-              </button>
-              <div class="focus-item-panel">
-                <p>Being willing to rebuild something that doesn&rsquo;t feel right, even after it&rsquo;s already built &mdash; and knowing the difference between &ldquo;needs polish&rdquo; and &ldquo;needs to change.&rdquo;</p>
-              </div>
-            </li>
-          </ul>
+
+        <div class="meet" data-meet data-reveal data-reveal-delay="1">
+          <div class="meet-head"><p class="label">Spin to meet me</p><span class="meet-count" data-meet-count>No spins yet</span></div>
+          <div class="meet-machine">
+            <div class="meet-reel"><span class="meet-cap">Built by hand</span><div class="meet-window"><ul class="meet-strip"><li>A slot machine</li></ul></div></div>
+            <div class="meet-reel"><span class="meet-cap">Worked in</span><div class="meet-window"><ul class="meet-strip"><li>Tokyo</li></ul></div></div>
+            <div class="meet-reel"><span class="meet-cap">Obsessed with</span><div class="meet-window"><ul class="meet-strip"><li>Details</li></ul></div></div>
+          </div>
+          <p class="meet-result" aria-live="polite" data-meet-result>Built: <b>A slot machine</b> · Worked in: <b>Tokyo</b> · Obsessed with: <b>Details</b></p>
+          <button type="button" class="btn btn-gold meet-spin" data-meet-spin>Spin</button>
+          <p class="meet-bonus" data-meet-bonus hidden>Five spins. You clearly like this as much as I do. <a href="#contact">Let’s talk →</a></p>
         </div>
       </div>
 
-      <div data-reveal data-reveal-delay="1">
-        <div class="about-block">
-          <h3>Design Philosophy</h3>
-          <p class="about-lede-quote">
-            &ldquo;Know what you want to communicate, and be as clean as
-            possible with it.&rdquo;
-          </p>
-          <p>
-            First, I need to understand what I want the player to feel. Then
-            I try to remove everything that doesn&rsquo;t help communicate
-            that feeling.
-          </p>
-          <p>
-            I believe my life experiences have given me a strong perception
-            of emotions, and I try to use that when designing experiences for
-            other people.
-          </p>
+      <div class="path" data-reveal>
+        <p class="label">The path so far</p>
+        <ol class="path-list">
+          <li><span class="path-year">2015</span><span class="path-place">Gran Canaria</span><h3>Coordinator</h3><p>At Acttiv in Las Palmas, my first full-time job.</p></li>
+          <li><span class="path-year">2016 – 2022</span><span class="path-place">Vitoria-Gasteiz</span><h3>Factory lines</h3><p>Production and logistics for CEVA and DHL, feeding the Mercedes-Benz lines.</p></li>
+          <li><span class="path-year">2022 – 2023</span><span class="path-place">Mercedes-Benz</span><h3>Prototype welding</h3><p>Welding technician in the prototype section, then the metal and paint line.</p></li>
+          <li><span class="path-year">2023 – 2025</span><span class="path-place">Vitoria-Gasteiz</span><h3>Metal &amp; machines</h3><p>Foundry and machining, industrial presses, then maintenance.</p></li>
+          <li><span class="path-year">2025</span><span class="path-place">Tokyo</span><h3>Pastry chef</h3><p>At EDITION Tokyo, while I study Japanese.</p></li>
+          <li class="is-now"><span class="path-year">2026 · Now</span><span class="path-place">In your browser</span><h3>Ossuary Reels</h3><p>My first game. I designed and directed it; it’s playable right here.</p></li>
+        </ol>
+      </div>
+
+      <div class="about-kit" data-reveal>
+        <div>
+          <p class="label">Design</p>
+          <div class="chips">
+            <span class="chip is-gold">Slot &amp; bonus design</span>
+            <span class="chip is-gold">Board &amp; payline design</span>
+            <span class="chip is-gold">Probability &amp; hit-rate targets</span>
+            <span class="chip is-gold">Game feel &amp; pacing</span>
+            <span class="chip is-gold">Art &amp; audio direction</span>
+          </div>
         </div>
-        <div class="about-block">
-          <h3>Tools &amp; Skills</h3>
-          <p class="placeholder-note">[Placeholder — tools and skills list to be added.]</p>
+        <div>
+          <p class="label">Tools</p>
+          <div class="chips">
+            <span class="chip">HTML · CSS · JavaScript</span>
+            <span class="chip">Claude Code · Codex · ChatGPT</span>
+            <span class="chip">FL Studio · Audacity · LMMS</span>
+            <span class="chip">Filmora · Remotion</span>
+            <span class="chip">CorelDRAW</span>
+            <span class="chip">Git &amp; GitHub</span>
+          </div>
         </div>
-        <div class="about-block">
-          <h3>Experience</h3>
-          <p>
-            My professional experience comes from different fields rather
-            than the traditional game industry. I&rsquo;ve created videos for
-            friends, worked on personal YouTube projects, built interactive
-            projects, and spent a lot of time experimenting with creative
-            ideas on my own.
-          </p>
-          <p>
-            These experiences taught me how to communicate ideas, experiment
-            quickly, and turn something that exists only in my head into
-            something other people can actually experience.
-          </p>
+        <div>
+          <p class="label">Languages</p>
+          <div class="langs">
+            <p>Spanish<span>Native</span></p>
+            <p>English<span>Fluent, daily use</span></p>
+            <p>Japanese<span>JLPT N4 level, studying in Tokyo</span></p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ E. CONTACT ============ -->
-  <section id="contact" class="section-pad container contact-section">
-    <div class="contact-grid">
-      <div data-reveal>
-        <span class="eyebrow">Contact</span>
-        <h2 class="contact-heading">Let&rsquo;s&nbsp;talk.</h2>
-        <p class="contact-meta">Jon Arbe — Tokyo, Japan</p>
+  <!-- ============ FEATURED PROJECT ============ -->
+  <section id="work" class="section-pad">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div>
+          <span class="eyebrow">Featured project</span>
+          <h2 class="section-heading">Ossuary Reels</h2>
+        </div>
+        <p class="section-lede">A slot where the board fights back: blades cut symbols, ravens turn into wilds and a chest fills up until it opens.</p>
       </div>
-      <div class="contact-links" data-reveal data-reveal-delay="1">
-        <a href="mailto:j.arbegaldos@gmail.com">Email</a>
-        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#" id="youtubeLink" target="_blank" rel="noopener">YouTube</a>
-        <a href="#" target="_blank" rel="noopener">GitHub</a>
-        <a href="#" target="_blank" rel="noopener">CV / Résumé</a>
+
+      <dl class="facts facts--inline" data-reveal>
+      <div class="fact"><dt>Role</dt><dd>Game design, systems, art &amp; audio direction</dd></div>
+      <div class="fact"><dt>Team</dt><dd>Solo designer + AI-assisted development</dd></div>
+      <div class="fact"><dt>Timeline</dt><dd>June 2026 – now</dd></div>
+      <div class="fact"><dt>Platform</dt><dd>Web · desktop &amp; mobile</dd></div>
+      <div class="fact"><dt>Status</dt><dd>Playable beta</dd></div>
+    </dl>
+
+      <a href="game/index.html" class="poster" data-play data-reveal aria-label="Play the Ossuary Reels demo">
+        <img src="assets/ossuary-reels/img/bigwin.webp" alt="Ossuary Reels: a big win counting up over the ribcage board" width="1800" height="1125" loading="lazy">
+        <span class="poster-play"><span class="play-tri"></span></span>
+        <span class="poster-label">Play the demo · desktop &amp; mobile</span>
+      </a>
+
+      <div class="sheet" data-reveal>
+        <div class="sheet-head"><h3>Game sheet</h3><span>Design targets for the current beta</span></div>
+        <div class="sheet-grid">
+          <div class="sheet-cell"><b>173</b><span>Paylines on a ribcage-shaped board</span></div>
+          <div class="sheet-cell"><b>3 <small>+1</small></b><span>Bonus features, a fourth in development</span></div>
+          <div class="sheet-cell"><b>20,000×</b><span>Max win</span></div>
+          <div class="sheet-cell"><b>98%</b><span>Target RTP, tuning in progress</span></div>
+          <div class="sheet-cell"><b>High</b><span>Volatility, by design</span></div>
+          <div class="sheet-cell"><b>×21 · ×25 · ×100</b><span>Bonus buys: Chest, Raven, Execution</span></div>
+          <div class="sheet-cell"><b>€0.10–10</b><span>Bet range</span></div>
+          <div class="sheet-cell"><b>HTML5</b><span>Desktop &amp; mobile, plays in the browser</span></div>
+        </div>
+      </div>
+
+      <div class="tiles">
+        <article class="tile" data-reveal>
+          <div class="tile-media"><img src="assets/ossuary-reels/img/tile-raven.webp" alt="A raven perched on the board, with its multiplier above it" width="952" height="595" loading="lazy"></div>
+          <h3>The raven falls</h3>
+          <p>When a blade cuts a crow, the raven perches above the board. A skeleton throws a stone: if it hits, the raven falls through its column as a wild. <em>Will the stone land?</em></p>
+        </article>
+        <article class="tile" data-reveal data-reveal-delay="1">
+          <div class="tile-media"><img src="assets/ossuary-reels/img/tile-lines.webp" alt="Debug view of the payline network drawn over the board" width="936" height="585" loading="lazy"></div>
+          <h3>173 lines, one board</h3>
+          <p>Independent reels inside a ribcage, joined by paylines built for that shape. <em>Wins can come from anywhere.</em></p>
+        </article>
+        <article class="tile" data-reveal data-reveal-delay="2">
+          <div class="tile-media"><img src="assets/ossuary-reels/img/tile-bonus.webp" alt="The Execution Bonus: the guillotine falls over skeletons in the stocks" width="988" height="618" loading="lazy"></div>
+          <h3>The Execution Bonus</h3>
+          <p>Lock the giant blades, then cut hands and heads for growing multipliers. <em>Three chances, every spin counts.</em></p>
+        </article>
+      </div>
+
+      <div class="row-ctas">
+        <a href="ossuary-reels.html" class="btn btn-gold">Read the case study</a>
+        <a href="game/index.html" class="btn btn-ghost" data-play><span class="play-tri"></span>Play the demo</a>
+        <a href="#" class="btn btn-ghost" data-trailer hidden><span class="play-tri"></span>Watch the trailer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DESIGN BREAKDOWNS ============ -->
+  <section id="breakdowns" class="section-pad breakdowns">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div>
+          <span class="eyebrow">Design breakdowns</span>
+          <h2 class="section-heading">How one feature<br>gets designed</h2>
+        </div>
+        <p class="section-lede">Goal, problem, what I changed and the numbers behind it. Short reads.</p>
+      </div>
+      <div class="cards">
+        <a class="card" href="ossuary-reels.html#raven-chain" data-reveal>
+          <div class="card-media"><img src="assets/ossuary-reels/raven.png" alt="" loading="lazy"></div>
+          <div class="card-body">
+            <span class="card-num">01</span>
+            <h3>The Raven chain</h3>
+            <p>How do you make a free spin feel earned? Every raven the stone kills grants one more spin, and the chain goes on while ravens keep falling.</p>
+            <span class="card-meta">Probability · Pacing · 4 min</span>
+          </div>
+        </a>
+        <a class="card" href="ossuary-reels.html#blades-chest" data-reveal data-reveal-delay="1">
+          <div class="card-media"><img src="assets/ossuary-reels/chest.png" alt="" loading="lazy"></div>
+          <div class="card-body">
+            <span class="card-num">02</span>
+            <h3>Blades &amp; the Chest</h3>
+            <p>Cut symbols leave holes that break lines, and fall into a chest. When it’s full enough, it opens: collect, or gamble it on a wheel.</p>
+            <span class="card-meta">Systems · Risk &amp; reward · 3 min</span>
+          </div>
+        </a>
+        <a class="card" href="ossuary-reels.html#execution-bonus" data-reveal>
+          <div class="card-media"><img src="assets/ossuary-reels/skeleton-rico.png" alt="" loading="lazy"></div>
+          <div class="card-body">
+            <span class="card-num">03</span>
+            <h3>The Execution Bonus</h3>
+            <p>A respin chain to unlock it, three candles to survive it, and a guillotine multiplier that grows with every hand you cut.</p>
+            <span class="card-meta">Bonus design · Tension · 4 min</span>
+          </div>
+        </a>
+        <a class="card" href="ossuary-reels.html#big-win" data-reveal data-reveal-delay="1">
+          <div class="card-media is-photo"><img src="assets/ossuary-reels/img/card-bigwin.webp" alt="" loading="lazy"></div>
+          <div class="card-body">
+            <span class="card-num">04</span>
+            <h3>A big win, cut to the music</h3>
+            <p>The counter is timed to its track: small wins land fast and quiet, big ones ride the music and stop exactly on a cymbal hit.</p>
+            <span class="card-meta">Game feel · Audio · 3 min</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW I DESIGN ============ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div>
+          <span class="eyebrow">How I design</span>
+          <h2 class="section-heading">Feeling first. Then cut.</h2>
+        </div>
+      </div>
+      <div class="principles">
+        <div class="principle" data-reveal>
+          <h3>Decide the feeling</h3>
+          <p>Before a mechanic exists, I decide what the player should feel. Everything that doesn’t help that feeling goes, even if it works.</p>
+        </div>
+        <div class="principle" data-reveal data-reveal-delay="1">
+          <h3>Let moments breathe</h3>
+          <p>Not every moment at the same intensity. Pauses, rhythm and sound decide how hard a win lands, and how much a near-miss stings.</p>
+        </div>
+        <div class="principle" data-reveal data-reveal-delay="2">
+          <h3>Rebuild when it’s wrong</h3>
+          <p>I threw away the whole first reel structure because it worked but didn’t feel right. It was the best decision of the project.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="contact">
+    <div class="container" data-reveal>
+      <span class="eyebrow">Contact</span>
+      <h2>Let&rsquo;s talk.</h2>
+      <p>I&rsquo;m looking for my first game design role. If you&rsquo;re building slots, or anything where feel matters, I&rsquo;d love to hear from you.</p>
+      <dl class="hire">
+        <div><dt>Looking for</dt><dd>Game designer role, remote</dd></div>
+        <div><dt>Based in</dt><dd>Tokyo · JST (UTC+9)</dd></div>
+        <div><dt>Availability</dt><dd>Full-time</dd></div>
+        <div><dt>Languages</dt><dd>Spanish, English, Japanese (N4)</dd></div>
+      </dl>
+      <div class="row-ctas">
+        <a class="btn btn-gold btn-mail" href="mailto:j.arbegaldos@gmail.com">j.arbegaldos@gmail.com</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/jon-arbe/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="assets/cv/Jon-Arbe-CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
       </div>
     </div>
   </section>
@@ -404,10 +333,17 @@
 </main>
 
 <footer class="site-footer">
-  <span>© 2026 Jon Arbe</span>
-  <span>Player Experience Designer — Tokyo, Japan</span>
+  <span>© 2026 Jon Arbe · Updated October 2026</span>
+  <nav class="footer-links" aria-label="Contact links">
+    <a href="mailto:j.arbegaldos@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/jon-arbe/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="assets/cv/Jon-Arbe-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+    <span>Game Designer · Tokyo</span>
+  </nav>
 </footer>
 
+<script src="js/alpha-video-layer.js"></script>
+<script src="js/meet-slot.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
