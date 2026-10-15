@@ -547,6 +547,11 @@ main > section, .section { position: relative; }
 /* About */
 .about-story p { color: var(--color-text-muted); margin-bottom: 1.05rem; max-width: 620px; }
 .about-story p strong { color: var(--color-text); font-weight: 600; }
+/* What I can do: three short lines, each led by its claim */
+.about-can { list-style: none; display: grid; gap: 0.95rem; margin-top: 1.5rem; max-width: 620px; }
+.about-can li { position: relative; padding-left: 1.3rem; color: var(--color-text-muted); }
+.about-can li::before { content: ''; position: absolute; left: 0; top: 0.8em; width: 9px; height: 2px; background: var(--color-gold); }
+.about-can b { color: var(--color-text); font-weight: 600; }
 .label {
   font-size: 0.72rem;
   font-weight: 700;

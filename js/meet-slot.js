@@ -28,10 +28,10 @@
       ['Ravens', 'ravens, lately']
     ] },
     { lead: 'Ask me about ', items: [
-      ['Welding prototypes', 'welding car prototypes'],
-      ['Life in Tokyo', 'life in Tokyo'],
-      ['Hotel pastry', 'pastry in a Tokyo hotel'],
       ['173 paylines', 'my 173 paylines'],
+      ['Life in Tokyo', 'life in Tokyo'],
+      ['Welding prototypes', 'welding car prototypes'],
+      ['Hotel pastry', 'pastry in a Tokyo hotel'],
       ['Throwing work away', 'throwing work away']
     ] }
   ];
@@ -94,7 +94,7 @@
     el.classList.add(cls);
   }
 
-  // Build the strips and start on "English / Details / Welding prototypes"
+  // Build the strips and start on "English / Details / 173 paylines"
   REELS.forEach(function (reel, i) {
     var html = '';
     for (var c = 0; c < CYCLES; c++) {
