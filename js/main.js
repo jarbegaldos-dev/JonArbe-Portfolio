@@ -291,11 +291,11 @@
       .filter(Boolean);
     if (watched.length) {
       var navIo = new IntersectionObserver(function (entries) {
+        // A link is lit only while its section crosses the middle of the
+        // screen, so back in the hero (or between sections) nothing is.
         entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          sectionLinks.forEach(function (a) {
-            a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id);
-          });
+          var link = links.querySelector('a[href="#' + entry.target.id + '"]');
+          if (link) link.classList.toggle('is-active', entry.isIntersecting);
         });
       }, { rootMargin: '-45% 0px -50% 0px' });
       watched.forEach(function (section) { navIo.observe(section); });
