@@ -52,7 +52,6 @@
   var windows = root.querySelectorAll('.meet-window');
   var strips = root.querySelectorAll('.meet-strip');
   var lines = root.querySelectorAll('[data-meet-result] li');
-  var countEl = root.querySelector('[data-meet-count]');
   var button = root.querySelector('[data-meet-spin]');
   var bonusEl = root.querySelector('[data-meet-bonus]');
   if (strips.length !== REELS.length || lines.length !== REELS.length || !button) return;
@@ -119,7 +118,6 @@
     button.disabled = false;
     button.classList.remove('is-spinning');
     flash(cabinet, 'is-win');
-    countEl.textContent = spins === 1 ? '1 spin' : spins + ' spins';
     if (spins === BONUS_AT && bonusEl) bonusEl.hidden = false;
   }
 
