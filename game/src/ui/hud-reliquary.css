@@ -1,0 +1,739 @@
+/* HUD de Ossuary Reels: trebol de corazones (menu que se abre), libro de
+   cuentas (BALANCE, BET, WIN) y reloj de arena con el SPIN en la cintura.
+   SOLO presentacion. Marcado en index.html; logica en src/ui/controls.js y
+   src/ui/readouts.js; colocacion en src/ui/responsive-layout.js.
+
+   Aqui va el HUD lateral (escritorio). Con html.rl-stacked (movil vertical)
+   responsive-layout.css lo recoloca: el reloj se tumba.
+
+   La silueta (reloj de arena + trebol) es la firma del HUD para otras slots:
+   para otra piel basta con cambiar las variables de :root y los colores de
+   las hojas del trebol. */
+
+:root {
+  /* Acento del HUD (antes amarillo canario). Menu, avisos y desplegables
+     usan --hud-yellow: cambian con el. */
+  --hud-yellow: #d4ae55;
+  --hud-gold: #d4ae55;
+  --hud-gold-hi: #f0dca4;
+  --hud-gold-soft: #e9d39a;
+  --hud-gold-dim: #a68d55;
+  --hud-ink: #0b0907;
+  --hud-leaf-a: #a3201a;
+  --hud-leaf-b: #d8382c;
+  /* Letra normal, sin fuente especial (peticion del usuario). */
+  --hud-font: Arial, Helvetica, sans-serif;
+  /* Cifras del libro de cuentas: el amarillo chillon del HUD de siempre. */
+  --hud-number: #ffd91a;
+  /* Etiquetas (BALANCE, TURBO, BUY BONUS...): oro chillon. */
+  --hud-label: #ffc72c;
+}
+
+/* ------------------------------ Columna izquierda ------------------------- */
+.hud-left {
+  --cl-e: clamp(64px, min(6.6vw, 11.5vh), 120px);  /* emblema */
+  --cl-p: clamp(40px, min(3.3vw, 6vh), 58px);      /* botones que salen */
+  --cl-s: calc(var(--cl-e) * 0.7);                 /* separacion en cada eje */
+  position: fixed;
+  z-index: 90;
+  left: clamp(14px, 2.4vw, 46px);
+  top: var(--rl-left-top, 27vh);
+  width: clamp(176px, min(15vw, 28vh), 264px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.6vh, 20px);
+  transform-origin: 0 0;
+  scale: var(--rl-left-scale, 1);
+}
+
+/* Caja del trebol: reserva el sitio del menu abierto para no pisar el libro. */
+.hud-clover {
+  position: relative;
+  flex: none;
+  width: calc(2 * var(--cl-s) + var(--cl-p) + 12px);
+  height: calc(2 * var(--cl-s) + var(--cl-p) + 34px);
+}
+
+.hud-clover__emblem {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: var(--cl-e);
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  translate: -50% -50%;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.7));
+  transition: rotate 0.6s cubic-bezier(0.3, 1.3, 0.4, 1), scale 0.3s ease, filter 0.3s ease;
+}
+
+.hud-clover__emblem svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hud-clover__ring { stroke: var(--hud-gold); }
+.hud-clover__ring--dots { stroke-opacity: 0.45; }
+.hud-clover__stem { stroke: var(--hud-gold); }
+.hud-clover__core { fill: var(--hud-gold); }
+.hud-clover__leaf { stroke: var(--hud-gold); stroke-width: 0.45; }
+.hud-clover__leaf--a { fill: var(--hud-leaf-a); }
+.hud-clover__leaf--b { fill: var(--hud-leaf-b); }
+
+.hud-clover__emblem:hover,
+.hud-clover__emblem:focus-visible {
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 12px rgba(216, 56, 44, 0.45));
+}
+
+/* Al pasar el raton crece un poco (no abre: eso es con clic). Solo en
+   dispositivos con raton, para que en tactil no se quede grande tras tocar. */
+@media (hover: hover) {
+  .hud-clover__emblem:hover { scale: 1.08; }
+  .hud-clover.is-open .hud-clover__emblem:hover { scale: 1.1; }
+}
+
+.hud-clover.is-open .hud-clover__emblem {
+  rotate: 180deg;
+  scale: 1.04;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 18px rgba(216, 56, 44, 0.55));
+}
+
+/* Los cuatro botones salen del centro hacia las diagonales. */
+.hud-clover__petal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: var(--cl-p);
+  aspect-ratio: 1;
+  margin: calc(var(--cl-p) / -2) 0 0 calc(var(--cl-p) / -2);
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--hud-gold);
+  border-radius: 50%;
+  background: #0d0b09;
+  box-shadow:
+    inset 0 0 0 3px #0d0b09,
+    inset 0 0 0 4px rgba(212, 174, 85, 0.5),
+    0 6px 14px rgba(0, 0, 0, 0.65);
+  color: var(--hud-gold-hi);
+  cursor: pointer;
+  opacity: 0;
+  scale: 0.35;
+  pointer-events: none;
+  transition:
+    translate 0.42s cubic-bezier(0.2, 1.45, 0.4, 1),
+    scale 0.42s cubic-bezier(0.2, 1.45, 0.4, 1),
+    opacity 0.22s ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.hud-clover__petal .hud-glyph {
+  width: 46%;
+  height: 46%;
+}
+
+.hud-clover.is-open .hud-clover__petal {
+  opacity: 1;
+  scale: 1;
+  pointer-events: auto;
+}
+
+.hud-clover.is-open .hud-clover__petal--tl { translate: calc(var(--cl-s) * -1) calc(var(--cl-s) * -1); transition-delay: 0ms; }
+.hud-clover.is-open .hud-clover__petal--tr { translate: var(--cl-s) calc(var(--cl-s) * -1); transition-delay: 45ms; }
+.hud-clover.is-open .hud-clover__petal--bl { translate: calc(var(--cl-s) * -1) var(--cl-s); transition-delay: 90ms; }
+.hud-clover.is-open .hud-clover__petal--br { translate: var(--cl-s) var(--cl-s); transition-delay: 135ms; }
+
+.hud-clover__petal:hover,
+.hud-clover__petal:focus-visible,
+.hud-clover__petal.is-open {
+  border-color: var(--hud-gold-hi);
+  color: #fff4d2;
+}
+
+.hud-clover__label {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  font-family: var(--hud-font);
+  font-weight: 700;
+  font-size: clamp(9px, calc(var(--cl-p) * 0.2), 12px);
+  letter-spacing: 0.16em;
+  line-height: 1;
+  color: var(--hud-label);
+  white-space: nowrap;
+  text-shadow: 0 1px 4px #000;
+  pointer-events: none;
+}
+
+.hud-clover__petal--tl .hud-clover__label,
+.hud-clover__petal--tr .hud-clover__label { bottom: calc(100% + 5px); }
+.hud-clover__petal--bl .hud-clover__label,
+.hud-clover__petal--br .hud-clover__label { top: calc(100% + 5px); }
+
+/* Sonido: con el silencio, el altavoz lleva una X. */
+.hud-glyph__mute { display: none; }
+#volumeBtn.is-active .hud-glyph__waves { display: none; }
+#volumeBtn.is-active .hud-glyph__mute { display: inline; }
+
+/* ------------------------------ Libro de cuentas -------------------------- */
+/* Recuadro casi imaginario: transparente, tirando a marron. */
+.hud-ledger {
+  width: 100%;
+  box-sizing: border-box;
+  padding: clamp(10px, 2vh, 22px) clamp(12px, 1.3vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(7px, 1.4vh, 15px);
+  border: 1px solid rgba(212, 174, 85, 0.18);
+  border-radius: 4px;
+  background: rgba(48, 30, 15, 0.2);
+}
+
+.hud-ledger__row {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.8vh, 8px);
+  min-width: 0;
+}
+
+.hud-ledger__row--win[hidden] {
+  display: flex;
+}
+
+.hud-ledger__label {
+  font-family: var(--hud-font);
+  font-size: clamp(10px, min(0.8vw, 1.5vh), 13px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  color: var(--hud-label);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+}
+
+.hud-ledger__value {
+  display: block;
+  font-family: var(--hud-font);
+  font-size: clamp(16px, min(1.6vw, 3vh), 28px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--hud-number);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+}
+
+.hud-ledger__value--win {
+  font-size: clamp(18px, min(2vw, 3.7vh), 34px);
+}
+
+.hud-ledger__row--win.is-bumped .hud-ledger__value {
+  animation: hud-ledger-bump 520ms cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+@keyframes hud-ledger-bump {
+  0% { scale: 1; filter: brightness(1); }
+  35% { scale: 1.12; filter: brightness(1.6); }
+  100% { scale: 1; filter: brightness(1); }
+}
+
+.hud-ledger__value--win {
+  transform-origin: left center;
+}
+
+.hud-ledger__rule {
+  display: block;
+  height: 1px;
+  background: rgba(212, 174, 85, 0.22);
+}
+
+/* ------------------------------ Columna derecha --------------------------- */
+.hud-right {
+  --hg-w: min(clamp(150px, 14.6vw, 272px), 35vh);
+  position: fixed;
+  z-index: 70;
+  right: clamp(14px, 2.4vw, 46px);
+  top: 50%;
+  width: var(--hg-w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  translate: 0 -50%;
+}
+
+/* El reloj. Todas las medidas en % del dibujo de 260x500. */
+.hud-hourglass {
+  --hg-accent: var(--hud-gold);
+  --hg-glow: rgba(212, 174, 85, 0.35);
+  position: relative;
+  width: var(--hg-w);
+  aspect-ratio: 260 / 500;
+  color: var(--hg-accent);
+}
+
+/* Tiradas gratis (Execution Bonus o cadena del cuervo, comprada o por
+   azar): todo el reloj en rojo. */
+.hud-hourglass.is-raven,
+.hud-hourglass.is-execution {
+  --hg-accent: #e0473a;
+  --hg-glow: rgba(224, 71, 58, 0.55);
+}
+
+.hud-hourglass.is-locked {
+  --hg-accent: #6d665c;
+  --hg-glow: rgba(0, 0, 0, 0);
+}
+
+.hud-hourglass__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.hud-hourglass__frame * {
+  transition: stroke 0.4s ease, fill 0.4s ease;
+}
+
+.hud-hourglass__bulbs path { fill: rgba(10, 8, 6, 0.9); stroke: var(--hg-accent); stroke-width: 2; stroke-linejoin: round; }
+.hud-hourglass__inlay path { fill: none; stroke: var(--hg-accent); stroke-opacity: 0.35; stroke-width: 1; stroke-linejoin: round; }
+.hud-hourglass__caps rect { fill: rgba(10, 8, 6, 0.92); stroke: var(--hg-accent); stroke-width: 1.6; }
+.hud-hourglass__capline line { stroke: var(--hg-accent); stroke-opacity: 0.4; stroke-width: 0.8; }
+.hud-hourglass__studs path { fill: var(--hg-accent); }
+
+/* En cada tirada gratis el marco da media vuelta como un reloj de arena de
+   verdad (es simetrico: acaba igual). Los mandos no giran. En las tiradas
+   normales no (el usuario lo veia demasiado movido). */
+.hud-hourglass.is-flipping .hud-hourglass__frame {
+  animation: hud-hourglass-flip 700ms cubic-bezier(0.5, -0.25, 0.3, 1.3);
+}
+
+.hud-hourglass.is-flipping.is-turbo .hud-hourglass__frame {
+  animation-duration: 420ms;
+}
+
+@keyframes hud-hourglass-flip {
+  from { rotate: 0deg; }
+  to { rotate: 180deg; }
+}
+
+/* TURBO y AUTO, arriba. */
+.hud-hourglass__btn {
+  position: absolute;
+  top: 7.6%;
+  width: 27.7%;
+  height: 14.4%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--hud-gold-soft);
+  cursor: pointer;
+  transition: color 150ms ease, filter 150ms ease;
+}
+
+.hud-hourglass__btn--turbo { left: 19.23%; }
+.hud-hourglass__btn--auto { left: 53.08%; }
+
+.hud-hourglass__btn-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8%;
+  width: 100%;
+  height: 100%;
+}
+
+/* El icono va dentro de un circulo (vacio; de oro cuando esta encendido). */
+.hud-hourglass__btn .hud-glyph {
+  box-sizing: content-box;
+  width: 27%;
+  height: auto;
+  aspect-ratio: 1;
+  padding: 6.5%;
+  border-radius: 50%;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.hud-hourglass__label {
+  font-family: var(--hud-font);
+  font-weight: 700;
+  font-size: max(9px, calc(var(--hg-w) * 0.042));
+  letter-spacing: 0.2em;
+  line-height: 1;
+  color: var(--hud-label);
+  transition: color 150ms ease;
+}
+
+.hud-hourglass__btn:hover,
+.hud-hourglass__btn:focus-visible {
+  color: #fff1c4;
+}
+
+/* Encendido (TURBO activo o autoplay en marcha): circulo de oro lleno con
+   el icono en negativo. Sin halos (el usuario los veia mal). */
+.hud-hourglass__btn.is-active .hud-glyph {
+  background: var(--hud-label);
+  color: #0b0907;
+}
+
+/* TURBO encendido: el rayo, relleno. */
+.hud-hourglass__btn--turbo.is-active .hud-glyph path {
+  fill: currentColor;
+}
+
+/* Apuesta, abajo: dos rombos. */
+.hud-hourglass__bet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 88%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4%;
+  translate: 0 -50%;
+}
+
+.hud-rhomb {
+  flex: none;
+  width: max(16.9%, 30px);
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(212, 174, 85, 0.6);
+  background: rgba(10, 8, 6, 0.6);
+  color: var(--hud-gold-soft);
+  cursor: pointer;
+  rotate: 45deg;
+  transition: border-color 150ms ease, background-color 150ms ease, opacity 150ms ease;
+}
+
+.hud-rhomb .hud-glyph {
+  width: 52%;
+  height: 52%;
+  rotate: -45deg;
+}
+
+.hud-rhomb:hover:not(:disabled),
+.hud-rhomb:focus-visible {
+  border-color: var(--hud-gold-hi);
+  background: rgba(212, 174, 85, 0.16);
+}
+
+.hud-rhomb:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.hud-hourglass__bet-label {
+  width: 18%;
+  text-align: center;
+}
+
+/* SPIN, en la cintura. */
+.hud-hourglass__spin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 69.23%;
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: max(3px, calc(var(--hg-w) * 0.016)) solid var(--hg-accent);
+  border-radius: 50%;
+  background: #0a0806;
+  box-shadow:
+    0 0 0 max(4px, calc(var(--hg-w) * 0.02)) rgba(10, 8, 6, 0.92),
+    0 0 34px var(--hg-glow);
+  color: var(--hg-accent);
+  cursor: pointer;
+  translate: -50% -50%;
+  transition: border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease, opacity 0.2s ease;
+}
+
+.hud-hourglass__spin:disabled {
+  cursor: default;
+}
+
+.hud-hourglass__spin > * {
+  grid-area: 1 / 1;
+}
+
+.hud-hourglass__arrow {
+  width: 74%;
+  height: 74%;
+  transition: rotate 0.35s cubic-bezier(0.3, 1.6, 0.5, 1), opacity 0.25s ease;
+}
+
+@media (hover: hover) {
+  .hud-hourglass__spin:hover:not(:disabled) .hud-hourglass__arrow {
+    rotate: 28deg;
+  }
+}
+
+/* Al tirar, la flecha da una vuelta rapida y se queda apagada hasta que paran
+   los rodillos (girando todo el rato distraia). */
+.hud-hourglass.is-spinning .hud-hourglass__arrow {
+  opacity: 0.38;
+  animation: hud-hourglass-arrow 0.5s cubic-bezier(0.3, 0.8, 0.4, 1) 1;
+  transition: rotate 0.35s cubic-bezier(0.3, 1.6, 0.5, 1), opacity 0.3s ease 0.35s;
+}
+
+.hud-hourglass.is-spinning.is-turbo .hud-hourglass__arrow {
+  animation-duration: 0.35s;
+}
+
+/* Parada rapida: con los rodillos en marcha el SPIN sigue pulsable; al pasar
+   el raton la flecha apagada se aviva. */
+@media (hover: hover) {
+  .hud-hourglass.is-spinning .hud-hourglass__spin.can-quick-stop:hover .hud-hourglass__arrow {
+    opacity: 0.8;
+    transition-delay: 0s;
+  }
+}
+
+@keyframes hud-hourglass-arrow {
+  to { transform: rotate(360deg); }
+}
+
+/* Autoplay: mientras giran los rodillos, la cuenta tambien se apaga un poco. */
+.hud-hourglass__count {
+  transition: opacity 0.25s ease;
+}
+
+.hud-hourglass.is-auto.is-busy .hud-hourglass__count {
+  opacity: 0.5;
+}
+
+.hud-hourglass__lock {
+  display: none;
+  width: 30%;
+  height: 30%;
+}
+
+.hud-hourglass.is-locked .hud-hourglass__lock { display: block; }
+.hud-hourglass.is-locked .hud-hourglass__arrow,
+.hud-hourglass.has-count .hud-hourglass__arrow { display: none; }
+.hud-hourglass.is-locked .hud-hourglass__spin { opacity: 0.6; }
+
+.hud-hourglass__spin.is-unaffordable {
+  opacity: 0.5;
+}
+
+/* Numero dentro del SPIN: autoplay, tiradas gratis del cuervo u
+   oportunidades del Execution (lo pone controls.js). */
+.hud-hourglass__count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: max(3px, calc(var(--hg-w) * 0.02));
+}
+
+.hud-hourglass__count[hidden] {
+  display: none;
+}
+
+.hud-hourglass__count-num {
+  font-family: var(--hud-font);
+  font-weight: 800;
+  font-size: calc(var(--hg-w) * 0.24);
+  line-height: 1;
+  color: var(--hg-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-hourglass__count-label {
+  font-family: var(--hud-font);
+  font-weight: 700;
+  font-size: max(9px, calc(var(--hg-w) * 0.04));
+  letter-spacing: 0.18em;
+  line-height: 1;
+  color: var(--hud-label);
+  white-space: nowrap;
+}
+
+/* Autoplay en marcha: una X pequena junto al SPIN para pararlo (la cuenta
+   va dentro del SPIN). */
+.hud-auto-counter {
+  position: absolute;
+  left: 81%;
+  top: 33%;
+  z-index: 3;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transform: none;
+  translate: -50% -50%;
+}
+
+.hud-auto-counter__value {
+  display: none;
+}
+
+.hud-auto-counter__stop {
+  width: max(28px, calc(var(--hg-w) * 0.13));
+  height: max(28px, calc(var(--hg-w) * 0.13));
+  border: 2px solid var(--hud-gold);
+  border-radius: 50%;
+  background: #0d0b09;
+  color: var(--hud-gold-hi);
+  font-size: max(14px, calc(var(--hg-w) * 0.07));
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.hud-auto-counter__stop:hover {
+  background: var(--hud-gold);
+  color: #0d0b09;
+}
+
+/* BUY BONUS: el platano colgado del reloj con dos cadenas. */
+.hud-buy-bonus-wrap {
+  position: relative;
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: calc(var(--hg-w) * 0.085);
+}
+
+.hud-buy-bonus__chains {
+  position: absolute;
+  top: -2px;
+  left: 20%;
+  right: 20%;
+  height: calc(var(--hg-w) * 0.085 + 8px);
+  border-left: 2px dashed var(--hud-gold);
+  border-right: 2px dashed var(--hud-gold);
+  pointer-events: none;
+}
+
+/* El png trae margen transparente: se recorta a la placa (1156x462 dentro
+   de 1280x853). */
+.hud-buy-bonus {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1156 / 462;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7));
+  transition: filter 150ms ease, scale 150ms ease;
+}
+
+.hud-buy-bonus__image {
+  position: absolute;
+  left: -5.36%;
+  top: -36.8%;
+  width: 110.73%;
+  height: auto;
+  max-width: none;
+  object-fit: fill;
+}
+
+.hud-buy-bonus:hover:not(:disabled),
+.hud-buy-bonus.is-open {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7)) brightness(1.12);
+  scale: 1.03;
+}
+
+.hud-buy-bonus:disabled {
+  cursor: default;
+}
+
+.hud-buy-bonus__caption {
+  margin-top: calc(var(--hg-w) * 0.03);
+  font-family: var(--hud-font);
+  font-weight: 700;
+  font-size: max(9px, calc(var(--hg-w) * 0.04));
+  letter-spacing: 0.26em;
+  line-height: 1;
+  color: var(--hud-label);
+  text-shadow: 0 1px 4px #000;
+}
+
+/* Pantallas bajas (movil apaisado): el reloj es pequeno; solo iconos. */
+@media (max-height: 560px) {
+  html:not(.rl-stacked) .hud-hourglass__btn .hud-hourglass__label,
+  html:not(.rl-stacked) .hud-hourglass__bet-label {
+    display: none;
+  }
+
+  html:not(.rl-stacked) .hud-hourglass__btn .hud-glyph {
+    width: 34%;
+    padding: 8%;
+  }
+
+  html:not(.rl-stacked) .hud-hourglass__bet {
+    gap: 16%;
+  }
+}
+
+/* ------------------------- Desplegables (escritorio) ---------------------- */
+html:not(.rl-stacked) .bet-choice-panel {
+  left: calc(100% + 18px);
+  top: 0;
+  z-index: 120;
+}
+
+html:not(.rl-stacked) .auto-panel {
+  right: calc(100% + 16px);
+  left: auto;
+  top: 4%;
+  bottom: auto;
+  z-index: 120;
+}
+
+html:not(.rl-stacked) .hud-selected-buy-bonus {
+  right: calc(100% + 14px);
+  left: auto;
+  top: 50%;
+  bottom: auto;
+  margin: 0;
+  transform: translateY(-50%);
+}
+
+/* Sin regla prefers-reduced-motion, como el resto del juego (style.css): el
+   usuario quiere ver siempre el movimiento. */
+
+/* Compra elegida (sobre SPIN): su precio en una franja oscura al pie del
+   arte, sin agrandar el badge. */
+.hud-selected-buy-bonus__price {
+  position: absolute;
+  left: clamp(4px, 0.35vw, 6px);
+  right: clamp(4px, 0.35vw, 6px);
+  bottom: clamp(4px, 0.35vw, 6px);
+  padding: 3px 0 2px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.88));
+  color: var(--hud-number);
+  font-family: var(--hud-font);
+  font-weight: 900;
+  font-size: clamp(11px, 0.85vw, 15px);
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 1px 3px #000;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}

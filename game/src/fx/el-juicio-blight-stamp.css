@@ -1,0 +1,35 @@
+/* Sello BLIGHTED del usuario (src/fx/el-juicio-blight-stamp.js): encima de
+   todo El Juicio (por debajo del contador BIG WIN y de los menus), cae sobre
+   el cepo del infectado, se enciende y se va. La caja la pone el JS. */
+.el-juicio-blight-stamp {
+  position: fixed;
+  z-index: 9250;
+  pointer-events: none;
+}
+
+.el-juicio-blight-stamp__body {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 55%;
+  will-change: transform, opacity, filter;
+}
+
+.el-juicio-blight-stamp__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  filter:
+    drop-shadow(0 3px 2px rgba(0, 0, 0, 0.85))
+    drop-shadow(0 0 10px rgba(200, 20, 10, 0.55));
+}
+
+/* La brasa que estalla detras al caer. */
+.el-juicio-blight-stamp__glow {
+  position: absolute;
+  inset: -40% -12%;
+  opacity: 0;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 70, 30, 0.75) 0%, rgba(180, 10, 6, 0.45) 40%, rgba(90, 0, 0, 0) 72%);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}

@@ -1,0 +1,180 @@
+/* Carteles de entrada de los bonus (src/fx/bonus-poster.js). El de la caida
+   del Super (el-juicio-fall.js#superSlam) y el de la entrada con PLAY
+   (game.js, .bonus-intro-modal.is-poster) son la misma caja, medida en la
+   pantalla entera: asi se cambia uno por otro sin que se note. El PLAY va
+   debajo (style.css). Las medidas van en la clase del tipo, que llevan el
+   cartel, el modal y la caida (las variables se calculan donde se declaran).
+   Lienzos del arte: judgment 1961x654, execution 1436x714, raven 1407x750. */
+.bonus-poster-kind--judgment {
+  --bonus-poster-w: min(94vw, 150vh);
+  --bonus-poster-aspect: 2.9985;
+  --bonus-poster-origin: 51.6% 52.4%;
+}
+
+.bonus-poster-kind--execution {
+  --bonus-poster-w: min(94vw, 106vh);
+  --bonus-poster-aspect: 2.0112;
+  --bonus-poster-origin: 50.4% 53.8%;
+}
+
+/* RAVEN Spins (src/ui/raven-banner.js): un momento sobre el juego, sin PLAY;
+   debajo, las tiradas ganadas. Lienzo 1407x750. */
+.bonus-poster-kind--raven {
+  --bonus-poster-w: min(96vw, 118vh);
+  --bonus-poster-aspect: 1.876;
+  --bonus-poster-origin: 49.8% 53.3%;
+}
+
+.bonus-poster-kind--judgment,
+.bonus-poster-kind--execution,
+.bonus-poster-kind--raven {
+  --bonus-poster-h: calc(var(--bonus-poster-w) / var(--bonus-poster-aspect));
+  --bonus-poster-cy: 41vh;
+}
+
+.bonus-poster {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Velo: deja ver el juego por detras (en el Super, la Muerte recien caida). */
+.bonus-poster__veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% var(--bonus-poster-cy), rgba(40, 4, 0, 0.5), rgba(0, 0, 0, 0.8));
+}
+
+.bonus-poster-kind--execution .bonus-poster__veil {
+  background: radial-gradient(ellipse 60% 50% at 50% var(--bonus-poster-cy), rgba(24, 10, 4, 0.52), rgba(0, 0, 0, 0.82));
+}
+
+/* Relampagos detras del cartel (antes, rayos que giraban; fuera por peticion
+   del usuario, 2026-10-18): el cielo se enciende en luz fria, dos o tres
+   veces seguidas y nada. Cerca (fuerte, cada 9.7 s) y lejos (flojo, cada
+   14.3 s); la fase y la duracion las pone el JS (reloj comun). --hit: el
+   del golpe (bonus-poster.js#strike). */
+.bonus-poster__sky,
+.bonus-poster__bolt {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bonus-poster__bolt {
+  opacity: 0;
+  background:
+    radial-gradient(ellipse 46% 40% at 50% calc(var(--bonus-poster-cy) - 14vh), rgba(232, 238, 255, 0.62), rgba(170, 186, 235, 0.24) 46%, rgba(110, 120, 170, 0) 80%),
+    linear-gradient(rgba(150, 164, 214, 0.16), rgba(150, 164, 214, 0.04));
+  animation: bonus-poster-bolt-near 9.7s linear infinite;
+  will-change: opacity;
+}
+
+.bonus-poster__bolt--far {
+  background: radial-gradient(ellipse 40% 34% at 30% 12%, rgba(205, 214, 245, 0.4), rgba(150, 160, 210, 0.12) 50%, rgba(110, 120, 170, 0) 85%);
+  animation-name: bonus-poster-bolt-far;
+}
+
+.bonus-poster__bolt--hit {
+  animation: none;
+}
+
+@keyframes bonus-poster-bolt-near {
+  0% { opacity: 0; }
+  0.6% { opacity: 1; }
+  1.4% { opacity: 0.1; }
+  2.2% { opacity: 0.75; }
+  3.6% { opacity: 0; }
+  5% { opacity: 0.25; }
+  6.2% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes bonus-poster-bolt-far {
+  0%, 52% { opacity: 0; }
+  52.6% { opacity: 0.7; }
+  53.4% { opacity: 0; }
+  54.3% { opacity: 0.45; }
+  55.8% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.bonus-poster__logo {
+  position: absolute;
+  left: calc(50% - var(--bonus-poster-w) / 2);
+  top: calc(var(--bonus-poster-cy) - var(--bonus-poster-h) / 2);
+  width: var(--bonus-poster-w);
+  height: var(--bonus-poster-h);
+  transform-origin: var(--bonus-poster-origin);
+}
+
+/* Brasa detras del cartel: asoma por los huecos y late. */
+.bonus-poster__glow {
+  position: absolute;
+  inset: -12% -4%;
+  background: radial-gradient(ellipse 50% 48% at var(--bonus-poster-origin), rgba(170, 18, 4, 0.42), rgba(120, 8, 0, 0.16) 55%, rgba(80, 0, 0, 0) 75%);
+  animation: bonus-poster-glow 1.7s ease-in-out infinite alternate;
+  will-change: opacity;
+}
+
+.bonus-poster-kind--execution .bonus-poster__glow {
+  background: radial-gradient(ellipse 48% 46% at var(--bonus-poster-origin), rgba(190, 80, 14, 0.36), rgba(120, 40, 6, 0.14) 55%, rgba(80, 20, 0, 0) 75%);
+}
+
+@keyframes bonus-poster-glow {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
+}
+
+.bonus-poster__layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+/* El cartel entero (lo que cae) y encima el lienzo de lo que se mueve
+   (WebGL, bonus-poster.js#createSmoke: humo o sangre, y en el Juicio el humo
+   de detras), que sobresale del cartel por donde suben las volutas (el JS
+   pone su caja). Sin WebGL, la imagen quieta. */
+.bonus-poster__art {
+  position: absolute;
+  inset: 0;
+}
+
+.bonus-poster__smoke {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.bonus-poster__flow {
+  display: none;
+}
+
+/* Plumas sueltas (bonus-poster.js#buildFeathers): recorte del atlas, encima
+   del humo. */
+.bonus-poster__feather {
+  position: absolute;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.bonus-poster__feather-sheet {
+  position: absolute;
+  top: 0;
+  display: block;
+  max-width: none;
+  user-select: none;
+}
+
+.bonus-poster-kind--raven .bonus-poster__veil {
+  background: radial-gradient(ellipse 60% 50% at 50% var(--bonus-poster-cy), rgba(12, 8, 14, 0.42), rgba(0, 0, 0, 0.74));
+}
+
+.bonus-poster-kind--raven .bonus-poster__glow {
+  background: radial-gradient(ellipse 46% 44% at var(--bonus-poster-origin), rgba(150, 14, 6, 0.4), rgba(90, 6, 0, 0.14) 55%, rgba(60, 0, 0, 0) 75%);
+}

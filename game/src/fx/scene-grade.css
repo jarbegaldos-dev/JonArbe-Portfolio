@@ -1,0 +1,166 @@
+/* Gradacion de los fondos de los bonus y de la ruleta (src/fx/scene-grade.js).
+   El fondo acompana; los rodillos, los cepos y la rueda mandan.
+   El video de los bonus ya viene graduado (tools/bake-bonus-background-grade.js:
+   sin fuego, noche fria, luces de rayo y eclipse con hombro); aqui va la
+   exposicion por modo y la capa .scene-grade (encima del video, debajo del
+   resto de capas). */
+
+/* --- Capa de gradacion --------------------------------------------------- */
+.scene-grade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  /* Velo del cielo (el remolino del eclipse se mueve menos a la vista) y
+     vineta lateral: las antorchas y los rayos de los bordes se hunden y el
+     tablero se despega del fondo. */
+  background:
+    linear-gradient(180deg, rgba(3, 3, 8, 0.5) 0%, rgba(3, 3, 8, 0.22) 22%, rgba(3, 3, 8, 0) 40%),
+    radial-gradient(ellipse 62% 74% at 50% 52%, rgba(0, 0, 0, 0) 52%, rgba(2, 2, 6, 0.34) 78%, rgba(2, 2, 6, 0.62) 100%);
+}
+
+[data-scene-layer="background_bonus_freespins"][hidden] + .scene-grade {
+  display: none;
+}
+
+#slotStage.bonus-mode-normal-active .scene-grade,
+#slotStage.el-juicio-active .scene-grade {
+  opacity: 1;
+}
+
+/* Relampago: luz fria que baja del cielo, doble golpe. Por debajo del marco:
+   solo alumbra el fondo que asoma. */
+.scene-grade__flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(ellipse 80% 62% at 50% 0%, rgba(205, 218, 255, 0.62) 0%, rgba(150, 168, 228, 0.24) 42%, rgba(150, 168, 228, 0) 72%),
+    linear-gradient(180deg, rgba(170, 186, 240, 0.16), rgba(170, 186, 240, 0) 70%);
+}
+
+#slotStage.scene-grade-strike .scene-grade__flash {
+  animation: scene-grade-lightning 1s linear 1 both;
+}
+
+#slotStage.scene-grade-strike--soft .scene-grade__flash {
+  animation-name: scene-grade-lightning-soft;
+}
+
+@keyframes scene-grade-lightning {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  11% { opacity: 0.18; }
+  17% { opacity: 0.9; }
+  30% { opacity: 0.32; }
+  100% { opacity: 0; }
+}
+
+@keyframes scene-grade-lightning-soft {
+  0% { opacity: 0; }
+  7% { opacity: 0.55; }
+  14% { opacity: 0.12; }
+  22% { opacity: 0.42; }
+  100% { opacity: 0; }
+}
+
+/* --- Execution ----------------------------------------------------------- */
+/* Con el video ya graduado hace falta menos oscuridad para que no compita;
+   se recupera detalle en la piedra y el suelo. */
+#slotStage.bonus-mode-normal-active #sceneLayers [data-scene-layer="background_bonus_freespins"] {
+  filter: blur(calc(var(--depth-u) * 1.8)) brightness(0.8) contrast(1.05) saturate(0.88);
+}
+
+/* Niebla de los carriles: se queda como ambiente, sin velar a los
+   esqueletos (ni al cepo de cada mitad). */
+#slotStage.bonus-mode-normal-active .bonus-lane-fog__layer {
+  opacity: 0.62;
+}
+
+#slotStage.bonus-mode-normal-active .bonus-lane-fog__layer--a { animation-duration: 20s; }
+#slotStage.bonus-mode-normal-active .bonus-lane-fog__layer--b { animation-duration: 26s; }
+#slotStage.bonus-mode-normal-active .bonus-lane-fog__layer--c { animation-duration: 17s; }
+
+/* --- El Juicio ----------------------------------------------------------- */
+/* Exposicion segun el momento (data-juicio-mood, scene-grade.js). */
+#slotStage.el-juicio-active {
+  --juicio-bg-bright: 0.74;
+  --juicio-bg-sat: 0.86;
+}
+
+#slotStage.el-juicio-active[data-juicio-mood="intro"] {
+  --juicio-bg-bright: 0.94;
+  --juicio-bg-sat: 1;
+}
+
+#slotStage.el-juicio-active[data-juicio-mood="last"] {
+  --juicio-bg-bright: 0.6;
+  --juicio-bg-sat: 0.78;
+}
+
+#slotStage.el-juicio-active #sceneLayers [data-scene-layer="background_bonus_freespins"] {
+  filter: blur(calc(var(--depth-u) * 1.8)) brightness(var(--juicio-bg-bright)) contrast(1.05) saturate(var(--juicio-bg-sat));
+  transition: filter 1.6s ease;
+}
+
+#slotStage.el-juicio-active[data-juicio-mood="intro"] .scene-grade {
+  opacity: 0.4;
+}
+
+/* Golpe de luz en el propio fondo, a la vez que el relampago. */
+#slotStage.el-juicio-active.scene-grade-strike #sceneLayers [data-scene-layer="background_bonus_freespins"] {
+  animation: scene-grade-strike-bg 1s linear 1 both;
+}
+
+#slotStage.el-juicio-active.scene-grade-strike--soft #sceneLayers [data-scene-layer="background_bonus_freespins"] {
+  animation: none;
+}
+
+@keyframes scene-grade-strike-bg {
+  0%, 100% { filter: blur(calc(var(--depth-u) * 1.8)) brightness(var(--juicio-bg-bright)) contrast(1.05) saturate(var(--juicio-bg-sat)); }
+  5% { filter: blur(calc(var(--depth-u) * 1.8)) brightness(1.35) contrast(1.12) saturate(0.7); }
+  11% { filter: blur(calc(var(--depth-u) * 1.8)) brightness(0.9) contrast(1.05) saturate(0.8); }
+  17% { filter: blur(calc(var(--depth-u) * 1.8)) brightness(1.25) contrast(1.1) saturate(0.72); }
+}
+
+/* --- Ruleta del cofre ---------------------------------------------------- */
+/* Castillo mas oscuro y frio desde el principio (los azules de la noche del
+   juego base); la luna, detras de la rueda, deja de deslumbrar. La
+   oscuridad de la frenada (.ruleta-screen__dark) va encima y sigue igual. */
+.ruleta-screen__fondo {
+  filter: brightness(0.66) contrast(1.1) saturate(0.6);
+}
+
+.ruleta-screen__stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Encima del castillo (z 0) y debajo de pergaminos, oscuridad y arena
+     (z 1, que van despues). */
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 40.5% 13%, rgba(10, 18, 40, 0.42) 0%, rgba(10, 18, 40, 0.26) 6%, rgba(10, 18, 40, 0) 15%),
+    linear-gradient(180deg, rgba(40, 62, 112, 0.6) 0%, rgba(26, 40, 80, 0.5) 55%, rgba(10, 14, 30, 0.55) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* Pedestal: un pozo de sombra detras de la maquina, mas denso abajo, para
+   que la piedra del pedestal no se funda con la del muro. */
+.ruleta-screen__arena::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46cqh;
+  height: 92cqh;
+  transform: translate(-50%, -46%);
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 30% at 50% 74%, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 100%),
+    radial-gradient(ellipse 48% 44% at 50% 40%, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0) 100%);
+}

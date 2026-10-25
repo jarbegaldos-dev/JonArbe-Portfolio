@@ -1,0 +1,25 @@
+/* Destello rojo sangre al completar la cadena del Execution Bonus
+   (src/fx/bonus-entry-hit.js): entra de golpe desde los bordes y se va. Por
+   encima del tablero y del HUD, por debajo de la entrada del bonus. */
+.bonus-entry-hit {
+  position: fixed;
+  inset: 0;
+  z-index: 9200;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse 70% 62% at 50% 46%, rgba(120, 0, 0, 0) 30%, rgba(150, 6, 6, 0.55) 72%, rgba(90, 0, 0, 0.92) 100%),
+    rgba(170, 10, 10, 0.22);
+  mix-blend-mode: multiply;
+}
+
+.bonus-entry-hit.is-on {
+  animation: bonus-entry-hit 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) 1 forwards;
+}
+
+@keyframes bonus-entry-hit {
+  0% { opacity: 0; }
+  6% { opacity: 1; }
+  22% { opacity: 0.85; }
+  100% { opacity: 0; }
+}

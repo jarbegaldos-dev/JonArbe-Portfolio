@@ -1,0 +1,266 @@
+/* Layout responsive de Ossuary Reels (lo calcula src/ui/responsive-layout.js,
+   que pone las variables --rl-* en px y las clases en <html>). Se carga
+   despues de style.css y solo actua con html.rl-ready, asi que sin el script
+   el juego se ve como antes.
+   - rl-side: HUD en los laterales (trebol y libro a la izquierda, reloj de
+     arena a la derecha); la maquina encoge entre los dos.
+   - rl-stacked: maquina arriba y HUD debajo: trebol y BUY BONUS en una fila,
+     el libro de cuentas en otra y el reloj de arena tumbado abajo.
+   Estilos del HUD en si: src/ui/hud-reliquary.css. */
+
+/* ------------------------------ Escenario --------------------------------
+   El escenario lo coloca el script. Todo lo que hay dentro (rodillos, marco,
+   FX en %) escala con el. Deja de recortar para que el fondo, contra-escalado,
+   cubra toda la ventana. */
+html.rl-ready #slotStage {
+  position: absolute;
+  left: var(--rl-stage-x);
+  top: var(--rl-stage-y);
+  width: var(--rl-stage-w);
+  height: var(--rl-stage-h);
+  overflow: visible;
+  background: transparent;
+}
+
+html.rl-ready #sceneLayers {
+  overflow: visible;
+}
+
+/* Mismo 5.2dvh de siempre, ahora relativo al alto del escenario (las tres
+   capas miden lo mismo que #slotStage). */
+html.rl-ready #sceneLayers,
+html.rl-ready #reelLayer,
+html.rl-ready #structureOverlay {
+  translate: 0 5.2%;
+}
+
+/* Fondo (videos base y bonus): mismo encuadre que con la maquina a tamano
+   completo, aunque el escenario encoja. */
+html.rl-ready .scene-layer--base {
+  translate: var(--rl-bg-tx, 0px) var(--rl-bg-ty, 0px);
+  scale: var(--rl-bg-scale, 1);
+}
+
+/* Piezas de la maquina que estaban en px/vw/vh: ahora en proporcion del
+   escenario, para que encojan con el. Valores = los de style.css a
+   1920x1080 (escenario 2114x1080), donde se ven igual que antes. */
+html.rl-ready .scene-layer--chest-normal {
+  bottom: 11.574%; /* 125px */
+}
+
+html.rl-ready .ruleta-chest-counter {
+  font-size: max(9px, calc(var(--rl-stage-h) * 0.034)); /* 3.4vh */
+}
+
+html.rl-ready .bonus-candle-counter {
+  top: 44.388%;    /* 34.018% + 112px */
+  left: 58.76%;    /* 55.213% + 75px */
+  width: 11.824%;  /* 250px */
+}
+
+html.rl-ready .bonus-hand-box__counter {
+  font-size: max(9px, calc(var(--rl-stage-h) * 0.0333)); /* 36px */
+}
+
+html.rl-ready .bonus-hand-box__multiplier,
+html.rl-ready .bonus-multiplier-fly {
+  font-size: max(11px, calc(var(--rl-stage-h) * 0.0417)); /* 45px */
+}
+
+html.rl-ready .bonus-hand-box-blade-multiplier {
+  font-size: max(9px, calc(var(--rl-stage-h) * 0.0296)); /* 32px */
+}
+
+/* Contador BIG WIN: 110px fijos (inline en big-win-counter.js) se salian de
+   la pantalla en movil. Igual en escritorio; mas pequeno solo si es estrecha. */
+html.rl-ready .big-win-counter__value {
+  font-size: min(110px, 13vw) !important;
+}
+
+/* El logo no tapa los rodillos. */
+html.rl-side .ossuary-corner-logo {
+  max-width: var(--rl-logo-max-w, none);
+}
+
+/* ------------------------------ HUD apilado ------------------------------
+   Maquina arriba; debajo, una fila con el trebol (izquierda) y el BUY BONUS
+   (derecha), el libro de cuentas en una fila y el reloj de arena tumbado. */
+html.rl-stacked .ossuary-corner-logo {
+  left: var(--rl-logo-x);
+  top: var(--rl-logo-y);
+  width: var(--rl-logo-w);
+  max-width: none;
+}
+
+html.rl-stacked .hud-left {
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  /* Sin escala: con ella los fixed de dentro (trebol, desplegable de la
+     apuesta) se colocarian respecto a esta caja y no a la pantalla. */
+  scale: none;
+}
+
+/* Trebol: el emblema en la esquina; al abrirse, los cuatro botones salen en
+   fila hacia la derecha (en diagonal se saldrian de la pantalla). */
+html.rl-stacked .hud-clover {
+  --cl-e: var(--rl-clover-e);
+  --cl-p: var(--rl-petal);
+  position: fixed;
+  left: var(--rl-clover-x);
+  top: var(--rl-clover-y);
+  width: var(--rl-clover-e);
+  height: var(--rl-clover-e);
+  z-index: 95;
+}
+
+html.rl-stacked .hud-clover.is-open .hud-clover__petal--tl { translate: calc(var(--cl-e) / 2 + var(--rl-gap) + var(--cl-p) / 2) 0; }
+html.rl-stacked .hud-clover.is-open .hud-clover__petal--tr { translate: calc(var(--cl-e) / 2 + var(--rl-gap) * 2 + var(--cl-p) * 1.5) 0; }
+html.rl-stacked .hud-clover.is-open .hud-clover__petal--bl { translate: calc(var(--cl-e) / 2 + var(--rl-gap) * 3 + var(--cl-p) * 2.5) 0; }
+html.rl-stacked .hud-clover.is-open .hud-clover__petal--br { translate: calc(var(--cl-e) / 2 + var(--rl-gap) * 4 + var(--cl-p) * 3.5) 0; }
+
+html.rl-stacked .hud-clover__label {
+  display: none;
+}
+
+/* Libro de cuentas en una fila de tres. */
+html.rl-stacked .hud-ledger {
+  position: fixed;
+  left: var(--rl-ledger-x);
+  top: var(--rl-ledger-y);
+  width: var(--rl-ledger-w);
+  height: var(--rl-ledger-h);
+  padding: 0 4px;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+
+html.rl-stacked .hud-ledger__row {
+  flex: 1 1 0;
+  align-items: center;
+  gap: calc(var(--rl-ledger-h) * 0.1);
+}
+
+html.rl-stacked .hud-ledger__rule {
+  width: 1px;
+  height: 58%;
+  background: rgba(212, 174, 85, 0.22);
+}
+
+html.rl-stacked .hud-ledger__label {
+  font-size: max(9px, calc(var(--rl-ledger-h) * 0.18));
+}
+
+html.rl-stacked .hud-ledger__value,
+html.rl-stacked .hud-ledger__value--win {
+  font-size: calc(var(--rl-ledger-h) * 0.28);
+}
+
+html.rl-stacked .hud-ledger__value--win {
+  transform-origin: center;
+}
+
+/* Reloj tumbado: la caja mide largo x grueso y el reloj gira -90deg dentro;
+   lo que lleva texto o iconos se endereza. */
+html.rl-stacked .hud-right {
+  --hg-w: var(--rl-hg-th);
+  left: var(--rl-hg-x);
+  right: auto;
+  top: var(--rl-hg-y);
+  width: var(--rl-hg-len);
+  height: var(--rl-hg-th);
+  display: block;
+  translate: none;
+}
+
+html.rl-stacked .hud-hourglass {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  rotate: -90deg;
+}
+
+html.rl-stacked .hud-hourglass__btn-inner,
+html.rl-stacked .hud-hourglass__count,
+html.rl-stacked .hud-hourglass__lock,
+html.rl-stacked .hud-auto-counter__stop {
+  rotate: 90deg;
+}
+
+html.rl-stacked .hud-rhomb .hud-glyph {
+  rotate: 45deg;
+}
+
+/* La flecha del SPIN, en la misma postura que de pie. */
+html.rl-stacked .hud-hourglass__arrow {
+  rotate: 90deg;
+}
+
+@media (hover: hover) {
+  html.rl-stacked .hud-hourglass__spin:hover:not(:disabled) .hud-hourglass__arrow {
+    rotate: 118deg;
+  }
+}
+
+html.rl-stacked .hud-hourglass__bet-label {
+  visibility: hidden;
+}
+
+/* BUY BONUS arriba a la derecha, en la fila del trebol. */
+html.rl-stacked .hud-buy-bonus-wrap {
+  position: fixed;
+  left: var(--rl-buy-x);
+  top: var(--rl-buy-y);
+  width: var(--rl-buy-w);
+  padding-top: 0;
+  z-index: 90;
+}
+
+/* Con el trebol abierto, sus botones pasan por encima del platano: se apaga. */
+html.rl-stacked .hud-left:has(.hud-clover.is-open) ~ .hud-right .hud-buy-bonus-wrap {
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+html.rl-stacked .hud-buy-bonus-wrap {
+  transition: opacity 0.2s ease;
+}
+
+html.rl-stacked .hud-buy-bonus__chains {
+  display: none;
+}
+
+html.rl-stacked .hud-buy-bonus__caption {
+  margin-top: 4px;
+  font-size: 9px;
+}
+
+/* Compra elegida encima del platano. */
+html.rl-stacked .hud-selected-buy-bonus {
+  left: 50%;
+  right: auto;
+  top: auto;
+  bottom: calc(100% + 6px);
+  width: min(130px, 100%);
+  margin: 0;
+  transform: translateX(-50%);
+}
+
+/* Desplegables: centrados por encima de la franja del HUD. */
+html.rl-stacked .bet-choice-panel,
+html.rl-stacked .auto-panel {
+  position: fixed;
+  left: 50%;
+  right: auto;
+  top: auto;
+  bottom: var(--rl-popup-bottom);
+  z-index: 120;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 16px);
+  max-height: var(--rl-popup-max-h);
+  box-sizing: border-box;
+  overflow-y: auto;
+}

@@ -1,0 +1,785 @@
+/* =====================================================================
+   RULETA DEL COFRE: maquina de huesos (src/ruleta/ruleta-game.js).
+   Arte horneado con tools/bake-ruleta-wheel.js en assets/ruleta/wheel/;
+   todas las posiciones van en % del dibujo (937x1678): centro del abismo
+   (464.5, 685.5), disco de 680 px y aro exterior un 3% mas alto que ancho
+   (scaleY 1.03 en la rueda).
+   La pantalla, el fondo y los botones base estan en style.css
+   (.ruleta-screen, .ruleta-action-btn).
+   ===================================================================== */
+
+/* Arena: contenedor de tamano. La maquina ocupa el alto (o el ancho en
+   pantallas estrechas) y los botones van a sus lados, a la altura del
+   pedestal. */
+.ruleta-screen__arena {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  container-type: size;
+  container-name: ruleta-arena;
+}
+
+/* Oscuridad que cae sobre el castillo al frenar la rueda y en el apagon de
+   la parada (opacidad desde ruleta-game.js#tickScene). Deja un halo sobre la
+   rueda. */
+.ruleta-screen__dark {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse 34% 46% at 50% 42%, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.94) 70%, #000 100%);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+/* Vineta: el castillo se apaga hacia los bordes y la maquina destaca. */
+.ruleta-screen__arena::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 44%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.62) 100%);
+  pointer-events: none;
+}
+
+/* Alto y ancho de la maquina (las unidades cq son de la arena: se
+   resuelven en cada hijo que las usa). */
+.ruleta-machine,
+.ruleta-screen--wheel .ruleta-screen__controls {
+  --mh: min(95cqh, 160cqw);
+  --mw: calc(var(--mh) * 937 / 1678);
+  --btn-w: clamp(120px, 13vw, 210px);
+}
+
+.ruleta-machine {
+  --maw: 0.5;
+  --abyss-boost: 0;
+  --key-glow: 255, 60, 40;
+  position: absolute;
+  left: 50%;
+  top: calc((100cqh - var(--mh)) / 2);
+  width: var(--mw);
+  height: var(--mh);
+  transform: translateX(-50%);
+  /* Capa propia: el temblor (translate en cada fotograma) solo la mueve, sin
+     repintar el marco y su sombra. */
+  will-change: transform, translate;
+  container-type: size;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ruleta-machine img {
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Brillo rojo detras de la maquina, que late con el abismo. */
+.ruleta-machine__aura {
+  position: absolute;
+  left: -30%;
+  right: -30%;
+  top: 4%;
+  height: 76%;
+  background: radial-gradient(ellipse 50% 46% at 50% 47%, rgba(150, 12, 10, 0.42), rgba(90, 0, 0, 0.16) 55%, transparent 75%);
+  opacity: calc(0.45 + var(--maw) * 0.55);
+}
+
+.ruleta-machine__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 1.2cqh 1.6cqh rgba(0, 0, 0, 0.75));
+}
+
+/* Sombra del marco con su silueta (mask-image = el marco, desde el JS): los
+   huesos se hunden en lo oscuro y la rueda queda sola. */
+.ruleta-machine__frame-dim {
+  position: absolute;
+  inset: 0;
+  background: #050203;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Rueda: caja del disco (680 px centrada en el abismo), con el ovalo. */
+.ruleta-machine__wheel {
+  position: absolute;
+  left: 13.287%;
+  top: 20.590%;
+  width: 72.572%;
+  height: 40.524%;
+  transform: scaleY(1.03);
+}
+
+.ruleta-machine__spinner {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.ruleta-machine__disc {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ruleta-machine__disc--blur {
+  opacity: 0;
+}
+
+/* Llave encendida: copia de la llave de su nivel sobre su casilla (la caja
+   rota con la casilla; posiciones de la casilla 0, arriba). */
+.ruleta-machine__lit {
+  position: absolute;
+  inset: 0;
+}
+
+.ruleta-machine__lit::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 15.5%;
+  width: 24%;
+  height: 26%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(var(--key-glow), 0.5), rgba(var(--key-glow), 0) 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 260ms ease-out;
+}
+
+.ruleta-machine__lit--on::before {
+  opacity: 1;
+}
+
+.ruleta-machine__lit-key {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+}
+
+.ruleta-machine__lit-key--brown {
+  left: 46.471%;
+  top: 6.618%;
+  width: 7.941%;
+  height: 18.382%;
+}
+
+.ruleta-machine__lit-key--white {
+  left: 45.441%;
+  top: 5.735%;
+  width: 8.971%;
+  height: 18.824%;
+}
+
+/* Negra y roja: llave con su ribete (rojo o negro), algo mas grande. */
+.ruleta-machine__lit-key--rim {
+  left: 44.853%;
+  top: 5.147%;
+  width: 10.147%;
+  height: 20%;
+}
+
+.ruleta-machine__lit--on .ruleta-machine__lit-key {
+  opacity: 1;
+  /* Un pulso basta para identificar la llave. Luego queda clara y estable
+     mientras el premio baja al abismo, sin competir con la revelación. */
+  animation: ruleta-key-lit 760ms cubic-bezier(.2,.7,.3,1) 1 both;
+}
+
+@keyframes ruleta-key-lit {
+  from {
+    filter: brightness(1.25) drop-shadow(0 0 0.35cqh rgba(var(--key-glow), 0.95)) drop-shadow(0 0 1.2cqh rgba(var(--key-glow), 0.55));
+  }
+  to {
+    filter: brightness(1.75) drop-shadow(0 0 0.55cqh rgba(var(--key-glow), 1)) drop-shadow(0 0 2.4cqh rgba(var(--key-glow), 0.85));
+  }
+}
+
+/* x0: prende flojo y luego se apaga como una vela que se ahoga. */
+.ruleta-machine__lit--weak.ruleta-machine__lit--on .ruleta-machine__lit-key {
+  animation: ruleta-key-weak 700ms ease-in-out 1 both;
+}
+
+@keyframes ruleta-key-weak {
+  from { filter: brightness(1.05) drop-shadow(0 0 0.3cqh rgba(var(--key-glow), 0.6)); }
+  to { filter: brightness(1.25) drop-shadow(0 0 0.8cqh rgba(var(--key-glow), 0.6)); }
+}
+
+.ruleta-machine__lit.ruleta-machine__lit--dying.ruleta-machine__lit--on .ruleta-machine__lit-key {
+  animation: ruleta-key-die 1000ms linear forwards;
+}
+
+.ruleta-machine__lit--dying::before {
+  opacity: 0;
+  transition: opacity 600ms ease-in;
+}
+
+@keyframes ruleta-key-die {
+  0% { opacity: 1; filter: brightness(1.2); }
+  12% { opacity: 0.3; }
+  20% { opacity: 0.9; filter: brightness(1.1); }
+  34% { opacity: 0.15; }
+  44% { opacity: 0.6; filter: brightness(0.9); }
+  60% { opacity: 0.08; }
+  70% { opacity: 0.3; }
+  100% { opacity: 0; filter: brightness(0.6); }
+}
+
+/* Las casillas que no ganan se apagan (la ganadora queda arriba). */
+.ruleta-machine__shade {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from -15deg, transparent 0deg, transparent 29deg, rgba(0, 0, 0, 0.72) 33deg, rgba(0, 0, 0, 0.72) 356deg, transparent 360deg);
+  opacity: 0;
+  transition: opacity 320ms ease-out;
+  pointer-events: none;
+}
+
+.ruleta-machine__shade--on {
+  opacity: 1;
+}
+
+/* Luz roja del abismo sobre la rueda. */
+.ruleta-machine__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 46, 30, 0.34) 0%, rgba(200, 20, 20, 0.12) 30%, transparent 56%);
+  mix-blend-mode: screen;
+  opacity: var(--maw);
+  pointer-events: none;
+}
+
+.ruleta-machine__hub {
+  position: absolute;
+  left: 39.915%;
+  top: 34.803%;
+  width: 19.21%;
+  height: 11.442%;
+}
+
+/* Remolino del abismo (gira solo, ruleta-game.js#tickScene). */
+.ruleta-machine__abyss {
+  position: absolute;
+  left: 41.676%;
+  top: 36.442%;
+  width: 15.795%;
+  height: 8.820%;
+}
+
+.ruleta-machine__vortex {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  filter: brightness(calc(1 + var(--abyss-boost) * 0.9)) saturate(calc(1 + var(--abyss-boost) * 0.5));
+}
+
+.ruleta-machine__maw {
+  position: absolute;
+  inset: -40%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 84, 60, 0.7) 0%, rgba(200, 14, 22, 0.38) 26%, rgba(120, 0, 10, 0) 60%);
+  mix-blend-mode: screen;
+  opacity: var(--maw);
+}
+
+/* Rayos que salen del abismo al cantar (color del premio en --ray). */
+.ruleta-machine__rays {
+  --ray: 255, 214, 90;
+  position: absolute;
+  left: 49.573%;
+  top: 40.852%;
+  width: 190%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgba(var(--ray), 0) 0deg, rgba(var(--ray), 0.6) 3.5deg, rgba(var(--ray), 0) 8deg, rgba(var(--ray), 0) 15deg);
+  -webkit-mask-image: radial-gradient(circle, #000 3%, rgba(0, 0, 0, 0.55) 18%, rgba(0, 0, 0, 0) 50%);
+  mask-image: radial-gradient(circle, #000 3%, rgba(0, 0, 0, 0.55) 18%, rgba(0, 0, 0, 0) 50%);
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+/* Onda expansiva desde el abismo. */
+.ruleta-machine__ring {
+  position: absolute;
+  left: 49.573%;
+  top: 40.852%;
+  width: 16%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 0.45cqh solid rgba(var(--key-glow), 0.9);
+  box-shadow: 0 0 2cqh rgba(var(--key-glow), 0.75), inset 0 0 1.6cqh rgba(var(--key-glow), 0.6);
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.ruleta-machine__sparks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Luz que baja de la llave al abismo. */
+.ruleta-machine__beam {
+  position: absolute;
+  left: 49.573%;
+  top: 26.5%;
+  width: 1.2%;
+  height: 14.352%;
+  border-radius: 50%;
+  transform-origin: 50% 0;
+  transform: translateX(-50%) scaleY(0);
+  opacity: 0;
+  background: linear-gradient(to bottom, rgba(var(--key-glow), 0.95), rgba(var(--key-glow), 0.2));
+  filter: blur(0.3cqh);
+  mix-blend-mode: screen;
+}
+
+.ruleta-machine__orb {
+  position: absolute;
+  left: 49.573%;
+  top: 26.5%;
+  width: 4.2cqh;
+  height: 4.2cqh;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  background: radial-gradient(circle, #fff 0%, rgba(var(--key-glow), 0.95) 28%, rgba(var(--key-glow), 0) 70%);
+  mix-blend-mode: screen;
+}
+
+/* Premio que sale del abismo: la caja de fuera se anima (ruleta-game.js
+   #emergePrize) y la de dentro lleva el resplandor. */
+.ruleta-machine__prize {
+  position: absolute;
+  left: 49.573%;
+  top: 40.852%;
+  transform: translate(-50%, -50%) scale(0.05);
+  opacity: 0;
+  white-space: nowrap;
+  /* --prize-scale: tamano segun el premio (PRIZE_FX.size) */
+  font-size: calc(7.4cqh * var(--prize-scale, 1));
+  line-height: 1;
+  color: #ffe1a0;
+  font-family: "Moria Citadel", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+}
+
+.ruleta-machine__prize[hidden] {
+  display: none;
+}
+
+.ruleta-machine__prize-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0.5cqh 0 rgba(0, 0, 0, 0.95)) drop-shadow(0 0 1.4cqh rgba(var(--key-glow), 0.85));
+}
+
+.ruleta-machine__prize-label.ossuary-number-font {
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0;
+}
+
+.ruleta-machine__prize .ossuary-number-font__digit {
+  flex: 0 0 0.82em;
+  width: 0.82em;
+  height: 1.28em;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.ruleta-machine__prize .ossuary-number-font__sym {
+  flex: 0 0 auto;
+  align-self: flex-end;
+  padding: 0 0.04em 0.1em;
+  font-size: 0.8em;
+  color: #ffe6a6;
+  -webkit-text-stroke: 0.04em rgba(0, 0, 0, 0.98);
+  text-shadow: 0 0.06em 0 #000, 0 0 0.2em rgba(255, 196, 70, 0.8);
+}
+
+.ruleta-machine__prize--none .ruleta-machine__prize-label {
+  filter: grayscale(0.75) brightness(0.7) drop-shadow(0 0.5cqh 0 rgba(0, 0, 0, 0.95)) drop-shadow(0 0 1.2cqh rgba(160, 20, 20, 0.75));
+}
+
+.ruleta-machine__prize-line {
+  display: block;
+  letter-spacing: 0.04em;
+  -webkit-text-stroke: 0.035em rgba(0, 0, 0, 0.95);
+  text-shadow: 0 0.07em 0 #000;
+}
+
+.ruleta-machine__prize-logo {
+  display: block;
+  width: 34cqh;
+  height: auto;
+  max-height: 24cqh;
+  object-fit: contain;
+}
+
+/* x100: oro que late con mas brillo. */
+.ruleta-machine__prize--big .ruleta-machine__prize-label {
+  animation: ruleta-big-pulse 700ms ease-in-out infinite alternate;
+}
+
+@keyframes ruleta-big-pulse {
+  from { filter: drop-shadow(0 0.5cqh 0 rgba(0, 0, 0, 0.95)) drop-shadow(0 0 1.4cqh rgba(255, 214, 64, 0.9)); }
+  to { filter: brightness(1.15) drop-shadow(0 0.5cqh 0 rgba(0, 0, 0, 0.95)) drop-shadow(0 0 2.6cqh rgba(255, 220, 90, 1)) drop-shadow(0 0 5cqh rgba(255, 150, 20, 0.7)); }
+}
+
+.ruleta-machine__prize--bonus {
+  font-size: calc(5.4cqh * var(--prize-scale, 1));
+  color: #e9dcff;
+}
+
+.ruleta-machine__prize--bonus .ruleta-machine__prize-label {
+  filter: drop-shadow(0 0.4cqh 0 rgba(0, 0, 0, 0.95)) drop-shadow(0 0 1.4cqh rgba(150, 90, 255, 0.9)) drop-shadow(0 0 3cqh rgba(60, 0, 90, 0.95));
+}
+
+.ruleta-machine__prize--super {
+  font-size: calc(6.2cqh * var(--prize-scale, 1));
+  color: #ffd27a;
+}
+
+.ruleta-machine__prize--super .ruleta-machine__prize-label {
+  filter: drop-shadow(0 0.4cqh 0 rgba(0, 0, 0, 0.95)) drop-shadow(0 0 1.2cqh rgba(255, 40, 30, 1)) drop-shadow(0 0 3.4cqh rgba(200, 0, 0, 0.95));
+  animation: ruleta-super-pulse 1100ms ease-in-out infinite alternate;
+}
+
+@keyframes ruleta-super-pulse {
+  to {
+    filter: drop-shadow(0 0.4cqh 0 rgba(0, 0, 0, 0.95)) drop-shadow(0 0 1.8cqh rgba(255, 70, 40, 1)) drop-shadow(0 0 5cqh rgba(230, 0, 0, 1));
+  }
+}
+
+.ruleta-screen__flash {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --- Pergaminos y botones (peticion del usuario, 2026-10-18) -------------
+   Una columna a cada lado de la maquina, centrada en el hueco que deja: el
+   pergamino (ruleta-game.js#buildScrolls) y debajo su boton de pergamino
+   (src/ui/parchment-ui.css): COLLECT bajo el cuento y GAMBLE bajo las llaves.
+   Los pergaminos van en su propia capa (.ruleta-scrolls, mismo tamano que la
+   arena) por debajo de la oscuridad; los botones, en la arena. Medidas
+   comunes (las cq de cada capa son iguales):
+   --side hueco a cada lado de la maquina, --sh/--sw pergamino, --bw/--bh
+   boton y --col-top arriba de la columna. */
+.ruleta-scroll,
+.ruleta-screen--wheel .ruleta-screen__controls {
+  --side: calc((100cqw - min(95cqh, 160cqw) * 937 / 1678) / 2);
+  --sh: min(64cqh, calc((var(--side) - 4cqw) * 1253 / 843));
+  --sw: calc(var(--sh) * 843 / 1253);
+  --bw: min(calc(var(--sw) * 0.84), calc(var(--side) - 3cqw));
+  --bh: calc(var(--bw) * 215 / 730);
+  --col-gap: 2.6cqh;
+  --col-top: max(1.5cqh, calc((100cqh - var(--sh) - var(--col-gap) - var(--bh)) / 2));
+}
+
+.ruleta-scrolls {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  container-type: size;
+  container-name: ruleta-scrolls;
+  pointer-events: none;
+}
+
+.ruleta-scroll {
+  position: absolute;
+  top: var(--col-top);
+  width: var(--sw);
+  aspect-ratio: 843 / 1253;
+  container-type: inline-size;
+  filter: drop-shadow(0 1.2cqh 1.6cqh rgba(0, 0, 0, 0.7));
+  animation: ruleta-scroll-in 700ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+.ruleta-scroll--story {
+  left: calc(var(--side) / 2 - var(--sw) / 2);
+}
+
+.ruleta-scroll--keys {
+  right: calc(var(--side) / 2 - var(--sw) / 2);
+  aspect-ratio: 1024 / 1516;
+  animation-delay: 90ms;
+}
+
+@keyframes ruleta-scroll-in {
+  from { opacity: 0; transform: translateY(-3%) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+.ruleta-scroll__art {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Tinta del pergamino: la letra del juego, marron casi negro, con un filo
+   claro debajo como si estuviera grabada; lo importante en rojo sangre. */
+.ruleta-scroll__text,
+.ruleta-scroll__key {
+  color: #3b220d;
+  font-family: "Moria Citadel", Georgia, "Times New Roman", serif;
+  text-shadow: 0 0.15cqi 0 rgba(255, 236, 196, 0.45);
+}
+
+/* Cuento: dentro del pergamino (x 15-85 %, y 16.5-86 % del dibujo). */
+.ruleta-scroll__text {
+  position: absolute;
+  left: 17%;
+  right: 17%;
+  top: 18.5%;
+  bottom: 15.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.6cqi;
+  text-align: center;
+  font-size: 4.3cqi;
+  line-height: 1.25;
+}
+
+.ruleta-scroll__text p {
+  margin: 0;
+}
+
+.ruleta-scroll__title {
+  color: #6a0d07;
+  font-size: 8.4cqi;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: 0.06em;
+}
+
+/* Raya con un rombo en medio. */
+.ruleta-scroll__rule {
+  position: relative;
+  width: 62%;
+  height: 0.5cqi;
+  margin: -1cqi 0 0.4cqi;
+  background: linear-gradient(90deg, rgba(59, 34, 13, 0), rgba(59, 34, 13, 0.75) 22%, rgba(59, 34, 13, 0.75) 78%, rgba(59, 34, 13, 0));
+}
+
+.ruleta-scroll__rule::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2.4cqi;
+  height: 2.4cqi;
+  background: #6a0d07;
+  transform: translate(-50%, -50%) rotate(45deg);
+  box-shadow: 0 0 0 0.5cqi rgba(226, 196, 146, 0.9);
+}
+
+.ruleta-scroll__lead {
+  font-style: italic;
+}
+
+.ruleta-scroll__verb {
+  display: block;
+  color: #6a0d07;
+  font-size: 5.8cqi;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+}
+
+.ruleta-scroll__close {
+  color: #6a0d07;
+  font-size: 4.6cqi;
+  letter-spacing: 0.03em;
+}
+
+/* Llaves, sin recuadros (borrados en el arte): lo que da cada una va suelto
+   en el pergamino, a la derecha del medallon (x 39-81 % del dibujo, donde
+   acaba el hueso del borde) y centrado en su llave (--row-y, de
+   ruleta-game.js#SCROLL_KEY_ROW_Y). */
+.ruleta-scroll__key {
+  position: absolute;
+  left: 39%;
+  width: 42%;
+  height: 11%;
+  top: calc(var(--row-y) - 5.5%);
+  display: grid;
+  place-items: center;
+}
+
+.ruleta-scroll__logo {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0.5cqi 0.6cqi rgba(40, 18, 4, 0.55));
+  user-select: none;
+  pointer-events: none;
+}
+
+/* The Judgment (negra) a todo lo ancho; EXECUTION BONUS (roja) algo mas
+   alto que la fila. */
+.ruleta-scroll__key--black .ruleta-scroll__logo {
+  width: 104%;
+  max-width: none;
+  max-height: none;
+}
+
+.ruleta-scroll__key--red .ruleta-scroll__logo {
+  height: 112%;
+  max-height: none;
+}
+
+/* Premios en las cifras de oro cincelado del contador BIG WIN (con aspa),
+   grandes y con sombra para que salten del pergamino; plata y bronce son el
+   mismo oro tenido. La raya, en tinta. */
+.ruleta-scroll__range {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6cqi;
+  font-size: 7.2cqi;
+  white-space: nowrap;
+}
+
+.ruleta-scroll__key--gold .ruleta-scroll__range {
+  font-size: 9.6cqi;
+}
+
+.ruleta-scroll__num {
+  filter: drop-shadow(0 0.5cqi 0.45cqi rgba(30, 12, 2, 0.75)) drop-shadow(0 0 1.4cqi rgba(255, 200, 90, 0.35));
+}
+
+.ruleta-scroll__key--silver .ruleta-scroll__num {
+  filter: grayscale(1) brightness(1.18) contrast(1.2) drop-shadow(0 0.5cqi 0.45cqi rgba(10, 12, 16, 0.8)) drop-shadow(0 0 1.4cqi rgba(220, 232, 255, 0.35));
+}
+
+.ruleta-scroll__key--bronze .ruleta-scroll__num {
+  filter: sepia(0.35) saturate(1.35) hue-rotate(-16deg) brightness(0.82) contrast(1.1) drop-shadow(0 0.5cqi 0.45cqi rgba(30, 10, 2, 0.8)) drop-shadow(0 0 1.4cqi rgba(220, 120, 60, 0.3));
+}
+
+.ruleta-scroll__dash {
+  color: #3b220d;
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+/* Lo que se cobra con COLLECT, en el mismo oro, en la linea del texto. */
+.ruleta-scroll__amount {
+  display: inline-flex;
+  margin: 0 0.12em;
+  font-size: 1.12em;
+  vertical-align: -0.28em;
+  filter: drop-shadow(0 0.35cqi 0.3cqi rgba(30, 12, 2, 0.7));
+}
+
+.ruleta-scroll__amount .ossuary-number-font__sym {
+  color: #8a5a0c;
+  text-shadow: 0 0.15cqi 0 rgba(255, 236, 196, 0.5);
+}
+
+/* Pergamino estrecho (moviles apaisados): menos texto y algo mas grande. */
+@container (max-width: 250px) {
+  .ruleta-scroll__lead,
+  .ruleta-scroll__rule {
+    display: none;
+  }
+
+  .ruleta-scroll__text {
+    font-size: 5.6cqi;
+  }
+}
+
+/* Botones debajo de cada pergamino. */
+.ruleta-screen--wheel .ruleta-screen__controls {
+  z-index: 3;
+  left: 0;
+  bottom: auto;
+  top: calc(var(--col-top) + var(--sh) + var(--col-gap));
+  width: 100cqw;
+  transform: none;
+  display: block;
+  justify-items: normal;
+}
+
+.ruleta-screen--wheel .ruleta-screen__buttons {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 max(0px, calc(var(--side) / 2 - var(--bw) / 2));
+  transition: opacity 260ms ease-out;
+}
+
+.ruleta-screen--wheel .ruleta-action-btn.parchment-btn {
+  width: var(--bw);
+}
+
+.ruleta-screen--wheel .ruleta-screen__buttons--spent {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@container ruleta-arena (max-aspect-ratio: 1 / 1) {
+  .ruleta-machine,
+  .ruleta-screen--wheel .ruleta-screen__controls {
+    --mh: min(84cqh, 160cqw);
+    --mw: calc(var(--mh) * 937 / 1678);
+  }
+
+  .ruleta-machine {
+    top: 2cqh;
+  }
+
+  .ruleta-screen--wheel .ruleta-screen__controls {
+    left: 50%;
+    top: auto;
+    bottom: max(2cqh, calc((100cqh - 2cqh - var(--mh)) / 2 - 3.5cqh));
+    width: auto;
+    transform: translateX(-50%);
+  }
+
+  .ruleta-screen--wheel .ruleta-screen__buttons {
+    justify-content: center;
+    gap: 5cqw;
+    padding: 0;
+  }
+
+  .ruleta-screen--wheel .ruleta-action-btn.parchment-btn {
+    width: clamp(130px, 40cqw, 230px);
+  }
+}
+
+/* En vertical los pergaminos no caben al lado de la maquina. */
+@container ruleta-scrolls (max-aspect-ratio: 1 / 1) {
+  .ruleta-scroll {
+    display: none;
+  }
+}

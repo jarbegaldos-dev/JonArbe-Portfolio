@@ -1,0 +1,73 @@
+/* Baja un poco el fondo durante Execution para que manos, caras y cuchilla
+   ocupen el primer plano. El tablero y las capas de arte quedan intactos. */
+#slotStage.bonus-mode-normal-active #sceneLayers [data-scene-layer="background_base"],
+#slotStage.bonus-mode-normal-active #sceneLayers [data-scene-layer="background_bonus_freespins"] {
+  filter: blur(calc(var(--depth-u) * 1.8)) brightness(0.75) contrast(1.04) saturate(0.92);
+  transition: filter 260ms ease;
+}
+
+#slotStage.bonus-mode-normal-active #sceneLayers [data-scene-layer="embers"] {
+  filter: brightness(0.72);
+  transition: filter 260ms ease;
+}
+
+/* En el juego base, baja un poco la actividad del fondo detrás de símbolos y
+   marco. No desenfoca ni afecta a fichas, luces de juego o HUD. */
+#slotStage:not(.bonus-mode-normal-active) #sceneLayers [data-scene-layer="background_base"] {
+  filter: brightness(0.91) saturate(0.86) contrast(1.03);
+  transition: filter 260ms ease;
+}
+
+/* Al recibir almas, la linterna confirma el cambio una vez. No añade contador
+   ni regla; refuerza el punto donde ya se actualiza el valor. */
+.el-juicio-lantern.is-pumping .el-juicio-lantern__glow {
+  animation: redesign-lantern-receive 520ms ease-out 1 both;
+}
+
+@keyframes redesign-lantern-receive {
+  0% { opacity: 0.55; filter: brightness(1); }
+  28% { opacity: 1; filter: brightness(1.65); }
+  100% { opacity: 0.78; filter: brightness(1.08); }
+}
+
+/* Lectura del premio: cuando game.js dibuja la escalera de lineas, baja el
+   ambiente y mantiene quietas las fichas premiadas. El foco queda en la ruta
+   ya resuelta; no compite con fuego ni temblor, y no altera el tablero. */
+body.has-winning-payline-amounts #slotStage #sceneLayers [data-scene-layer="background_base"],
+body.has-winning-payline-amounts #slotStage #sceneLayers [data-scene-layer="background_bonus_freespins"],
+body.has-winning-payline-amounts #slotStage #sceneLayers [data-scene-layer="embers"] {
+  filter: brightness(0.62) saturate(0.78);
+  transition: filter 220ms ease-out;
+}
+
+/* Quietud real del tablero mientras se leen importes: ninguna oscilación o
+   giro de las fichas puede competir con las líneas ya resueltas. */
+body.has-winning-payline-amounts .symbol-tile.is-paying,
+body.has-winning-payline-amounts .symbol-tile.is-paying > .symbol-art,
+body.has-winning-payline-amounts .symbol-tile.is-paying > .symbol-shine {
+  animation: none !important;
+  translate: 0 0 !important;
+  rotate: 0deg !important;
+}
+
+body.has-winning-payline-amounts .symbol-tile.is-paying > .symbol-art {
+  filter: brightness(1.12) drop-shadow(0 0 3px rgba(222, 183, 112, 0.34));
+}
+
+body.has-winning-payline-amounts .symbol-tile.is-paying > .symbol-shine {
+  animation: none;
+  opacity: 0.16;
+}
+
+@keyframes redesign-winning-symbol-focus {
+  0% { filter: brightness(1); }
+  24% { filter: brightness(1.38) drop-shadow(0 0 5px rgba(222, 183, 112, 0.7)); }
+  100% { filter: brightness(1.12) drop-shadow(0 0 2px rgba(222, 183, 112, 0.28)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.has-winning-payline-amounts .symbol-tile.is-paying > .symbol-art {
+    animation: none;
+    filter: brightness(1.12);
+  }
+}

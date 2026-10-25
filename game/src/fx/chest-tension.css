@@ -1,0 +1,174 @@
+/* Tension del cofre del Ruleta Game (src/fx/chest-tension.js): la meta junto a
+   la cuenta, luz por la rendija de la tapa, ascuas, avisos y el "+N" de cada
+   caida. Todo vive dentro del rig del cofre (src/ruleta/ruleta-game.js), asi
+   que escala, se mueve y se oculta con el. Tamanos sobre --rl-stage-h, como la
+   cuenta (src/ui/responsive-layout.css). */
+
+/* Meta a la vista: "26/45" con la meta pequena y apagada. */
+.ruleta-chest-counter {
+  white-space: nowrap;
+}
+
+.ruleta-chest-counter__goal {
+  margin-left: 0.06em;
+  font-size: 0.5em;
+  color: rgba(243, 223, 174, 0.62);
+}
+
+/* Luz que se escapa por la rendija de la tapa (la franja de hierro al 44%
+   del alto). La mascara es la propia imagen del cofre: no pinta fuera. */
+.chest-tension__light {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  background:
+    radial-gradient(ellipse 44% 4.5% at 50% 44.5%, rgba(255, 220, 150, 0.95), rgba(255, 128, 40, 0.6) 45%, transparent 78%),
+    radial-gradient(ellipse 58% 20% at 50% 47%, rgba(255, 104, 28, 0.45), transparent 72%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.is-chest-almost .chest-tension__light {
+  opacity: 0.45;
+  animation: chest-light-flicker 1.9s ease-in-out infinite;
+}
+
+.is-chest-full .chest-tension__light {
+  opacity: 0.8;
+  animation: chest-light-flicker 1.1s ease-in-out infinite;
+}
+
+@keyframes chest-light-flicker {
+  0%, 100% { filter: brightness(1); }
+  27% { filter: brightness(0.72); }
+  52% { filter: brightness(1.18); }
+  78% { filter: brightness(0.88); }
+}
+
+/* Ascuas que suben desde la rendija: 3 casi lleno, 6 lleno. */
+.chest-tension__embers {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 43%;
+  height: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.is-chest-almost .chest-tension__embers,
+.is-chest-full .chest-tension__embers {
+  opacity: 1;
+}
+
+.chest-tension__ember {
+  position: absolute;
+  left: var(--ember-x);
+  top: 0;
+  width: max(2px, calc(var(--rl-stage-h, 100vh) * 0.0032));
+  height: max(2px, calc(var(--rl-stage-h, 100vh) * 0.0032));
+  border-radius: 50%;
+  background: #ffb45a;
+  box-shadow: 0 0 4px rgba(255, 130, 40, 0.9);
+  opacity: 0;
+  animation: chest-ember 2.4s linear var(--ember-delay) infinite;
+  animation-play-state: paused;
+}
+
+.is-chest-almost .chest-tension__ember,
+.is-chest-full .chest-tension__ember {
+  animation-play-state: running;
+}
+
+.is-chest-almost .chest-tension__ember:nth-child(n + 4) {
+  display: none;
+}
+
+@keyframes chest-ember {
+  0% { transform: translate(0, 0) scale(1); opacity: 0; }
+  14% { opacity: 1; }
+  100% { transform: translate(var(--ember-drift), calc(var(--rl-stage-h, 100vh) * -0.085)) scale(0.4); opacity: 0; }
+}
+
+/* Amago (lleno y un premio que no basta): fogonazo por la rendija y una
+   tanda de ascuas mas alta y rapida; despues, vuelta a su luz. */
+.is-chest-full.is-chest-tease .chest-tension__light {
+  animation: chest-tease-flare 1.2s ease-out 1;
+}
+
+@keyframes chest-tease-flare {
+  0% { opacity: 0.8; filter: brightness(1); }
+  14% { opacity: 1; filter: brightness(1.55) hue-rotate(-10deg); }
+  40% { opacity: 1; filter: brightness(1.25) hue-rotate(-6deg); }
+  100% { opacity: 0.8; filter: brightness(1); }
+}
+
+.is-chest-tease .chest-tension__ember {
+  animation-duration: 1.1s;
+}
+
+/* Aviso al cruzar un tramo: golpe, se queda y se va. */
+.chest-tension__callout {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + max(8px, calc(var(--rl-stage-h, 100vh) * 0.012)));
+  z-index: 5;
+  font-family: "Moria Citadel", Georgia, "Times New Roman", serif;
+  font-size: max(14px, calc(var(--rl-stage-h, 100vh) * 0.036));
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  translate: -50% 0;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.95), 0 0 12px rgba(0, 0, 0, 0.85);
+}
+
+.chest-tension__callout--almost {
+  color: #f3dfae;
+}
+
+.chest-tension__callout--full {
+  color: #ffd873;
+}
+
+.chest-tension__callout.is-on {
+  animation: chest-callout 2.2s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+@keyframes chest-callout {
+  0% { opacity: 0; scale: 0.6; }
+  12% { opacity: 1; scale: 1.12; }
+  22% { scale: 1; }
+  80% { opacity: 1; scale: 1; }
+  100% { opacity: 0; scale: 1; }
+}
+
+/* "+N" de cada caida: sale de la cuenta y sube. */
+.chest-tension__plus {
+  position: absolute;
+  left: 62%;
+  bottom: 38%;
+  z-index: 5;
+  font-family: "Moria Citadel", Georgia, "Times New Roman", serif;
+  font-size: max(12px, calc(var(--rl-stage-h, 100vh) * 0.031));
+  line-height: 1;
+  color: #ffe6ad;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 1), 0 0 8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  animation: chest-plus 1.1s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+@keyframes chest-plus {
+  0% { opacity: 0; translate: 0 0; scale: 0.7; }
+  18% { opacity: 1; scale: 1.1; }
+  100% { opacity: 0; translate: 0 calc(var(--rl-stage-h, 100vh) * -0.07); scale: 1; }
+}

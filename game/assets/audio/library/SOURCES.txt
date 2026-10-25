@@ -1,0 +1,1253 @@
+Ossuary Reels - biblioteca de sonidos (sound-lab)
+
+Hechos con sound-lab/bake.js a partir de estas fuentes, todas de uso comercial:
+  sonniss-gdc2026: Sonniss GDC 2026 Game Audio Bundle. Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+  sonniss-archive: Sonniss GDC Game Audio Bundles 2015-2024 (archivo), solo las librerias que pegan con el juego. Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+  vsco2-ce: Versilian Studios Chamber Orchestra 2, Community Edition. CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+  vcsl: Versilian Community Sample Library. CC0 (dominio publico). https://github.com/sgossner/VCSL
+  kenney-impact: Kenney Impact Sounds. CC0
+  kenney-casino: Kenney Casino Audio. CC0
+  kenney-interface: Kenney Interface Sounds. CC0
+  kenney-rpg: Kenney RPG Audio. CC0
+  kenney-jingles: Kenney Music Jingles. CC0
+
+Cada sonido y lo que usa:
+
+metal/blade-draw.mp3 - Guillotina: armar
+    kenney-rpg/Audio/drawKnife2.ogg | CC0
+    kenney-rpg/Audio/metalLatch.ogg | CC0
+
+whoosh/blade-fall.mp3 - Guillotina: caida
+    kenney-rpg/Audio/knifeSlice.ogg | CC0
+    sonniss-archive/2016/SoundBits -  Just Whoosh 3 _ Whoosh Essentials/Swoosh_Rope_Whip_075.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+hits/blade-cut-bone.mp3 - Guillotina: corte con hueso
+    kenney-rpg/Audio/knifeSlice2.ogg | CC0
+    sonniss-archive/2015/Membrans - Bone Crackings Sound Pack 01/Bone Cracking 18.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+    sonniss-archive/2023/344 Audio - Flesh, Bones & Gore/Beheading 02.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+hits/blade-cut-metal.mp3 - Guillotina: corte metalico
+    kenney-impact/Audio/impactMetal_heavy_000.ogg | CC0
+    kenney-rpg/Audio/knifeSlice.ogg | CC0
+    sonniss-gdc2026/The Noisery - Moaning Metal/DSGNImpt_Metal Hit Thud Thump Low Ring Geofon 1_The Noisery_Moaning Metal.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+metal/chain-pull.mp3 - Cadena: tiron
+    kenney-rpg/Audio/metalLatch.ogg | CC0
+    sonniss-archive/2023/InspectorJ - Essentials 04 Chains/CHAINMvmt_InsJ_Chains_Metal_Movement_Distant_Very-Short_03-01.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+metal/chain-drop.mp3 - Cadena: caida
+    kenney-impact/Audio/impactMining_000.ogg | CC0
+    sonniss-archive/2023/InspectorJ - Essentials 04 Chains/CHAINImpt_InsJ_Chains_Metal_Dropping_Close_01-03.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+hits/stone-strike.mp3 - Piedra: impacto
+    kenney-impact/Audio/impactMining_002.ogg | CC0
+    sonniss-archive/2016/Alexander Kopeikin - Rocks/rock impact medium 26.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+hits/bone-break.mp3 - Huesos: crujido
+    kenney-impact/Audio/impactGeneric_light_000.ogg | CC0
+    sonniss-archive/2015/Membrans - Bone Crackings Sound Pack 01/Bone Cracking 34.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+metal/chest-unlock.mp3 - Cofre: girar llave
+    kenney-rpg/Audio/metalClick.ogg | CC0
+    sonniss-gdc2026/Epic Stock Media - HD Lock And Mechanism Sound Design Kit/MECHLtch_Click Deep Mechanism Latch Button Nearfield Thunk 02_ESM_HDLM.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+metal/chest-open.mp3 - Cofre: abrir
+    kenney-impact/Audio/impactBell_heavy_001.ogg | CC0
+    kenney-rpg/Audio/creak2.ogg | CC0
+    kenney-rpg/Audio/metalLatch.ogg | CC0
+
+metal/roulette-tick.mp3 - Cofre-ruleta: paso
+    kenney-impact/Audio/impactMetal_light_000.ogg | CC0
+    kenney-rpg/Audio/metalClick.ogg | CC0
+
+hits/roulette-stop.mp3 - Cofre-ruleta: parada
+    kenney-impact/Audio/impactBell_heavy_002.ogg | CC0
+    kenney-impact/Audio/impactMetal_heavy_002.ogg | CC0
+    kenney-rpg/Audio/metalLatch.ogg | CC0
+
+coins/coin-small.mp3 - Premio: monedas
+    kenney-rpg/Audio/handleCoins.ogg | CC0
+
+coins/coin-big.mp3 - Premio grande: monedas
+    kenney-impact/Audio/impactBell_heavy_003.ogg | CC0
+    kenney-rpg/Audio/handleCoins2.ogg | CC0
+
+whoosh/raven-wing.mp3 - Raven: ala
+    sonniss-archive/2016/SoundBits -  Just Whoosh 3 _ Whoosh Essentials/Whoosh_Cloth_Leather_Fight_174.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+stings/execution-entry.mp3 - Execution: entrada
+    kenney-rpg/Audio/knifeSlice.ogg | CC0
+    sonniss-gdc2026/Cinematic Sound Design - Colossal Impacts/Impact Cut Sweep.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+stings/juicio-entry.mp3 - El Juicio: entrada
+    kenney-impact/Audio/impactBell_heavy_004.ogg | CC0
+    kenney-rpg/Audio/metalLatch.ogg | CC0
+    sonniss-gdc2026/Cinematic Sound Design - Ultra Transitions & Impacts/Impact Hit Rapid Chord Reverb.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+magic/juicio-seal.mp3 - El Juicio: sello
+    kenney-rpg/Audio/metalLatch.ogg | CC0
+    sonniss-gdc2026/Alexander Kopeikin - Emotion and Magic/magic, action gesture, evil presence, onslaught-004.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+magic/curse-pulse.mp3 - Maldicion: pulso
+    kenney-impact/Audio/impactBell_heavy_004.ogg | CC0
+    sonniss-gdc2026/Alexander Kopeikin - Emotion and Magic/magic, energy flow, astonishment-001.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+magic/raven-omen.mp3 - Raven: presagio
+    sonniss-archive/2016/SoundBits -  Just Whoosh 3 _ Whoosh Essentials/Whoosh_Cloth_Leather_Fight_174.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+    sonniss-gdc2026/Alexander Kopeikin - Emotion and Magic/magic, drone, tension, spellbound, evanescence-002.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+whoosh/bonus-transition.mp3 - Bonus: transicion
+    kenney-impact/Audio/impactMetal_heavy_001.ogg | CC0
+    sonniss-gdc2026/Cinematic Sound Design - Colossal Impacts/Transition Frantic Shaker Snap.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+stings/bonus-exit.mp3 - Bonus: final
+    kenney-impact/Audio/impactMetal_heavy_004.ogg | CC0
+    kenney-rpg/Audio/doorClose_2.ogg | CC0
+
+magic/candle-relight.mp3 - Execution: vela que vuelve
+    sonniss-archive/2019/Sound Spark LLC – Magic Spells, Buffs and Attacks/Fire_Spell_Dragon_Trap_03.flac | Sonniss GDC Bundle v2.0 (descargas desde 2026-08-27): uso comercial sincronizado en juegos sin atribucion; no redistribuir efectos originales ni redisenados como sonidos o biblioteca; prohibido entrenamiento de IA. https://sonniss.com/gdc-bundle-license/
+
+music/music-tension-ostinato.ogg - Ostinato de tension (bucle)
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_mp1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v1_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v1_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_A2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_F2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_F2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_F#1_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_F#1_v1_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G#1_v1_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E4_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-tension-build.mp3 - Tension que sube (6 s)
+    vcsl/Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_cresc_4s.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_roll_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/trem/trem_E3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/trem/trem_G3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E4_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_G4_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-crypt-theme.ogg - Tema de la cripta (bucle)
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_A2_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_A3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_C3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_D#3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_F#3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_A4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_B3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_D4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_F4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_F2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_F2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-bonus-drums.ogg - Tambores del bonus (bucle)
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_f.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_F2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_F2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_ff_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_f_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-crypt-theme-long.ogg - Tema de la cripta, largo (bucle)
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_A2_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_A3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_C3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_D#2_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_D#3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_F#2_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_F#3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_A4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_B3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_D4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_E3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_F4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_G3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_E1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_F2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_F2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D4_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-crypt-theme-var.ogg - Tema de la cripta con variacion (bucle)
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_A2_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_A3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_C3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_D#2_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_D#3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_F#2_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet/NT5_Man3Quiet_F#3_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_A4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_B3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_C5_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_D4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_E3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_E5_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_F4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_G3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_pp1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_B1_v1_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v1_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_E1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_E1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_F2_v1_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_F2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_F2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D4_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_pp_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_pp_2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_pp_3.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_pp_4.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_ppp_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_ppp_2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-execution-ritual.ogg - Ritual de la ejecucion (bucle)
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_f.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_mp1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_pp1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_A#2_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_A#2_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_A#2_v4_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F2_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F2_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F2_v4_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F3_v4_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/stac/Tuba3_stac_D#1_v2_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/stac/Tuba3_stac_D#1_v2_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/stac/Tuba3_stac_D#1_v2_rr3_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/stac/Tuba3_stac_D#1_v2_rr4_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Rolls/Timpani1_Roll_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v1_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v1_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_A2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_A2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_C3_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_C3_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v1_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v1_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/trem/trem_E3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A1_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A1_v1_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C#2_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C#2_v1_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v1_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E4_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E4_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_f_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_ff_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_ff_2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_mf_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_f_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_f_2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_fff_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_mp_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_p_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_ppp_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_ppp_2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-exec-waltz.ogg - Lamento de la guillotina (bucle)
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_G3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_F0_v1_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_A3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_C4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_G2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_G2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_F#3_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_A#2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D3_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_F2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-exec-waltz-l1.ogg - Lamento: inquietud (capa 1)
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_G3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_F0_v1_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_A3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_C4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_G2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_G2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_F#3_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_A#2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D3_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_F2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-exec-waltz-l2.ogg - Lamento: pulso (capa 2)
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_G3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_F0_v1_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_A3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_C4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_G2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_G2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_F#3_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_A#2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D3_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_F2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-exec-waltz-l3.ogg - Lamento: violines (capa 3)
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_G3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_F0_v1_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_A3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_C4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_G2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_G2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_F#3_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_A#2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D3_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_F2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-exec-waltz-l4.ogg - Lamento: metales largos (capa 4)
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_G3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_F0_v1_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_A3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_C4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_G2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_G2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_F#3_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_A#2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D3_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_F2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-exec-waltz-l5.ogg - Lamento: climax (capa 5)
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_G3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_F0_v1_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_A3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_C4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_G2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_G2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_F#3_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_A#2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D3_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_F2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-exec-waltz-l6.ogg - Lamento: racimos (capa 6)
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_G3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_F0_v1_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_A3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_C4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_G2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_G2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_F#3_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_A#2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D3_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_F2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-exec-waltz-l7.ogg - Lamento: tutti (capa 7)
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D#3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_G3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_F0_v1_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_G1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_B1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_E3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/susvib/susvib_G1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_B2_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/spic/Violas_spic_D3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_A3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_B2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_C4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_D3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_E4_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_F3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/susvib/ViolaEns_susvib_G2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_B2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_G2_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_F#3_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/susVib/VlnEns_susVib_G4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_A#2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_D3_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Woodwinds/Clarinet/susLong/DCClar_susLong_F2_v2_rr1_sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-tension-ostinato-long.ogg - Ostinato de tension, largo (bucle)
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_mp1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F1_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v1_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v1_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_A2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_A2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_C3_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_C3_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_E3_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_E3_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_F2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_F2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_F#1_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_F#1_v1_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G#1_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G#1_v1_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_A3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_C4_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E4_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+music/music-lullaby-eerie.ogg - Nana inquietante (bucle)
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_A2_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_A4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_D4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_E3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_F4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Zithers/Psaltery, Bowed and Plucked/LongBow/BowedPsaltery_D4_Main_LongBow_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+
+tension/tension-swell-quick.mp3 - Oleada rapida (1 s)
+    vcsl/Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_cresc_1.5s.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Strings/Cello Section/trem/trem_D2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+tension/tension-riser-2s.mp3 - Subida de cuerdas (2 s)
+    vcsl/Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_cresc_2s.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_roll_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Strings/Cello Section/trem/trem_D2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+tension/tension-riser-4s.mp3 - Subida de cuerdas (4 s)
+    vcsl/Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_cresc_4s.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Percussion/Timpani/Rolls/Timpani2_Roll_v5_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/trem/trem_D2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Trem/BKCtbss_Trem_E1_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_D3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+tension/tension-bed.ogg - Fondo de tension (bucle)
+    vsco2-ce/Strings/Cello Section/trem/trem_D2_v1_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E4_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_D5_v1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+tension/tension-gong-reverse.mp3 - Gong al reves
+    vsco2-ce/VSCO 1 Percussion/varMetal/Gong/gong_hit_fff.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+tension/tension-timpani-roll.mp3 - Redoble de timbal (3 s)
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_roll_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Percussion/Timpani/Rolls/Timpani3_Roll_v5_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+epic/epic-hit-orchestra.mp3 - Golpe de orquesta
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_A#2_v4_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F2_v4_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F3_v4_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/stac/Tuba3_stac_D#1_v2_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Cymbals/clash/crash_hit_ff_loose.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Gong/gong_hit_ff.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+epic/epic-braam-orchestra.mp3 - Braam de metales
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v4_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v4_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Gong/gong_hit_ff.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+epic/epic-gong-crash.mp3 - Plato al reves y gong
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Cymbals/clash/crash_hit_fff_loose.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Gong/gong_hit_fff.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+epic/epic-anvil-strike.mp3 - Yunque y bombo
+    vcsl/Idiophones/Struck Idiophones/Anvil/Anvil_Hit1_v3_rr1_Mid.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+epic/epic-timpani-dadum.mp3 - Ta-DUM de timbales
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+epic/epic-taiko-hits.mp3 - Tambor grande x3
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_ff_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_f_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_mf_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-bonus-trigger.mp3 - Entra el bonus
+    vcsl/Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_cresc_1.5s.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v4_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D4_v1_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_A#2_v4_r2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F2_v4_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F3_v4_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Rolls/Timpani2_Roll_v5_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/trem/trem_D2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Cymbals/clash/crash_hit_ff_loose.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Gong/gong_hit_ff.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-win-small.mp3 - Premio pequeno
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_B3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_D4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_E3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_E3_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Pizz/VlnEns_Pizz_B4_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Pizz/VlnEns_Pizz_E4_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-win-medium.mp3 - Premio mediano
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_A2_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_B3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_D4_f1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_E3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v4_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D4_v1_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_A2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/pizz/ViolaEns_pizz_A3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/pizz/ViolaEns_pizz_F3_v2_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-win-big.mp3 - Premio grande
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D4_v1_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_F4_v1_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_B1_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/spic/spic_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Cymbals/clash/crash_hit_fff_loose.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-win-epic.mp3 - Premio enorme
+    vcsl/Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_cresc_1.5s.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_C3_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/stac/MOHorn_stac_D4_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v4_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D4_v1_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_A#1_v4_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_A#2_v4_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_D3_v4_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F2_v4_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/stac/tenortbn_stac_F3_v4_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D#3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_F3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_A#0_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Rolls/Timpani3_Roll_v5_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/trem/trem_B1_v1_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/trem/trem_D2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Cymbals/clash/crash_hit_ff_loose.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/VSCO 1 Percussion/varMetal/Gong/gong_hit_ff.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-lose.mp3 - Bajon (no hay premio)
+    vsco2-ce/Brass/OldTrombone/Fall/Trombone_Fall_A2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_D1_v1_rr2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-near-miss.mp3 - Casi (amago)
+    vsco2-ce/Strings/Cello Section/pizzT/pizzT_D2_v2_RR2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/trem/trem_E3_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_D1_v1_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_E4_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-dread.mp3 - Amenaza
+    vcsl/Membranophones/Struck Membranophones/Bass Drum 2/bassdrum_hit_ff.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D2_v4_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/Tuba/sus/Tuba3_sus_D#1_v3_rr1_Mid.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Percussion/Timpani/Timpani1_Hit_v3_rr2_Sum.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Cello Section/trem/trem_D2_v2_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Solo Contrabass/Trem/BKCtbss_Trem_E1_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-crypt-reveal.mp3 - Se abre la cripta
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Loud Pedal/Rode_Pedal_D#2.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Loud/Rode_Man3Open_A3.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Loud/Rode_Man3Open_D#3.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Loud/Rode_Man3Open_D#4.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Loud/Rode_Man3Open_F#3.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Idiophones/Struck Idiophones/Tubular Bells 1/chimes_D4_ff_rr2.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/VSCO 1 Percussion/varMetal/Gong/gong_hit_p.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+
+stings/sting-bell-toll.mp3 - Toque de difuntos
+    vcsl/Aerophones/Edge-blown Aerophones/Pipe Organ/Loud Pedal/Rode_Pedal_D#2.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Idiophones/Struck Idiophones/Tubular Bells 1/chimes_A#3_ff_rr1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Idiophones/Struck Idiophones/Tubular Bells 1/chimes_D4_ff_rr2.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+
+stings/sting-free-spins.mp3 - Tiradas gratis
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_A4_f1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_B3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_D4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_E3_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_E5_f1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_F4_mf1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Chordophones/Composite Chordophones/Concert Harp/KSHarp_G5_f1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vcsl/Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_hit_mp1.wav | CC0 (dominio publico). https://github.com/sgossner/VCSL
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Brass/F Horn/sus/MOHorn_sus_D4_v1_1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_A3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Viola Section/trem/Violas_trem_F3_v2_rr1.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_D5_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/
+    vsco2-ce/Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav | CC0 (dominio publico). https://versilian-studios.com/vsco-community/

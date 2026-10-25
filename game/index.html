@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>Ossuary Reels</title>
+<!-- Iconos: tools/bake-favicon.js (la calavera de la guillotina del logo). -->
+<link rel="icon" type="image/png" href="assets/ui/favicon.png" />
+<link rel="apple-touch-icon" href="assets/ui/apple-touch-icon.png" />
+<link rel="stylesheet" href="style.css?v=20260704e" />
+<link rel="stylesheet" href="src/ui/responsive-layout.css" />
+<!-- Menu, ajustes de sonido, reglas, avisos de saldo y pantalla de carga. -->
+<link rel="stylesheet" href="src/ui/game-ui.css?v=20261025b" />
+<!-- Raven Bonus: cuervo dorado y cartel FREE SPIN de su cadena. -->
+<link rel="stylesheet" href="src/fx/raven-bonus.css" />
+<!-- Ojos que brillan en canvas: encapuchado y Muerte de El Juicio. -->
+<link rel="stylesheet" href="src/fx/eye-glow.css" />
+<!-- HUD: reloj de arena, trebol de corazones y libro de cuentas. -->
+<link rel="stylesheet" href="src/ui/hud-reliquary.css" />
+<link rel="stylesheet" href="src/ui/bonus-summary.css" />
+<link rel="stylesheet" href="src/fx/chest-tension.css" />
+<!-- Ruleta del cofre: maquina de huesos (src/ruleta/ruleta-game.js). -->
+<link rel="stylesheet" href="src/ruleta/ruleta-wheel.css" />
+<link rel="stylesheet" href="src/fx/bonus-entry-hit.css" />
+<!-- Execution Bonus: caidas de la guillotina, Marca de Sangre y Ultimo Aliento. -->
+<link rel="stylesheet" href="src/fx/execution-fx.css" />
+<!-- SUPER BONUS "El Juicio": tablero, Muerte, cuervos, Siega y Sentencia. -->
+<link rel="stylesheet" href="src/fx/el-juicio.css" />
+<link rel="stylesheet" href="src/fx/el-juicio-fall.css" />
+<!-- Sello BLIGHTED que cae sobre el cepo del infectado. -->
+<link rel="stylesheet" href="src/fx/el-juicio-blight-stamp.css" />
+<!-- Carteles de entrada de los bonus (THE JUDGMENT, EXECUTION) con el PLAY debajo. -->
+<link rel="stylesheet" href="src/fx/bonus-poster.css" />
+<!-- Amagos de la guillotina de rib1: oscuridad con foco en rib1, luz y temblor. -->
+<link rel="stylesheet" href="src/fx/rib1-tease.css" />
+<link rel="stylesheet" href="src/fx/bonus-chain-tension.css" />
+<link rel="stylesheet" href="src/fx/redesign-hierarchy.css" />
+<link rel="stylesheet" href="src/fx/scene-grade.css" />
+<!-- BONUS de rib2/rib3 con vida: esqueleto por piezas que se mueve al caer. -->
+<link rel="stylesheet" href="src/fx/rib-bonus-rig.css" />
+<!-- Fuentes de los rotulos de los bonus (Buffied) y del cartel BLIGHTED (MCF Funera). -->
+<link rel="preload" href="assets/fonts/Buffied.ttf" as="font" type="font/ttf" crossorigin />
+<link rel="preload" href="assets/fonts/MCF-Funera.ttf" as="font" type="font/ttf" crossorigin />
+<link rel="stylesheet" href="src/ui/bonus-fonts.css" />
+<!-- Botones de pergamino (PLAY, GAMBLE, COLLECT, CONTINUE). -->
+<link rel="stylesheet" href="src/ui/parchment-ui.css" />
+</head>
+<body class="is-loading">
+
+<!-- Pantalla de carga: tapa el juego hasta que el arte, el sonido, la fuente
+     y el video de fondo estan listos; PLAY arranca (y desbloquea el sonido).
+     La controla src/ui/loading-screen.js (?skipintro la quita sola). -->
+<div class="loading-screen" id="loadingScreen" role="dialog" aria-modal="true" aria-label="Loading Ossuary Reels">
+  <div class="loading-screen__inner">
+    <img class="loading-screen__logo" src="assets/ui/ossuary-reels-logo.png" alt="Ossuary Reels">
+    <div class="loading-screen__slot">
+      <div class="loading-screen__progress">
+        <div class="loading-screen__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i class="loading-screen__fill" id="loadingScreenFill"></i></div>
+        <div class="loading-screen__status" id="loadingScreenStatus">LOADING</div>
+      </div>
+      <button class="loading-screen__play" id="loadingScreenPlay" type="button" aria-label="Play" hidden><span class="loading-screen__play-label">PLAY</span></button>
+    </div>
+  </div>
+</div>
+
+<main id="gameRoot" aria-label="Ossuary Reels">
+  <section id="slotStage" aria-label="Interfaz principal de Ossuary Reels">
+    <div id="sceneLayers" class="scene-layers" aria-hidden="true">
+      <!-- Generado en tiempo de ejecución por scene-manager.js a partir de
+           assets/scene-config.js. No añadir <img> a mano aquí: edita el
+           config para que las rutas tengan una única fuente de verdad. -->
+    </div>
+
+    <div id="reelLayer" aria-hidden="true"></div>
+
+    <!-- Capas de escena que deben dibujarse SIEMPRE por delante de los
+         rodillos (p.ej. la caja toracica frontal). Vive fuera de
+         #sceneLayers a proposito: #sceneLayers puede recibir transform
+         (reaccion de "whole machine weight") y eso le crea su propio
+         stacking context, lo que rompe cualquier z-index interno relativo
+         a #reelLayer. Generado en tiempo de ejecucion por scene-manager.js
+         para las capas con `root: "structureOverlay"` en scene.config.js. -->
+    <div id="structureOverlay" class="structure-overlay" aria-hidden="true"></div>
+
+    <div id="uiLayer">
+      <img class="ossuary-corner-logo" src="assets/ui/ossuary-reels-logo.png" alt="Ossuary Reels">
+      <!-- HUD: trebol de corazones a la izquierda (menu que se abre), libro de
+           cuentas (BALANCE, BET, WIN) y reloj de arena a la derecha con el SPIN
+           en la cintura. Los ids son los de siempre (src/ui/controls.js y
+           src/ui/readouts.js). Estilos: src/ui/hud-reliquary.css; colocacion:
+           src/ui/responsive-layout.js. -->
+      <div class="hud-left">
+        <div class="hud-clover" id="hudClover">
+          <button class="hud-clover__petal hud-clover__petal--tl" id="volumeBtn" type="button" aria-label="Sound">
+            <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 10h4l5-4v12l-5-4H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path class="hud-glyph__waves" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path class="hud-glyph__mute" d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span class="hud-clover__label">SOUND</span>
+          </button>
+          <button class="hud-clover__petal hud-clover__petal--tr" id="rulesQuickBtn" type="button" aria-label="Game rules">
+            <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5zM12 6.5v13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+            <span class="hud-clover__label">RULES</span>
+          </button>
+          <button class="hud-clover__petal hud-clover__petal--bl" id="coinBtn" type="button" aria-label="Choose bet" aria-expanded="false">
+            <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true">
+              <ellipse cx="12" cy="7" rx="6" ry="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M6 7v8c0 1.7 2.7 3 6 3s6-1.3 6-3V7M6 11c0 1.7 2.7 3 6 3s6-1.3 6-3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            <span class="hud-clover__label">BETS</span>
+          </button>
+          <button class="hud-clover__petal hud-clover__petal--br" id="menuBtn" type="button" aria-label="Settings" aria-expanded="false">
+            <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            <span class="hud-clover__label">SETTINGS</span>
+          </button>
+          <!-- Emblema: trebol de cuatro corazones con la punta en el centro. -->
+          <button class="hud-clover__emblem" id="cloverBtn" type="button" aria-label="Menu" aria-expanded="false">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <defs>
+                <path id="hudCloverHeart" d="M10 21 C10 21 0 13.5 0 7 C0 3.5 2.6 1 5.6 1 C7.6 1 9.2 2.2 10 4 C10.8 2.2 12.4 1 14.4 1 C17.4 1 20 3.5 20 7 C20 13.5 10 21 10 21 Z"/>
+              </defs>
+              <circle cx="50" cy="50" r="49.5" fill="#0b0907"/>
+              <circle class="hud-clover__ring" cx="50" cy="50" r="47" fill="none" stroke-width="2.2"/>
+              <circle class="hud-clover__ring hud-clover__ring--dots" cx="50" cy="50" r="44" fill="none" stroke-width=".8" stroke-dasharray="1.2 3.4"/>
+              <path class="hud-clover__stem" d="M51 53 Q60 70 75 78" fill="none" stroke-width="3.4" stroke-linecap="round"/>
+              <use class="hud-clover__leaf hud-clover__leaf--a" href="#hudCloverHeart" transform="translate(50 50) rotate(0) translate(-20 -39) scale(2)"/>
+              <use class="hud-clover__leaf hud-clover__leaf--b" href="#hudCloverHeart" transform="translate(50 50) rotate(90) translate(-20 -39) scale(2)"/>
+              <use class="hud-clover__leaf hud-clover__leaf--a" href="#hudCloverHeart" transform="translate(50 50) rotate(180) translate(-20 -39) scale(2)"/>
+              <use class="hud-clover__leaf hud-clover__leaf--b" href="#hudCloverHeart" transform="translate(50 50) rotate(270) translate(-20 -39) scale(2)"/>
+              <circle class="hud-clover__core" cx="50" cy="50" r="3.2"/>
+            </svg>
+          </button>
+        </div>
+        <div class="bet-choice-panel" id="betChoicePanel" hidden>
+          <div class="bet-choice-panel__title">BET</div>
+          <div class="bet-choice-panel__presets" id="betChoicePresets"></div>
+          <div class="bet-choice-panel__custom">
+            <input class="bet-choice-panel__input" id="betCustomInput" type="text" inputmode="decimal" placeholder="CUSTOM" />
+            <button class="bet-choice-panel__apply" id="betCustomApplyBtn" type="button">OK</button>
+          </div>
+          <div class="bet-choice-panel__hint" id="betChoiceHint">0.10 steps only</div>
+        </div>
+
+        <!-- Libro de cuentas: siempre a la vista. -->
+        <div class="hud-ledger" aria-label="Balance, bet and win">
+          <div class="hud-ledger__row">
+            <span class="hud-ledger__label">BALANCE</span>
+            <output class="hud-ledger__value" id="balanceReadout" aria-label="Balance">&euro;10,000.00</output>
+          </div>
+          <span class="hud-ledger__rule" aria-hidden="true"></span>
+          <div class="hud-ledger__row">
+            <span class="hud-ledger__label">BET</span>
+            <output class="hud-ledger__value" id="betReadout" aria-label="Bet">&euro;1.00</output>
+          </div>
+          <span class="hud-ledger__rule" aria-hidden="true"></span>
+          <div class="hud-ledger__row hud-ledger__row--win" id="bonusWinPanel">
+            <span class="hud-ledger__label">WIN</span>
+            <output class="hud-ledger__value hud-ledger__value--win" id="bonusWinReadout" aria-label="Win">&euro;0.00</output>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <!-- Reloj de arena: TURBO y AUTO arriba, SPIN en la cintura, apuesta
+             abajo. En movil va tumbado (html.rl-stacked). -->
+        <div class="hud-hourglass" id="hudHourglass">
+          <svg class="hud-hourglass__frame" viewBox="0 0 260 500" aria-hidden="true">
+            <g class="hud-hourglass__bulbs">
+              <path d="M14 24 H246 L130 226 Z"/>
+              <path d="M14 476 H246 L130 274 Z"/>
+            </g>
+            <g class="hud-hourglass__inlay">
+              <path d="M30 33 H230 L130 208 Z"/>
+              <path d="M30 467 H230 L130 292 Z"/>
+              <path d="M130 33 V128"/>
+            </g>
+            <g class="hud-hourglass__caps">
+              <rect x="4" y="4" width="252" height="14" rx="2"/>
+              <rect x="4" y="482" width="252" height="14" rx="2"/>
+            </g>
+            <g class="hud-hourglass__capline">
+              <line x1="14" y1="11" x2="246" y2="11"/>
+              <line x1="14" y1="489" x2="246" y2="489"/>
+            </g>
+            <g class="hud-hourglass__studs">
+              <path d="M4 5 l6 6 -6 6 -6 -6z"/>
+              <path d="M256 5 l6 6 -6 6 -6 -6z"/>
+              <path d="M4 483 l6 6 -6 6 -6 -6z"/>
+              <path d="M256 483 l6 6 -6 6 -6 -6z"/>
+              <path d="M130 6 l5 5 -5 5 -5 -5z"/>
+              <path d="M130 484 l5 5 -5 5 -5 -5z"/>
+            </g>
+          </svg>
+          <button class="hud-hourglass__btn hud-hourglass__btn--turbo" id="turboBtn" type="button" aria-label="Turbo">
+            <span class="hud-hourglass__btn-inner">
+              <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-2 8 11-13h-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              <span class="hud-hourglass__label">TURBO</span>
+            </span>
+          </button>
+          <button class="hud-hourglass__btn hud-hourglass__btn--auto" id="autoBtn" type="button" aria-label="Auto spin">
+            <span class="hud-hourglass__btn-inner">
+              <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3M18 3v4h-4M6 21v-4h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="hud-hourglass__label">AUTO</span>
+            </span>
+          </button>
+          <div class="hud-hourglass__bet">
+            <button class="hud-rhomb" id="betDownBtn" type="button" aria-label="Lower bet">
+              <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </button>
+            <span class="hud-hourglass__label hud-hourglass__bet-label">BET</span>
+            <button class="hud-rhomb" id="betUpBtn" type="button" aria-label="Raise bet">
+              <svg class="hud-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <button class="hud-hourglass__spin" id="spinBtn" type="button" aria-label="Spin">
+            <svg class="hud-hourglass__arrow" viewBox="0 0 100 100" aria-hidden="true">
+              <circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width="11" stroke-dasharray="150 51" transform="rotate(-60 50 50)"/>
+              <polygon points="29.6,20.6 10.5,28.4 33.3,40.9" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <svg class="hud-hourglass__lock" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+          </button>
+          <div class="hud-auto-counter" id="autoCounterBadge" hidden>
+            <span class="hud-auto-counter__value" id="autoCounterValue">50</span>
+            <button class="hud-auto-counter__stop" id="autoCounterStopBtn" type="button" aria-label="Stop autoplay">&times;</button>
+          </div>
+        </div>
+
+        <div class="auto-panel" id="autoPanel" hidden>
+          <div class="auto-panel__title">AUTO</div>
+          <div class="auto-panel__presets">
+            <button class="auto-panel__preset" type="button" data-auto-count="10">10</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="20">20</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="50">50</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="100">100</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="200">200</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="500">500</button>
+            <button class="auto-panel__preset" type="button" data-auto-count="1000">1000</button>
+          </div>
+          <div class="auto-panel__custom">
+            <input class="auto-panel__input" id="autoCustomInput" type="number" min="1" step="1" placeholder="CUSTOM" />
+            <button class="auto-panel__apply" id="autoCustomApplyBtn" type="button">OK</button>
+          </div>
+          <div class="auto-panel__footer">
+            <div class="auto-panel__status" id="autoStatusLabel">50 ROUNDS</div>
+            <button class="auto-panel__stop" id="autoStopBtn" type="button">STOP</button>
+          </div>
+        </div>
+
+        <!-- BUY BONUS: el platano, colgado del reloj con dos cadenas. -->
+        <div class="hud-buy-bonus-wrap">
+          <span class="hud-buy-bonus__chains" aria-hidden="true"></span>
+          <div class="hud-selected-buy-bonus" id="selectedBuyBonusBadge" hidden>
+            <img class="hud-selected-buy-bonus__image" id="selectedBuyBonusImage" src="assets/bonus_intro/execution_full.webp" alt="">
+            <span class="hud-selected-buy-bonus__price" id="selectedBuyBonusPrice"></span>
+            <button class="hud-selected-buy-bonus__cancel" id="selectedBuyBonusCancelBtn" type="button" aria-label="Cancel bonus buy">&times;</button>
+          </div>
+          <button class="hud-buy-bonus" id="buyBonusBtn" type="button" aria-label="Buy bonus" aria-expanded="false" aria-controls="buyBonusPanel">
+            <img class="hud-buy-bonus__image" src="assets/ui/buy-bonus-button.png" alt="" aria-hidden="true">
+          </button>
+          <span class="hud-buy-bonus__caption" aria-hidden="true">BUY BONUS</span>
+        </div>
+      </div>
+
+      <output class="readout win-readout" id="winReadout" aria-label="Premio">&euro;0.00</output>
+      <button class="hit-area max-bet-hit" id="maxBetBtn" type="button" aria-label="Apuesta maxima">MAX<br>BET</button>
+
+      <!-- Menu central (boton circular de la mariposa): src/ui/controls.js lo
+           abre y cierra; src/ui/game-menu.js enlaza el sonido y las reglas. -->
+      <div class="menu-panel" id="menuPanel" role="dialog" aria-modal="true" aria-labelledby="menuPanelTitle" hidden>
+        <div class="menu-panel__box">
+          <button class="menu-panel__close" id="closeMenuBtn" type="button" aria-label="Close menu">&times;</button>
+          <div class="menu-panel__title" id="menuPanelTitle">MENU</div>
+          <button class="menu-panel__item" id="openRulesBtn" type="button">GAME RULES</button>
+          <div class="menu-panel__group" role="group" aria-label="Sound">
+            <div class="menu-panel__label">SOUND</div>
+            <label class="menu-panel__slider"><span>MUSIC</span><input type="range" id="musicVolumeInput" min="0" max="100" step="5" value="100" /><output id="musicVolumeValue">100</output></label>
+            <label class="menu-panel__slider"><span>EFFECTS</span><input type="range" id="effectsVolumeInput" min="0" max="100" step="5" value="100" /><output id="effectsVolumeValue">100</output></label>
+            <button class="menu-panel__item menu-panel__item--toggle" id="muteToggleBtn" type="button" aria-pressed="false">SOUND ON</button>
+          </div>
+          <button class="menu-panel__item" id="resetBtn" type="button">RESTART GAME</button>
+        </div>
+      </div>
+
+      <div class="bonus-intro-modal" id="bonusIntroModal" hidden>
+        <div class="bonus-intro-modal__panel">
+          <div class="bonus-intro-modal__title" id="bonusIntroTitle">FREE SPIN · 3 CHANCES</div>
+          <button class="bonus-intro-modal__continue" id="bonusIntroContinueBtn" type="button">CONTINUAR</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- BUY BONUS: pantalla de compra con una tarjeta por bonus. La abre el
+     platano (src/ui/controls.js); estilos en src/ui/game-ui.css. Va fuera del
+     HUD porque el reloj lleva translate y encerraria el position: fixed. Lo
+     que hace cada compra se explica en GAME RULES > BUY BONUS, no aqui. -->
+<div class="buy-screen" id="buyBonusPanel" role="dialog" aria-modal="true" aria-labelledby="buyScreenTitle" hidden>
+  <div class="buy-screen__box" tabindex="-1">
+    <button class="buy-screen__close" id="buyScreenCloseBtn" type="button" aria-label="Close">&times;</button>
+    <div class="buy-screen__title" id="buyScreenTitle">BUY BONUS</div>
+    <div class="buy-screen__cards">
+      <button class="buy-card" type="button" data-buy-bonus-option="bonus-game" aria-pressed="false">
+        <span class="buy-card__art-wrap"><img class="buy-card__art" src="assets/ui/buy/buy-execution.webp" alt="Execution Bonus"></span>
+        <span class="buy-card__price" data-buy-bonus-price="bonus-game">&euro;100.00</span>
+        <span class="buy-card__multiple" data-buy-bonus-multiple="bonus-game">100&times; BET</span>
+      </button>
+      <button class="buy-card" type="button" data-buy-bonus-option="blade-spin" aria-pressed="false">
+        <span class="buy-card__art-wrap"><img class="buy-card__art" src="assets/ui/buy/buy-raven.webp" alt="Raven Bonus"></span>
+        <span class="buy-card__price" data-buy-bonus-price="blade-spin">&euro;25.00</span>
+        <span class="buy-card__multiple" data-buy-bonus-multiple="blade-spin">25&times; BET</span>
+      </button>
+      <button class="buy-card" type="button" data-buy-bonus-option="chest-game" aria-pressed="false">
+        <span class="buy-card__art-wrap"><img class="buy-card__art" src="assets/ui/buy/buy-chest.webp" alt="Chest Gamble"></span>
+        <span class="buy-card__price" data-buy-bonus-price="chest-game">&euro;21.00</span>
+        <span class="buy-card__multiple" data-buy-bonus-multiple="chest-game">21&times; BET</span>
+      </button>
+      <button class="buy-card buy-card--super" type="button" data-buy-bonus-option="super-bonus" aria-pressed="false">
+        <span class="buy-card__art-wrap"><img class="buy-card__art" src="assets/ui/buy/buy-judgment.webp" alt="The Judgment"></span>
+        <span class="buy-card__price" data-buy-bonus-price="super-bonus">&euro;500.00</span>
+        <span class="buy-card__multiple" data-buy-bonus-multiple="super-bonus">500&times; BET</span>
+      </button>
+    </div>
+    <div class="buy-screen__foot">
+      <span class="buy-screen__bet">BET <b id="buyScreenBet">&euro;1.00</b></span>
+      <button class="buy-screen__rules" id="buyScreenRulesBtn" type="button">HOW THEY WORK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Layout responsive (solo presentacion): coloca la maquina y el HUD segun
+     la forma de la ventana. Primero, para que su resize corra antes que los
+     de game.js y los FX, que re-miden casillas. -->
+<script src="src/ui/responsive-layout.js"></script>
+<script src="assets/symbols/symbol-assets.js"></script>
+<script src="src/config/layout.config.js"></script>
+<script src="src/config/combo.config.js"></script>
+<script src="src/config/spin.config.js"></script>
+<script src="src/config/bonus-landing-weight.config.js"></script>
+<script src="src/config/symbols.config.js"></script>
+<script src="src/config/bonus-modes.config.js"></script>
+<script src="src/config/paytable.dev.config.js"></script>
+<script src="src/config/economy.config.js"></script>
+<script src="src/config/symbol-win-animations.config.js"></script>
+<script src="src/config/reel-strips.config.js"></script>
+<script src="src/config/strips/strip-data.generated.js"></script>
+<script src="src/config/reel-strips.js"></script>
+<script src="src/debug/strip-spin-simulator.js"></script>
+<script src="src/debug/bonus-chain-simulator.js"></script>
+<script src="src/config/scene.config.js"></script>
+<script src="src/core/game-state.js"></script>
+<script src="src/core/rng-engine.js"></script>
+<script src="src/math/combination-path-registry.js"></script>
+<script src="src/math/combination-symbol-evaluator.js"></script>
+<script src="src/math/combination-conflict-resolver.js"></script>
+<script src="src/math/symbol-catalog.js"></script>
+<script src="src/math/paytable-engine.js"></script>
+<script src="src/math/dry-payout-engine.js"></script>
+<script src="src/math/win-resolver.js"></script>
+<script src="src/math/mechanics-registry.js"></script>
+<script src="src/math/simulation-engine.js"></script>
+<script src="src/math/rtp-framework.js"></script>
+<script src="src/math/math-engine.js"></script>
+<script src="src/math/math-debug-tools.js"></script>
+<script src="src/core/combo-engine.js"></script>
+<script src="src/core/combo-evaluator.js"></script>
+<script src="src/core/economic-round.js"></script>
+<script src="src/core/payment-engine.js"></script>
+<script src="src/core/payout-engine.js"></script>
+<script src="src/core/reel-model.js"></script>
+<script src="src/core/outcome-engine.js"></script>
+<script src="src/core/bonus-triggers.js"></script>
+<script src="src/bonus/bonus-lock-manager.js"></script>
+<script src="src/bonus/bonus-feature.js"></script>
+<script src="src/bonus/bonus-mode-runtime.js"></script>
+<!-- Marca de Sangre y Ultimo Aliento del Execution Bonus (logica). -->
+<script src="src/bonus/execution-enhancers.js"></script>
+<script src="src/bonus/bonus-mode-lock-handoff.js"></script>
+<script src="src/core/spin-engine.js"></script>
+<!-- Amagos de la guillotina de rib1 (pasa de largo, se queda a medias, vuelve y entra). -->
+<script src="src/fx/rib1-tease.js"></script>
+<script src="src/fx/bonus-chain-tension.js"></script>
+<script src="src/render/symbol-renderer.js"></script>
+<script src="src/render/reel-renderer.js"></script>
+<script src="src/render/giant-symbol-renderer.js"></script>
+<script src="src/render/bonus-landing-weight-player.js"></script>
+<script src="src/render/bonus-arrival-physics.js"></script>
+<script src="src/render/symbol-win-animation-player.js"></script>
+<script src="src/ui/number-font.js"></script>
+<script src="src/ui/parchment-ui.js"></script>
+<script src="src/ui/readouts.js"></script>
+<script src="src/ui/big-win-counter.js"></script>
+<!-- Resumen al acabar el Execution Bonus o la cadena del cuervo: el altar
+     con el humo de su boca. -->
+<script src="src/fx/altar-smoke.js"></script>
+<script src="src/ui/bonus-summary.js"></script>
+<!-- Ajustes de sonido del jugador (volumen musica/efectos, silencio):
+     antes que controls.js, que los usa en el boton de volumen. -->
+<script src="src/ui/audio-settings.js"></script>
+<script src="src/ui/controls.js"></script>
+<script src="src/debug/debug-panel.js"></script>
+<script src="src/debug/payment-debug.js"></script>
+<script src="src/debug/bonus-runtime-debug.js"></script>
+<script src="src/debug/win-symbol-debug.js"></script>
+<script src="src/scene/scene-manager.js"></script>
+<script src="src/fx/scene-grade.js"></script>
+<script src="src/fx/rib-bonus-rig.js"></script>
+<script src="src/scene/scene-fx.js"></script>
+<!-- Mecanica cuchilla pequena (small blade cut): capa visual autocontenida,
+     instanciada por game.js, independiente de la gran cuchilla del bonus. -->
+<script src="src/fx/small-blade-cut.js"></script>
+<!-- Reposición única de huecos tras el corte de cuchilla pequeña. -->
+<script src="src/fx/small-blade-refill.js"></script>
+<!-- Video puerta/esqueleto (webm alfa) que aparece detras de la cuchilla
+     pequena tras el corte: primer frame fijo, play al caer, ultimo frame
+     como imagen. Capa visual autocontenida, instanciada por game.js. -->
+<script src="src/fx/small-blade-door-video.js"></script>
+<!-- Pajaro (cuervo) que cae y se queda posado en el rodillo 1 cuando la
+     cuchilla pequena corta un simbolo de pajaro (webm alfa idle en loop).
+     Capa visual autocontenida, instanciada por game.js. -->
+<script src="src/fx/small-blade-bird-perch.js"></script>
+<!-- Ojos que brillan en canvas (los usan hood-eyes.js y el-juicio.js). -->
+<script src="src/fx/eye-glow.js"></script>
+<!-- Ojos del encapuchado cuando la piedra le da (instanciado por game.js). -->
+<script src="src/fx/hood-eyes.js"></script>
+<!-- Niebla del Execution Bonus en el negro de los rodillos (instanciada por game.js). -->
+<script src="src/fx/bonus-lane-fog.js"></script>
+<!-- Cartel FREE SPIN de la cadena del Raven Bonus (letras de oro). -->
+<script src="src/ui/raven-banner.js"></script>
+<!-- Ruleta Game: contador del cofre (simbolos caidos por la cuchilla pequena),
+     transicion de apertura del cofre y pantalla del juego de ruleta. -->
+<script src="src/ruleta/ruleta-game.js"></script>
+<!-- Tension del cofre: meta, temblor, luz y avisos segun se llena. -->
+<script src="src/fx/chest-tension.js"></script>
+<!-- Golpe al completar la cadena del Execution Bonus (temblor, destello, silencio). -->
+<script src="src/fx/bonus-entry-hit.js"></script>
+<!-- Execution Bonus: caidas de la guillotina, golpes e importes del corte, y
+     la tension (Marca de Sangre, ultima vela, Ultimo Aliento). -->
+<script src="src/fx/guillotine-drop.js"></script>
+<script src="src/fx/execution-tension.js"></script>
+<script src="src/fx/guadana-blood-x.js"></script>
+<!-- SUPER BONUS "El Juicio": numeros, reglas y puesta en escena. -->
+<script src="src/config/el-juicio.config.js"></script>
+<script src="src/bonus/el-juicio-engine.js"></script>
+<script src="src/math/line-economy.js"></script>
+<script src="src/math/economic-model.js"></script>
+<script src="src/fx/bonus-poster.js"></script>
+<script src="src/fx/el-juicio-fall.js"></script>
+<script src="src/fx/el-juicio-blight-stamp.js"></script>
+<script src="src/fx/dark-smoke.js"></script>
+<script src="src/fx/el-juicio.js"></script>
+<script src="game.js"></script>
+<script src="src/render/reel-texture-renderer.js"></script>
+
+<!-- Sistema de FX (Fase FX-1: infraestructura base, sin efectos finales). -->
+<script src="src/fx/fx-event-bus.js"></script>
+<script src="src/fx/fx-registry.js"></script>
+<script src="src/config/fx-rules.config.js"></script>
+<script src="src/fx/fx-director.js"></script>
+<script src="src/fx/effects/glow/eyes-glow-test.fx.js"></script>
+
+<!-- FX-5 Paso 1: capa de configuracion declarativa (anchors, capas, posicion). -->
+<script src="src/config/fx-anchors.config.js"></script>
+<script src="src/config/fx-effects.config.js"></script>
+<script src="src/fx/fx-position-resolver.js"></script>
+<script src="src/fx/players/css-fx-player.js"></script>
+<script src="src/fx/players/trajectory-fx-player.js"></script>
+<script src="src/fx/players/webgl-player.js"></script>
+<script src="src/fx/players/webm-alpha-player.js"></script>
+<script src="src/fx/effect-factory.js"></script>
+<script src="src/fx/debug/fx-debug-panel.js"></script>
+
+<!-- Audio Framework (independiente del juego, ver AUDIO_ARCHITECTURE.md). -->
+<script src="src/config/audio-buses.config.js"></script>
+<script src="src/config/audio-sounds.config.js"></script>
+<!-- Biblioteca del laboratorio; la seleccion activa se aplica despues. -->
+<script src="src/config/audio-library.config.js"></script>
+<script src="src/config/audio-rules.config.js"></script>
+<script src="src/config/audio-integration.config.js"></script>
+<script src="src/audio/audio-event-bus.js"></script>
+<script src="src/audio/audio-engine.js"></script>
+<script src="src/audio/audio-bus-manager.js"></script>
+<script src="src/audio/audio-director.js"></script>
+<script src="src/audio/perf/audio-performance-monitor.js"></script>
+<script src="src/audio/debug/audio-debug-panel.js"></script>
+<script src="src/audio/adaptive/adaptive-music-controller.js"></script>
+
+<!-- Reglas y tabla de pagos (lee los configs al abrirse) y menu central:
+     sonido y reglas (despues del Audio Framework). -->
+<script src="src/ui/rules-screen.js?v=20261025b"></script>
+<script src="src/ui/game-menu.js"></script>
+<!-- Pantalla de carga: la ultima, cuando todos los modulos ya existen. -->
+<script src="src/ui/loading-screen.js"></script>
+</body>
+</html>

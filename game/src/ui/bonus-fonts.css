@@ -1,0 +1,87 @@
+/* Fuentes de los rotulos de los bonus (peticion del usuario, 2026-10-17, con
+   las fuentes que trajo: assets/fonts).
+   - Buffied: las palabras de los rotulos del Execution Bonus y del Super Bonus
+     "El Juicio" (BLOOD MARK, LAST BREATH, la entrada, HARVEST, THE SENTENCE...)
+     y el titulo de su resumen. Las cifras y los signos siguen en el oro
+     cincelado (number-font.js con { words: true }: una
+     span.ossuary-number-font__word por letra).
+   - MCF Funera: el cartel BLIGHTED de los infectados de El Juicio.
+   Las dos son de uso personal / no comercial (Buffied-license.txt). */
+
+@font-face {
+  font-family: "Buffied";
+  src: url("../../assets/fonts/Buffied.ttf") format("truetype");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "MCF Funera";
+  src: url("../../assets/fonts/MCF-Funera.ttf") format("truetype");
+  font-display: block;
+}
+
+/* Cada letra, rellena con el degradado del oro cincelado de las cifras para
+   que los tintes de cada rotulo (sangre, hueso, ceniza, brasa: filtros sobre
+   el oro) le sienten igual que a las imagenes. Asentada en la linea base de
+   las cifras. */
+.ossuary-number-font__word {
+  display: block;
+  font-family: "Buffied", "Moria Citadel", Georgia, "Times New Roman", serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: pre;
+  margin-bottom: -0.16em;
+  padding: 0 0.015em;
+  color: #e8b85a;
+  background: linear-gradient(180deg,
+    #fff6d2 6%, #ffd876 26%, #e0a23a 46%, #8c5612 62%, #c4882c 78%, #f7d88a 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(0 1px 0 rgba(36, 14, 0, 0.95))
+    drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
+}
+
+/* Con palabras, un poco de aire entre letras (Buffied va muy junta). */
+.ossuary-number-font.has-words {
+  gap: 0.035em;
+}
+
+/* Entrada del bonus (FREE SPIN · 3 CHANCES, SUPER BONUS · 13 BELLS) y PLAY:
+   el mismo filo dorado que las letras de imagen (style.css). */
+.bonus-intro-modal__title .ossuary-number-font__word,
+.bonus-intro-btn__word .ossuary-number-font__word {
+  filter:
+    drop-shadow(0 0 0.6px rgba(255, 214, 140, 0.95))
+    drop-shadow(0 1px 0 rgba(36, 14, 0, 0.95))
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.85))
+    contrast(1.12)
+    saturate(1.12);
+}
+
+/* Resumen del Execution y del Super: el titulo en Buffied, mas grande (la
+   letra es baja) y con el mismo color de cada uno (bonus-summary.css). */
+.bonus-summary--execution .bonus-summary__title,
+.bonus-summary--super .bonus-summary__title {
+  font-family: "Buffied", "Moria Citadel", Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, min(var(--altar-w) * 0.105, 8vw), 62px);
+  letter-spacing: 0.05em;
+}
+
+/* Cartel BLIGHTED en MCF Funera: la letra es pequena para su cuerpo, asi que
+   va mas grande que el resto del cartel; hueso sobre el rojo. */
+.el-juicio-blight__text--funera {
+  font-family: "MCF Funera", "Moria Citadel", Georgia, serif;
+  font-size: 1.9em;
+  line-height: 0.82;
+  padding-top: 0.06em;
+  color: #f4e6cc;
+  text-shadow:
+    0 1px 0 #2a0000,
+    0 0 4px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(255, 60, 30, 0.7);
+}

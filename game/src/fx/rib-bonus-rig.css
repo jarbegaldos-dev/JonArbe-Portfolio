@@ -1,0 +1,260 @@
+/* BONUS de rib2/rib3 con vida (src/fx/rib-bonus-rig.js). Piezas horneadas
+   con tools/bake-rib-bonus-rig.js sobre un lienzo de 586x225: los
+   transform-origin de abajo son sus articulaciones en ese lienzo
+   (hombro 351,165 / codo 226,170 / cuello 420,116 / mandibula 416,104).
+   Todo se mueve con transform y opacity, y solo con el bloque ya caido. */
+
+/* El muneco pinta su propia ventana: fuera el castillo de fondo y el arte
+   plano de debajo. */
+.giant-strip-symbol.has-bonus-rig {
+  background-image: none;
+  overflow: hidden;
+}
+
+.giant-strip-symbol.has-bonus-rig > .symbol-art {
+  opacity: 0;
+}
+
+.rib-bonus-rig {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Mitades izquierdas: el brazo apunta al centro de la caja toracica. */
+.giant-strip-track[data-reel$="-left"] .rib-bonus-rig {
+  transform: scaleX(-1);
+}
+
+.rib-bonus-rig img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+}
+
+.rib-bonus-rig__bg {
+  object-fit: cover;
+}
+
+.rib-bonus-rig__body,
+.rib-bonus-rig__arm,
+.rib-bonus-rig__forearm,
+.rib-bonus-rig__torso,
+.rib-bonus-rig__head,
+.rib-bonus-rig__jaw {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.rib-bonus-rig__body { transform-origin: 70% 100%; }
+.rib-bonus-rig__arm { transform-origin: 59.9% 73.3%; }
+.rib-bonus-rig__forearm { transform-origin: 38.6% 75.6%; }
+.rib-bonus-rig__head { transform-origin: 71.7% 51.6%; }
+.rib-bonus-rig__jaw { transform-origin: 71% 46.2%; }
+
+/* Ojos: una brasa pequena al fondo de cada cuenca (cercana 398,81 y lejana
+   374,85), con un halo corto. */
+.rib-bonus-rig__eye {
+  position: absolute;
+  width: 3.4%;
+  height: 8.8%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 238, 200, 1) 0%, rgba(255, 120, 48, 0.95) 16%, rgba(214, 34, 12, 0.55) 34%, rgba(214, 34, 12, 0) 62%);
+  opacity: 0.85;
+}
+
+.rib-bonus-rig__eye--near { left: 68%; top: 37%; }
+.rib-bonus-rig__eye--far { left: 64.2%; top: 38.6%; width: 2.4%; height: 6.2%; }
+
+/* Luz fria detras del esqueleto: lo despega de la ventana. */
+.rib-bonus-rig__aura {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 30% 70% at 72% 52%, rgba(120, 196, 255, 0.42) 0%, rgba(80, 140, 230, 0.16) 45%, rgba(80, 140, 230, 0) 75%);
+  opacity: 0.7;
+}
+
+/* Niebla que cruza la ventana: dos capas a distinto paso. Cada capa mide el
+   doble y repite su dibujo a mitad, asi el bucle no salta. */
+.rib-bonus-rig__fog {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  background-repeat: repeat-x;
+  background-size: 50% 100%;
+  will-change: transform;
+}
+
+.rib-bonus-rig__fog--far {
+  background-image:
+    radial-gradient(ellipse 22% 26% at 18% 72%, rgba(150, 190, 235, 0.22), rgba(150, 190, 235, 0) 70%),
+    radial-gradient(ellipse 26% 22% at 58% 84%, rgba(150, 190, 235, 0.18), rgba(150, 190, 235, 0) 70%),
+    radial-gradient(ellipse 18% 20% at 86% 66%, rgba(150, 190, 235, 0.16), rgba(150, 190, 235, 0) 70%);
+}
+
+.rib-bonus-rig__fog--near {
+  background-image:
+    radial-gradient(ellipse 30% 24% at 30% 100%, rgba(170, 205, 240, 0.26), rgba(170, 205, 240, 0) 70%),
+    radial-gradient(ellipse 24% 20% at 76% 96%, rgba(170, 205, 240, 0.2), rgba(170, 205, 240, 0) 70%);
+}
+
+/* --- Vivo (bloque caido) -------------------------------------------------- */
+.rib-bonus-rig.is-landed .rib-bonus-rig__body { animation: rib-bonus-breathe 3.6s ease-in-out infinite; }
+.rib-bonus-rig.is-landed .rib-bonus-rig__arm { animation: rib-bonus-reach 3.6s ease-in-out infinite; }
+.rib-bonus-rig.is-landed .rib-bonus-rig__forearm { animation: rib-bonus-beckon 3.6s ease-in-out -0.5s infinite; }
+.rib-bonus-rig.is-landed .rib-bonus-rig__head { animation: rib-bonus-head 4.4s ease-in-out infinite; }
+.rib-bonus-rig.is-landed .rib-bonus-rig__jaw { animation: rib-bonus-chatter 4.4s linear infinite; }
+.rib-bonus-rig.is-landed .rib-bonus-rig__eye { animation: rib-bonus-eyes 1.7s ease-in-out infinite; }
+.rib-bonus-rig.is-landed .rib-bonus-rig__eye--far { animation-delay: -0.6s; }
+.rib-bonus-rig.is-landed .rib-bonus-rig__aura { animation: rib-bonus-aura 3s ease-in-out infinite; }
+.rib-bonus-rig.is-landed .rib-bonus-rig__fog--far { animation: rib-bonus-fog 18s linear infinite; }
+.rib-bonus-rig.is-landed .rib-bonus-rig__fog--near { animation: rib-bonus-fog 11s linear infinite; }
+
+@keyframes rib-bonus-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.4%); }
+}
+
+/* El brazo sube y baja hacia el centro, como si quisiera agarrar. Solo gira
+   en el hombro: desplazarlo abriria el corte con el torso. */
+@keyframes rib-bonus-reach {
+  0%, 100% { transform: rotate(0deg); }
+  40% { transform: rotate(3.4deg); }
+  70% { transform: rotate(-1.6deg); }
+}
+
+/* La mano llama: el antebrazo dobla en el codo. */
+@keyframes rib-bonus-beckon {
+  0%, 100% { transform: rotate(0deg); }
+  35% { transform: rotate(-5deg); }
+  55% { transform: rotate(3deg); }
+  75% { transform: rotate(-2deg); }
+}
+
+@keyframes rib-bonus-head {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(-3.5deg); }
+  62% { transform: rotate(2.4deg) translateY(0.6%); }
+}
+
+/* Castaneteo: tres golpes de mandibula y quieta el resto del bucle. */
+@keyframes rib-bonus-chatter {
+  0%, 52%, 100% { transform: rotate(0deg); }
+  56% { transform: rotate(-9deg); }
+  60% { transform: rotate(0deg); }
+  64% { transform: rotate(-7deg); }
+  68% { transform: rotate(0deg); }
+  72% { transform: rotate(-10deg); }
+  78% { transform: rotate(0deg); }
+}
+
+@keyframes rib-bonus-eyes {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.92); }
+  45% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+  60% { opacity: 0.78; transform: translate(-50%, -50%) scale(0.98); }
+}
+
+@keyframes rib-bonus-aura {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes rib-bonus-fog {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* --- Corte de la cuchilla ------------------------------------------------- */
+/* Al completar la cadena cae la cuchilla de rib1 y corta el brazo (game.js,
+   scheduleLockedRibInnerHalfCuts): el arte original pierde su mitad interior
+   (.bonus-inner-cut--left/right) y esa mitad cae. Aqui el esqueleto pierde la
+   misma mitad. El muneco va en espejo en las mitades izquierdas, asi que en su
+   propio espacio el brazo siempre es la mitad izquierda. */
+.giant-strip-symbol.has-bonus-rig:is(.bonus-inner-cut--left, .bonus-inner-cut--right) .rib-bonus-rig__body {
+  clip-path: inset(0 0 0 50%);
+}
+
+/* Lo que queda del brazo ya no llama. */
+.giant-strip-symbol.has-bonus-rig:is(.bonus-inner-cut--left, .bonus-inner-cut--right) .rib-bonus-rig__arm,
+.giant-strip-symbol.has-bonus-rig:is(.bonus-inner-cut--left, .bonus-inner-cut--right) .rib-bonus-rig__forearm {
+  animation: none;
+}
+
+/* Fogonazo del tajo, como el del arte original. */
+.giant-strip-symbol.has-bonus-rig.bonus-inner-cut-flash .rib-bonus-rig__part {
+  animation: bonus-inner-cut-flash 220ms ease-out forwards;
+}
+
+/* Grito: la mandibula se abre del todo, la cabeza va atras y los ojos se
+   encienden (clase que pone rib-bonus-rig.js al ver el corte). */
+.rib-bonus-rig.is-scream .rib-bonus-rig__jaw { animation: rib-bonus-scream-jaw 0.9s ease-out both; }
+.rib-bonus-rig.is-scream .rib-bonus-rig__head { animation: rib-bonus-scream-head 0.9s ease-out both; }
+.rib-bonus-rig.is-scream .rib-bonus-rig__eye { animation: rib-bonus-lunge-eyes 0.9s ease-out both; }
+
+@keyframes rib-bonus-scream-jaw {
+  0% { transform: rotate(0deg); }
+  14% { transform: rotate(-18deg); }
+  70% { transform: rotate(-12deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes rib-bonus-scream-head {
+  0% { transform: rotate(0deg); }
+  14% { transform: rotate(-6deg) translateY(0.8%); }
+  70% { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* --- Zarpazo al caer ------------------------------------------------------ */
+.rib-bonus-rig.is-lunge .rib-bonus-rig__arm { animation: rib-bonus-lunge-arm 1s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+.rib-bonus-rig.is-lunge .rib-bonus-rig__forearm { animation: rib-bonus-lunge-forearm 1s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+.rib-bonus-rig.is-lunge .rib-bonus-rig__body { animation: rib-bonus-lunge-body 1s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+.rib-bonus-rig.is-lunge .rib-bonus-rig__jaw { animation: rib-bonus-lunge-jaw 1s ease-out both; }
+.rib-bonus-rig.is-lunge .rib-bonus-rig__eye { animation: rib-bonus-lunge-eyes 1s ease-out both; }
+.rib-bonus-rig.is-lunge .rib-bonus-rig__aura { animation: rib-bonus-lunge-aura 1s ease-out both; }
+
+@keyframes rib-bonus-lunge-body {
+  0% { transform: translateX(3%) scale(0.96); }
+  22% { transform: translateX(-2.5%) scale(1.04); }
+  100% { transform: none; }
+}
+
+@keyframes rib-bonus-lunge-arm {
+  0% { transform: rotate(-7deg); }
+  20% { transform: rotate(6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes rib-bonus-lunge-forearm {
+  0% { transform: rotate(10deg); }
+  20% { transform: rotate(-7deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes rib-bonus-lunge-jaw {
+  0% { transform: rotate(0deg); }
+  18% { transform: rotate(-16deg); }
+  60% { transform: rotate(-6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes rib-bonus-lunge-eyes {
+  0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.8); }
+  16% { opacity: 1; transform: translate(-50%, -50%) scale(1.7); }
+  100% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes rib-bonus-lunge-aura {
+  0% { opacity: 0.5; }
+  16% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
