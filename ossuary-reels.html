@@ -19,8 +19,9 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/brand.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -56,11 +57,11 @@
       <img src="assets/ossuary-reels/img/game-base.webp" alt="" width="2400" height="1500" fetchpriority="high">
     </div>
     <div class="container hero-inner">
-      <span class="eyebrow">Case study · 2026</span>
+      <span class="eyebrow">Project in development · 2026</span>
       <h1>Ossuary Reels</h1>
       <p class="hero-lead">A dark-fantasy slot where the board fights back.</p>
       <div class="hero-ctas">
-        <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play the demo</a>
+        <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play earlier build</a>
         <a href="index.html#work" class="btn btn-ghost">Back to work</a>
       </div>
     </div>
@@ -71,7 +72,7 @@
       <div class="fact"><dt>My role</dt><dd>Game design, systems, art &amp; audio direction</dd></div>
       <div class="fact"><dt>Timeline</dt><dd>June 2026 – now</dd></div>
       <div class="fact"><dt>Team</dt><dd>Solo + AI-assisted development</dd></div>
-      <div class="fact"><dt>Status</dt><dd>Playable beta</dd></div>
+      <div class="fact"><dt>Status</dt><dd data-project-status>In development · earlier playable build</dd></div>
     </dl>
 
     <div class="tldr" data-reveal>
@@ -79,11 +80,12 @@
       <div>
         <ul>
           <li><b>All the design is mine:</b> the concept, the rules, every feature, the probability targets, the art and sound direction and the playtesting. AI coding tools wrote the code to my specs.</li>
-          <li><b>A board nobody has seen:</b> independent reels inside a ribcage, joined by 173 paylines designed for that shape.</li>
-          <li><b>Three bonus features that feed each other:</b> the Raven chain, the Chest gamble and the Execution Bonus. A fourth is in development.</li>
+          <li><b>A distinctive board:</b> independent reels inside a ribcage, joined by 173 paylines designed for that shape.</li>
+          <li><b>Three interconnected bonus features in design:</b> the Raven chain, the Chest gamble and the Execution Bonus. A fourth is in development.</li>
           <li><b>Feel tuned as one system:</b> probability, animation and music are timed together. The big-win counter is cut to its track.</li>
         </ul>
-        <p class="cs-note"><b>Note:</b> the public demo is an earlier build. The Raven chain, the golden crows and the new HUD arrive with the next beta.</p>
+        <p class="cs-note">The numerical values in this case study are development specifications or targets, not validated release results.</p>
+        <p class="cs-note" data-project-note>Work in progress. The playable build and artwork are provisional; some features described in the case study belong to a newer development version.</p>
       </div>
     </div>
   </div>
@@ -91,11 +93,12 @@
   <nav class="cs-subnav" aria-label="Case study sections">
     <ul id="csSubnavList">
       <li><a href="#idea">01 The idea</a></li>
-      <li><a href="#board">02 The board</a></li>
-      <li><a href="#features">03 Features</a></li>
-      <li><a href="#feel">04 Feel &amp; sound</a></li>
-      <li><a href="#iteration">05 Iteration</a></li>
-      <li><a href="#numbers">06 Numbers &amp; next</a></li>
+      <li><a href="#art-direction">02 Art direction</a></li>
+      <li><a href="#board">03 The board</a></li>
+      <li><a href="#features">04 Mechanics</a></li>
+      <li><a href="#feel">05 Feel &amp; sound</a></li>
+      <li><a href="#iteration">06 Iteration</a></li>
+      <li><a href="#numbers">07 Development notes</a></li>
     </ul>
   </nav>
 
@@ -104,23 +107,24 @@
     <!-- 01 — The idea -->
     <section id="idea" class="cs-section" data-reveal>
       <span class="eyebrow">01 · The idea</span>
-      <h2>&ldquo;Fine. I&rsquo;ll make my own slot.&rdquo;</h2>
-      <div class="cs-clip" aria-hidden="true">
-        <video class="cs-heading-mark-source" autoplay muted loop playsinline webkit-playsinline>
-          <source src="assets/ossuary-reels/skeleton-stone-throw.webm" type="video/webm">
-          <source src="assets/ossuary-reels/skeleton-stone-throw.mp4" type="video/mp4">
-        </video>
-        <canvas class="cs-heading-mark"></canvas>
-      </div>
-      <p class="cs-body">One night, playing an online slot with friends, we won a good amount, and the casino closed our account without paying. Out of frustration I thought: fine, I&rsquo;ll make my own.</p>
-      <p class="cs-body">It quickly became something else. I didn&rsquo;t want another generic slot. I wanted a dark-fantasy world with personality (skeletons, ravens, strange machines) where the first reaction is <b>&ldquo;what is this?&rdquo;</b>, followed by <b>&ldquo;I like this atmosphere.&rdquo;</b></p>
-      <p class="cs-body">Then the player keeps spinning to find out what else can happen. A raven appears. A blade drops. A skeleton steps out of a door. They know these things can happen, but never exactly when.</p>
-      <p class="cs-pullquote">I want them to leave with that small frustration of &ldquo;so close&rdquo;: the kind that brings you back.</p>
+      <h2>A world, a machine, a feeling.</h2>
+      <p class="cs-lead">Ossuary Reels is my independent game-design project: a dark-fantasy slot built around a ribcage-shaped board.</p>
+      <p class="cs-body">The design challenge is to make an unusual shape playable, give its mechanics a shared visual language and use animation and sound to make each event readable and expressive.</p>
+      <p class="cs-body">This case study follows three threads: art direction, mechanics and game feel. It documents work in progress; the final build, artwork and validation will replace the current development material.</p>
+    </section>
+
+    <section id="art-direction" class="cs-section" data-reveal>
+      <span class="eyebrow">02 · Art direction</span><h2>Build a visual language around the bones.</h2>
+      <p class="cs-lead">The ribcage is both the visual anchor and the structure of the game. The direction brings bone, wood, ravens and mechanical movement into the same world.</p>
+      <dl class="decision"><div><dt>Intent</dt><dd>A dark-fantasy machine with a recognisable silhouette, rather than a conventional rectangular board.</dd></div><div><dt>Direction</dt><dd>Use the anatomy to organise the scene, then carry the same world into symbols, bonus moments and interface.</dd></div><div><dt>Constraint</dt><dd>The atmosphere must leave the rules and important events readable. Composition and motion need to support the player’s attention.</dd></div></dl>
+      <figure class="figure"><img data-portfolio-image="atmosphere" src="assets/ossuary-reels/img/atmosphere.webp" alt="Execution Bonus development scene showing the visual world of Ossuary Reels" width="2400" height="1500" loading="lazy"><figcaption class="caption">Current development imagery. Final assets and detailed credits will be updated with the release.</figcaption></figure>
+      <p class="cs-body">My contribution is the concept, visual direction, selection and iteration. The gallery presents work in progress; individual asset credits will be added with the final release.</p>
+      <a class="proof" href="index.html#art">View the visual development gallery →</a>
     </section>
 
     <!-- 02 — The board -->
     <section id="board" class="cs-section" data-reveal>
-      <span class="eyebrow">02 · The board</span>
+      <span class="eyebrow">03 · The board</span>
       <h2>A ribcage instead of a grid</h2>
       <p class="cs-lead">The board is a ribcage of independent reels: a top rib, a centre spine and four ribs on each side, with the chest at the bottom. I designed the paylines around the bones, so a win can travel in directions a 5×3 grid never allows.</p>
       <figure class="figure">
@@ -132,7 +136,7 @@
         <figure class="figure"><span class="ba-tag is-after">IN THE GAME</span><img src="assets/ossuary-reels/img/game-base-hud.webp" alt="The board in the playable demo, built as a wooden machine" width="1800" height="1125" loading="lazy"></figure>
       </div>
       <dl class="decision">
-        <div><dt>Goal</dt><dd>A board you&rsquo;ve never seen, that still reads at a glance.</dd></div>
+        <div><dt>Goal</dt><dd>A distinctive board that still reads at a glance.</dd></div>
         <div><dt>Decision</dt><dd>Keep the ribcage layout, but build it as a working machine with clear lanes.</dd></div>
         <div><dt>Rule</dt><dd>Lines start on the left and may step one row up or down per reel: 173 paths, three of a kind or wild to pay.</dd></div>
       </dl>
@@ -140,9 +144,9 @@
 
     <!-- 03 — Features -->
     <section id="features" class="cs-section" data-reveal>
-      <span class="eyebrow">03 · Features</span>
-      <h2>Three bonus features that feed each other</h2>
-      <p class="cs-lead">Each one is built around a single feeling, and each one hands tension to the next. A fourth is in development.</p>
+      <span class="eyebrow">04 · Mechanics</span>
+      <h2>Three bonus features designed to feed each other</h2>
+      <p class="cs-lead">Each is built around a feeling and a mechanical role. These are development designs; the public demo is an earlier build. A fourth feature is in development.</p>
 
       <article id="raven-chain" class="feature">
         <span class="feature-num">01</span>
@@ -227,7 +231,7 @@
 
     <!-- 04 — Feel & sound -->
     <section id="feel" class="cs-section" data-reveal>
-      <span class="eyebrow">04 · Feel &amp; sound</span>
+      <span class="eyebrow">05 · Feel &amp; sound</span>
       <h2>Let moments breathe</h2>
       <p class="cs-lead">Not everything needs to happen at once, and not every moment needs the same intensity. Rhythm, pauses, sound and animation decide how much weight a moment has. A lot of things worked technically and still didn&rsquo;t feel right, so I kept going back.</p>
 
@@ -259,7 +263,7 @@
 
     <!-- 05 — Iteration -->
     <section id="iteration" class="cs-section" data-reveal>
-      <span class="eyebrow">05 · Iteration</span>
+      <span class="eyebrow">06 · Iteration</span>
       <h2>Mountains</h2>
       <p class="cs-body">Most of the development was iteration. At one point I threw away almost the entire original reel structure because, although it worked, it didn&rsquo;t feel right. It was a big step back, and one of the best decisions of the project.</p>
       <p class="cs-body">It kept happening: I&rsquo;d improve one part and suddenly another felt weaker. I started calling them mountains.</p>
@@ -278,8 +282,10 @@
 
     <!-- 06 — Numbers & next -->
     <section id="numbers" class="cs-section" data-reveal>
-      <span class="eyebrow">06 · Numbers &amp; next</span>
-      <h2>Where it stands</h2>
+      <span class="eyebrow">07 · Development notes</span>
+      <h2>Development status &amp; next steps</h2>
+      <p class="cs-body">The project is still in development. The specifications below are retained for readers interested in this slot’s systems; the release build, final artwork and measured results are not yet complete.</p>
+      <details class="development-details"><summary>View provisional slot specifications</summary>
       <div class="sheet">
         <div class="sheet-head"><h3>Game sheet</h3><span>Design targets for the current beta</span></div>
         <div class="sheet-grid">
@@ -293,6 +299,7 @@
           <div class="sheet-cell"><b>HTML5</b><span>Desktop &amp; mobile, plays in the browser</span></div>
         </div>
       </div>
+      </details>
       <div class="cs-split">
         <div>
           <p class="mini-label">The math</p>
@@ -300,7 +307,7 @@
         </div>
         <div>
           <p class="mini-label">How I built it</p>
-          <p class="cs-body">I&rsquo;m a designer, not a programmer, so I built Ossuary Reels the way a director works with a team: I defined every system, rule, timing and asset, and used AI coding tools (Claude Code and Codex) to implement them and iterate, sometimes several versions in a day. That&rsquo;s how one person took a slot from an idea to a playable build.</p>
+          <p class="cs-body">I define the concept, rules, visual direction and timing, then use AI coding tools (Claude Code and Codex) to implement my specifications. I review the result and iterate.</p>
           <p class="mini-label">What&rsquo;s next</p>
           <ul class="cs-list">
             <li>A fourth bonus feature, in development.</li>
@@ -313,9 +320,10 @@
 
     <section class="cs-final" data-reveal>
       <span class="eyebrow">Play it</span>
-      <h2>The best way to understand it is to play it.</h2>
+      <h2>Explore the current prototype.</h2>
       <div class="row-ctas">
-        <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play Ossuary Reels</a>
+        <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play earlier build</a>
+        <a href="index.html#business" class="btn btn-ghost">License or buy this game</a>
         <a href="index.html#contact" class="btn btn-ghost">Get in touch</a>
       </div>
     </section>
@@ -330,9 +338,12 @@
     <a href="https://www.linkedin.com/in/jon-arbe/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="assets/cv/Jon-Arbe-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
   </nav>
+  <p class="footer-note">Ossuary Reels is a play-money demo. No real-money gambling takes place on this site.</p>
 </footer>
 
+<script src="js/portfolio-content.js"></script>
 <script src="js/alpha-video-layer.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
+

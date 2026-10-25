@@ -1,24 +1,12 @@
 (function () {
   'use strict';
 
-  /* ---------------------------------------------------------
-     MEDIA — the one place to switch on video when the beta's
-     footage exists. Leave a value as null and the site keeps the
-     still images it uses today.
-       heroVideo:      muted loop behind the hero, e.g.
-                       { mp4: 'assets/ossuary-reels/video/hero-loop.mp4',
-                         webm: 'assets/ossuary-reels/video/hero-loop.webm' }
-       trailerYouTube: the trailer's YouTube id; shows every
-                       "Watch the trailer" button ([data-trailer]).
-       photo:          portrait for the About section, e.g.
-                       'assets/photo/jon.webp' (4:5, at least 480x600).
-     Any <img data-video="clip.mp4" data-video-webm="clip.webm"> also
-     turns into a muted looping clip once it scrolls into view.
-     --------------------------------------------------------- */
+  /* Optional release media is configured in js/portfolio-content.js.
+     Null values preserve the current still images and hide trailer links. */
   var MEDIA = {
-    heroVideo: null,
-    trailerYouTube: null,
-    photo: null
+    heroVideo: (window.PORTFOLIO || {}).heroVideo || null,
+    trailerYouTube: (window.PORTFOLIO || {}).trailerYouTube || null,
+    photo: (window.PORTFOLIO || {}).photo || null
   };
 
   if (MEDIA.photo) {
@@ -36,7 +24,7 @@
      works from both index.html and ossuary-reels.html since both
      live at the repo root, and stays subdirectory-safe on GitHub Pages.
      --------------------------------------------------------- */
-  var GAME_URL = 'game/index.html';
+  var GAME_URL = (window.PORTFOLIO || {}).gameUrl || 'game/index.html';
   var PLAY_TRIGGER_SELECTOR = '[data-play]';
 
   var playTriggers = document.querySelectorAll(PLAY_TRIGGER_SELECTOR);
@@ -490,3 +478,4 @@
     });
   }
 })();
+
