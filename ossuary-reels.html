@@ -323,6 +323,36 @@
       </div>
     </section>
 
+
+    <section id="loop" class="cs-section">
+      <span class="eyebrow">The loop · 30 seconds</span><h2>One spin. Several connected systems.</h2>
+      <ol class="cs-list"><li><b>Spin → resolve.</b> Symbols stop; valid paths award a result.</li><li><b>Blades → chest.</b> Cut symbols leave gaps and contribute to stored progress.</li><li><b>Ravens → wilds and continuation.</b> A successful stone throw changes the board and can extend the sequence.</li><li><b>Bonus triggers → separate features.</b> The chest offers a collect-or-gamble choice; the Execution Bonus uses candles and cuts.</li><li><b>Resolve the feature → return to the base game.</b> Animation and audio communicate each transition.</li></ol>
+      <p class="cs-note">These are connected branches, not a guaranteed sequence of events on every spin. The public demo may precede the design described here.</p>
+    </section>
+    <section id="math-tuning" class="cs-section">
+      <span class="eyebrow">Math &amp; tuning</span><h2>What is defined. What still needs measuring.</h2>
+      <p class="cs-lead">The intended experience combines frequent small outcomes with larger bonus events. High volatility is a design intention; it has not been established by a full-game simulation.</p>
+      <table class="numbers"><caption>Development paytable excerpt · source is explicitly marked DEV_ONLY</caption><thead><tr><th>Symbol</th><th>3 matches</th><th>4 matches</th><th>5 matches</th></tr></thead><tbody>
+      <tr><th>Ancestral Skull</th><td>0.10</td><td>0.25</td><td>0.50</td></tr>
+      <tr><th>Dark Heart</th><td>0.05</td><td>0.15</td><td>0.30</td></tr>
+      <tr><th>Ancient Gold Coin</th><td>0.05</td><td>0.10</td><td>0.20</td></tr>
+      <tr><th>Silver Coin / Vertebra / Femur</th><td>0.05</td><td>0.10</td><td>0.15</td></tr></tbody></table>
+      <p class="cs-body">These are raw development configuration values, not a certified paytable or an estimate of total return. Route resolution, bet scaling and bonus interactions must be included before interpreting the economy.</p>
+      <a class="proof" href="https://github.com/jarbegaldos-dev/JonArbe-Portfolio/blob/main/game/src/config/paytable.dev.config.js">Inspect the development paytable →</a>
+      <table class="numbers"><caption>Validation ledger</caption><tr><th>RTP</th><td>98% target. Measured full-game result pending.</td></tr><tr><th>Symbol probabilities</th><td>Must be derived from the version-matched reel model; paytable values are not probabilities.</td></tr><tr><th>Chest / ravens / Execution triggers</th><td>Measured frequencies pending. Count each event over a defined number of paid base spins, including completed bonus chains.</td></tr><tr><th>Volatility</th><td>Measure variance and payout distribution alongside return; a large maximum prize alone does not establish volatility.</td></tr><tr><th>Simulation evidence</th><td>No full-game simulation result is published here yet. The existing utility consumes outcomes supplied by a caller; running it alone does not validate the game.</td></tr></table>
+      <p class="mini-label">Measurement definitions</p><p class="cs-body"><code>Observed RTP = total returned / total wagered × 100</code><br><code>Event frequency = qualifying events / eligible paid base spins</code></p>
+      <p class="cs-body">For the final build, record the commit, seed policy, paid-spin count, complete feature payouts and uncertainty. Keep bonus-buy runs separate from ordinary base-game runs. Blade-meter and multiplier formulas must be documented against that same build before publishing definitive values.</p>
+    </section>
+    <section id="contribution" class="cs-section">
+      <span class="eyebrow">What I actually did</span><h2>My decisions, the tools and the evidence.</h2>
+      <table class="numbers"><tr><th>Game design</th><td>I define the board, rules, feature relationships and intended pacing. The board and feature breakdowns explain those choices.</td></tr><tr><th>Code</th><td>I specify behaviour and review the playable result. Claude Code and Codex assist implementation. The source links make that implementation inspectable.</td></tr><tr><th>Visual direction</th><td>I define references, proportions and details, refine prompts and select AI-generated variations.</td></tr><tr><th>Game feel</th><td>I direct animation and sound timing; the counter case documents a specific revision.</td></tr><tr><th>Interview walkthrough</th><td>I can walk through my intentions, alternatives and prototype revisions. This portfolio does not claim independent authorship of all code or completed mathematical validation.</td></tr></table>
+    </section>
+    <section id="build-notes" class="cs-section">
+      <span class="eyebrow">Build notes</span><h2>Before you play</h2>
+      <ul class="cs-list"><li><b>Public prototype:</b> earlier than some design notes and imagery on this page.</li><li><b>Economy:</b> targets and development values remain provisional; full-game validation is pending.</li><li><b>Compatibility:</b> browser-based. A device-by-device mobile and accessibility test report is not yet published.</li><li><b>How to explore:</b> read the loop first, then use the playable demo or the feature breakdowns.</li><li><b>Issue tracking:</b> no verified bug list is published here yet. Future entries should include build, device, reproduction steps, expected result and status.</li></ul>
+      <a class="proof" href="mailto:j.arbegaldos@gmail.com?subject=Ossuary%20Reels%20prototype%20feedback">Send prototype feedback →</a>
+    </section>
+
     <section id="implementation" class="cs-section" data-reveal>
       <span class="eyebrow">08 · Implementation</span>
       <h2>Inspect the prototype</h2>
