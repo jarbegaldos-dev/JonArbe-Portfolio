@@ -22,6 +22,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/brand.css">
+<style>
+.loop-flow{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:1rem;counter-reset:loop}
+.loop-flow li{counter-increment:loop;padding:1.25rem;border:1px solid #746447;border-radius:8px;background:#15120e;line-height:1.65}
+.loop-flow li::before{content:counter(loop,decimal-leading-zero);display:block;color:#e8c987;font-weight:800;margin-bottom:.5rem}
+.loop-flow b{display:block;color:#f4e8d0;margin-bottom:.5rem}
+.numbers{overflow-wrap:anywhere}
+a:focus-visible,button:focus-visible{outline:3px solid #e8c987;outline-offset:4px}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -92,6 +100,7 @@
 
   <nav class="cs-subnav" aria-label="Case study sections">
     <ul id="csSubnavList">
+      <li><a href="#loop">Quick loop</a></li>
       <li><a href="#idea">01 The idea</a></li>
       <li><a href="#art-direction">02 Art direction</a></li>
       <li><a href="#board">03 The board</a></li>
@@ -99,11 +108,20 @@
       <li><a href="#feel">05 Feel &amp; sound</a></li>
       <li><a href="#iteration">06 Iteration</a></li>
       <li><a href="#numbers">07 Development notes</a></li>
+      <li><a href="#math-tuning">Math &amp; tuning</a></li>
+      <li><a href="#contribution">My contribution</a></li>
+      <li><a href="#build-notes">Build notes</a></li>
       <li><a href="#implementation">08 Implementation</a></li>
     </ul>
   </nav>
 
   <div class="container">
+
+    <section id="loop" class="cs-section">
+      <span class="eyebrow">The loop · 30 seconds</span><h2>One spin. Several connected systems.</h2>
+      <ol class="loop-flow"><li><b>Spin → resolve.</b> Symbols stop; valid paths award a result.</li><li><b>Blades → chest.</b> Cut symbols leave gaps and contribute to stored progress.</li><li><b>Ravens → wilds and continuation.</b> A successful stone throw changes the board and can extend the sequence.</li><li><b>Bonus triggers → separate features.</b> The chest offers a collect-or-gamble choice; the Execution Bonus uses candles and cuts.</li><li><b>Resolve the feature → return to the base game.</b> Animation and audio communicate each transition.</li></ol>
+      <p class="cs-note">These are connected branches, not a guaranteed sequence of events on every spin. The public demo may precede the design described here.</p>
+    </section>
 
     <!-- 01 — The idea -->
     <section id="idea" class="cs-section" data-reveal>
@@ -324,11 +342,7 @@
     </section>
 
 
-    <section id="loop" class="cs-section">
-      <span class="eyebrow">The loop · 30 seconds</span><h2>One spin. Several connected systems.</h2>
-      <ol class="cs-list"><li><b>Spin → resolve.</b> Symbols stop; valid paths award a result.</li><li><b>Blades → chest.</b> Cut symbols leave gaps and contribute to stored progress.</li><li><b>Ravens → wilds and continuation.</b> A successful stone throw changes the board and can extend the sequence.</li><li><b>Bonus triggers → separate features.</b> The chest offers a collect-or-gamble choice; the Execution Bonus uses candles and cuts.</li><li><b>Resolve the feature → return to the base game.</b> Animation and audio communicate each transition.</li></ol>
-      <p class="cs-note">These are connected branches, not a guaranteed sequence of events on every spin. The public demo may precede the design described here.</p>
-    </section>
+
     <section id="math-tuning" class="cs-section">
       <span class="eyebrow">Math &amp; tuning</span><h2>What is defined. What still needs measuring.</h2>
       <p class="cs-lead">The intended experience combines frequent small outcomes with larger bonus events. High volatility is a design intention; it has not been established by a full-game simulation.</p>
