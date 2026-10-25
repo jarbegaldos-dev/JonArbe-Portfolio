@@ -37,7 +37,7 @@
       <a href="#work">Work</a>
       <a href="#art">Art direction</a>
       <a href="#about">About</a>
-      <a href="#business">Business</a>
+      <a href="#business">Work with me</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-icons">
@@ -76,8 +76,8 @@
             <canvas class="hero-raven"></canvas>
           </div>
         </div>
-        <p class="hero-lead">I shape worlds, mechanics<br>and <em>how they feel.</em></p>
-        <p class="hero-sub">I’m Jon, a game designer based in Tokyo. My focus is art direction, mechanics and the rhythm of play — bringing the look, the rules and the feeling together.</p>
+        <p class="hero-lead">I turn strange ideas<br>into <em>playable systems.</em></p>
+        <p class="hero-sub">I’m Jon, a game designer based in Tokyo. I explore unusual boards, connected mechanics and the rhythm of play. Ossuary Reels is my solo case study, built with AI-assisted code and visual development.</p>
         <div class="hero-ctas">
           <a href="#work" class="btn btn-gold">Explore my work</a>
           <a href="#art" class="btn btn-ghost">See the art direction</a>
@@ -86,7 +86,7 @@
         <p class="hero-meta"><b>Based in Tokyo</b> · Open to remote roles</p>
         <div class="hero-paths">
           <a href="#contact"><b>Hiring a designer?</b><span>CV, role and availability →</span></a>
-          <a href="#business"><b>Want one of my games?</b><span>License, buy or commission →</span></a>
+          <a href="ossuary-reels.html#implementation"><b>How was it built?</b><span>Source, process and limitations →</span></a>
         </div>
       </div>
     </div>
@@ -102,12 +102,12 @@
           <span class="eyebrow">Selected work · In development</span>
           <h2 class="section-heading">Ossuary Reels</h2>
         </div>
-        <p class="section-lede">An independent dark-fantasy slot prototype. A study in visual identity, interconnected mechanics and the timing of anticipation and reward.</p>
+        <p class="section-lede">A solo dark-fantasy slot prototype built around a ribcage-shaped board. I use it to explore how visual constraints, probability and audiovisual timing can work together. Explore the playable build, design decisions and public source.</p>
       </div>
 
       <dl class="facts facts--inline" data-reveal>
         <div class="fact"><dt>Role</dt><dd>Game design, systems, art &amp; audio direction</dd></div>
-        <div class="fact"><dt>Team</dt><dd>Solo designer + AI-assisted development</dd></div>
+        <div class="fact"><dt>Team</dt><dd>Solo project · AI-assisted code &amp; visuals</dd></div>
         <div class="fact"><dt>Timeline</dt><dd>June 2026 – now</dd></div>
         <div class="fact"><dt>Platform</dt><dd>Web · desktop &amp; mobile</dd></div>
         <div class="fact"><dt>Status</dt><dd data-project-status>In development · earlier playable build</dd></div>
@@ -123,7 +123,7 @@
       <ul class="skills" data-reveal aria-label="What I bring">
         <li>Bonus feature design</li><li>Slot math &amp; paytables</li><li>Economy &amp; pacing</li><li>Probability tuning</li><li>Game feel &amp; audio timing</li><li>Art direction</li><li>Design documentation</li><li>AI-assisted prototyping</li>
       </ul>
-      <p class="project-status" data-reveal><span class="status-dot" aria-hidden="true"></span><span data-project-note>Work in progress. The playable build and artwork are provisional; some features described in the case study belong to a newer development version.</span></p>
+      <p class="project-status" data-reveal><span class="status-dot" aria-hidden="true"></span><span data-project-note>Solo prototype in development. The public demo is an earlier build; design notes and images can show later revisions. Code and visual development are AI-assisted. Economy targets are not validated results.</span></p>
       <div class="principles work-pillars" data-reveal>
         <div class="principle"><h3>Art direction</h3><p>A world of bone, wood and ravens, developed from an early ribcage concept into a working machine.</p><a class="proof" href="#art">Explore the visual development →</a></div>
         <div class="principle"><h3>Mechanics</h3><p>A shaped board and connected bonus systems, built around cause, consequence and surprise.</p><a class="proof" href="ossuary-reels.html#features">Explore the mechanics →</a></div>
@@ -175,6 +175,7 @@
 
       <div class="row-ctas">
         <a href="ossuary-reels.html" class="btn btn-gold">Read the case study</a>
+        <a href="ossuary-reels.html#implementation" class="btn btn-ghost">Explore the implementation</a>
         <a href="game/index.html" class="btn btn-ghost" data-play><span class="play-tri"></span>Play earlier build</a>
         <a href="#" class="btn btn-ghost" data-trailer hidden><span class="play-tri"></span>Watch the trailer</a>
       </div>
@@ -190,7 +191,7 @@
           <span class="eyebrow">The cast · Ossuary Reels</span>
           <h2 class="section-heading">Every symbol has a job.</h2>
         </div>
-        <p class="section-lede">Nothing on the board is decoration. Each character is a mechanic you can see, and each one changes what happens next.</p>
+        <p class="section-lede">I use the cast to make the rules visible: ravens carry multipliers, blades cut symbols and the chest stores them. These descriptions follow the evolving design; the public build may differ.</p>
       </div>
       <div class="cast">
         <figure class="cast-card cast-card--wide" data-reveal>
@@ -199,7 +200,7 @@
             <img src="assets/ossuary-reels/cast/skeleton-rico.webp" alt="Rich skeleton with a crown in its stocks" width="720" height="401" loading="lazy">
             <img src="assets/ossuary-reels/cast/skeleton-pobre.webp" alt="Poor skeleton in its stocks" width="720" height="382" loading="lazy">
           </div>
-          <figcaption><span>Nº 01 · Execution Bonus</span><h3>The Condemned</h3><p>Poor, Noble and Rich, chained in their stocks. Each one pays for its hands and for its head, so every cut is a decision about what is left on the board.</p></figcaption>
+          <figcaption><span>Nº 01 · Execution Bonus</span><h3>The Condemned</h3><p>Poor, Noble and Rich, chained in their stocks. The design assigns separate rewards to hands and heads, making what remains on the board visible as the bonus progresses.</p></figcaption>
         </figure>
         <figure class="cast-card" data-reveal data-reveal-delay="1">
           <div class="cast-art"><img src="assets/ossuary-reels/cast/death.webp" alt="Death, a hooded figure with skeletal hands" width="420" height="931" loading="lazy" class="is-tall"></div>
@@ -229,42 +230,27 @@
   <section id="design-doc" class="section-pad paper doc-section">
     <div class="container">
       <div class="sec-head" data-reveal>
-        <div>
-          <span class="eyebrow">From the design doc · Ossuary Reels</span>
-          <h2 class="section-heading">Feelings, with numbers behind them.</h2>
-        </div>
-        <p class="section-lede">Every feature starts as a feeling and ends as a table. Three excerpts from the working math model, as they stand in the current development build.</p>
+        <div><span class="eyebrow">Design notes · Ossuary Reels</span><h2 class="section-heading">What each system is there to do.</h2></div>
+        <p class="section-lede">The numbers are still being tuned. These are the design questions behind the features, and what needs checking before the economy can be considered balanced.</p>
       </div>
       <div class="docs">
-        <article class="doc doc--wide" data-reveal>
-          <header><span class="doc-id">GDD · 04.2</span><h3>Chest Gamble: the bone wheel</h3><p>Goal: make gambling a real choice. Collect pays 19× the bet for sure; the wheel risks it for a key.</p></header>
-          <table class="doc-table">
-            <thead><tr><th>Key</th><th>Prize</th><th class="num">Weight</th><th class="num">Chance</th><th></th></tr></thead>
-            <tbody><tr class="t-bronze"><td><i></i>Bronze</td><td>×0</td><td class="num">435</td><td class="num">43.5%</td><td class="bar"><span style="width:100%"></span></td></tr><tr class="t-bronze"><td><i></i>Bronze</td><td>×10</td><td class="num">238</td><td class="num">23.8%</td><td class="bar"><span style="width:55%"></span></td></tr><tr class="t-silver"><td><i></i>Silver</td><td>×25</td><td class="num">160</td><td class="num">16.0%</td><td class="bar"><span style="width:37%"></span></td></tr><tr class="t-silver"><td><i></i>Silver</td><td>×50</td><td class="num">85</td><td class="num">8.5%</td><td class="bar"><span style="width:20%"></span></td></tr><tr class="t-gold"><td><i></i>Gold</td><td>×100</td><td class="num">40</td><td class="num">4.0%</td><td class="bar"><span style="width:9%"></span></td></tr><tr class="t-red"><td><i></i>Red</td><td>Execution Bonus</td><td class="num">40</td><td class="num">4.0%</td><td class="bar"><span style="width:9%"></span></td></tr><tr class="t-black"><td><i></i>Black</td><td>Super Bonus</td><td class="num">2</td><td class="num">0.2%</td><td class="bar"><span style="width:0%"></span></td></tr></tbody>
-          </table>
-          <p class="doc-note"><b>Design note:</b> the cash keys alone return about 14.6× on average, below the 19× of Collect. The red and black keys are what make the gamble worth it: 1 spin in 25 starts the Execution Bonus, 1 in 500 the Super Bonus.</p>
+        <article class="doc" data-reveal>
+          <header><span class="doc-id">01 · Chest</span><h3>Progress between payouts</h3><p>A blade removes symbols and can break a winning line. Sending those symbols into the chest makes that loss contribute to a later event.</p></header>
+          <p class="doc-note">The collect-or-gamble choice changes the spread of possible outcomes. Its balance depends on the value of every wheel result, including bonus entries; cash prizes alone cannot establish whether the gamble is worthwhile.</p>
+          <a class="proof" href="ossuary-reels.html#blades-chest">Read the trade-off →</a>
         </article>
-        <article class="doc" data-reveal data-reveal-delay="1">
-          <header><span class="doc-id">GDD · 02.3</span><h3>The Golden Raven</h3><p>Goal: a rare moment that rewrites the board.</p></header>
-          <dl class="doc-kv">
-            <div><dt>Golden crow</dt><dd>12% of crows</dd></div>
-            <div><dt>×10</dt><dd>70%</dd></div>
-            <div><dt>×25</dt><dd>22%</dd></div>
-            <div><dt>×50</dt><dd>8%</dd></div>
-            <div><dt>Average</dt><dd>×16.5</dd></div>
-            <div><dt>Stays</dt><dd>2–5 base spins</dd></div>
-          </dl>
-          <p class="doc-note">Rare enough to feel like an event, and big enough to rewrite the board when it lands.</p>
+        <article class="doc" data-reveal>
+          <header><span class="doc-id">02 · Ravens</span><h3>Make a chain readable</h3><p>A perched raven carries a multiplier. A stone hit turns its column wild and extends the chain, giving the player a visible cause for each extra spin.</p></header>
+          <p class="doc-note">The design uses decreasing hit chances to limit chain length. Golden ravens add larger multiplier jumps. Both need full-round simulation before their contribution to return and variance is established.</p>
+          <a class="proof" href="ossuary-reels.html#raven-chain">Read the iteration →</a>
         </article>
-        <article class="doc" data-reveal data-reveal-delay="2">
-          <header><span class="doc-id">GDD · 03.4</span><h3>Execution Bonus: the hand box</h3><p>Goal: every cut should push the multiplier, faster at the top.</p></header>
-          <ol class="doc-ladder">
-            <li><span>2 hands</span><b>×2</b></li><li><span>2</span><b>×3</b></li><li><span>3</span><b>×4</b></li><li><span>4</span><b>×6</b></li><li><span>6</span><b>×10</b></li><li><span>10</span><b>×20</b></li><li><span>15</span><b>×50</b></li><li><span>25</span><b>×100</b></li><li><span>50</span><b>×500</b></li>
-          </ol>
-          <p class="doc-note">Selected steps of a 16-level ladder. Hands needed per level, multiplier stuck on the guillotine.</p>
+        <article class="doc" data-reveal>
+          <header><span class="doc-id">03 · Execution</span><h3>A bonus with a visible clock</h3><p>Three candles show the remaining chances. A guillotine cut pays and restores them, while collected hands raise the multiplier.</p></header>
+          <p class="doc-note">The aim is to make remaining time and accumulated value easy to follow. Reset frequency and multiplier growth must be tuned together, because each affects the length and cost of the bonus.</p>
+          <a class="proof" href="ossuary-reels.html#execution-bonus">Read the pacing decisions →</a>
         </article>
       </div>
-      <p class="doc-foot">Development values (economy model v2, RTP target 98%, still in tuning). The full math model, paytables and GDD are available under NDA. <a href="#business">Talk business →</a></p>
+      <p class="doc-foot">98% is an RTP design target, not a measured result. The case study separates design intent from validation still to do. <a href="ossuary-reels.html#numbers">See development limits →</a></p>
     </div>
   </section>
 
@@ -277,7 +263,7 @@
         <figure class="art-piece" data-reveal><img data-portfolio-image="board" src="assets/ossuary-reels/img/game-base-hud.webp" alt="Development screenshot of the wooden reel machine and its interface" width="1800" height="1125" loading="lazy"><figcaption><span>02 · Material &amp; interface</span><h3>Make the world playable.</h3><p>Carry that structure into a machine with visible lanes, symbols and controls.</p></figcaption></figure>
         <figure class="art-piece art-piece--wide" data-reveal><img data-portfolio-image="atmosphere" src="assets/ossuary-reels/img/atmosphere.webp" alt="Dark-fantasy Execution Bonus scene from Ossuary Reels in development" width="2400" height="1500" loading="lazy"><figcaption><span>03 · Atmosphere</span><h3>Let the scene carry the tension.</h3><p>Bone, wood, darkness and gold connect the visual direction to the moment of play.</p></figcaption></figure>
       </div>
-      <p class="art-credit">Visual direction and selection: Jon Arbe. Images show work in progress; individual asset credits will be added with the final release.</p>
+      <p class="art-credit">AI-generated visual assets, directed and selected by Jon Arbe. I specify shape, proportions, references and details, then refine prompts and compare variations. <a href="ossuary-reels.html#art-direction">Read how I develop a visual brief →</a></p>
       <a class="proof" href="ossuary-reels.html#art-direction">Read the art direction decisions →</a>
     </div>
   </section>
@@ -295,17 +281,17 @@
       <div class="principles">
         <div class="principle" data-reveal>
           <h3>Decide the feeling</h3>
-          <p>Before a mechanic exists, I decide what the player should feel. Everything that doesn’t help that feeling goes, even if it works.</p>
+          <p>Before a mechanic exists, I decide what the player should feel. I use that intention to decide what to keep, revise or remove as I try the prototype.</p>
           <a class="proof" href="ossuary-reels.html#raven-chain">See it in the Raven chain →</a>
         </div>
         <div class="principle" data-reveal data-reveal-delay="1">
           <h3>Let moments breathe</h3>
-          <p>Not every moment at the same intensity. Pauses, rhythm and sound decide how hard a win lands, and how much a near-miss stings.</p>
+          <p>Not every moment at the same intensity. Pauses, rhythm and sound help distinguish routine results from larger events. The counter breakdown shows one concrete timing change.</p>
           <a class="proof" href="ossuary-reels.html#big-win">See it in the big-win counter →</a>
         </div>
         <div class="principle" data-reveal data-reveal-delay="2">
           <h3>Rebuild when it’s wrong</h3>
-          <p>I threw away the whole first reel structure because it worked but didn’t feel right. It was the best decision of the project.</p>
+          <p>I threw away the whole first reel structure because it worked but didn’t feel right. Keeping the silhouette while revising the structure became a recurring design constraint.</p>
           <a class="proof" href="ossuary-reels.html#iteration">See it in the dev log →</a>
         </div>
       </div>
@@ -323,9 +309,9 @@
           <h2>Hi, I’m Jon.</h2>
           <p>I’m a game designer from Spain, based in Tokyo. My strongest interests are art, mechanics and sensations: how a world looks, what happens inside it and how each moment lands.</p>
           <ul class="about-can">
-            <li><b>From idea to playable.</b> Ossuary Reels is mine from the first sketch: the world, the board, every rule and every bonus.</li>
+            <li><b>From idea to playable.</b> I define the world, board layout, mechanics and intended timing of Ossuary Reels, then use a playable prototype to revise those decisions.</li>
             <li><b>Mechanics with a purpose.</b> I connect rules, risk and reward to the experience I want to create, then iterate on what feels unclear or flat.</li>
-            <li><b>Art direction &amp; game feel.</b> I shape the visual language, animation and sound. I use AI coding tools to build my specifications, then review and iterate on the result.</li>
+            <li><b>Art direction &amp; game feel.</b> I direct AI-generated visual assets through detailed prompts and repeated selection. Claude Code and Codex help implement my specifications; I review the behaviour in the prototype and request changes.</li>
           </ul>
         </div>
 
@@ -362,10 +348,10 @@
     <div class="container">
       <div class="sec-head" data-reveal>
         <div>
-          <span class="eyebrow">Business · Studios, operators &amp; publishers</span>
-          <h2 class="section-heading">My games are for&nbsp;sale.<br>So is my head.</h2>
+          <span class="eyebrow">Work with me · Game design</span>
+          <h2 class="section-heading">A creative approach.<br>A prototype you can inspect.</h2>
         </div>
-        <p class="section-lede">Ossuary Reels is an original concept: the world, the ribcage board, the bonus systems and their math, designed by me. There are three ways to work with it, or with me.</p>
+        <p class="section-lede">I’m looking for a game-design role where I can contribute concepts, develop mechanics and iterate with a team. This solo project shows the decisions I make under constraints, what I change and what still needs validation.</p>
       </div>
 
       <div class="catalogue" data-reveal>
@@ -377,54 +363,28 @@
 
       <div class="deals">
         <article class="deal" data-reveal>
-          <span class="deal-stamp">Licensing</span>
-          <span class="deal-num">Nº 01</span>
-          <h3>License the game</h3>
-          <p class="deal-for">For operators, aggregators and slot studios.</p>
-          <p>Put Ossuary Reels in your lobby. You or your production partner handle certification and integration; I bring the design, the math model and the art direction, and stay on to tune the game.</p>
-          <ul>
-            <li>Exclusive or non-exclusive</li>
-            <li>Revenue share or fixed fee</li>
-            <li>Design support through certification</li>
-          </ul>
-          <a class="btn btn-gold" href="mailto:j.arbegaldos@gmail.com?subject=Licensing%20enquiry%20%E2%80%94%20Ossuary%20Reels">Ask about licensing</a>
+          <span class="deal-stamp">Game design</span><span class="deal-num">Nº 01</span>
+          <h3>From concept to rules</h3>
+          <p class="deal-for">An unusual idea needs a playable structure.</p>
+          <p>The ribcage board is an example of how I connect a visual idea to a layout, paylines and linked bonus features. The case study explains the intent and the compromises.</p>
+          <a class="btn btn-gold" href="ossuary-reels.html#board">Explore the board</a>
         </article>
-        <article class="deal" data-reveal data-reveal-delay="1">
-          <span class="deal-stamp">Acquisition</span>
-          <span class="deal-num">Nº 02</span>
-          <h3>Buy the concept</h3>
-          <p class="deal-for">For studios looking for their next title.</p>
-          <p>Take the idea and make it yours: the world, the board, the bonus features and the design documentation, ready for your team to produce in your own engine and art style.</p>
-          <ul>
-            <li>Full rights or adaptation rights</li>
-            <li>Design documents and math model</li>
-            <li>Handover sessions with your team</li>
-          </ul>
-          <a class="btn btn-gold" href="mailto:j.arbegaldos@gmail.com?subject=Concept%20acquisition%20%E2%80%94%20Ossuary%20Reels">Make an offer</a>
+        <article class="deal" data-reveal>
+          <span class="deal-stamp">Iteration</span><span class="deal-num">Nº 02</span>
+          <h3>Make the change specific</h3>
+          <p class="deal-for">A working feature still needs the right rhythm.</p>
+          <p>The big-win counter shows a concrete revision: a long wait for a moderate reward became a set of shorter counting tiers aligned to musical beats.</p>
+          <a class="btn btn-gold" href="ossuary-reels.html#big-win">See the timing change</a>
         </article>
-        <article class="deal" data-reveal data-reveal-delay="2">
-          <span class="deal-stamp">Commission</span>
-          <span class="deal-num">Nº 03</span>
-          <h3>Commission a design</h3>
-          <p class="deal-for">For teams that need a feature, a concept or a fresh eye.</p>
-          <p>A bonus feature, a board concept, the game feel of a big win or the art direction of a new world, from the first idea to a playable specification.</p>
-          <ul>
-            <li>Bonus features and board concepts</li>
-            <li>Game feel, pacing and audio timing</li>
-            <li>Freelance, contract or full-time</li>
-          </ul>
-          <a class="btn btn-gold" href="mailto:j.arbegaldos@gmail.com?subject=Design%20commission">Start a project</a>
+        <article class="deal" data-reveal>
+          <span class="deal-stamp">Collaboration</span><span class="deal-num">Nº 03</span>
+          <h3>Talk through a constraint</h3>
+          <p class="deal-for">For teams considering my design approach.</p>
+          <p>I’d like to walk through a mechanic with your designers, artists or engineers: the intended experience, the current implementation, the trade-offs and what I would test next.</p>
+          <a class="btn btn-gold" href="mailto:j.arbegaldos@gmail.com?subject=Game%20design%20conversation">Discuss a design problem</a>
         </article>
       </div>
-
-      <div class="steps" data-reveal>
-        <div class="step"><b>01</b><h4>Write to me</h4><p>Two lines: who you are and what you have in mind.</p></div>
-        <div class="step"><b>02</b><h4>Private build</h4><p>Under NDA, I share the latest build and the design documents.</p></div>
-        <div class="step"><b>03</b><h4>Terms</h4><p>We agree on scope, rights and price.</p></div>
-        <div class="step"><b>04</b><h4>Handover</h4><p>Files, documentation and support for your production.</p></div>
-      </div>
-
-      <p class="legal-note"><b>Good to know:</b> Ossuary Reels is a prototype and is not certified for real-money play. The demo on this site uses play money only. Certification, compliance and distribution are handled with the licensing partner, market by market.</p>
+      <p class="legal-note">Ossuary Reels is a play-money prototype, not a certified gambling product. Any future commercial adaptation would need a separate assessment of the math, implementation and asset rights.</p>
     </div>
   </section>
 
@@ -434,7 +394,7 @@
     <div class="container" data-reveal>
       <span class="eyebrow">Contact</span>
       <h2>Let&rsquo;s talk.</h2>
-      <p>Hiring a game designer, or interested in one of my games? Either way, I’d love to hear from you.</p>
+      <p>Hiring a game designer? I’m open to remote roles and happy to walk through the prototype, the decisions behind it and the parts I would improve next.</p>
       <dl class="hire">
         <div><dt>Looking for</dt><dd>A remote, full-time role</dd></div>
         <div><dt>Based in</dt><dd>Tokyo · JST (UTC+9)</dd></div>
@@ -467,4 +427,5 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+
 

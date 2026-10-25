@@ -1,7 +1,7 @@
 /* Release content shared by the home page and case study. Keep relative URLs repository-safe. */
 window.PORTFOLIO = {
   "status": "In development \u00b7 earlier playable build",
-  "note": "Work in progress. The playable build and artwork are provisional; some features described in the case study belong to a newer development version.",
+  "note": "Solo prototype in development. The public demo is an earlier build; design notes and images can show later revisions. Code and visual development are AI-assisted. Economy targets are not validated results.",
   "gameUrl": "game/index.html",
   "heroVideo": null,
   "trailerYouTube": null,
@@ -33,3 +33,4 @@ window.PORTFOLIO = {
     el.alt = entry.alt || '';
   });
 })();
+

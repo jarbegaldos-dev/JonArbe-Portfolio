@@ -59,7 +59,7 @@
     <div class="container hero-inner">
       <span class="eyebrow">Project in development · 2026</span>
       <h1>Ossuary Reels</h1>
-      <p class="hero-lead">A dark-fantasy slot where the board fights back.</p>
+      <p class="hero-lead">A solo design case study: a ribcage board, connected mechanics and AI-assisted prototyping.</p>
       <div class="hero-ctas">
         <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play earlier build</a>
         <a href="index.html#work" class="btn btn-ghost">Back to work</a>
@@ -71,7 +71,7 @@
     <dl class="cs-facts">
       <div class="fact"><dt>My role</dt><dd>Game design, systems, art &amp; audio direction</dd></div>
       <div class="fact"><dt>Timeline</dt><dd>June 2026 – now</dd></div>
-      <div class="fact"><dt>Team</dt><dd>Solo + AI-assisted development</dd></div>
+      <div class="fact"><dt>Team</dt><dd>Solo project · AI-assisted code &amp; visuals</dd></div>
       <div class="fact"><dt>Status</dt><dd data-project-status>In development · earlier playable build</dd></div>
     </dl>
 
@@ -79,13 +79,13 @@
       <h2>In 30 seconds</h2>
       <div>
         <ul>
-          <li><b>All the design is mine:</b> the concept, the rules, every feature, the probability targets, the art and sound direction and the playtesting. AI coding tools wrote the code to my specs.</li>
+          <li><b>My role:</b> concept, rules, visual and audio direction, and iteration. I use Claude Code and Codex to implement specifications, and generative AI to develop visual assets through detailed prompts and selection.</li>
           <li><b>A distinctive board:</b> independent reels inside a ribcage, joined by 173 paylines designed for that shape.</li>
           <li><b>Three interconnected bonus features in design:</b> the Raven chain, the Chest gamble and the Execution Bonus. A fourth is in development.</li>
-          <li><b>Feel tuned as one system:</b> probability, animation and music are timed together. The big-win counter is cut to its track.</li>
+          <li><b>A concrete iteration:</b> the big-win counter uses reward-size tiers aligned to musical beats. The source is linked below; final economy validation is still pending.</li>
         </ul>
         <p class="cs-note">The numerical values in this case study are development specifications or targets, not validated release results.</p>
-        <p class="cs-note" data-project-note>Work in progress. The playable build and artwork are provisional; some features described in the case study belong to a newer development version.</p>
+        <p class="cs-note" data-project-note>Solo prototype in development. The public demo is an earlier build; design notes and images can show later revisions. Code and visual development are AI-assisted. Economy targets are not validated results.</p>
       </div>
     </div>
   </div>
@@ -99,6 +99,7 @@
       <li><a href="#feel">05 Feel &amp; sound</a></li>
       <li><a href="#iteration">06 Iteration</a></li>
       <li><a href="#numbers">07 Development notes</a></li>
+      <li><a href="#implementation">08 Implementation</a></li>
     </ul>
   </nav>
 
@@ -108,7 +109,7 @@
     <section id="idea" class="cs-section" data-reveal>
       <span class="eyebrow">01 · The idea</span>
       <h2>A world, a machine, a feeling.</h2>
-      <p class="cs-lead">Ossuary Reels is my independent game-design project: a dark-fantasy slot built around a ribcage-shaped board.</p>
+      <p class="cs-lead">Ossuary Reels is a solo game-design prototype built around a ribcage-shaped board. I use it as a case study in turning a visual idea into a set of connected rules, then refining how those rules are presented.</p>
       <p class="cs-body">The design challenge is to make an unusual shape playable, give its mechanics a shared visual language and use animation and sound to make each event readable and expressive.</p>
       <p class="cs-body">This case study follows three threads: art direction, mechanics and game feel. It documents work in progress; the final build, artwork and validation will replace the current development material.</p>
     </section>
@@ -118,7 +119,10 @@
       <p class="cs-lead">The ribcage is both the visual anchor and the structure of the game. The direction brings bone, wood, ravens and mechanical movement into the same world.</p>
       <dl class="decision"><div><dt>Intent</dt><dd>A dark-fantasy machine with a recognisable silhouette, rather than a conventional rectangular board.</dd></div><div><dt>Direction</dt><dd>Use the anatomy to organise the scene, then carry the same world into symbols, bonus moments and interface.</dd></div><div><dt>Constraint</dt><dd>The atmosphere must leave the rules and important events readable. Composition and motion need to support the player’s attention.</dd></div></dl>
       <figure class="figure"><img data-portfolio-image="atmosphere" src="assets/ossuary-reels/img/atmosphere.webp" alt="Execution Bonus development scene showing the visual world of Ossuary Reels" width="2400" height="1500" loading="lazy"><figcaption class="caption">Current development imagery. Final assets and detailed credits will be updated with the release.</figcaption></figure>
-      <p class="cs-body">My contribution is the concept, visual direction, selection and iteration. The gallery presents work in progress; individual asset credits will be added with the final release.</p>
+      <p class="cs-body">The visual assets are AI-generated. My contribution is the brief, visual direction, prompt iteration and selection. I specify concrete traits and compare alternatives rather than ask for a finished style in one instruction. These images are not presented as hand-drawn work.</p>
+      <p class="mini-label">Example · Directing the raven</p>
+      <p class="cs-body">My prompts describe specific choices: for a raven, that might mean a 1970s anime reference, a larger head and bones in the wings. I refine the instructions and compare several variations before choosing the one that fits. My process is to define the character, evaluate what the tool produces and keep directing the details until the design works for the world.</p>
+      <p class="cs-note">The gallery shows selected development images. A step-by-step image history and the tools used for each animation are not documented here yet.</p>
       <a class="proof" href="index.html#art">View the visual development gallery →</a>
     </section>
 
@@ -126,7 +130,7 @@
     <section id="board" class="cs-section" data-reveal>
       <span class="eyebrow">03 · The board</span>
       <h2>A ribcage instead of a grid</h2>
-      <p class="cs-lead">The board is a ribcage of independent reels: a top rib, a centre spine and four ribs on each side, with the chest at the bottom. I designed the paylines around the bones, so a win can travel in directions a 5×3 grid never allows.</p>
+      <p class="cs-lead">The board is a ribcage of independent reels: a top rib, a centre spine and four ribs on each side, with the chest at the bottom. I designed the paylines around the bones. The challenge is to preserve that silhouette while making valid routes and winning symbols understandable.</p>
       <figure class="figure">
         <img src="assets/ossuary-reels/img/paylines.webp" alt="The payline network drawn in red over the Ossuary Reels board" width="1800" height="1125" loading="lazy">
         <figcaption class="caption"><b>Debug view:</b> the payline network over the board. Every red line is a path a win can follow.</figcaption>
@@ -151,7 +155,7 @@
       <article id="raven-chain" class="feature">
         <span class="feature-num">01</span>
         <h3>The Raven chain</h3>
-        <p class="feature-goal">A free spin should feel earned, and the stone throw should make you hold your breath.</p>
+        <p class="feature-goal">Give each extra spin a visible cause, and leave enough time to read the stone throw.</p>
         <div class="cs-split">
           <div>
             <p class="mini-label">How it works</p>
@@ -161,7 +165,7 @@
               <li>Every raven the stone kills grants one more free spin, and the chain continues while ravens keep falling.</li>
             </ul>
             <p class="mini-label">What I changed</p>
-            <p class="cs-body">In the first version the chain almost never went past one spin, and it felt flat. Now the stone&rsquo;s hit chance steps down spin by spin, so long chains are possible but never promised.</p>
+            <p class="cs-body">In the first version the chain almost never went past one spin, and it felt flat. The revised design awards extra spins for hits and reduces the hit chance as the chain progresses. The extra-spin rule extends the sequence; the decreasing chance limits its growth. This is a design iteration, not a measured player-study result.</p>
             <p class="cs-body">From the moment the door opens until the stone lands, the board darkens at the edges and the ravens tremble. If the stone misses, half the time it hits the hooded figure instead.</p>
             <p class="mini-label">Tried and cut</p>
             <p class="cs-body">Slow motion on the throw, a stone that just grazes the raven (it looked wrong) and a heartbeat sound on release.</p>
@@ -169,10 +173,10 @@
           <div>
             <figure class="figure"><img src="assets/ossuary-reels/img/raven.webp" alt="Two ravens perched over the board, with a x2 multiplier" width="1440" height="900" loading="lazy"></figure>
             <table class="numbers">
-              <tr><th>Stone hit chance</th><td>62% → 55% → 48% → 40% → 32% → 25%, spin by spin</td></tr>
-              <tr><th>Extra spins per chain</th><td>0: ~11% · 1: ~23% · 2: ~21% · 3: ~17% · 4: ~13% · 5+: ~16%</td></tr>
-              <tr><th>Design target</th><td>A big payout in about 1 of 20 Raven Bonus buys, small results the rest of the time</td></tr>
-              <tr><th>Golden crow</th><td>In about 1 of 3 base spins. Cut it and it adds ×10, ×25 or ×50</td></tr>
+              <caption>Design intent · values still in tuning</caption>
+              <tr><th>Continuation</th><td>A hit awards another spin; decreasing hit chances constrain the chain.</td></tr>
+              <tr><th>Golden ravens</th><td>Larger multiplier jumps create a different range of possible results.</td></tr>
+              <tr><th>Validation needed</th><td>Chain-length distribution and total return, including interactions with wild columns and multipliers.</td></tr>
             </table>
           </div>
         </div>
@@ -181,23 +185,23 @@
       <article id="blades-chest" class="feature">
         <span class="feature-num">02</span>
         <h3>Blades &amp; the Chest</h3>
-        <p class="feature-goal">Losing should still build something: what gets cut doesn&rsquo;t disappear.</p>
+        <p class="feature-goal">Trade an immediate payline opportunity for progress towards a later event.</p>
         <div class="cs-split">
           <div>
             <p class="mini-label">How it works</p>
             <ul class="cs-list">
               <li>Small blades drop and cut the symbols below them. The holes they leave <b>break paylines</b>, and what they cut falls into the chest.</li>
               <li>Once the chest is full enough, it opens on the next base spin that already pays more than ×5, so the reward lands on top of a good moment.</li>
-              <li>Then the choice: <b>collect</b> 1× your bet, or <b>gamble</b> it on an 11-slot wheel.</li>
+              <li>Then the choice: <b>collect</b> a fixed reward, or <b>gamble</b> for a wider range of outcomes, including bonus entry. The collect amount and wheel weights are still being revised.</li>
             </ul>
           </div>
           <div>
             <table class="numbers">
-              <tr><th>Blades on the board</th><td>Two at most, at least one every 3–4 spins</td></tr>
-              <tr><th>Blade over a crow</th><td>At least every 7–10 spins</td></tr>
-              <tr><th>Chest opens at</th><td>40–53 cut symbols</td></tr>
-              <tr><th>Wheel</th><td>11 slots: 1 Bonus Game, 5 × ×25, 5 × ×0</td></tr>
-              <tr><th>Buy</th><td>Chest Gamble for ×21 the bet</td></tr>
+              <caption>Design trade-offs</caption>
+              <tr><th>Immediate cost</th><td>A cut leaves a hole that can break a payline.</td></tr>
+              <tr><th>Later progress</th><td>Cut symbols accumulate in the chest.</td></tr>
+              <tr><th>Collect or gamble</th><td>A fixed reward versus uncertain results. Bonus-entry value must be included when comparing expected returns.</td></tr>
+              <tr><th>Still to verify</th><td>Opening frequency, wheel weights and the value of each choice in a version-matched simulation.</td></tr>
             </table>
           </div>
         </div>
@@ -206,23 +210,24 @@
       <article id="execution-bonus" class="feature">
         <span class="feature-num">03</span>
         <h3>The Execution Bonus</h3>
-        <p class="feature-goal">Tension in three acts: unlock it, survive it, cash it.</p>
+        <p class="feature-goal">Show remaining chances and accumulated value with candles and a growing multiplier.</p>
         <div class="cs-split">
           <div>
             <p class="mini-label">How it works</p>
             <ul class="cs-list">
               <li><b>Unlock:</b> a giant guillotine lands on the top rib, then a respin chain has to lock the giants of the next ribs in order. On the decisive respins, the reels that can complete it hold back for a moment before they stop.</li>
               <li><b>Survive:</b> three chances, shown as candles. Poor, Noble and Rich skeletons chain on the ribs, and the spine draws a Guillotine (cuts and pays hands, candles back to three), a Scythe (cuts and pays heads) or a Cross (nothing).</li>
-              <li><b>Cash:</b> every spin burns a candle. When they run out, anything not yet cut is lost.</li>
+              <li><b>End:</b> spins consume the remaining candles. When they run out, uncut parts no longer contribute to the bonus payout.</li>
             </ul>
           </div>
           <div>
             <figure class="figure"><img src="assets/ossuary-reels/img/tile-bonus.webp" alt="The guillotine falling inside the Execution Bonus" width="988" height="618" loading="lazy"></figure>
             <table class="numbers">
-              <tr><th>Hands</th><td>0.20 / 0.50 / 1.00 × bet</td></tr>
-              <tr><th>Heads</th><td>0.40 / 1.00 / 2.00 × bet</td></tr>
-              <tr><th>Guillotine multiplier</th><td>5 hands ×2 · 10 ×5 · 20 ×10 · 25 ×25 · 50 ×100</td></tr>
-              <tr><th>Buy</th><td>×100 the bet</td></tr>
+              <caption>Pacing decisions</caption>
+              <tr><th>Three candles</th><td>Make the remaining chances visible.</td></tr>
+              <tr><th>Guillotine reset</th><td>A cut pays and restores chances, extending the sequence.</td></tr>
+              <tr><th>Hand progression</th><td>Accumulated cuts raise the multiplier, increasing the value of later events.</td></tr>
+              <tr><th>Balance constraint</th><td>Reset frequency and multiplier growth both affect duration and payout; they need joint validation.</td></tr>
             </table>
           </div>
         </div>
@@ -264,11 +269,11 @@
     <!-- 05 — Iteration -->
     <section id="iteration" class="cs-section" data-reveal>
       <span class="eyebrow">06 · Iteration</span>
-      <h2>Mountains</h2>
+      <h2>What I changed, and why</h2>
       <p class="cs-body">Most of the development was iteration. At one point I threw away almost the entire original reel structure because, although it worked, it didn&rsquo;t feel right. It was a big step back, and one of the best decisions of the project.</p>
       <p class="cs-body">It kept happening: I&rsquo;d improve one part and suddenly another felt weaker. I started calling them mountains.</p>
       <p class="cs-pullquote">Improve one, find the next one that&rsquo;s weaker, go back, cut what isn&rsquo;t helping, test again.</p>
-      <p class="mini-label">From the dev log · 244 logged changes since June 2026</p>
+      <p class="mini-label">Selected development notes · June–October 2026</p>
       <ol class="devlog">
         <li><time datetime="2026-07-09">Jul 9</time><p><b>Paylines.</b> Chose a network of 173 paths that follow the bones, instead of fixed lines drawn on a grid.</p></li>
         <li><time datetime="2026-07-12">Jul 12</time><p><b>Big-win counter.</b> Rebuilt from scratch after a power cut wiped the work in progress.</p></li>
@@ -277,7 +282,7 @@
         <li><time datetime="2026-10-13">Oct 13</time><p><b>Anticipation pass.</b> The board darkens and the ravens tremble while the stone flies; decisive respins hold back before they stop.</p></li>
         <li><time datetime="2026-10-14">Oct 14</time><p><b>New HUD.</b> An hourglass spin button and a clover menu, built to be reused in future slots; a summary screen after every bonus; motion blur on the spin.</p></li>
       </ol>
-      <p class="cs-body">What I learned: a mechanic can work perfectly and still not feel right, and designing a game you enjoy even when you lose is much harder than it sounds. How a loss, a near-miss or an almost-reward is presented changes everything.</p>
+      <p class="cs-body">What I learned: a mechanic can resolve correctly and still be slow or unclear. My own playthroughs guide these revisions; they do not establish how other players will respond. Structured playtests are still needed to assess readability and pacing.</p>
     </section>
 
     <!-- 06 — Numbers & next -->
@@ -291,9 +296,9 @@
         <div class="sheet-grid">
           <div class="sheet-cell"><b>173</b><span>Paylines on a ribcage-shaped board</span></div>
           <div class="sheet-cell"><b>3 <small>+1</small></b><span>Bonus features, a fourth in development</span></div>
-          <div class="sheet-cell"><b>20,000×</b><span>Max win</span></div>
+          <div class="sheet-cell"><b>20,000×</b><span>Configured payout cap · not an observed result</span></div>
           <div class="sheet-cell"><b>98%</b><span>Target RTP, tuning in progress</span></div>
-          <div class="sheet-cell"><b>High</b><span>Volatility, by design</span></div>
+          <div class="sheet-cell"><b>High</b><span>Intended volatility · not yet measured</span></div>
           <div class="sheet-cell"><b>×21 · ×25 · ×100</b><span>Bonus buys: Chest, Raven, Execution</span></div>
           <div class="sheet-cell"><b>€0.10–10</b><span>Bet range</span></div>
           <div class="sheet-cell"><b>HTML5</b><span>Desktop &amp; mobile, plays in the browser</span></div>
@@ -303,11 +308,11 @@
       <div class="cs-split">
         <div>
           <p class="mini-label">The math</p>
-          <p class="cs-body">The math framework is in place and every feature has its own probability targets. Final RTP tuning comes after the feature set is locked: that&rsquo;s the next milestone.</p>
+          <p class="cs-body">98% is the target return. The source includes simulation utilities and an RTP framework whose default metrics are marked not ready. Validating the economy requires a version-matched full-game simulation, including bonus continuation, chest outcomes and multiplier interactions, with a recorded sample size and uncertainty estimate.</p>
         </div>
         <div>
           <p class="mini-label">How I built it</p>
-          <p class="cs-body">I define the concept, rules, visual direction and timing, then use AI coding tools (Claude Code and Codex) to implement my specifications. I review the result and iterate.</p>
+          <p class="cs-body">I define the concept, rules, visual direction and timing, then use Claude Code and Codex to implement my specifications. I review the behaviour in the prototype and iterate. Visual assets are generated with AI under my direction. This lets me try design changes in a working prototype and judge the result in context.</p>
           <p class="mini-label">What&rsquo;s next</p>
           <ul class="cs-list">
             <li>A fourth bonus feature, in development.</li>
@@ -318,12 +323,40 @@
       </div>
     </section>
 
+    <section id="implementation" class="cs-section" data-reveal>
+      <span class="eyebrow">08 · Implementation</span>
+      <h2>Inspect the prototype</h2>
+      <p class="cs-lead">The public JavaScript source makes the implementation available to review alongside the design decisions. These links point to the repository’s main branch; the documented design and the playable build can differ while development continues.</p>
+      <div class="cs-split">
+        <div>
+          <p class="mini-label">State and reel motion</p>
+          <p class="cs-body">The state module holds balances, spin identifiers and bonus-session fields. The reel engine separates acceleration, cruising, deceleration and settling. It derives motion from elapsed time, so reel positions are not calculated by simply adding a fixed distance per frame.</p>
+          <ul class="cs-list">
+            <li><a href="https://github.com/jarbegaldos-dev/JonArbe-Portfolio/blob/main/game/src/core/game-state.js">Read the game-state module</a></li>
+            <li><a href="https://github.com/jarbegaldos-dev/JonArbe-Portfolio/blob/main/game/src/core/spin-engine.js">Read the reel-motion engine</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="mini-label">UI timing and math tooling</p>
+          <p class="cs-body">The win counter builds counting segments around reward size and musical beats, updates through requestAnimationFrame and carries excess frame time into the next segment to reduce timing drift. Separate math utilities collect spin outcomes for analysis. Performance measurements and full-game economy validation remain future work.</p>
+          <ul class="cs-list">
+            <li><a href="https://github.com/jarbegaldos-dev/JonArbe-Portfolio/blob/main/game/src/ui/big-win-counter.js">Read the win-counter implementation</a></li>
+            <li><a href="https://github.com/jarbegaldos-dev/JonArbe-Portfolio/blob/main/game/src/math/simulation-engine.js">Read the simulation utility</a></li>
+            <li><a href="https://github.com/jarbegaldos-dev/JonArbe-Portfolio/blob/main/game/src/math/rtp-framework.js">Read the RTP framework and readiness flags</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mini-label">A starting point for a team conversation</p>
+      <p class="cs-body">I’d be happy to walk through a feature with a studio: what experience I intended, the constraints I chose, what the prototype currently does and what evidence I still need. This is a solo project; it demonstrates my design process, while collaboration on a production team would bring different constraints and specialist input.</p>
+      <a class="proof" href="mailto:j.arbegaldos@gmail.com?subject=Ossuary%20Reels%20design%20walkthrough">Discuss a mechanic with me →</a>
+    </section>
+
     <section class="cs-final" data-reveal>
       <span class="eyebrow">Play it</span>
-      <h2>Explore the current prototype.</h2>
+      <h2>Try the public build. Read the design in progress.</h2>
       <div class="row-ctas">
         <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play earlier build</a>
-        <a href="index.html#business" class="btn btn-ghost">License or buy this game</a>
+        <a href="#implementation" class="btn btn-ghost">Explore the source</a>
         <a href="index.html#contact" class="btn btn-ghost">Get in touch</a>
       </div>
     </section>
@@ -346,4 +379,5 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
