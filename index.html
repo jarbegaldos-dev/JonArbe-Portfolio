@@ -84,6 +84,10 @@
           <a href="#" class="btn btn-ghost" data-trailer hidden><span class="play-tri"></span>Watch the trailer</a>
         </div>
         <p class="hero-meta"><b>Based in Tokyo</b> · Open to remote roles</p>
+        <div class="hero-paths">
+          <a href="#contact"><b>Hiring a designer?</b><span>CV, role and availability →</span></a>
+          <a href="#business"><b>Want one of my games?</b><span>License, buy or commission →</span></a>
+        </div>
       </div>
     </div>
     <span class="hero-chip"><i></i>Ossuary Reels · Development art</span>
@@ -115,6 +119,10 @@
         <span class="poster-label">Explore the earlier playable build</span>
       </a>
 
+
+      <ul class="skills" data-reveal aria-label="What I bring">
+        <li>Bonus feature design</li><li>Slot math &amp; paytables</li><li>Economy &amp; pacing</li><li>Probability tuning</li><li>Game feel &amp; audio timing</li><li>Art direction</li><li>Design documentation</li><li>AI-assisted prototyping</li>
+      </ul>
       <p class="project-status" data-reveal><span class="status-dot" aria-hidden="true"></span><span data-project-note>Work in progress. The playable build and artwork are provisional; some features described in the case study belong to a newer development version.</span></p>
       <div class="principles work-pillars" data-reveal>
         <div class="principle"><h3>Art direction</h3><p>A world of bone, wood and ravens, developed from an early ribcage concept into a working machine.</p><a class="proof" href="#art">Explore the visual development →</a></div>
@@ -214,6 +222,49 @@
           <figcaption><span>Nº 06 · Risk &amp; reward</span><h3>The Chest</h3><p>Swallows every symbol a blade cuts. When it is full enough it opens: collect, or gamble it on the bone wheel.</p></figcaption>
         </figure>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ DESIGN DOC ============ -->
+  <section id="design-doc" class="section-pad paper doc-section">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div>
+          <span class="eyebrow">From the design doc · Ossuary Reels</span>
+          <h2 class="section-heading">Feelings, with numbers behind them.</h2>
+        </div>
+        <p class="section-lede">Every feature starts as a feeling and ends as a table. Three excerpts from the working math model, as they stand in the current development build.</p>
+      </div>
+      <div class="docs">
+        <article class="doc doc--wide" data-reveal>
+          <header><span class="doc-id">GDD · 04.2</span><h3>Chest Gamble: the bone wheel</h3><p>Goal: make gambling a real choice. Collect pays 19× the bet for sure; the wheel risks it for a key.</p></header>
+          <table class="doc-table">
+            <thead><tr><th>Key</th><th>Prize</th><th class="num">Weight</th><th class="num">Chance</th><th></th></tr></thead>
+            <tbody><tr class="t-bronze"><td><i></i>Bronze</td><td>×0</td><td class="num">435</td><td class="num">43.5%</td><td class="bar"><span style="width:100%"></span></td></tr><tr class="t-bronze"><td><i></i>Bronze</td><td>×10</td><td class="num">238</td><td class="num">23.8%</td><td class="bar"><span style="width:55%"></span></td></tr><tr class="t-silver"><td><i></i>Silver</td><td>×25</td><td class="num">160</td><td class="num">16.0%</td><td class="bar"><span style="width:37%"></span></td></tr><tr class="t-silver"><td><i></i>Silver</td><td>×50</td><td class="num">85</td><td class="num">8.5%</td><td class="bar"><span style="width:20%"></span></td></tr><tr class="t-gold"><td><i></i>Gold</td><td>×100</td><td class="num">40</td><td class="num">4.0%</td><td class="bar"><span style="width:9%"></span></td></tr><tr class="t-red"><td><i></i>Red</td><td>Execution Bonus</td><td class="num">40</td><td class="num">4.0%</td><td class="bar"><span style="width:9%"></span></td></tr><tr class="t-black"><td><i></i>Black</td><td>Super Bonus</td><td class="num">2</td><td class="num">0.2%</td><td class="bar"><span style="width:0%"></span></td></tr></tbody>
+          </table>
+          <p class="doc-note"><b>Design note:</b> the cash keys alone return about 14.6× on average, below the 19× of Collect. The red and black keys are what make the gamble worth it: 1 spin in 25 starts the Execution Bonus, 1 in 500 the Super Bonus.</p>
+        </article>
+        <article class="doc" data-reveal data-reveal-delay="1">
+          <header><span class="doc-id">GDD · 02.3</span><h3>The Golden Raven</h3><p>Goal: a rare moment that rewrites the board.</p></header>
+          <dl class="doc-kv">
+            <div><dt>Golden crow</dt><dd>12% of crows</dd></div>
+            <div><dt>×10</dt><dd>70%</dd></div>
+            <div><dt>×25</dt><dd>22%</dd></div>
+            <div><dt>×50</dt><dd>8%</dd></div>
+            <div><dt>Average</dt><dd>×16.5</dd></div>
+            <div><dt>Stays</dt><dd>2–5 base spins</dd></div>
+          </dl>
+          <p class="doc-note">Rare enough to feel like an event, and big enough to rewrite the board when it lands.</p>
+        </article>
+        <article class="doc" data-reveal data-reveal-delay="2">
+          <header><span class="doc-id">GDD · 03.4</span><h3>Execution Bonus: the hand box</h3><p>Goal: every cut should push the multiplier, faster at the top.</p></header>
+          <ol class="doc-ladder">
+            <li><span>2 hands</span><b>×2</b></li><li><span>2</span><b>×3</b></li><li><span>3</span><b>×4</b></li><li><span>4</span><b>×6</b></li><li><span>6</span><b>×10</b></li><li><span>10</span><b>×20</b></li><li><span>15</span><b>×50</b></li><li><span>25</span><b>×100</b></li><li><span>50</span><b>×500</b></li>
+          </ol>
+          <p class="doc-note">Selected steps of a 16-level ladder. Hands needed per level, multiplier stuck on the guillotine.</p>
+        </article>
+      </div>
+      <p class="doc-foot">Development values (economy model v2, RTP target 98%, still in tuning). The full math model, paytables and GDD are available under NDA. <a href="#business">Talk business →</a></p>
     </div>
   </section>
 
