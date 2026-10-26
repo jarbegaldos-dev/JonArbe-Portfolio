@@ -200,7 +200,7 @@
 
   var EYE_SPACING_PERCENT = 2; // debe coincidir con --fx-eye-spacing
   var EYE_SIZE_PERCENT = 2.2; // debe coincidir con --fx-eye-size
-  var CANVAS_RESOLUTION = 160; // suficiente para 30-40px reales; antes 220
+  var CANVAS_RESOLUTION = window.OssuaryMobileAlpha.enabled ? 64 : 160; // suficiente para 30-40px reales; antes 220
 
   function resolveZIndex(entry) {
     if (entry.zIndex != null) {

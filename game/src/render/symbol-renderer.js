@@ -91,7 +91,7 @@
 
     function stopSymbolMedia(el) {
       if (!el || !el.querySelectorAll) return;
-      var videos = el.querySelectorAll("video");
+      var videos = el.querySelectorAll("video, canvas[data-alpha-video]");
       Array.prototype.forEach.call(videos, function (video) {
         video.__ossuaryStopped = true;
         video.__ossuaryPlayStarted = false;

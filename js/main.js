@@ -422,6 +422,31 @@
      instead, since the source itself sits permanently off-screen and would
      never report as intersecting on its own.
      --------------------------------------------------------- */
+  // Use a single synchronized color/mask stream on mobile, retaining the
+  // existing canvas box and its responsive position.
+  if (window.OssuaryMobileAlpha && window.OssuaryMobileAlpha.enabled) {
+    document.querySelectorAll('.hero-raven-source, .cs-heading-mark-source').forEach(function (source) {
+      var canvas = source.parentElement.querySelector('canvas');
+      var webm = source.querySelector('source[type="video/webm"]');
+      if (!canvas || !webm) return;
+      var path = webm.getAttribute('src');
+      source.pause();
+      source.querySelectorAll('source').forEach(function (s) { s.remove(); });
+      source.removeAttribute('src'); source.load(); source.remove();
+      var player = window.OssuaryMobileAlpha.create(canvas);
+      player.muted = true; player.loop = true; player.preload = 'auto';
+      player.src = path;
+      player.play().catch(function () {});
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !prefersReducedMotion) player.play().catch(function () {});
+            else player.pause();
+          });
+        }).observe(canvas);
+      }
+    });
+  }
   var ambientVideos = document.querySelectorAll('.hero-raven-source, .cs-heading-mark-source');
   if (ambientVideos.length) {
     var attemptPlay = function (video) {

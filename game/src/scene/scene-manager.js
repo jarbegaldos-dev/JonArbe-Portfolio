@@ -47,7 +47,7 @@
       el = document.createElement("video");
       el.src = layer.src;
       el.muted = true;
-      el.autoplay = true;
+      el.autoplay = !(window.OssuaryMobileAlpha.enabled && layer.hidden);
       el.loop = true;
       el.preload = "auto";
       el.playsInline = true;
@@ -120,10 +120,21 @@
     return document.querySelector('[data-scene-layer="' + id + '"]');
   }
 
+  // Hidden HD backgrounds must not keep a second mobile decoder running.
+  function syncMobileBackgrounds() {
+    if (!window.OssuaryMobileAlpha.enabled) return;
+    document.querySelectorAll('video[data-scene-layer]').forEach(function (video) {
+      if (document.hidden || video.closest('[hidden]')) video.pause();
+      else video.play().catch(function () {});
+    });
+  }
+  document.addEventListener('visibilitychange', syncMobileBackgrounds);
+
   function setLayerVisible(id, visible) {
     var el = getLayerEl(id);
     if (!el) return false;
     el.hidden = !visible;
+    syncMobileBackgrounds();
     if (id === "candles") candleSmokeEl.hidden = !visible;
     if (id === "ribcage_overlay_top" && frameLightEl) frameLightEl.hidden = !visible;
     return true;
@@ -133,9 +144,11 @@
     var el = groupEls[groupId];
     if (!el || el === sceneLayersRoot) return false;
     el.hidden = !visible;
+    syncMobileBackgrounds();
     return true;
   }
 
+  // Mobile pauses the hidden background; desktop retains continuous loops.
   // Alterna el fondo de vídeo entre el principal (background_base) y el del
   // Bonus Game FREE SPIN normal (background_bonus_freespins). Ambos <video>
   // están montados desde el arranque con autoplay+loop y NUNCA se pausan ni

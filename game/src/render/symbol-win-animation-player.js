@@ -64,7 +64,7 @@
       console.log(LOG_PREFIX, "#" + requestId, "animation configuration found");
       console.log(LOG_PREFIX, "#" + requestId, "asset path resolved:", assetPath);
 
-      var staleVideos = tileEl.querySelectorAll("video.symbol-art--win-animation");
+      var staleVideos = tileEl.querySelectorAll(".symbol-art--win-animation");
       if (staleVideos.length) {
         console.warn(LOG_PREFIX, "#" + requestId, "stale video elements found before new request:", staleVideos.length);
         Array.prototype.forEach.call(staleVideos, function (staleVideo) {
@@ -83,7 +83,7 @@
       var pngHidden = false;
       var staticChildren = Array.prototype.slice.call(tileEl.children);
 
-      var video = document.createElement("video");
+      var video = window.OssuaryMobileAlpha.create();
       video.className = "symbol-art symbol-art--win-animation";
       video.muted = true;
       video.loop = false;

@@ -152,7 +152,7 @@
       warmEl = document.createElement("video");
       warmEl.muted = true;
       warmEl.preload = "auto";
-      warmEl.src = settings.videoSrc;
+      warmEl.src = window.OssuaryMobileAlpha.enabled ? settings.videoSrc.replace(".webm", ".mobile.mp4") : settings.videoSrc;
       warmEl.load();
       // Precarga tambien la imagen del cuervo muerto (impacto de la piedra).
       warmDeadEl = new Image();
@@ -330,7 +330,7 @@
       var box = boxForRect(anchorFn && anchorFn());
       if (!box) return false;
 
-      var video = document.createElement("video");
+      var video = window.OssuaryMobileAlpha.create();
       video.className = "small-blade-bird-perch";
       video.muted = true;
       video.playsInline = true;

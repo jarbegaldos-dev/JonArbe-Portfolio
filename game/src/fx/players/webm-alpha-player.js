@@ -14,7 +14,7 @@
   }
 
   function buildVideo(entry, offsetSignXPercent, shouldMirror) {
-    var video = document.createElement("video");
+    var video = window.OssuaryMobileAlpha.create();
     video.src = entry.assetPath;
     video.muted = true;
     video.loop = entry.loop !== false;
