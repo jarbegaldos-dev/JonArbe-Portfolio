@@ -23,15 +23,15 @@
     { lead: 'I’m obsessed with ', items: [
       ['Details', 'details'],
       ['Timing', 'timing'],
-      ['Near-misses', 'near-misses'],
+      ['Visual identity', 'visual identity'],
       ['How it feels', 'how things feel'],
       ['Ravens', 'ravens, lately']
     ] },
     { lead: 'Ask me about ', items: [
       ['173 paylines', 'my 173 paylines'],
       ['Life in Tokyo', 'life in Tokyo'],
-      ['Welding prototypes', 'welding car prototypes'],
-      ['Hotel pastry', 'pastry in a Tokyo hotel'],
+      ['Art direction', 'my visual direction'],
+      ['Original concept', 'how Ossuary Reels began'],
       ['Throwing work away', 'throwing work away']
     ] }
   ];
