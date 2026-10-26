@@ -161,7 +161,7 @@
       warmVideoEl = document.createElement("video");
       warmVideoEl.muted = true;
       warmVideoEl.preload = "auto";
-      warmVideoEl.src = settings.videoSrc;
+      warmVideoEl.src = window.OssuaryMobileAlpha.enabled ? settings.videoSrc.replace(".webm", ".mobile.mp4") : settings.videoSrc;
       warmVideoEl.load();
       warmStoneEl = new Image();
       warmStoneEl.src = settings.stoneSrc;
@@ -189,7 +189,7 @@
     function showFirstFrameAt(item, token) {
       var rect = item.rect;
       if (!rect || !rect.width || !rect.height) return;
-      var video = document.createElement("video");
+      var video = window.OssuaryMobileAlpha.create();
       video.className = "small-blade-door-video";
       // CON sonido: el gesto de usuario del SPIN habilita el autoplay con
       // audio; si el navegador lo bloquease, play() cae a un reintento muted

@@ -495,7 +495,7 @@
     var zoom = document.createElement("div");
     zoom.className = "ruleta-transition__zoom";
 
-    var video = document.createElement("video");
+    var video = window.OssuaryMobileAlpha.create();
     video.className = "ruleta-transition__video";
     video.src = ASSETS.video;
     // El video del cofre trae su propio audio: se reproduce CON sonido
