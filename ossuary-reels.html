@@ -32,27 +32,28 @@ a:focus-visible,button:focus-visible{outline:3px solid #e8c987;outline-offset:4p
 </style>
 <style>
 .portfolio-language{display:flex;align-items:center;gap:3px;flex-shrink:0}
-.language-button{background:transparent;border:1px solid transparent;border-radius:4px;color:#bcb4a6;padding:6px 7px;font-family:inherit;font-size:11px;font-weight:600;line-height:1.2;cursor:pointer;letter-spacing:.04em}
+.language-button{background:transparent;border:1px solid transparent;border-radius:4px;color:#bcb4a6;padding:8px;font-family:inherit;font-size:11px;font-weight:600;line-height:1.2;cursor:pointer;letter-spacing:.04em}
 .language-button:hover,.language-button:focus-visible{color:#f4dfac;border-color:#89734e}
 .language-button[aria-pressed="true"]{color:#e8c987;border-color:#746447;background:#201a12}
-.language-engine{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-#language-status{position:absolute;top:100%;right:0;background:#171410;color:#eadcc2;padding:8px;font-size:12px}
 .meet-profile{margin-top:1.3rem;border-top:1px solid #51452f;padding-top:1rem}
 .meet-profile h3{font-size:1rem;margin:0 0 .7rem}
 .meet-profile dl{display:grid;gap:.8rem;margin:0}
 .meet-profile dt{color:#e8c987;font-weight:600;font-size:.8rem}
 .meet-profile dd{margin:.2rem 0 0;color:#c5bdae;font-size:.85rem;line-height:1.6}
-@media(max-width:900px){
-.site-nav .container{flex-wrap:nowrap;gap:12px}
-.site-nav .nav-logo{margin-right:auto;font-size:20px;white-space:nowrap}
-.site-nav .portfolio-language{margin-left:auto;gap:0}
-.site-nav .language-button{padding:10px 6px;min-height:40px}
-.site-nav .nav-icons{display:none}
-.site-nav .nav-toggle{margin:0;padding:10px;flex-shrink:0}
-.site-nav{background:rgba(15,13,11,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+html[lang="ja"] body{line-height:1.8}
+html[lang="ja"] .hero-lead,html[lang="ja"] .section-heading{line-height:1.35;word-break:normal;overflow-wrap:anywhere}
+@media(max-width:920px){
+:root{--nav-height:100px}
+.site-nav{height:var(--nav-height);background:rgba(15,13,11,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.site-nav .container{display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-rows:38px 28px;gap:4px 10px;padding-top:8px;padding-bottom:8px;flex-wrap:nowrap}
+.site-nav .nav-logo{grid-column:1;grid-row:1;font-size:20px;margin:0;white-space:nowrap}
+.site-nav .nav-icons{display:flex;grid-column:2;grid-row:1;margin:0;gap:5px}
+.site-nav .nav-icon{height:34px;min-width:34px}
+.site-nav .nav-toggle{display:flex;grid-column:3;grid-row:1;margin:0;padding:8px}
+.site-nav .portfolio-language{grid-column:1/-1;grid-row:2;justify-content:flex-end;margin:0;gap:4px}
+.site-nav .language-button{padding:6px 9px;min-height:28px}
 }
-@media(max-width:380px){.site-nav .container{gap:5px}.site-nav .nav-logo{font-size:17px}.site-nav .language-button{padding:10px 4px}}
-.language-engine{display:none!important}
+@media(max-width:360px){.site-nav .container{column-gap:5px}.site-nav .nav-logo{font-size:17px}.site-nav .nav-icon{min-width:30px;height:30px}}
 </style>
 </head>
 <body>
@@ -70,7 +71,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #e8c987;outline-offset:4p
 <button type="button" class="language-button" data-language="en" aria-label="English" aria-pressed="true">EN</button>
 <button type="button" class="language-button" data-language="es" aria-label="Español" aria-pressed="false">ES</button>
 <button type="button" class="language-button" data-language="ja" aria-label="日本語" aria-pressed="false">日本語</button>
-<div class="language-engine" id="portfolio-language" aria-hidden="true"></div><small id="language-status" role="status" hidden></small></div>
+</div>
     <div class="nav-icons">
       <a class="nav-icon" href="assets/cv/Jon-Arbe-CV.pdf" target="_blank" rel="noopener" aria-label="Download CV (PDF)">CV</a>
       <a class="nav-icon" href="https://www.linkedin.com/in/jon-arbe/" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -452,7 +453,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #e8c987;outline-offset:4p
 <script src="js/portfolio-content.js"></script>
 <script src="js/alpha-video-layer.js"></script>
 <script src="js/main.js"></script>
-<script src="js/languages.js?v=20261026-2"></script>
+<script src="js/languages.js?v=native-20261026"></script>
 </body>
 </html>
 

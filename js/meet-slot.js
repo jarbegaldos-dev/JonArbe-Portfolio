@@ -79,7 +79,11 @@
 
   function writeLine(i, animate) {
     var line = lines[i];
-    line.innerHTML = REELS[i].lead + '<b>' + current(i)[1] + '</b>.';
+    var t = window.portfolioI18n ? window.portfolioI18n.text : function(s){return s;};
+    line.textContent = '';
+    line.appendChild(document.createTextNode(t(REELS[i].lead)));
+    var strong = document.createElement('b'); strong.textContent = t(current(i)[1]); line.appendChild(strong);
+    line.appendChild(document.createTextNode(document.documentElement.lang === 'ja' ? '。' : '.'));
     if (animate && !reduceMotion) {
       line.classList.remove('is-new');
       void line.offsetWidth; // restart the fade-in
@@ -152,6 +156,13 @@
     });
   }
 
+  document.addEventListener('portfolio:language', function(){
+    var t=window.portfolioI18n.text;
+    REELS.forEach(function(reel,i){
+      Array.from(strips[i].children).forEach(function(li,j){li.textContent=t(reel.items[j % reel.items.length][0]);});
+      writeLine(i,false); if(!spinning)place(i,pos[i],0);
+    });
+  });
   button.addEventListener('click', spin);
 
   // Keep the strips aligned when the row height changes (resize, rotation)
