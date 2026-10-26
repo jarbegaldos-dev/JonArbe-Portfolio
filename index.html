@@ -28,7 +28,7 @@
 </script>
 <style>
 .portfolio-language{display:flex;align-items:center;gap:3px;flex-shrink:0}
-.language-button{background:transparent;border:1px solid transparent;border-radius:4px;color:#bcb4a6;padding:6px 7px;font:600 11px/1.2 inherit;cursor:pointer;letter-spacing:.04em}
+.language-button{background:transparent;border:1px solid transparent;border-radius:4px;color:#bcb4a6;padding:6px 7px;font-family:inherit;font-size:11px;font-weight:600;line-height:1.2;cursor:pointer;letter-spacing:.04em}
 .language-button:hover,.language-button:focus-visible{color:#f4dfac;border-color:#89734e}
 .language-button[aria-pressed="true"]{color:#e8c987;border-color:#746447;background:#201a12}
 .language-engine{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
@@ -38,7 +38,17 @@
 .meet-profile dl{display:grid;gap:.8rem;margin:0}
 .meet-profile dt{color:#e8c987;font-weight:600;font-size:.8rem}
 .meet-profile dd{margin:.2rem 0 0;color:#c5bdae;font-size:.85rem;line-height:1.6}
-@media(max-width:600px){.language-button{padding:7px 5px}.site-nav .container{flex-wrap:wrap;row-gap:6px}}
+@media(max-width:900px){
+.site-nav .container{flex-wrap:nowrap;gap:12px}
+.site-nav .nav-logo{margin-right:auto;font-size:20px;white-space:nowrap}
+.site-nav .portfolio-language{margin-left:auto;gap:0}
+.site-nav .language-button{padding:10px 6px;min-height:40px}
+.site-nav .nav-icons{display:none}
+.site-nav .nav-toggle{margin:0;padding:10px;flex-shrink:0}
+.site-nav{background:rgba(15,13,11,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+}
+@media(max-width:380px){.site-nav .container{gap:5px}.site-nav .nav-logo{font-size:17px}.site-nav .language-button{padding:10px 4px}}
+.language-engine{display:none!important}
 </style>
 </head>
 <body>
@@ -449,7 +459,7 @@
 <script src="js/alpha-video-layer.js"></script>
 <script src="js/meet-slot.js"></script>
 <script src="js/main.js"></script>
-<script src="js/languages.js"></script>
+<script src="js/languages.js?v=20261026-2"></script>
 </body>
 </html>
 
