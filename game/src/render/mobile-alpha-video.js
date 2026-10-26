@@ -6,6 +6,47 @@
   'use strict';
   var enabled = matchMedia('(pointer: coarse)').matches || /Android|iPhone|iPad|iPod/.test(navigator.userAgent);
   var players = new Set();
+  // One shared GPU compositor: no per-character WebGL contexts or CPU readback.
+  var gpu;
+  function composite(media, canvas, ctx) {
+    if (gpu === false) return false;
+    if (!gpu) {
+      var surface = document.createElement('canvas');
+      var gl = surface.getContext('webgl', { alpha: true, premultipliedAlpha: false, preserveDrawingBuffer: true, antialias: false });
+      if (!gl) { gpu = false; return false; }
+      function shader(type, source) {
+        var s = gl.createShader(type); gl.shaderSource(s, source); gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error('Alpha shader failed');
+        return s;
+      }
+      var program = gl.createProgram();
+      gl.attachShader(program, shader(gl.VERTEX_SHADER, 'attribute vec2 p; varying vec2 uv; void main(){gl_Position=vec4(p,0.,1.); uv=vec2((p.x+1.)*.5,(1.-p.y)*.5);}'));
+      gl.attachShader(program, shader(gl.FRAGMENT_SHADER, 'precision mediump float; varying vec2 uv; uniform sampler2D frame; void main(){vec3 color=texture2D(frame,vec2(uv.x,uv.y*.5)).rgb; float alpha=texture2D(frame,vec2(uv.x,.5+uv.y*.5)).r; gl_FragColor=vec4(color,alpha);}'));
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) { gpu = false; return false; }
+      gl.useProgram(program);
+      var buffer = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+      var position = gl.getAttribLocation(program, 'p'); gl.enableVertexAttribArray(position); gl.vertexAttribPointer(position,2,gl.FLOAT,false,0,0);
+      var texture = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,texture);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+      surface.addEventListener('webglcontextlost', function (e) { e.preventDefault(); gpu = false; });
+      gpu = { gl: gl, surface: surface };
+    }
+    if (gpu.gl.isContextLost()) return false;
+    var g = gpu.gl, target = gpu.surface;
+    if (target.width !== canvas.width || target.height !== canvas.height) { target.width = canvas.width; target.height = canvas.height; }
+    g.viewport(0,0,target.width,target.height);
+    g.texImage2D(g.TEXTURE_2D,0,g.RGBA,g.RGBA,g.UNSIGNED_BYTE,media);
+    g.drawArrays(g.TRIANGLES,0,3);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(target,0,0);
+    return true;
+  }
+
   function create(existing) {
     if (!enabled) return document.createElement('video');
     var canvas = existing || document.createElement('canvas');
@@ -36,6 +77,7 @@
         canvas.width = w; canvas.height = h;
         buffer.width = w; buffer.height = h * 2;
       }
+      if (composite(media, canvas, ctx)) { lastTime = media.currentTime; return; }
       read.drawImage(media, 0, 0);
       var rgb = read.getImageData(0, 0, w, h);
       var mask = read.getImageData(0, h, w, h).data;

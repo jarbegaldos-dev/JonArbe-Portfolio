@@ -11,3 +11,5 @@ ffmpeg -c:v libvpx-vp9 -i INPUT.webm -filter_complex "[0:v]fps=24,split[c][a];[a
 ```
 
 Validation performed: JavaScript syntax/runtime validator; Chromium with a mobile/touch viewport confirmed transparent and opaque pixels, changing raven frames, modal pause/resume, door playback and clone cleanup in both game copies; desktop native video selection; no page exceptions. This is browser emulation, not a physical iPhone/Android performance benchmark. Before release, verify spins, birds, door/stone timing, win animations, chest transition and tab switching on physical Safari and Chrome devices.
+
+Performance revision: shared WebGL compositor reconstructs alpha on the GPU; CPU pixel readback remains only as a fallback when WebGL is unavailable. On mobile, base/bonus backgrounds use still frames and fill the viewport behind the stage. Desktop keeps animated scene backgrounds. Runtime script URLs carry a revision to refresh cached JavaScript.

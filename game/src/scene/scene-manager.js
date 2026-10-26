@@ -43,7 +43,11 @@
       ? structureOverlayRoot
       : ensureGroupEl(layer.group);
     var el;
-    if (layer.type === "video") {
+    if (layer.type === "video" && window.OssuaryMobileAlpha.enabled && /^background_/.test(layer.id)) {
+      el = document.createElement("img");
+      el.src = "assets/backgrounds/" + layer.id + "_mobile.jpg";
+      el.alt = "";
+    } else if (layer.type === "video") {
       el = document.createElement("video");
       el.src = layer.src;
       el.muted = true;
@@ -73,16 +77,11 @@
   // exactamente, queda una franja fuera del stage. Para que no se vea negra,
   // pintamos ahí el mismo fondo configurado en background_base.
   var backdropLayer = LAYERS.filter(function (l) { return l.id === "background_base"; })[0];
-  if (backdropLayer && backdropLayer.type !== "video") {
-    document.getElementById("gameRoot").style.backgroundImage = "url('" + backdropLayer.src + "')";
-  } else if (backdropLayer) {
-    // Un <video> no sirve de background-image: la franja lleva un fotograma
-    // fijo del propio video (mismo encuadre: cover y centrado en el CSS).
-    document.getElementById("gameRoot").style.backgroundImage =
-      "url('assets/backgrounds/background_base_poster.jpg')";
-  } else {
-    document.getElementById("gameRoot").style.backgroundColor = "#000";
+  function updateViewportBackground(id) {
+    var path = 'assets/backgrounds/' + id + '_mobile.jpg';
+    document.getElementById('gameRoot').style.backgroundImage = 'url("' + path + '")';
   }
+  updateViewportBackground('background_base');
 
   // Humo ambiental de las velas: generado con CSS puro (sin asset ni canvas),
   // sigue la visibilidad de la capa "candles".
@@ -156,6 +155,7 @@
   // vídeo de fondo del bonus siga sonando/reproduciendose de forma continua
   // aunque no se este mostrando en ese momento.
   function setBonusBackgroundActive(active) {
+    updateViewportBackground(active ? "background_bonus_freespins" : "background_base");
     var shown = setLayerVisible("background_bonus_freespins", Boolean(active));
     var hiddenBase = setLayerVisible("background_base", !active);
     setLayerVisible("chest_normal_game", !active);
