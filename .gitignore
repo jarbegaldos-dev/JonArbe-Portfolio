@@ -17,3 +17,11 @@ node_modules/
 
 # OS/temp scratch files some tools generate
 tmp_*.png
+
+# Local portfolio backups and working copies
+_backup-*/
+_rediseno/
+_local_game_*/
+
+# Unused capture set (not referenced by the site)
+assets/ossuary-reels/current/

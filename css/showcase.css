@@ -283,3 +283,10 @@
   #work::after { right:.45rem; }
 }
 .game-gallery [data-gallery-status] { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+
+.video-preview { min-width:0; }
+.hero-board.video-preview img { min-width:0; min-height:0; }
+.video-preview figcaption { padding-top:.5rem; line-height:1.35; }
+.meet .meet-lines { gap:.55rem; margin:1rem 0 1.3rem; }
+.meet .meet-spin { display:flex; justify-content:center; align-items:center; gap:.65rem; min-height:52px; }
+@media(max-width:420px) { .meet .meet-lines { gap:.4rem; margin-bottom:1rem; } }

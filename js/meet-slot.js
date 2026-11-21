@@ -35,7 +35,6 @@
       ['Throwing work away', 'throwing work away']
     ] }
   ];
-  var CYCLES = 14;                      // copies of each reel's items in its strip
   var STOP_MS = [900, 1350, 2200];      // left to right; the last reel lingers
   var EASE = 'cubic-bezier(0.22, 0.9, 0.32, 1.08)';
   var BONUS_AT = 5;
@@ -56,13 +55,13 @@
   var bonusEl = root.querySelector('[data-meet-bonus]');
   if (strips.length !== REELS.length || lines.length !== REELS.length || !button) return;
 
-  var pos = [];        // absolute index of the item on the win line, per strip
+  var pos = [];        // selected item in each reel
   var spins = 0;
   var spinning = false;
 
   function rowHeight(i) {
-    var li = strips[i].firstElementChild;
-    return li ? li.getBoundingClientRect().height : 0;
+    var row = strips[i].firstElementChild;
+    return row ? row.getBoundingClientRect().height : 0;
   }
 
   // The item at `index` sits in the middle row, one row below the top.
@@ -94,19 +93,27 @@
     el.classList.add(cls);
   }
 
-  // Build the strips and start on "English / Details / 173 paylines"
-  REELS.forEach(function (reel, i) {
-    var html = '';
-    for (var c = 0; c < CYCLES; c++) {
-      reel.items.forEach(function (item) { html += '<li>' + item[0] + '</li>'; });
+  // Render only the visible rows at rest. Expand the strip while it spins.
+  function drawStrip(i, middle, steps) {
+    var items = REELS[i].items;
+    var rows = document.createDocumentFragment();
+    for (var offset = -1; offset <= steps + 1; offset++) {
+      var row = document.createElement('span');
+      row.textContent = items[(middle + offset + items.length) % items.length][0];
+      rows.appendChild(row);
     }
-    strips[i].innerHTML = html;
-    pos[i] = reel.items.length * 2;
-    place(i, pos[i], 0);
+    strips[i].replaceChildren(rows);
+    place(i, 1, 0);
+  }
+
+  REELS.forEach(function (reel, i) {
+    pos[i] = 0;
+    drawStrip(i, pos[i], 0);
     writeLine(i, false);
   });
 
   function land(i, last) {
+    drawStrip(i, pos[i], 0);
     windows[i].classList.remove('is-spinning');
     flash(windows[i], 'is-hit');
     writeLine(i, true);
@@ -130,21 +137,16 @@
 
     REELS.forEach(function (reel, i) {
       var len = reel.items.length;
-      // Near the end of the strip: jump back to the same item two cycles in,
-      // without animation, so there is always room to spin forward.
-      if (pos[i] > len * (CYCLES - 5)) {
-        pos[i] = len * 2 + (pos[i] % len);
-        place(i, pos[i], 0);
-        void strips[i].offsetWidth;
-      }
-      var from = pos[i] % len;
+      var from = pos[i];
       var to = Math.floor(Math.random() * len);
       if (to === from && len > 1) to = (to + 1) % len;
-      var target = pos[i] + len * (3 + i) + ((to - from + len) % len);
-      pos[i] = target;
+      var steps = len * (3 + i) + ((to - from + len) % len);
+      drawStrip(i, from, steps);
+      void strips[i].offsetWidth;
 
+      pos[i] = to;
       if (!reduceMotion) windows[i].classList.add('is-spinning');
-      place(i, target, STOP_MS[i]);
+      place(i, 1 + steps, STOP_MS[i]);
       // A timer instead of transitionend: it always fires, even when the
       // tab is in the background or the transition gets skipped.
       var last = i === REELS.length - 1;
@@ -160,7 +162,7 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
       if (spinning) return;
-      REELS.forEach(function (reel, i) { place(i, pos[i], 0); });
+      REELS.forEach(function (reel, i) { place(i, 1, 0); });
     }, 120);
   });
 })();
