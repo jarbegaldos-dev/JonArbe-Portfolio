@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jon Arbe — Game Designer · Slots &amp; Game Feel</title>
-<meta name="description" content="Jon Arbe, game designer focused on slots and game feel. Play Ossuary Reels, a dark-fantasy slot with a 173-line ribcage board, in your browser.">
+<title>Jon Arbe — Game Designer · Art Direction &amp; Game Feel</title>
+<meta name="description" content="Jon Arbe — game designer exploring art direction, mechanics and game feel. Selected work, visual development and an independent playable prototype.">
 <meta name="theme-color" content="#0a0908">
 <link rel="canonical" href="https://jarbegaldos-dev.github.io/JonArbe-Portfolio/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Jon Arbe — Game Designer · Slots & Game Feel">
-<meta property="og:description" content="Designer of Ossuary Reels, a dark-fantasy slot with a 173-line ribcage board. Playable in your browser.">
+<meta property="og:title" content="Jon Arbe — Game Designer · Art Direction & Game Feel">
+<meta property="og:description" content="Art direction, mechanics and game feel. Explore the design and visual development of Ossuary Reels, an independent game in development.">
 <meta property="og:url" content="https://jarbegaldos-dev.github.io/JonArbe-Portfolio/">
 <meta property="og:image" content="https://jarbegaldos-dev.github.io/JonArbe-Portfolio/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -17,11 +17,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preload" as="image" href="assets/ossuary-reels/img/hero-bonus.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/ossuary-reels/showcase/background_base_image.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/showcase.css?v=edge-lines-2">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Jon Arbe","jobTitle":"Game Designer","url":"https://jarbegaldos-dev.github.io/JonArbe-Portfolio/","email":"mailto:j.arbegaldos@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Tokyo","addressCountry":"JP"},"knowsLanguage":["es","en","ja"],"sameAs":["https://www.linkedin.com/in/jon-arbe/"]}
 </script>
@@ -33,8 +35,10 @@
   <div class="container">
     <a href="index.html" class="nav-logo">JON<span>·</span>ARBE</a>
     <div class="nav-links" id="navLinks">
-      <a href="#about">About</a>
       <a href="#work">Work</a>
+      <a href="ossuary-reels.html#symbols">Symbols</a><a href="ossuary-reels.html#iteration">Evolution</a>
+      <a href="#about">About</a>
+      <a href="#business">Business</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-icons">
@@ -46,8 +50,8 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
       </a>
     </div>
-    <a href="game/index.html" class="btn btn-gold btn-sm nav-play" data-play><span class="play-tri"></span>Play demo</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <a href="game/index.html" class="btn btn-gold btn-sm nav-play" data-play><span class="play-tri"></span>Play Ossuary Reels</a>
+    <button class="nav-toggle" id="navToggle" aria-controls="navLinks" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -58,47 +62,74 @@
   <!-- ============ HERO ============ -->
   <header class="hero">
     <div class="hero-media" aria-hidden="true">
-      <img src="assets/ossuary-reels/img/hero-bonus.webp" alt="" width="2400" height="1500" fetchpriority="high">
+      <img src="assets/ossuary-reels/showcase/background_base_image.jpg" alt="" width="2400" height="1500" fetchpriority="high">
     </div>
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow">Game Designer · Slots &amp; Game Feel</span>
-        <div class="hero-name">
-          <h1>Jon Arbe</h1>
-          <div class="hero-raven-frame" aria-hidden="true">
+        <div class="hero-companion" aria-hidden="true"><img class="hero-companion__torso" src="assets/ossuary-reels/showcase/symbols/guillotine-companion.png" alt=""><img class="hero-companion__hood" src="assets/ossuary-reels/showcase/symbols/guillotine-companion.png" alt=""><img class="hero-companion__legs" src="assets/ossuary-reels/showcase/symbols/guillotine-companion.png" alt=""></div>
+        <span class="eyebrow">Game Designer · Art Direction &amp; Game Feel</span>
+        <div class="hero-name"><h1>Jon Arbe</h1><div class="hero-raven-frame" aria-hidden="true">
             <video class="hero-raven-source" autoplay muted loop playsinline webkit-playsinline>
               <source src="assets/ossuary-reels/raven-perch.webm" type="video/webm">
               <source src="assets/ossuary-reels/raven-perch.mp4" type="video/mp4">
             </video>
             <canvas class="hero-raven"></canvas>
-          </div>
-        </div>
-        <p class="hero-lead">I design slots that <em>build tension</em> before they pay.</p>
-        <p class="hero-sub">I designed Ossuary Reels from scratch: a 173-line ribcage board, three chained bonus features with their own probability targets, and a big win timed to its music. Play it right here.</p>
+          </div></div>
+        <p class="hero-lead">I shape worlds, mechanics<br>and <em>how they feel.</em></p>
+        <p class="hero-sub">I’m Jon, a game designer based in Tokyo. My focus is art direction, mechanics and the rhythm of play — bringing the look, the rules and the feeling together.</p>
         <div class="hero-ctas">
-          <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play Ossuary Reels</a>
-          <a href="ossuary-reels.html" class="btn btn-ghost">Read the case study</a>
+          <a href="#work" class="btn btn-gold">Explore Ossuary Reels</a>
+          <a href="game/index.html" class="btn btn-ghost" data-play><span class="play-tri"></span>Play Ossuary Reels</a>
           <a href="#" class="btn btn-ghost" data-trailer hidden><span class="play-tri"></span>Watch the trailer</a>
         </div>
+        <a href="ossuary-reels.html#symbols" class="hero-symbol-link">Explore the symbols <span aria-hidden="true">↓</span></a>
         <p class="hero-meta"><b>Based in Tokyo</b> · Open to remote roles</p>
       </div>
+    <figure class="hero-board video-preview"><img src="assets/ossuary-reels/showcase/symbols/dead-raven.png" alt="The fallen raven from Ossuary Reels" fetchpriority="high"><figcaption>Video coming soon</figcaption></figure>
     </div>
-    <span class="hero-chip"><i></i>In-game · Execution Bonus</span>
   </header>
+
+  <!-- ============ FEATURED PROJECT ============ -->
+  <section id="work" class="section-pad"><div class="container">
+<div class="work-overview"><div class="work-intro"><span class="eyebrow">Selected work · In development</span><h2 class="section-heading">Ossuary Reels</h2><p class="section-lede">A dark-fantasy web slot built around a ribcage of independent reels. Blades cut through the symbols below them. Cut Shackles fill a chest, and cut ravens move to a perch where a stone hit can turn a column wild.</p><dl class="work-credit"><dt>My role</dt><dd>Game design, systems, art &amp; audio direction</dd><dt>Development</dt><dd>Solo design · AI-assisted implementation</dd></dl><div class="work-art" aria-hidden="true"><img src="assets/ossuary-reels/showcase/symbols/small-blade-red.png" alt="" loading="lazy"><img src="assets/ossuary-reels/showcase/symbols/raven-x25.png" alt="" loading="lazy"><img src="assets/ossuary-reels/showcase/symbols/shackles-bag-x25.png" alt="" loading="lazy"></div></div>
+<section class="game-gallery" data-game-gallery aria-label="Ossuary Reels gameplay gallery">
+<div class="game-gallery__slides" id="home-game-slides">
+<figure class="game-gallery__slide"><img src="assets/ossuary-reels/showcase/gameplay-desktop.jpg" alt="The ribcage reels and side-mounted controls." width="1440" height="900" loading="lazy"><figcaption><a href="ossuary-reels.html#board">Base game</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/raven-chain.jpg" alt="Two ravens wait above the reels." width="1440" height="900" loading="lazy"><figcaption><a href="ossuary-reels.html#raven-chain">Raven Chain</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/execution-round-1.jpg" alt="Condemned skeletons, side reels and the guillotine." width="1440" height="900" loading="lazy"><figcaption><a href="ossuary-reels.html#execution-bonus">Execution Bonus</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/judgment-live-4.jpg" alt="Death’s lantern, nest reels and remaining bells." width="1440" height="900" loading="lazy"><figcaption><a href="ossuary-reels.html#judgment">The Judgment Bonus</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/max-win-symbols.jpg" alt="MAX, the hooded companion and WIN across the middle reels." width="1440" height="900" loading="lazy"><figcaption><a href="ossuary-reels.html#max-win">Max Win</a></figcaption></figure>
+</div>
+<div class="game-gallery__controls" hidden><button type="button" class="gallery-arrow gallery-arrow--prev" data-gallery-prev aria-label="Previous image" aria-controls="home-game-slides"></button><button type="button" class="gallery-arrow gallery-arrow--next" data-gallery-next aria-label="Next image" aria-controls="home-game-slides"></button><div class="gallery-dots" data-gallery-dots role="group" aria-label="Choose an image"></div><span class="sr-only" data-gallery-status aria-live="polite"></span></div>
+</section></div>
+<section class="case-preview" aria-labelledby="case-preview-heading">
+<div><h3 id="case-preview-heading">Inside the case study</h3><p>See how the symbols trigger features, how the bonus rounds play, and how I measured RTP and hit rate.</p><a class="btn btn-gold" href="ossuary-reels.html">Open case study</a> <a class="proof" href="ossuary-reels.html#numbers">View game math</a></div>
+<div class="game-gallery case-preview__gallery" data-game-gallery aria-label="Case study preview">
+<div class="game-gallery__slides" id="case-preview-slides">
+<figure class="game-gallery__slide"><img src="assets/ossuary-reels/showcase/collections/raven-wilds.png" alt="The regular and multiplier Raven WILDs" loading="lazy"><figcaption><a href="ossuary-reels.html#raven-chain">Raven WILDs</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/collections/shackles-bags.png" alt="Shackles carrying cash bags worth ×5, ×25 and ×50" loading="lazy"><figcaption><a href="ossuary-reels.html#blades-chest">Chest & cash bags</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/execution-round-1.jpg" alt="Condemned skeletons and the guillotine on the Execution board" loading="lazy"><figcaption><a href="ossuary-reels.html#execution-bonus">Execution Bonus</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/judgment-live-4.jpg" alt="Death’s lantern and the bell counter in The Judgment" loading="lazy"><figcaption><a href="ossuary-reels.html#judgment">The Judgment Bonus</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/max-win-symbols.jpg" alt="MAX, the hooded companion and WIN across the middle reels" loading="lazy"><figcaption><a href="ossuary-reels.html#max-win">Max Win</a></figcaption></figure>
+</div>
+<div class="game-gallery__controls" hidden><button type="button" class="gallery-arrow gallery-arrow--prev" data-gallery-prev aria-label="Previous image" aria-controls="case-preview-slides"></button><button type="button" class="gallery-arrow gallery-arrow--next" data-gallery-next aria-label="Next image" aria-controls="case-preview-slides"></button><div class="gallery-dots" data-gallery-dots role="group" aria-label="Choose an image"></div><span class="sr-only" data-gallery-status aria-live="polite"></span></div>
+</div></section>
+<div class="work-actions"><a class="btn btn-ghost" href="game/index.html" data-play><span class="play-tri"></span>Play Ossuary Reels</a></div><p class="prototype-version">The playable demo is a separate build. The gallery shows the development build.</p></div></section>
 
   <!-- ============ ABOUT ============ -->
   <section id="about" class="section-pad about-me">
+    <div class="deco-layer" aria-hidden="true"><img class="deco d-about-candles flicker" src="assets/ossuary-reels/deco/candles.webp" alt="" width="220" loading="lazy"><img class="deco d-about-wild float-slow" src="assets/ossuary-reels/deco/wild.webp" alt="" width="150" loading="lazy"></div>
     <div class="container">
       <div class="about-top">
         <div class="about-story" data-reveal>
           <figure class="about-photo" data-photo hidden><img src="" alt="Jon Arbe" width="480" height="600" loading="lazy"></figure>
           <span class="eyebrow">About</span>
           <h2>Hi, I’m Jon.</h2>
-          <p>I’m a game designer from Spain, based in Tokyo. I design slot features end to end: what triggers them, how they pay, how often they land, and what the player feels while waiting for them.</p>
+          <p>I’m a game designer from Spain, based in Tokyo. My strongest interests are art, mechanics and sensations: how a world looks, what happens inside it and how each moment lands.</p>
           <ul class="about-can">
-            <li><b>From idea to playable.</b> Ossuary Reels is mine from the first sketch: the world, the board, every rule and every bonus.</li>
-            <li><b>Systems with numbers behind them.</b> Every feature has hit-rate and payout targets, and I retune them when playtesting says they feel wrong.</li>
-            <li><b>Direction.</b> I direct the art, the animation and the sound, and I build with AI coding tools: I define it, test it and send it back until it’s right.</li>
+            <li><b>From idea to playable.</b> I designed the world, the reel layout and the bonus rules for Ossuary Reels.</li>
+            <li><b>Mechanics with a purpose.</b> I connect rules, risk and reward to the experience I want to create, then iterate on what feels unclear or flat.</li>
+            <li><b>Art direction &amp; game feel.</b> I set the art direction and specify animation and audio timing. I use AI coding tools to implement the design, then review and playtest it.</li>
           </ul>
         </div>
 
@@ -128,127 +159,79 @@
     </div>
   </section>
 
-  <!-- ============ FEATURED PROJECT ============ -->
-  <section id="work" class="section-pad">
+
+  <!-- ============ BUSINESS ============ -->
+  <section id="business" class="section-pad paper business">
+    <div class="deco-layer" aria-hidden="true"><img class="deco d-biz-coin float-slow" src="assets/ossuary-reels/deco/coin.webp" alt="" width="120" loading="lazy"><img class="deco d-biz-blood" src="assets/ossuary-reels/deco/blood-3.webp" alt="" width="150" loading="lazy"></div>
     <div class="container">
       <div class="sec-head" data-reveal>
         <div>
-          <span class="eyebrow">Featured project</span>
-          <h2 class="section-heading">Ossuary Reels</h2>
+          <span class="eyebrow">Business · Studios, operators &amp; publishers</span>
+          <h2 class="section-heading">Work with me</h2>
         </div>
-        <p class="section-lede">A slot where the board fights back: blades cut symbols, ravens turn into wilds and a chest fills up until it opens.</p>
+        <p class="section-lede">I’m open to developing Ossuary Reels with a studio and taking on game design work.</p>
       </div>
 
-      <dl class="facts facts--inline" data-reveal>
-        <div class="fact"><dt>Role</dt><dd>Game design, systems, art &amp; audio direction</dd></div>
-        <div class="fact"><dt>Team</dt><dd>Solo designer + AI-assisted development</dd></div>
-        <div class="fact"><dt>Timeline</dt><dd>June 2026 – now</dd></div>
-        <div class="fact"><dt>Platform</dt><dd>Web · desktop &amp; mobile</dd></div>
-        <div class="fact"><dt>Status</dt><dd>Playable beta</dd></div>
-      </dl>
-
-      <a href="game/index.html" class="poster" data-play data-reveal aria-label="Play the Ossuary Reels demo">
-        <img src="assets/ossuary-reels/img/bigwin.webp" alt="Ossuary Reels: a big win counting up over the ribcage board" width="1800" height="1125" loading="lazy">
-        <span class="poster-play"><span class="play-tri"></span></span>
-        <span class="poster-label">Play the demo · desktop &amp; mobile</span>
-      </a>
-
-      <div class="sheet" data-reveal>
-        <div class="sheet-head"><h3>Game sheet</h3><span>Design targets for the current beta</span></div>
-        <div class="sheet-grid">
-          <div class="sheet-cell"><b>173</b><span>Paylines on a ribcage-shaped board</span></div>
-          <div class="sheet-cell"><b>3 <small>+1</small></b><span>Bonus features, a fourth in development</span></div>
-          <div class="sheet-cell"><b>20,000×</b><span>Max win</span></div>
-          <div class="sheet-cell"><b>98%</b><span>Target RTP, tuning in progress</span></div>
-        </div>
+      <div class="deals">
+        <article class="deal" data-reveal>
+          <span class="deal-stamp">Licensing</span>
+          <span class="deal-num">Nº 01</span>
+          <h3>License the game</h3>
+          <p class="deal-for">For operators, aggregators and slot studios.</p>
+          <p>Discuss licensing the prototype with your production team. I can provide the design documentation and math model, and help tune the game for production.</p>
+          <ul>
+            <li>Exclusive or non-exclusive</li>
+            <li>Revenue share or fixed fee</li>
+            <li>Design support during production</li>
+          </ul>
+          <a class="btn btn-gold" href="mailto:j.arbegaldos@gmail.com?subject=Licensing%20enquiry%20%E2%80%94%20Ossuary%20Reels">Ask about licensing</a>
+        </article>
+        <article class="deal" data-reveal data-reveal-delay="1">
+          <span class="deal-stamp">Acquisition</span>
+          <span class="deal-num">Nº 02</span>
+          <h3>Buy the concept</h3>
+          <p class="deal-for">For studios looking for their next title.</p>
+          <p>Discuss acquiring the concept and design documentation, including the board and bonus rules, for your team to adapt.</p>
+          <ul>
+            <li>Full rights or adaptation rights</li>
+            <li>Design documents and math model</li>
+            <li>Handover sessions with your team</li>
+          </ul>
+          <a class="btn btn-gold" href="mailto:j.arbegaldos@gmail.com?subject=Concept%20acquisition%20%E2%80%94%20Ossuary%20Reels">Make an offer</a>
+        </article>
+        <article class="deal" data-reveal data-reveal-delay="2">
+          <span class="deal-stamp">Commission</span>
+          <span class="deal-num">Nº 03</span>
+          <h3>Commission a design</h3>
+          <p class="deal-for">For teams that need a feature, a concept or a fresh eye.</p>
+          <p>A bonus feature, a board concept, the game feel of a big win or the art direction of a new world, from the first idea to a playable specification.</p>
+          <ul>
+            <li>Bonus features and board concepts</li>
+            <li>Game feel, pacing and audio timing</li>
+            <li>Freelance, contract or full-time</li>
+          </ul>
+          <a class="btn btn-gold" href="mailto:j.arbegaldos@gmail.com?subject=Design%20commission">Start a project</a>
+        </article>
       </div>
 
-      <div class="sub-head" data-reveal>
-        <h3 class="label">Design breakdowns</h3>
-        <p>Goal, problem, what I changed and the numbers behind it.</p>
-      </div>
-      <div class="cards">
-        <a class="card" href="ossuary-reels.html#raven-chain" data-reveal>
-          <div class="card-media"><img src="assets/ossuary-reels/raven.png" alt="" loading="lazy"></div>
-          <div class="card-body">
-            <span class="card-num">01</span>
-            <h3>The Raven chain</h3>
-            <p>How do you make a free spin feel earned? Every raven the stone kills grants one more spin, and the chain goes on while ravens keep falling.</p>
-            <span class="card-meta">Probability · Pacing</span>
-          </div>
-        </a>
-        <a class="card" href="ossuary-reels.html#blades-chest" data-reveal data-reveal-delay="1">
-          <div class="card-media"><img src="assets/ossuary-reels/chest.png" alt="" loading="lazy"></div>
-          <div class="card-body">
-            <span class="card-num">02</span>
-            <h3>Blades &amp; the Chest</h3>
-            <p>Cut symbols leave holes that break lines, and fall into a chest. When it’s full enough, it opens: collect, or gamble it on a wheel.</p>
-            <span class="card-meta">Systems · Risk &amp; reward</span>
-          </div>
-        </a>
-        <a class="card" href="ossuary-reels.html#execution-bonus" data-reveal>
-          <div class="card-media"><img src="assets/ossuary-reels/skeleton-rico.png" alt="" loading="lazy"></div>
-          <div class="card-body">
-            <span class="card-num">03</span>
-            <h3>The Execution Bonus</h3>
-            <p>A respin chain to unlock it, three candles to survive it, and a guillotine multiplier that grows with every hand you cut.</p>
-            <span class="card-meta">Bonus design · Tension</span>
-          </div>
-        </a>
-        <a class="card" href="ossuary-reels.html#big-win" data-reveal data-reveal-delay="1">
-          <div class="card-media is-photo"><img src="assets/ossuary-reels/img/card-bigwin.webp" alt="" loading="lazy"></div>
-          <div class="card-body">
-            <span class="card-num">04</span>
-            <h3>A big win, cut to the music</h3>
-            <p>The counter is timed to its track: small wins land fast and quiet, big ones ride the music and stop exactly on a cymbal hit.</p>
-            <span class="card-meta">Game feel · Audio</span>
-          </div>
-        </a>
+      <div class="steps" data-reveal>
+        <div class="step"><b>01</b><h4>Write to me</h4><p>Two lines: who you are and what you have in mind.</p></div>
+        <div class="step"><b>02</b><h4>Private build</h4><p>We can review the current build and design documents under NDA.</p></div>
+        <div class="step"><b>03</b><h4>Terms</h4><p>We agree on scope, rights and price.</p></div>
+        <div class="step"><b>04</b><h4>Handover</h4><p>Files, documentation and support for your production.</p></div>
       </div>
 
-      <div class="row-ctas">
-        <a href="ossuary-reels.html" class="btn btn-gold">Read the case study</a>
-        <a href="game/index.html" class="btn btn-ghost" data-play><span class="play-tri"></span>Play the demo</a>
-        <a href="#" class="btn btn-ghost" data-trailer hidden><span class="play-tri"></span>Watch the trailer</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ HOW I DESIGN ============ -->
-  <section class="section-pad">
-    <div class="container">
-      <div class="sec-head" data-reveal>
-        <div>
-          <span class="eyebrow">How I design</span>
-          <h2 class="section-heading">Feeling first. Then cut.</h2>
-        </div>
-      </div>
-      <div class="principles">
-        <div class="principle" data-reveal>
-          <h3>Decide the feeling</h3>
-          <p>Before a mechanic exists, I decide what the player should feel. Everything that doesn’t help that feeling goes, even if it works.</p>
-          <a class="proof" href="ossuary-reels.html#raven-chain">See it in the Raven chain →</a>
-        </div>
-        <div class="principle" data-reveal data-reveal-delay="1">
-          <h3>Let moments breathe</h3>
-          <p>Not every moment at the same intensity. Pauses, rhythm and sound decide how hard a win lands, and how much a near-miss stings.</p>
-          <a class="proof" href="ossuary-reels.html#big-win">See it in the big-win counter →</a>
-        </div>
-        <div class="principle" data-reveal data-reveal-delay="2">
-          <h3>Rebuild when it’s wrong</h3>
-          <p>I threw away the whole first reel structure because it worked but didn’t feel right. It was the best decision of the project.</p>
-          <a class="proof" href="ossuary-reels.html#iteration">See it in the dev log →</a>
-        </div>
-      </div>
+      <p class="legal-note"><b>Good to know:</b> Ossuary Reels is a prototype and is not certified for real-money play. The demo on this site uses play money only. Certification, compliance and distribution are handled with the licensing partner, market by market.</p>
     </div>
   </section>
 
   <!-- ============ CONTACT ============ -->
   <section id="contact" class="contact">
+    <div class="deco-layer" aria-hidden="true"><img class="deco d-contact-candles-l flicker" src="assets/ossuary-reels/deco/candles.webp" alt="" width="240" loading="lazy"><img class="deco d-contact-candles-r flicker" src="assets/ossuary-reels/deco/candles.webp" alt="" width="240" loading="lazy"><img class="deco d-contact-feather float" src="assets/ossuary-reels/deco/feather-1.webp" alt="" width="80" loading="lazy"><span class="deco embers"></span></div>
     <div class="container" data-reveal>
       <span class="eyebrow">Contact</span>
       <h2>Let&rsquo;s talk.</h2>
-      <p>If you&rsquo;re building slots, or anything where feel matters, I&rsquo;d love to hear from you.</p>
+      <p>Hiring a game designer, or interested in one of my games? Either way, I’d love to hear from you.</p>
       <dl class="hire">
         <div><dt>Looking for</dt><dd>A remote, full-time role</dd></div>
         <div><dt>Based in</dt><dd>Tokyo · JST (UTC+9)</dd></div>
@@ -272,10 +255,13 @@
     <a href="https://www.linkedin.com/in/jon-arbe/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="assets/cv/Jon-Arbe-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
   </nav>
+  <p class="footer-note">Ossuary Reels is a play-money demo. No real-money gambling takes place on this site.</p>
 </footer>
 
+<script src="js/portfolio-content.js"></script>
 <script src="js/alpha-video-layer.js"></script>
 <script src="js/meet-slot.js"></script>
 <script src="js/main.js"></script>
+<script src="js/game-gallery.js?v=gallery-dots-1" defer></script>
 </body>
 </html>

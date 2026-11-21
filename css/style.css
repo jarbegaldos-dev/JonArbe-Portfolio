@@ -1191,3 +1191,24 @@ body.game-modal-open { position: fixed; left: 0; right: 0; overflow: hidden; }
   .btn:active { transform: none; }
   .game-modal-backdrop, .game-modal-panel, .game-modal-btn { transition: none; }
 }
+
+
+/* Portfolio structure: visual direction, mechanics and feel. */
+.project-status { display:flex; align-items:baseline; gap:.8rem; color:var(--color-text-muted); border:1px solid var(--color-border-gold); padding:1.2rem; margin:1.5rem 0 2.5rem; }
+.status-dot { width:8px; height:8px; border-radius:50%; background:var(--color-gold); flex-shrink:0; }
+.work-pillars { margin-bottom:3rem; }
+.art-section { border-block:1px solid var(--color-border); background:var(--color-bg-elevated); }
+.art-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem; }
+.art-piece { min-width:0; border:1px solid var(--color-border); background:var(--color-bg); overflow:hidden; }
+.art-piece img { width:100%; height:340px; object-fit:contain; background:#100e0c; }
+.art-piece figcaption { padding:1.5rem; }
+.art-piece figcaption > span { color:var(--color-gold); font-size:.75rem; text-transform:uppercase; letter-spacing:.1em; }
+.art-piece h3 { font-size:1.7rem; margin:.7rem 0; }
+.art-piece p, .art-credit { color:var(--color-text-muted); font-size:.95rem; }
+.art-piece--wide { grid-column:1/-1; }
+.art-piece--wide img { height:auto; max-height:620px; object-fit:cover; }
+.art-credit { max-width:850px; margin:1.5rem 0; }
+.development-details { border:1px solid var(--color-border); border-radius:4px; margin:2rem 0; padding:1.2rem; }
+.development-details summary { cursor:pointer; color:var(--color-gold); font-weight:600; padding:.4rem; }
+.development-details summary:focus-visible { outline:2px solid var(--color-gold); outline-offset:4px; }
+@media(max-width:700px) { .art-grid { grid-template-columns:1fr; gap:1.2rem; } .art-piece img { height:auto; max-height:440px; } .art-piece--wide { grid-column:auto; } .hero-ctas .btn { white-space:normal; text-align:center; } }

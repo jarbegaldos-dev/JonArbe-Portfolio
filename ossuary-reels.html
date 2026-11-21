@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ossuary Reels — Case Study | Jon Arbe</title>
-<meta name="description" content="Case study: Ossuary Reels, a dark-fantasy slot with a 173-line ribcage board and three chained bonus features, designed and directed by Jon Arbe.">
+<meta name="description" content="Case study: Ossuary Reels, a dark-fantasy slot with a 173-line ribcage board and interconnected bonus mechanics, designed and directed by Jon Arbe.">
 <meta name="theme-color" content="#0a0908">
 <link rel="canonical" href="https://jarbegaldos-dev.github.io/JonArbe-Portfolio/ossuary-reels.html">
 <meta property="og:type" content="article">
@@ -19,8 +19,10 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/showcase.css?v=edge-lines-1">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -30,7 +32,7 @@
     <a href="index.html" class="nav-logo">JON<span>·</span>ARBE</a>
     <div class="nav-links" id="navLinks">
       <a href="index.html#about">About</a>
-      <a href="index.html#work">Work</a>
+      <a href="index.html#work">Work</a><a href="#symbols">Symbols</a>
       <a href="index.html#contact">Contact</a>
     </div>
     <div class="nav-icons">
@@ -42,8 +44,8 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
       </a>
     </div>
-    <a href="game/index.html" class="btn btn-gold btn-sm nav-play" data-play><span class="play-tri"></span>Play demo</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <a href="game/index.html" class="btn btn-gold btn-sm nav-play" data-play><span class="play-tri"></span>Play Ossuary Reels</a>
+    <button class="nav-toggle" id="navToggle" aria-controls="navLinks" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -53,15 +55,14 @@
 
   <header class="cs-hero">
     <div class="hero-media" aria-hidden="true">
-      <img src="assets/ossuary-reels/img/game-base.webp" alt="" width="2400" height="1500" fetchpriority="high">
+      <img src="assets/ossuary-reels/showcase/background_base_image.jpg" alt="" width="2400" height="1500" fetchpriority="high">
     </div>
     <div class="container hero-inner">
-      <span class="eyebrow">Case study · 2026</span>
+      <span class="eyebrow">Project in development · 2026</span>
       <h1>Ossuary Reels</h1>
-      <p class="hero-lead">A dark-fantasy slot where the board fights back.</p>
+      <p class="hero-lead">A dark-fantasy slot built around a ribcage-shaped board.</p>
       <div class="hero-ctas">
-        <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play the demo</a>
-        <a href="index.html#work" class="btn btn-ghost">Back to work</a>
+        <a href="#symbols" class="btn btn-ghost">Explore the symbols</a>
       </div>
     </div>
   </header>
@@ -71,68 +72,99 @@
       <div class="fact"><dt>My role</dt><dd>Game design, systems, art &amp; audio direction</dd></div>
       <div class="fact"><dt>Timeline</dt><dd>June 2026 – now</dd></div>
       <div class="fact"><dt>Team</dt><dd>Solo + AI-assisted development</dd></div>
-      <div class="fact"><dt>Status</dt><dd>Playable beta</dd></div>
+      <div class="fact"><dt>Status</dt><dd data-project-status>Playable prototype · in development</dd></div>
     </dl>
 
     <div class="tldr" data-reveal>
-      <h2>In 30 seconds</h2>
+      <h2>Project overview</h2>
       <div>
         <ul>
-          <li><b>All the design is mine:</b> the concept, the rules, every feature, the probability targets, the art and sound direction and the playtesting. AI coding tools wrote the code to my specs.</li>
-          <li><b>A board nobody has seen:</b> independent reels inside a ribcage, joined by 173 paylines designed for that shape.</li>
-          <li><b>Three bonus features that feed each other:</b> the Raven chain, the Chest gamble and the Execution Bonus. A fourth is in development.</li>
-          <li><b>Feel tuned as one system:</b> probability, animation and music are timed together. The big-win counter is cut to its track.</li>
+          <li><b>My role:</b> concept, rules, probability targets, art and audio direction, and playtesting. Development was AI-assisted.</li>
+          <li><b>Board:</b> independent reels inside a ribcage, joined by 173 paylines designed for that shape.</li>
+          <li><b>Playable bonus systems:</b> Raven Bonus, Chest Gamble, Execution and El Juicio.</li>
+          <li><b>Game feel:</b> the Big Win counter uses different durations for different prize tiers, timed to the music.</li>
         </ul>
-        <p class="cs-note"><b>Note:</b> the public demo is an earlier build. The Raven chain, the golden crows and the new HUD arrive with the next beta.</p>
+        <p class="cs-note">Platform: browser on desktop and mobile. The development build is still being tuned.</p>
+        <p class="cs-note" data-project-note>Work in progress. The playable build and artwork are provisional; some features described in the case study belong to a newer development version.</p>
       </div>
     </div>
   </div>
 
   <nav class="cs-subnav" aria-label="Case study sections">
     <ul id="csSubnavList">
-      <li><a href="#idea">01 The idea</a></li>
-      <li><a href="#board">02 The board</a></li>
-      <li><a href="#features">03 Features</a></li>
-      <li><a href="#feel">04 Feel &amp; sound</a></li>
-      <li><a href="#iteration">05 Iteration</a></li>
-      <li><a href="#numbers">06 Numbers &amp; next</a></li>
+      <li><a href="#symbols">Symbols</a></li>
+      <li><a href="#idea">The idea</a></li>
+      <li><a href="#board">The board</a></li>
+      <li><a href="#features">Mechanics</a></li>
+      <li><a href="#judgment">The Judgment</a></li>
+      <li><a href="#max-win">Max Win</a></li><li><a href="#feel">Feel &amp; sound</a></li>
+      <li><a href="#iteration">Evolution &amp; redesigns</a></li>
+      <li><a href="#numbers">Game math</a></li>
     </ul>
   </nav>
 
   <div class="container">
 
+<section class="game-gallery" data-game-gallery aria-label="Ossuary Reels gameplay gallery">
+<div class="game-gallery__slides" id="study-game-slides">
+<figure class="game-gallery__slide"><img src="assets/ossuary-reels/showcase/gameplay-desktop.jpg" alt="The ribcage reels and side-mounted controls." width="1440" height="900" loading="lazy"><figcaption><a href="#board">Base game</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/raven-chain.jpg" alt="Two ravens wait above the reels." width="1440" height="900" loading="lazy"><figcaption><a href="#raven-chain">Raven Chain</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/execution-round-1.jpg" alt="Condemned skeletons, side reels and the guillotine." width="1440" height="900" loading="lazy"><figcaption><a href="#execution-bonus">Execution Bonus</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/judgment-live-4.jpg" alt="Death’s lantern, nest reels and remaining bells." width="1440" height="900" loading="lazy"><figcaption><a href="#judgment">The Judgment Bonus</a></figcaption></figure>
+<figure class="game-gallery__slide" hidden><img src="assets/ossuary-reels/showcase/max-win-symbols.jpg" alt="MAX, the hooded companion and WIN across the middle reels." width="1440" height="900" loading="lazy"><figcaption><a href="#max-win">Max Win</a></figcaption></figure>
+</div>
+<div class="game-gallery__controls" hidden><button type="button" class="gallery-arrow gallery-arrow--prev" data-gallery-prev aria-label="Previous image" aria-controls="study-game-slides"></button><button type="button" class="gallery-arrow gallery-arrow--next" data-gallery-next aria-label="Next image" aria-controls="study-game-slides"></button><div class="gallery-dots" data-gallery-dots role="group" aria-label="Choose an image"></div><span class="sr-only" data-gallery-status aria-live="polite"></span></div>
+</section>
+<a href="game/index.html" class="btn btn-gold prototype-cta" data-play><span class="play-tri"></span>Play Ossuary Reels</a>
+<p class="prototype-version">The playable demo is a separate build. The gallery and rules show the current development build.</p>
+<section id="symbols" class="showcase-symbols" aria-labelledby="symbols-heading">
+<h2 id="symbols-heading">Symbols that change the spin</h2>
+<div class="blade-collection">
+<figure><img src="assets/ossuary-reels/showcase/collections/giant-guillotine.png" alt="" loading="lazy"><figcaption><h3>Giant Guillotine</h3><p>When it lands on the top reel, the blade drops through the three middle columns and opens the Guillotine trial. In Execution Bonus, the blade cuts the chained skeletons’ hands and refills the remaining chances.</p></figcaption></figure>
+<figure><img src="assets/ossuary-reels/showcase/symbols/small-blade-red.png" alt="" loading="lazy"><figcaption><h3>Mini Guillotine</h3><p>It falls through the symbols below. Cut Shackles feed the Chest, and cut ravens move to the perch.</p></figcaption></figure>
+</div>
+
+<h3>Max Win</h3><p>In the Giant Guillotine trial, MAX on reel 2 and WIN on reel 4 complete the pair. The hooded companion is revealed on reel 3.</p><ul class="pair-gallery" aria-label="Max Win symbol order"><li><div class="symbol-art"><img src="assets/ossuary-reels/showcase/symbols/guillotine-max.png" alt="" loading="lazy"></div><span>MAX · reel 2</span></li>
+<li><div class="symbol-art"><img src="assets/ossuary-reels/showcase/symbols/guillotine-companion.png" alt="" loading="lazy"></div><span>Hooded companion · reel 3</span></li>
+<li><div class="symbol-art"><img src="assets/ossuary-reels/showcase/symbols/guillotine-win.png" alt="" loading="lazy"></div><span>WIN · reel 4</span></li></ul>
+<div class="symbol-collections" id="symbol-collections">
+<figure class="collection-plate">
+  <figcaption><h3>Raven WILDs</h3><p>The regular WILD substitutes on winning lines. Multiplier versions also multiply the line prize and add their displayed value to the perch when cut.</p></figcaption>
+  <img src="assets/ossuary-reels/showcase/collections/raven-wilds.png" alt="WILD raven and the ×5, ×10, ×15, ×20, ×25, ×50 and ×100 variants." width="1120" height="480" loading="lazy">
+</figure>
+<figure class="collection-plate">
+  <figcaption><h3>Shackles cash bags</h3><p>A blade cut adds the Shackles to the Chest counter. If the Shackles carry a bag, it pays its displayed multiple of the bet when the bag reaches the Chest.</p></figcaption>
+  <img src="assets/ossuary-reels/showcase/collections/shackles-bags.png" alt="Three Shackles carrying bags marked ×5, ×25 and ×50." width="840" height="240" loading="lazy">
+</figure>
+<figure class="collection-plate">
+  <figcaption><h3>Payline symbols</h3><p>These nine symbols pay when they match on a qualifying line. The regular Shackles appear here as a line symbol. The cash-bag variants are shown above.</p></figcaption>
+  <img src="assets/ossuary-reels/showcase/collections/line-paying-symbols.png" alt="Hooded One, Shackles, Bell, Gold Coin, Silver Coin, Broken Bone, K, Q and J." width="840" height="720" loading="lazy">
+</figure>
+</div>
+</section>
     <!-- 01 — The idea -->
     <section id="idea" class="cs-section" data-reveal>
       <span class="eyebrow">01 · The idea</span>
-      <h2>&ldquo;Fine. I&rsquo;ll make my own slot.&rdquo;</h2>
-      <div class="cs-clip" aria-hidden="true">
-        <video class="cs-heading-mark-source" autoplay muted loop playsinline webkit-playsinline>
-          <source src="assets/ossuary-reels/skeleton-stone-throw.webm" type="video/webm">
-          <source src="assets/ossuary-reels/skeleton-stone-throw.mp4" type="video/mp4">
-        </video>
-        <canvas class="cs-heading-mark"></canvas>
-      </div>
-      <p class="cs-body">One night, playing an online slot with friends, we won a good amount, and the casino closed our account without paying. Out of frustration I thought: fine, I&rsquo;ll make my own.</p>
-      <p class="cs-body">It quickly became something else. I didn&rsquo;t want another generic slot. I wanted a dark-fantasy world with personality (skeletons, ravens, strange machines) where the first reaction is <b>&ldquo;what is this?&rdquo;</b>, followed by <b>&ldquo;I like this atmosphere.&rdquo;</b></p>
-      <p class="cs-body">Then the player keeps spinning to find out what else can happen. A raven appears. A blade drops. A skeleton steps out of a door. They know these things can happen, but never exactly when.</p>
-      <p class="cs-pullquote">I want them to leave with that small frustration of &ldquo;so close&rdquo;: the kind that brings you back.</p>
+      <h2>A world, a machine, a feeling.</h2>
+      <p class="cs-lead">Ossuary Reels is my independent game-design project: a dark-fantasy slot built around a ribcage-shaped board.</p>
+      <p class="cs-body">The design challenge is to make an unusual shape playable, give its mechanics a shared visual language and use animation and sound to make each event readable and expressive.</p>
+      <p class="cs-body">This case study follows three threads: art direction, mechanics and game feel. It documents work in progress; the final build, artwork and validation will replace the current development material.</p>
     </section>
+
+    
 
     <!-- 02 — The board -->
     <section id="board" class="cs-section" data-reveal>
-      <span class="eyebrow">02 · The board</span>
+      <span class="eyebrow">03 · The board</span>
       <h2>A ribcage instead of a grid</h2>
       <p class="cs-lead">The board is a ribcage of independent reels: a top rib, a centre spine and four ribs on each side, with the chest at the bottom. I designed the paylines around the bones, so a win can travel in directions a 5×3 grid never allows.</p>
       <figure class="figure">
-        <img src="assets/ossuary-reels/img/paylines.webp" alt="The payline network drawn in red over the Ossuary Reels board" width="1800" height="1125" loading="lazy">
+        <img src="assets/ossuary-reels/showcase/payline-network.jpg" alt="The payline network drawn in red over the Ossuary Reels board" width="1800" height="1125" loading="lazy">
         <figcaption class="caption"><b>Debug view:</b> the payline network over the board. Every red line is a path a win can follow.</figcaption>
       </figure>
-      <div class="ba">
-        <figure class="figure"><span class="ba-tag is-before">EARLY CONCEPT</span><img class="is-contain" src="assets/ossuary-reels/img/ribcage-concept.webp" alt="Early concept of the board: a bone ribcage holding empty reel frames" width="1054" height="948" loading="lazy"></figure>
-        <figure class="figure"><span class="ba-tag is-after">IN THE GAME</span><img src="assets/ossuary-reels/img/game-base-hud.webp" alt="The board in the playable demo, built as a wooden machine" width="1800" height="1125" loading="lazy"></figure>
-      </div>
+      
       <dl class="decision">
-        <div><dt>Goal</dt><dd>A board you&rsquo;ve never seen, that still reads at a glance.</dd></div>
+        <div><dt>Goal</dt><dd>A distinctive board that still reads at a glance.</dd></div>
         <div><dt>Decision</dt><dd>Keep the ribcage layout, but build it as a working machine with clear lanes.</dd></div>
         <div><dt>Rule</dt><dd>Lines start on the left and may step one row up or down per reel: 173 paths, three of a kind or wild to pay.</dd></div>
       </dl>
@@ -140,94 +172,72 @@
 
     <!-- 03 — Features -->
     <section id="features" class="cs-section" data-reveal>
-      <span class="eyebrow">03 · Features</span>
-      <h2>Three bonus features that feed each other</h2>
-      <p class="cs-lead">Each one is built around a single feeling, and each one hands tension to the next. A fourth is in development.</p>
+      <span class="eyebrow">04 · Mechanics</span>
+      <h2>How the mechanics connect</h2>
+      <p class="cs-lead">Cuts link the base reels to the chest, the Raven chain and the bonus modes.</p>
 
-      <article id="raven-chain" class="feature">
-        <span class="feature-num">01</span>
-        <h3>The Raven chain</h3>
-        <p class="feature-goal">A free spin should feel earned, and the stone throw should make you hold your breath.</p>
-        <div class="cs-split">
-          <div>
-            <p class="mini-label">How it works</p>
-            <ul class="cs-list">
-              <li>When a blade cuts a crow, the raven perches above the board. Ravens on the same side stack their multiplier: a black one adds +1, a golden one +10, +25 or +50.</li>
-              <li>A skeleton steps out of a door and throws a stone. If it hits, the raven falls through its column and every cell it crosses becomes a <b>wild</b> with its multiplier.</li>
-              <li>Every raven the stone kills grants one more free spin, and the chain continues while ravens keep falling.</li>
-            </ul>
-            <p class="mini-label">What I changed</p>
-            <p class="cs-body">In the first version the chain almost never went past one spin, and it felt flat. Now the stone&rsquo;s hit chance steps down spin by spin, so long chains are possible but never promised.</p>
-            <p class="cs-body">From the moment the door opens until the stone lands, the board darkens at the edges and the ravens tremble. If the stone misses, half the time it hits the hooded figure instead.</p>
-            <p class="mini-label">Tried and cut</p>
-            <p class="cs-body">Slow motion on the throw, a stone that just grazes the raven (it looked wrong) and a heartbeat sound on release.</p>
-          </div>
-          <div>
-            <figure class="figure"><img src="assets/ossuary-reels/img/raven.webp" alt="Two ravens perched over the board, with a x2 multiplier" width="1440" height="900" loading="lazy"></figure>
-            <table class="numbers">
-              <tr><th>Stone hit chance</th><td>62% → 55% → 48% → 40% → 32% → 25%, spin by spin</td></tr>
-              <tr><th>Extra spins per chain</th><td>0: ~11% · 1: ~23% · 2: ~21% · 3: ~17% · 4: ~13% · 5+: ~16%</td></tr>
-              <tr><th>Design target</th><td>A big payout in about 1 of 20 Raven Bonus buys, small results the rest of the time</td></tr>
-              <tr><th>Golden crow</th><td>In about 1 of 3 base spins. Cut it and it adds ×10, ×25 or ×50</td></tr>
-            </table>
-          </div>
-        </div>
-      </article>
+      <figure class="figure"><img src="assets/ossuary-reels/showcase/bonus-menu.jpg" alt="Bonus options in the development build" width="1440" height="900" loading="lazy"><figcaption class="caption">The development build’s bonus menu, including the Max Win Attempt.</figcaption></figure>
+      <article id="raven-chain" class="feature mechanic-module">
+<h3>Raven Chain</h3>
+<div class="mechanic-layout">
+<div class="mechanic-rule"><img src="assets/ossuary-reels/showcase/symbols/raven-wild.png" alt="" loading="lazy"><dl><div><dt>Perch</dt><dd>Cut a Raven WILD and a raven perches above the reels. Ravens on the same side add to their perch multiplier.</dd></div>
+<div><dt>Stone throw</dt><dd>A skeleton can throw a stone after a cut. If it hits, the raven falls through its column and leaves multiplier WILDs in the cells it crosses.</dd></div>
+<div><dt>Free spin</dt><dd>Each raven hit grants a Raven Spin. The stone becomes less likely to hit as the chain progresses.</dd></div></dl></div>
+<figure class="figure"><img src="assets/ossuary-reels/showcase/raven-chain.jpg" alt="Two ravens perched above the reels, one marked ×5" width="1440" height="900" loading="lazy"><figcaption class="caption">Before the throw, the number on the perched raven shows its multiplier.</figcaption></figure>
+</div>
+<figure class="figure reward-clip perch-clip"><video controls playsinline muted preload="metadata" poster="assets/ossuary-reels/showcase/raven-chain.jpg" aria-label="Raven perch animation"><source src="assets/ossuary-reels/raven-perch.webm" type="video/webm"><source src="assets/ossuary-reels/raven-perch.mp4" type="video/mp4"></video><figcaption class="caption">Perch animation. A cut raven moves above the reel machine.</figcaption></figure><p class="cs-body">I kept the hold between the door opening and the throw so the player has time to look from the skeleton to the perched raven.</p>
+</article>
 
-      <article id="blades-chest" class="feature">
-        <span class="feature-num">02</span>
-        <h3>Blades &amp; the Chest</h3>
-        <p class="feature-goal">Losing should still build something: what gets cut doesn&rsquo;t disappear.</p>
-        <div class="cs-split">
-          <div>
-            <p class="mini-label">How it works</p>
-            <ul class="cs-list">
-              <li>Small blades drop and cut the symbols below them. The holes they leave <b>break paylines</b>, and what they cut falls into the chest.</li>
-              <li>Once the chest is full enough, it opens on the next base spin that already pays more than ×5, so the reward lands on top of a good moment.</li>
-              <li>Then the choice: <b>collect</b> 1× your bet, or <b>gamble</b> it on an 11-slot wheel.</li>
-            </ul>
-          </div>
-          <div>
-            <table class="numbers">
-              <tr><th>Blades on the board</th><td>Two at most, at least one every 3–4 spins</td></tr>
-              <tr><th>Blade over a crow</th><td>At least every 7–10 spins</td></tr>
-              <tr><th>Chest opens at</th><td>40–53 cut symbols</td></tr>
-              <tr><th>Wheel</th><td>11 slots: 1 Bonus Game, 5 × ×25, 5 × ×0</td></tr>
-              <tr><th>Buy</th><td>Chest Gamble for ×21 the bet</td></tr>
-            </table>
-          </div>
-        </div>
-      </article>
+<article id="blades-chest" class="feature mechanic-module">
+<h3>Blades &amp; the Chest</h3>
+<div class="mechanic-layout">
+<div class="mechanic-rule"><img src="assets/ossuary-reels/showcase/symbols/shackles.png" alt="" loading="lazy"><dl><div><dt>Fill the Chest</dt><dd>Only cut Shackles advance the Chest counter. A cash bag attached to Shackles pays separately when the cut bag reaches the Chest.</dd></div>
+<div><dt>Open it</dt><dd>Once the target is reached, the next base spin paying more than five times the bet opens the Chest.</dd></div>
+<div><dt>Choose</dt><dd>Collect the displayed prize or spin the wheel. The wheel can award a multiplier or open Execution or The Judgment.</dd></div></dl></div>
+<figure class="figure"><img src="assets/ossuary-reels/showcase/chest-gamble.jpg" alt="Chest Gamble choice and wheel" width="1440" height="900" loading="lazy"><figcaption class="caption">The player can see the collect amount and the wheel’s possible outcomes before choosing.</figcaption></figure>
+</div><figure class="mechanic-plate"><img src="assets/ossuary-reels/showcase/collections/shackles-bags.png" width="840" height="240" alt="Shackles carrying cash bags worth ×5, ×25 and ×50." loading="lazy"><figcaption><strong>Cash bags · ×5, ×25 and ×50</strong><p>When a Mini Blade cuts Shackles carrying a bag, the bag pays its displayed multiple of the bet as it reaches the Chest. The cut also advances the Chest counter.</p></figcaption></figure>
 
-      <article id="execution-bonus" class="feature">
-        <span class="feature-num">03</span>
-        <h3>The Execution Bonus</h3>
-        <p class="feature-goal">Tension in three acts: unlock it, survive it, cash it.</p>
-        <div class="cs-split">
-          <div>
-            <p class="mini-label">How it works</p>
-            <ul class="cs-list">
-              <li><b>Unlock:</b> a giant guillotine lands on the top rib, then a respin chain has to lock the giants of the next ribs in order. On the decisive respins, the reels that can complete it hold back for a moment before they stop.</li>
-              <li><b>Survive:</b> three chances, shown as candles. Poor, Noble and Rich skeletons chain on the ribs, and the spine draws a Guillotine (cuts and pays hands, candles back to three), a Scythe (cuts and pays heads) or a Cross (nothing).</li>
-              <li><b>Cash:</b> every spin burns a candle. When they run out, anything not yet cut is lost.</li>
-            </ul>
-          </div>
-          <div>
-            <figure class="figure"><img src="assets/ossuary-reels/img/tile-bonus.webp" alt="The guillotine falling inside the Execution Bonus" width="988" height="618" loading="lazy"></figure>
-            <table class="numbers">
-              <tr><th>Hands</th><td>0.20 / 0.50 / 1.00 × bet</td></tr>
-              <tr><th>Heads</th><td>0.40 / 1.00 / 2.00 × bet</td></tr>
-              <tr><th>Guillotine multiplier</th><td>5 hands ×2 · 10 ×5 · 20 ×10 · 25 ×25 · 50 ×100</td></tr>
-              <tr><th>Buy</th><td>×100 the bet</td></tr>
-            </table>
-          </div>
-        </div>
-      </article>
+</article>
+
+<article id="guillotine-trial" class="feature mechanic-module"><h3>Guillotine trial</h3><figure class="mechanic-plate"><figcaption><strong>The three condemned</strong><p>In the Guillotine trial, complete figures of these types can land on the three middle reels. A round with all three positions occupied by complete condemned opens Execution Bonus.</p></figcaption><ul class="pair-gallery"><li><div class="symbol-art"><img src="assets/ossuary-reels/showcase/symbols/hanged-pobre.png" alt="" loading="lazy"></div><span>Poor</span></li>
+<li><div class="symbol-art"><img src="assets/ossuary-reels/showcase/symbols/hanged-noble.png" alt="" loading="lazy"></div><span>Noble</span></li>
+<li><div class="symbol-art"><img src="assets/ossuary-reels/showcase/symbols/hanged-rico.png" alt="" loading="lazy"></div><span>Rich</span></li></ul></figure></article>
+<article id="execution-bonus" class="feature mechanic-module">
+<h3>Execution Bonus</h3>
+<div class="mechanic-layout">
+<div class="mechanic-rule"><img src="assets/ossuary-reels/showcase/symbols/execution-guillotine.png" alt="" loading="lazy"><dl><div><dt>Enter</dt><dd>In the base game, three initial Mini Blades without the upper Guillotine can open Execution. It can also start from the Guillotine trial, the Chest wheel or Buy Bonus.</dd></div>
+<div><dt>Cut</dt><dd>Condemned skeletons lock into the side stocks. The Guillotine pays for hands and restores three chances. The Scythe pays for heads and leaves the skeletons available for a later hand cut.</dd></div>
+<div><dt>Build the multiplier</dt><dd>Cut hands fill the box. Crossing its thresholds raises the multiplier on later cuts. Any skeleton still uncut when the bonus ends goes unpaid.</dd></div></dl></div>
+<figure class="figure"><img src="assets/ossuary-reels/showcase/execution-round-1.jpg" alt="Side stocks holding skeletons, a guillotine above the reels and one chance remaining" width="1440" height="900" loading="lazy"><figcaption class="caption">The side stocks show the condemned available for a cut. The red hourglass tracks the chances left.</figcaption></figure>
+</div>
+<p class="cs-body"><strong>Blood Mark:</strong> A chained skeleton can flash <strong>BLIGHTED</strong> before a cut. Its multiplier transfers to the Guillotine and boosts that cut. <strong>Last Breath</strong> can grant another chance when the bonus would otherwise end.</p>
+</article>
+
+<article id="judgment" class="feature mechanic-module">
+<h3>The Judgment Bonus</h3>
+<div class="mechanic-layout">
+<div class="mechanic-rule"><img src="assets/ossuary-reels/showcase/symbols/judgment-lantern.png" alt="" loading="lazy"><dl><div><dt>Enter</dt><dd>In the base game, three initial Mini Blades with the upper Guillotine can open The Judgment. The Chest wheel and Buy Bonus offer other routes.</dd></div>
+<div><dt>Bells</dt><dd>Each spin uses a bell. A crow landing in the middle of a nest reel can earn another bell when Death reaps it.</dd></div>
+<div><dt>Lantern</dt><dd>Condemned that land in stocks add their soul value to the lantern. Blighted figures add an enhanced value and strengthen the scythe.</dd></div>
+<div><dt>Sentence</dt><dd>The scythe grows as Death reaps crows. At the Sentence, the scythe multiplier applies to the final lantern total.</dd></div></dl></div>
+<figure class="figure"><img src="assets/ossuary-reels/showcase/judgment-live-4.jpg" alt="El Juicio with the three nest reels above the stocks, Death and the green lantern in the centre, and the bell counter on the right" width="1440" height="900" loading="lazy"><figcaption class="caption">The nest sits above the stocks. The lantern below Death shows the running total, while the counter on the right shows the bells left.</figcaption></figure>
+</div>
+
+</article>
     </section>
+
+    <section class="cs-section" aria-label="Max Win sequence">
+<article id="max-win" class="feature max-win-feature">
+        <h3>Max Win</h3>
+        <p class="feature-goal">MAX lands on reel 2 and WIN on reel 4. Their landing reveals the hooded companion on reel 3 and triggers the top prize.</p>
+        <figure class="figure"><img src="assets/ossuary-reels/showcase/max-win-symbols.jpg" alt="MAX, hooded companion and WIN on reels 2, 3 and 4" loading="lazy"><figcaption class="caption">The completed pair on the reels, before the payout counter.</figcaption></figure>
+      <figure class="figure reward-clip"><video controls playsinline preload="metadata" poster="assets/ossuary-reels/showcase/max-win-symbols.jpg" aria-label="Max Win forced test sequence"><source src="assets/ossuary-reels/showcase/max-win-pair.webm" type="video/webm"></video><figcaption class="caption">The three reels settle and reveal the MAX/WIN pair and the hooded companion. Captured in Turbo without audio.</figcaption></figure>
+</article>
+</section>
 
     <!-- 04 — Feel & sound -->
     <section id="feel" class="cs-section" data-reveal>
-      <span class="eyebrow">04 · Feel &amp; sound</span>
+      <span class="eyebrow">05 · Feel &amp; sound</span>
       <h2>Let moments breathe</h2>
       <p class="cs-lead">Not everything needs to happen at once, and not every moment needs the same intensity. Rhythm, pauses, sound and animation decide how much weight a moment has. A lot of things worked technically and still didn&rsquo;t feel right, so I kept going back.</p>
 
@@ -250,17 +260,19 @@
             <p class="cs-body">Small wins count fast and silent. Above ×25 the music starts with the counter, and the number always lands on a cymbal hit. I measured the hits in the track by hand (4.205, 8.185 and 12.205 s) and the number lands 30 ms after each one. In turbo the musical tiers don&rsquo;t speed up: they use half the bars, so they stay in time.</p>
           </div>
           <div>
-            <figure class="figure"><img src="assets/ossuary-reels/img/bigwin.webp" alt="The big-win counter in gold over the board" width="1800" height="1125" loading="lazy"></figure>
-            <p class="caption">At the end, the raven from the base game lands on the middle digit.</p>
+            <p class="cs-body">The raven lands on the middle digit once the count settles.</p>
           </div>
         </div>
-      </article>
+      <figure class="figure reward-clip"><video controls playsinline preload="metadata" poster="assets/ossuary-reels/showcase/big-win.jpg" aria-label="Big Win forced test sequence"><source src="assets/ossuary-reels/showcase/big-win.webm" type="video/webm"></video><figcaption class="caption">Built-in 100× counter preview, captured without audio.</figcaption></figure>
+</article>
+      
     </section>
 
     <!-- 05 — Iteration -->
+
     <section id="iteration" class="cs-section" data-reveal>
-      <span class="eyebrow">05 · Iteration</span>
-      <h2>Mountains</h2>
+      <span class="eyebrow">06 · Iteration</span>
+      <h2>Evolution &amp; redesigns</h2><div class="ba"><figure class="figure"><img src="assets/ossuary-reels/img/ribcage-concept.webp" alt="Early ribcage layout drawn with empty reel frames" loading="lazy"><figcaption class="caption">Early concept · the frame established the reel layout.</figcaption></figure><figure class="figure"><img src="assets/ossuary-reels/showcase/gameplay-desktop.jpg" alt="Current playable board with reels and controls" loading="lazy"><figcaption class="caption">Current build · symbols and side-mounted controls make the lanes readable.</figcaption></figure></div>
       <p class="cs-body">Most of the development was iteration. At one point I threw away almost the entire original reel structure because, although it worked, it didn&rsquo;t feel right. It was a big step back, and one of the best decisions of the project.</p>
       <p class="cs-body">It kept happening: I&rsquo;d improve one part and suddenly another felt weaker. I started calling them mountains.</p>
       <p class="cs-pullquote">Improve one, find the next one that&rsquo;s weaker, go back, cut what isn&rsquo;t helping, test again.</p>
@@ -278,33 +290,27 @@
 
     <!-- 06 — Numbers & next -->
     <section id="numbers" class="cs-section" data-reveal>
-      <span class="eyebrow">06 · Numbers &amp; next</span>
-      <h2>Where it stands</h2>
-      <div class="sheet">
-        <div class="sheet-head"><h3>Game sheet</h3><span>Design targets for the current beta</span></div>
-        <div class="sheet-grid">
-          <div class="sheet-cell"><b>173</b><span>Paylines on a ribcage-shaped board</span></div>
-          <div class="sheet-cell"><b>3 <small>+1</small></b><span>Bonus features, a fourth in development</span></div>
-          <div class="sheet-cell"><b>20,000×</b><span>Max win</span></div>
-          <div class="sheet-cell"><b>98%</b><span>Target RTP, tuning in progress</span></div>
-          <div class="sheet-cell"><b>High</b><span>Volatility, by design</span></div>
-          <div class="sheet-cell"><b>×21 · ×25 · ×100</b><span>Bonus buys: Chest, Raven, Execution</span></div>
-          <div class="sheet-cell"><b>€0.10–10</b><span>Bet range</span></div>
-          <div class="sheet-cell"><b>HTML5</b><span>Desktop &amp; mobile, plays in the browser</span></div>
-        </div>
-      </div>
+      <span class="eyebrow">07 · Game math</span>
+      <h2>Game math</h2><p class="cs-lead">Specifications and results from the 18 November 2026 calibration of the development build.</p>
+<table class="math-sheet"><caption>Game specifications and design targets</caption><thead><tr><th scope="col">Metric</th><th scope="col">Value</th><th scope="col">What it measures</th></tr></thead><tbody>
+<tr><th scope="row">Target RTP</th><td>97.00%</td><td>Return to player target used in calibration.</td></tr>
+<tr><th scope="row">Volatility</th><td>High</td><td>Design target for how concentrated the payouts are.</td></tr>
+<tr><th scope="row">Paylines</th><td>173</td><td>Winning paths through the ribcage.</td></tr>
+<tr><th scope="row">Maximum payout</th><td>20,000×</td><td>Configured cap as a multiple of the base bet.</td></tr>
+</tbody></table>
+<table class="math-sheet"><caption>Development simulation · base rounds</caption><thead><tr><th scope="col">Metric</th><th scope="col">Value</th><th scope="col">What it measures</th></tr></thead><tbody>
+<tr><th scope="row">Simulated RTP</th><td>96.20%</td><td>Total payouts divided by total stakes in the simulation. 95% confidence interval: 92.77%–99.63%.</td></tr>
+<tr><th scope="row">Hit rate</th><td>42.05%</td><td>Rounds that returned any amount, even less than the stake.</td></tr>
+<tr><th scope="row">Net-win rate</th><td>7.64%</td><td>Rounds that returned more than the stake.</td></tr>
+<tr><th scope="row">Payouts of 100× or more</th><td>0.125%</td><td>Rounds that returned at least 100 times the base bet (1,247 in this sample).</td></tr>
+</tbody></table>
+<p class="cs-note">Method: 1,000,000 paid base rounds, including any bonus play those rounds triggered. The simulation chose Gamble whenever the Chest offered it. Seed: <code>cert97-locked-base-1M</code>.</p>
+<p class="cs-note">The RTP target falls within this run’s confidence interval. These results apply to the tested configuration. The linked browser demo uses a separate build.</p>
       <div class="cs-split">
         <div>
-          <p class="mini-label">The math</p>
-          <p class="cs-body">The math framework is in place and every feature has its own probability targets. Final RTP tuning comes after the feature set is locked: that&rsquo;s the next milestone.</p>
-        </div>
-        <div>
-          <p class="mini-label">How I built it</p>
-          <p class="cs-body">I&rsquo;m a designer, not a programmer, so I built Ossuary Reels the way a director works with a team: I defined every system, rule, timing and asset, and used AI coding tools (Claude Code and Codex) to implement them and iterate, sometimes several versions in a day. That&rsquo;s how one person took a slot from an idea to a playable build.</p>
           <p class="mini-label">What&rsquo;s next</p>
           <ul class="cs-list">
-            <li>A fourth bonus feature, in development.</li>
-            <li>Final RTP tuning against a full-game simulation.</li>
+            <li>Repeat the simulation after balance changes.</li>
             <li>The next beta, with a trailer and the updated demo.</li>
           </ul>
         </div>
@@ -313,9 +319,10 @@
 
     <section class="cs-final" data-reveal>
       <span class="eyebrow">Play it</span>
-      <h2>The best way to understand it is to play it.</h2>
+      <h2>Play the browser demo.</h2>
       <div class="row-ctas">
         <a href="game/index.html" class="btn btn-gold" data-play><span class="play-tri"></span>Play Ossuary Reels</a>
+        <a href="index.html#business" class="btn btn-ghost">License or buy this game</a>
         <a href="index.html#contact" class="btn btn-ghost">Get in touch</a>
       </div>
     </section>
@@ -330,9 +337,12 @@
     <a href="https://www.linkedin.com/in/jon-arbe/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="assets/cv/Jon-Arbe-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
   </nav>
+  <p class="footer-note">Ossuary Reels is a play-money demo. No real-money gambling takes place on this site.</p>
 </footer>
 
+<script src="js/portfolio-content.js"></script>
 <script src="js/alpha-video-layer.js"></script>
 <script src="js/main.js"></script>
+<script src="js/game-gallery.js?v=gallery-dots-1" defer></script>
 </body>
 </html>
