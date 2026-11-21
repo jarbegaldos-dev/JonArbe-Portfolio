@@ -1,0 +1,409 @@
+/* SUPER BONUS "El Juicio": amago y caida del encapuchado
+   (src/fx/el-juicio-fall.js). El esternon que gira y la Muerte que cae van en
+   #reelLayer (detras del marco, como los rodillos); el encapuchado y su luz,
+   en #structureOverlay. */
+
+/* --- el esternon girando a oscuras ---------------------------------------- */
+.el-juicio-sternum-spin {
+  position: absolute;
+  z-index: 49;
+  overflow: hidden;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* Negro del todo, sin simbolos (peticion del usuario, 2026-10-18): la tira
+   no pinta nada, solo lleva el ritmo del giro. */
+.el-juicio-sternum-spin__strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 200%;
+}
+
+.el-juicio-sternum-spin {
+  background: #000;
+  box-shadow: inset 0 0 22px rgba(0, 0, 0, 1);
+}
+
+/* Latido en rojo por dentro mientras gira a oscuras (la opacidad la anima el
+   JS: pum-pum). */
+.el-juicio-sternum-spin__pulse {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(120, 6, 4, 0.38), rgba(60, 0, 0, 0) 75%);
+  box-shadow: inset 0 0 0 2px rgba(150, 10, 5, 0.8), inset 0 0 40px rgba(200, 20, 8, 0.85);
+}
+
+/* Parpadeo: en cada apagon el esternon se enciende en rojo por dentro, mas
+   vivo en los bordes, sin salirse del rodillo (lo recorta el
+   .el-juicio-sternum-spin; justo antes de que caiga la Muerte se queda asi). */
+.el-juicio-sternum-spin__flash {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse 62% 52% at 50% 50%, rgba(150, 10, 4, 0.5), rgba(110, 4, 0, 0.2) 70%, rgba(80, 0, 0, 0) 100%),
+    radial-gradient(ellipse 90% 80% at 50% 50%, rgba(90, 0, 0, 0) 40%, rgba(200, 22, 8, 0.55) 100%);
+  box-shadow: inset 0 0 0 2px rgba(255, 90, 50, 0.95), inset 0 0 18px rgba(255, 50, 20, 0.95), inset 0 0 60px rgba(190, 16, 6, 0.8);
+}
+
+/* La luz de la maquina que falla (apagones; la forma la pone el JS). Encima
+   del marco y de la penumbra. */
+.el-juicio-flicker {
+  position: absolute;
+  inset: 0;
+  z-index: 24;
+  pointer-events: none;
+}
+
+.el-juicio-flicker__dark {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+/* Todo a oscuras menos el esternon, desde justo antes de que caiga la
+   Muerte hasta que empieza el Super: toda la pantalla (va en #gameRoot:
+   tambien el marcador y los botones), debajo de la entrada con PLAY
+   (.bonus-intro-modal, 9500 en #gameRoot); el cartel que cae
+   (.el-juicio-slam) y el fogonazo (.el-juicio-thunder) van en body, encima.
+   El hueco lo pone el JS. */
+.el-juicio-blackout {
+  position: fixed;
+  inset: 0;
+  z-index: 9400;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Lo que va en capas aun mas altas (el corte de la cuchilla pequena y las
+   particulas del Execution) tambien se apaga mientras tanto. */
+.small-blade-cut-layer,
+.exec-fx-particles {
+  transition: opacity 0.3s;
+}
+
+html.el-juicio-is-dark .small-blade-cut-layer,
+html.el-juicio-is-dark .exec-fx-particles {
+  opacity: 0.12;
+}
+
+/* Humo negro y gris del golpe, por encima del marco y de los rodillos y
+   debajo de las brasas (.el-juicio-particles, z 27). */
+.el-juicio-plume {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 26;
+  pointer-events: none;
+}
+
+/* Rayas de velocidad mientras cae la Muerte (encima del velo). */
+.el-juicio-sternum-spin__streak {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  width: 2px;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255, 220, 200, 0), rgba(255, 210, 190, 0.75) 60%, rgba(255, 210, 190, 0));
+  transform: translateY(-110%);
+}
+
+/* --- el encapuchado en dos capas y su aura oscura --------------------------- */
+/* Todo dentro de #structureOverlay (contexto propio): el aura y el cuerpo con
+   z-index negativo quedan DETRAS del marco (la viga los tapa de verdad) y
+   encima de los rodillos; las manos, delante de la viga. */
+.el-juicio-hood-aura {
+  position: absolute;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Apaga el cielo alrededor (mas oscuro abajo, donde esta el), con un fondo de
+   sangre muy oscuro que separa la silueta del humo. */
+.el-juicio-hood-aura__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 19% 30% at 50% 74%, rgba(70, 4, 8, 0.55) 0%, rgba(40, 2, 6, 0.25) 55%, rgba(0, 0, 0, 0) 100%),
+    radial-gradient(ellipse 48% 62% at 50% 86%, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.6) 34%, rgba(0, 0, 0, 0.24) 64%, rgba(0, 0, 0, 0) 86%);
+  animation: el-juicio-aura-breathe 1.6s ease-in-out infinite;
+}
+
+@keyframes el-juicio-aura-breathe {
+  50% { transform: scale(1.06); opacity: 0.85; }
+}
+
+/* Su silueta en negro, difuminada y mas grande: una llama oscura que respira
+   hacia arriba desde la viga. */
+.el-juicio-hood-aura__ghost {
+  position: absolute;
+  max-width: none;
+  filter: brightness(0) blur(8px);
+  opacity: 1;
+  transform: scale(1.14, 1.16);
+  animation: el-juicio-aura-flicker 0.85s ease-in-out infinite alternate;
+}
+
+@keyframes el-juicio-aura-flicker {
+  0% { transform: scale(1.14, 1.18); opacity: 0.9; }
+  45% { transform: scale(1.24, 1.38); opacity: 1; }
+  100% { transform: scale(1.18, 1.28); opacity: 0.95; }
+}
+
+/* Volutas negras que suben de la capucha y los hombros. */
+.el-juicio-hood-aura__wisp {
+  position: absolute;
+  width: 17%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0));
+  will-change: transform, opacity;
+}
+
+.el-juicio-hood-mask {
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* El filo claro de arriba del marco (style.css, img.scene-layer--ribcage-
+   overlay-top) y, con el aura, un borde rojo muy fino que se enciende poco a
+   poco: se lee la silueta negra sobre el humo negro. */
+.el-juicio-hood-body {
+  position: absolute;
+  max-width: none;
+  filter: drop-shadow(0 calc(var(--depth-u) * -1.1) 0 rgba(255, 214, 160, 0.24)) drop-shadow(0 0 1px rgba(150, 18, 18, 0)) drop-shadow(0 0 5px rgba(60, 0, 4, 0));
+  transition: filter 0.6s ease-out;
+  will-change: transform;
+}
+
+.el-juicio-hood-body.is-dark {
+  filter: drop-shadow(0 calc(var(--depth-u) * -1.1) 0 rgba(255, 214, 160, 0.24)) drop-shadow(0 0 1px rgba(150, 18, 18, 0.9)) drop-shadow(0 0 5px rgba(60, 0, 4, 0.8));
+}
+
+.el-juicio-hood-beam {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* Delante de la viga y debajo de la luz del marco (va antes que ella en el
+   DOM). */
+.el-juicio-hood-hands {
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(0 calc(var(--depth-u) * -1.1) 0 rgba(255, 214, 160, 0.24));
+}
+
+/* Mientras esta en su sitio, la luz del marco sigue cayendo sobre el con la
+   silueta del marco original (el-juicio.css la cambia por la del marco sin
+   el encapuchado). */
+#slotStage.el-juicio-nohood.el-juicio-hood-lit .frame-depth {
+  -webkit-mask-image: url("../../assets/structure/ribcage_overlay_top.png");
+  mask-image: url("../../assets/structure/ribcage_overlay_top.png");
+}
+
+.el-juicio-hood-hand {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  will-change: transform;
+}
+
+.el-juicio-hood-hand--l {
+  clip-path: inset(0 50% 0 0);
+}
+
+.el-juicio-hood-hand--r {
+  clip-path: inset(0 0 0 50%);
+}
+
+/* --- la Muerte que cae -------------------------------------------------------- */
+.el-juicio-landing {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* Mientras cae se ve el esternon girando detras: sin el fondo del tablero
+   ni lo que hay alrededor de la figura (vuelve al caer). */
+.el-juicio-landing .el-juicio-death.is-dropping {
+  background: transparent;
+  box-shadow: none;
+}
+
+.el-juicio-landing .el-juicio-death > :not(.el-juicio-death__figure) {
+  transition: opacity 0.35s;
+}
+
+.el-juicio-landing .el-juicio-death.is-dropping > :not(.el-juicio-death__figure) {
+  opacity: 0;
+}
+
+/* Estela de la caida: copias rojas de la figura. */
+.el-juicio-landing .el-juicio-death__figure.is-ghost {
+  animation: none;
+  filter: brightness(0.55) sepia(1) hue-rotate(-40deg) saturate(3);
+}
+
+/* Le arden los pies y el manto coge luz roja un momento. */
+.el-juicio-landing .el-juicio-death.is-burning .el-juicio-death__fire {
+  opacity: 1;
+  animation: el-juicio-fire 1.1s linear infinite;
+}
+
+.el-juicio-landing .el-juicio-death.is-burning .el-juicio-death__glow {
+  opacity: 1;
+  background: radial-gradient(ellipse at 50% 92%, rgba(230, 60, 20, 0.6), transparent 62%);
+}
+
+.el-juicio-landing .el-juicio-death.has-art.is-burning .el-juicio-death__art {
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 12px rgba(255, 60, 25, 0.7)) brightness(1.12);
+}
+
+/* Penumbras: en el amago con el foco en el encapuchado y en la caida en el
+   esternon (la forma la pone el JS). */
+.el-juicio-hood-dim,
+.el-juicio-fall-dark {
+  position: absolute;
+  inset: 0;
+  z-index: 23;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s;
+}
+
+.el-juicio-hood-dim.is-on,
+.el-juicio-fall-dark.is-on {
+  opacity: 1;
+}
+
+/* Fogonazo del estruendo: blanco al rojo en el golpe, otro mas flojo y uno
+   lejano; debajo, un tinte de sangre que dura un poco mas. */
+.el-juicio-thunder {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+}
+
+.el-juicio-thunder::before,
+.el-juicio-thunder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.el-juicio-thunder::before {
+  background: radial-gradient(ellipse 55% 50% at 50% 62%, rgba(255, 252, 244, 0.92), rgba(255, 176, 120, 0.5) 40%, rgba(130, 12, 0, 0.35) 100%);
+  animation: el-juicio-thunder 1.2s ease-out forwards;
+}
+
+.el-juicio-thunder::after {
+  background: radial-gradient(ellipse 70% 65% at 50% 60%, rgba(0, 0, 0, 0) 20%, rgba(110, 0, 0, 0.42) 100%);
+  animation: el-juicio-thunder-tint 1.2s ease-out forwards;
+}
+
+@keyframes el-juicio-thunder {
+  0% { opacity: 1; }
+  5% { opacity: 0.18; }
+  10% { opacity: 0.62; }
+  20% { opacity: 0; }
+  34% { opacity: 0.2; }
+  46% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes el-juicio-thunder-tint {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Grietas al rojo detras de la Muerte: se abren en el golpe y se enfrian. */
+.el-juicio-landing .el-juicio-death > .el-juicio-cracks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: none;
+  overflow: visible;
+}
+
+.el-juicio-cracks path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.el-juicio-cracks__rift {
+  stroke: rgba(0, 0, 0, 0.95);
+  stroke-width: 5px;
+}
+
+.el-juicio-cracks__core {
+  stroke: #ffb070;
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 2px rgba(255, 80, 20, 0.95)) drop-shadow(0 0 6px rgba(200, 20, 0, 0.8));
+  animation: el-juicio-cracks-cool 2.4s ease-out forwards;
+}
+
+@keyframes el-juicio-cracks-cool {
+  0% { stroke: #fff2d8; }
+  18% { stroke: #ff8a3a; }
+  60% { stroke: #b42008; }
+  100% { stroke: #3a0602; }
+}
+
+/* Cascotes de piedra y astillas de hueso que saltan del golpe. */
+.el-juicio-shard {
+  position: absolute;
+  z-index: 30;
+  pointer-events: none;
+  background: linear-gradient(135deg, #5b544b, #26221e 70%);
+  will-change: transform, opacity;
+}
+
+.el-juicio-shard.is-bone {
+  background: linear-gradient(135deg, #efe3c2, #9c8d68 75%);
+}
+
+/* --- SUPER BONUS! ---------------------------------------------------------------
+   Cae el cartel THE JUDGMENT · Superbonus (velo, rayos y cartel:
+   src/fx/bonus-poster.css) con un fogonazo (src/fx/el-juicio-fall.js#superSlam). */
+.el-juicio-slam {
+  position: fixed;
+  inset: 0;
+  z-index: 8990;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.el-juicio-slam__flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(ellipse 55% 42% at 50% var(--bonus-poster-cy, 50%), rgba(255, 250, 232, 0.95), rgba(255, 150, 70, 0.55) 42%, rgba(200, 40, 10, 0) 75%);
+}

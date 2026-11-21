@@ -1,0 +1,10 @@
+Ossuary Reels - audio gallery sources
+
+Cut into single sounds by tools/bake-audio-gallery.js (levelled, short fades).
+All from Pixabay, under the Pixabay Content License.
+
+crows/crow_echo_*      dragon-studio - "Crow Caw with Echoing Reverb" (pixabay 472375)
+crows/crow_caw_*       dragon-studio - "Crow Caw Halloween Sound Effect" (pixabay 322990)
+bells/bowl*            freesound_community - "Meditation Bowls" (pixabay 23651)
+tension/riser_*, swell_*, drone_*
+                       DKFilms - "Horror Risers" (pixabay 304049)

@@ -1,0 +1,455 @@
+/* Resumen al acabar un bonus (src/ui/bonus-summary.js): el altar de hueso
+   (assets/ui/bonus-summary-altar.webp) sobre la pantalla oscurecida, humo que
+   sale de su boca (canvas de src/fx/altar-smoke.js) y con el el premio, que
+   sube desde el remolino en las cifras de oro y se posa encima del pozo con
+   TOTAL WIN encima y debajo las veces la apuesta, que sube cifra a cifra.
+   Letra normal y oro chillon del HUD (src/ui/hud-reliquary.css). */
+
+.bonus-summary {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483600;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 46%, rgba(26, 8, 6, 0.86), rgba(0, 0, 0, 0.96) 66%);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+}
+
+.bonus-summary[hidden] {
+  display: none;
+}
+
+.bonus-summary.is-open {
+  opacity: 1;
+}
+
+/* Ancho del altar: lo que quepa a lo alto con titulo, el hueco del premio y
+   CONTINUE. */
+.bonus-summary__scene {
+  /* Alto/ancho del altar en pantalla. El dibujo es 768x1005 (1.31); a
+     peticion del usuario (2026-10-16) va mas bajo y mas ancho. */
+  --altar-ratio: 1.13;
+  /* Hueco encima del altar donde se posa el premio (en anchos de altar). */
+  --headroom: 0.16;
+  --stage-ratio: calc(var(--altar-ratio) + var(--headroom));
+  --altar-w: min(calc(100vw - 32px), 640px, calc((100vh - 170px) / var(--stage-ratio)));
+  --altar-w: min(calc(100vw - 32px), 640px, calc((100svh - 170px) / var(--stage-ratio)));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bonus-summary__title {
+  position: relative;
+  z-index: 3;
+  font-family: "Moria Citadel", Georgia, "Times New Roman", serif;
+  /* EXECUTION BONUS cabe en una linea tambien en movil. */
+  font-size: clamp(18px, min(var(--altar-w) * 0.085, 6.6vw), 50px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: #e9c36a;
+  text-shadow: 0 2px 0 #000, 0 0 18px rgba(212, 174, 85, 0.35);
+  opacity: 0;
+  translate: 0 -8px;
+  transition: opacity 0.5s ease 0.15s, translate 0.6s ease 0.15s;
+}
+
+/* Execution: el rojo de las tiradas gratis del HUD. */
+.bonus-summary--execution .bonus-summary__title {
+  color: #ef5a48;
+  text-shadow: 0 2px 0 #000, 0 0 18px rgba(224, 71, 58, 0.45);
+}
+
+/* SUPER BONUS "El Juicio": rojo sangre mas oscuro, con brasa. */
+.bonus-summary--super .bonus-summary__title {
+  color: #d8261c;
+  text-shadow: 0 2px 0 #000, 0 0 22px rgba(255, 40, 20, 0.6);
+}
+
+.bonus-summary.is-open .bonus-summary__title {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* El escenario: el hueco del premio arriba y el altar (shrine) abajo. */
+.bonus-summary__stage {
+  position: relative;
+  width: var(--altar-w);
+  height: calc(var(--altar-w) * var(--stage-ratio));
+  margin-top: calc(var(--altar-w) * 0.02);
+  container-type: inline-size;
+}
+
+.bonus-summary__shrine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(var(--altar-w) * var(--altar-ratio));
+}
+
+/* Luz roja del remolino sobre lo que hay detras del altar. */
+.bonus-summary__shrine::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 26%;
+  width: 150%;
+  height: 100%;
+  translate: -50% -50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(120, 18, 14, 0.32), rgba(60, 8, 6, 0.12) 45%, transparent 70%);
+  pointer-events: none;
+}
+
+/* El dibujo se estira a la caja (mas bajo y mas ancho que el original). */
+.bonus-summary__altar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 2.5cqw 4cqw rgba(0, 0, 0, 0.85));
+  opacity: 0;
+  translate: 0 3%;
+  scale: 0.97;
+  transition: opacity 0.5s ease, translate 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), scale 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.bonus-summary.is-open .bonus-summary__altar {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+
+/* Resplandor de la boca: late despacio, como si respirase. */
+.bonus-summary__maw {
+  position: absolute;
+  width: 62%;
+  height: 27%;
+  translate: -50% -50%;
+  rotate: -7deg;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 70, 46, 0.5), rgba(170, 22, 20, 0.22) 42%, transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.bonus-summary.is-open .bonus-summary__maw {
+  animation: bonus-summary-maw 3.8s ease-in-out 0.4s infinite both;
+}
+
+@keyframes bonus-summary-maw {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* Fogonazo del remolino cuando el premio sale por la boca. */
+.bonus-summary__shrine::after {
+  content: "";
+  position: absolute;
+  left: var(--mouth-x, 51%);
+  top: var(--mouth-y, 20%);
+  width: 70%;
+  height: 30%;
+  translate: -50% -50%;
+  rotate: -7deg;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 150, 90, 0.75), rgba(255, 60, 36, 0.4) 30%, rgba(170, 22, 20, 0.12) 55%, transparent 72%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.bonus-summary.is-open .bonus-summary__shrine::after {
+  animation: bonus-summary-flare calc(var(--rise-ms, 1500ms) * 0.9) ease-out calc(var(--rise-delay, 380ms) - 120ms) both;
+}
+
+@keyframes bonus-summary-flare {
+  0% { opacity: 0; scale: 0.7; }
+  22% { opacity: 1; scale: 1.05; }
+  100% { opacity: 0; scale: 1.15; }
+}
+
+.bonus-summary__smoke {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* TOTAL WIN, la cifra y las veces la apuesta, posados encima del pozo; la
+   cifra sube hasta aqui desde el remolino. */
+.bonus-summary__center {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 0;
+  width: 120%;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2cqw;
+  pointer-events: none;
+}
+
+/* Sombra detras de las cifras para que el oro se lea sobre el humo y el
+   remolino; aparece cuando el premio llega arriba. */
+.bonus-summary__center::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -14% 4% -10%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55) 42%, transparent 70%);
+  opacity: 0;
+}
+
+.bonus-summary__label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: clamp(11px, 2.7cqw, 17px);
+  letter-spacing: 0.3em;
+  color: #ffc72c;
+  text-shadow: 0 1px 2px #000;
+  opacity: 0;
+}
+
+.bonus-summary.is-open .bonus-summary__center::before,
+.bonus-summary.is-open .bonus-summary__label {
+  animation: bonus-summary-appear calc(var(--rise-ms, 1500ms) * 0.45) ease-out calc(var(--rise-delay, 380ms) + var(--rise-ms, 1500ms) * 0.5) both;
+}
+
+@keyframes bonus-summary-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* El premio sale del remolino (--rise-dx/--rise-dy, que mide el JS): nace
+   pequeno, rojo y desenfocado entre el humo, sube frenando, se pasa un pelo
+   y se posa. Despues se queda quieto. */
+.bonus-summary__prize {
+  position: relative;
+  opacity: 0;
+}
+
+.bonus-summary.is-open .bonus-summary__prize {
+  animation: bonus-summary-emerge var(--rise-ms, 1500ms) linear var(--rise-delay, 380ms) both;
+}
+
+@keyframes bonus-summary-emerge {
+  0% {
+    opacity: 0;
+    translate: var(--rise-dx, 0) var(--rise-dy, 30cqw);
+    scale: 0.26;
+    filter: blur(4px) brightness(0.6) drop-shadow(0 0 3cqw rgba(255, 52, 30, 0.95));
+    animation-timing-function: cubic-bezier(0.33, 0.4, 0.3, 1);
+  }
+  10% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 1;
+    translate: 0 -2.2cqw;
+    scale: 1.03;
+    filter: blur(0) brightness(1.3) drop-shadow(0 0 1.2cqw rgba(255, 120, 40, 0.5));
+    animation-timing-function: cubic-bezier(0.45, 0, 0.35, 1);
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: blur(0) brightness(1) drop-shadow(0 0.4cqw 0.5cqw rgba(0, 0, 0, 0.6));
+  }
+}
+
+.bonus-summary__value {
+  min-height: 1.4em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: min(13cqw, calc(128cqw / var(--chars, 8)));
+  color: #ffd66b;
+}
+
+.bonus-summary__value .ossuary-number-font__digit {
+  flex: 0 0 0.82em;
+  width: 0.82em;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.bonus-summary__value .ossuary-number-font__sep {
+  height: 1.34em;
+  width: auto;
+}
+
+.bonus-summary__value .ossuary-number-font__sym,
+.bonus-summary__mult .ossuary-number-font__sym {
+  color: #ffd66b;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Al posarse con la cuenta hecha, un golpe de luz sin rebote: se queda quieta. */
+.bonus-summary.is-counted .bonus-summary__value {
+  animation: bonus-summary-land 0.6s ease-out both;
+}
+
+@keyframes bonus-summary-land {
+  0% { scale: 1.04; filter: brightness(1.5); }
+  100% { scale: 1; filter: brightness(1); }
+}
+
+/* Veces la apuesta: cada cifra sube de la sombra, desenfocada y encendida,
+   con un pequeno rebote, una detras de otra. */
+.bonus-summary__mult {
+  position: relative;
+  min-height: 1.4em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 7.4cqw;
+}
+
+.bonus-summary__mult .ossuary-number-font__digit {
+  flex: 0 0 0.82em;
+  width: 0.82em;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.bonus-summary__mult > * {
+  opacity: 0;
+}
+
+.bonus-summary.is-mult .bonus-summary__mult > * {
+  animation: bonus-summary-rise 0.7s cubic-bezier(0.2, 1.45, 0.4, 1) both;
+  animation-delay: calc(var(--i, 0) * 95ms + 120ms);
+}
+
+@keyframes bonus-summary-rise {
+  0% {
+    opacity: 0;
+    translate: 0 0.6em;
+    scale: 0.55;
+    filter: blur(5px) brightness(2.4) drop-shadow(0 2px 3px rgba(0, 0, 0, 0));
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0) brightness(1.5) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: blur(0) brightness(1) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
+  }
+}
+
+/* Destello de oro detras de las cifras cuando terminan de subir. */
+.bonus-summary__mult::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 55%;
+  width: 260%;
+  height: 160%;
+  translate: -50% -50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 196, 70, 0.45), rgba(255, 150, 40, 0.12) 40%, transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bonus-summary.is-mult .bonus-summary__mult::after {
+  animation: bonus-summary-glint 1.3s ease-out 0.35s both;
+}
+
+@keyframes bonus-summary-glint {
+  0% { opacity: 0; scale: 0.6; }
+  30% { opacity: 1; }
+  100% { opacity: 0; scale: 1.15; }
+}
+
+.bonus-summary__spins {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: clamp(10px, 2.4cqw, 15px);
+  letter-spacing: 0.2em;
+  color: #ffd91a;
+  text-shadow: 0 1px 2px #000;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.5s;
+}
+
+.bonus-summary__spins:empty {
+  display: none;
+}
+
+.bonus-summary.is-mult .bonus-summary__spins {
+  opacity: 1;
+}
+
+.bonus-summary__continue {
+  position: relative;
+  z-index: 3;
+  margin-top: clamp(8px, 2vh, 18px);
+  padding: 12px 38px;
+  border: 1px solid #ffc72c;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffc72c;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: clamp(13px, 1.2vw, 16px);
+  letter-spacing: 0.24em;
+  cursor: pointer;
+  opacity: 0.35;
+  transition: opacity 0.25s ease, background-color 150ms ease, color 150ms ease;
+}
+
+/* CONTINUE se enciende cuando la cuenta ha terminado. */
+.bonus-summary.is-counted .bonus-summary__continue {
+  opacity: 1;
+}
+
+.bonus-summary__continue:hover,
+.bonus-summary__continue:focus-visible {
+  background: #ffc72c;
+  color: #0b0907;
+}
+
+/* Pantallas bajas (movil apaisado): el titulo pequeno arriba, el altar con el
+   premio encima ocupa el resto del alto y CONTINUE va sobre la base. */
+@media (max-height: 560px) and (orientation: landscape) {
+  .bonus-summary {
+    padding: 8px;
+  }
+
+  .bonus-summary__scene {
+    --altar-w: min(calc(100vw - 16px), calc((100vh - 52px) / var(--stage-ratio)));
+    --altar-w: min(calc(100vw - 16px), calc((100svh - 52px) / var(--stage-ratio)));
+  }
+
+  .bonus-summary__title {
+    font-size: clamp(16px, calc(var(--altar-w) * 0.1), 28px);
+  }
+
+  .bonus-summary__stage {
+    margin-top: 0;
+  }
+
+  .bonus-summary__continue {
+    margin-top: calc(var(--altar-w) * -0.12);
+    padding: 8px 26px;
+  }
+}
+
+/* Sin regla prefers-reduced-motion, como el resto del juego (style.css): el
+   usuario quiere ver siempre el movimiento. */

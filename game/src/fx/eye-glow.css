@@ -1,0 +1,44 @@
+/* Ojos que brillan en canvas (src/fx/eye-glow.js): los del encapuchado
+   (src/fx/hood-eyes.js) y los de la Muerte de El Juicio. El dibujo y el
+   movimiento van en el canvas; aqui solo la capa y lo que se esconde. */
+
+/* Capa fija de los ojos del encapuchado; cada fotograma eye-glow.js pone su
+   cara encima de la capucha (sigue a la camara del bonus). */
+.hood-eyes-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 9050;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.eye-glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+.hood-eyes-layer .eye-glow {
+  will-change: transform;
+}
+
+/* El Juicio: el canvas sustituye a las capas CSS de los ojos. Se quedan en su
+   sitio pero invisibles y quietas: las ascuas (el-juicio.js#eyesEmbers) salen
+   de donde estan las cuencas. !important: las clases de estado de
+   el-juicio.css ponen sus propias animaciones con mas especificidad. */
+.el-juicio-eyes.is-glow > :not(.eye-glow) {
+  visibility: hidden;
+}
+
+.el-juicio-eyes.is-glow > :not(.eye-glow),
+.el-juicio-eyes.is-glow > :not(.eye-glow) * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* La cara va dentro de la figura, que ya se alza al golpear: sin el tiron
+   propio de la cabeza (los ojos se separaban de la capucha). */
+.el-juicio-death.has-art .el-juicio-death__head.is-art {
+  animation: none;
+}
